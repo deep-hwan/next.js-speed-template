@@ -1,13 +1,12 @@
-interface THISTYPE {
-  LOADING: string;
-  SUCCESS: string;
-  FAILED: string;
-}
-
-export const THISSTATE: { [key: string]: string } = {
+export const THIS_STATE: { [key: string]: string } = {
   LOADING: "LOADING",
   SUCCESS: "SUCCESS",
   FAILED: "FAILED",
+};
+
+export const TOKEN: { [key: string]: string } = {
+  ACCESS: "name_access",
+  REFRESH: "name_refresh",
 };
 
 export const Media: { [key: string]: string } = {

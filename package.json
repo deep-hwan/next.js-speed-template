@@ -33,5 +33,9 @@
   },
   "devDependencies": {
     "next-pwa": "^5.6.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/deep-hwan/Next_Typescript_Tamplate.git",
+  "author": "deep-hwan <deep@deepcomu.com>",
+  "license": "MIT"
 }
