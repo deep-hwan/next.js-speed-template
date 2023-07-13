@@ -3,7 +3,7 @@ import CancelIcon from "@/icons/cancel-icon.svg";
 import { useClickOutside } from "../hooks/useClickOutSide";
 import { Layer } from "./Layer";
 import { IconTab } from "./Tab";
-import { MQ } from "../utils/mediaQuery";
+import { MQ } from "../theme/mediaQuery";
 import { colors } from "../theme/colors";
 
 interface Props {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { MQ } from "@/lib/utils/mediaQuery";
+import { MQ } from "@/lib/theme/mediaQuery";
 import {
   Button,
   CheckBox,

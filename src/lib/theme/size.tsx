@@ -1,7 +1,7 @@
 export const sizes = {
   br100: "8px",
   br200: "16px",
-};
+} as const;
 
 export const fontSize = {
   s10: "0.625rem",
@@ -22,4 +22,4 @@ export const fontSize = {
   s52: "3.25rem",
   s56: "3.5rem",
   s60: "3.45rem",
-};
+} as const;

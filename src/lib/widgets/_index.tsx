@@ -6,5 +6,19 @@ import { Input } from "./Input";
 import { CheckBox } from "./CheckBox";
 import { Skeleton } from "./SkeletonUI";
 import { Button } from "./Button";
+import { SearchBar } from "./SearchBar";
+import { Items, Item } from "./Items";
 
-export { Spacing, Section, IconTab, Layer, Input, CheckBox, Skeleton, Button };
+export {
+  Spacing,
+  Section,
+  IconTab,
+  Layer,
+  Input,
+  SearchBar,
+  CheckBox,
+  Skeleton,
+  Button,
+  Items,
+  Item,
+};

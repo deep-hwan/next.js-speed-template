@@ -1,5 +1,5 @@
 import React, { Children, ReactElement, useEffect, useState } from "react";
-import { MQ } from "../utils/mediaQuery";
+import { MQ } from "../theme/mediaQuery";
 import { colors } from "../theme/colors";
 
 //

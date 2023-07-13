@@ -23,4 +23,4 @@ export const colors = {
 
   ground100: "#f8f9fc",
   ground200: "#f5f7fc",
-};
+} as const;

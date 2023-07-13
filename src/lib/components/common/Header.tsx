@@ -5,7 +5,7 @@ import Link from "next/link";
 import AppBar from "@/lib/widgets/AppBar";
 import { Drawer } from "./Drawer";
 import { IconTab } from "@/lib/widgets/Tab";
-import { MQ } from "@/lib/utils/mediaQuery";
+import { MQ } from "@/lib/theme/mediaQuery";
 
 //png,svg
 import Logo from "@/images/logo.svg";
