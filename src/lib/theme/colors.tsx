@@ -19,7 +19,10 @@ export const colors = {
   grey800: "#555555",
 
   red: "#ED5C5C",
+  redBg: "#FFF2F2",
+
   blue: "#4E9AFF",
+  blueBg: "#EEF4FD",
 
   ground100: "#f8f9fc",
   ground200: "#f5f7fc",

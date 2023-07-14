@@ -1,0 +1,26 @@
+import { colors } from "../theme/colors";
+import { fontSize } from "../theme/size";
+import React, { Children, HTMLAttributes, ReactNode } from "react";
+
+interface Props extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
+}
+
+export function TxtSpan({ children, ...props }: Props) {
+  return (
+    <span
+      css={{
+        whiteSpace: "pre-line",
+        margin: 0,
+        padding: 0,
+        fontSize: fontSize.s13,
+        color: colors.grey600,
+        fontWeight: 400,
+        transition: "0.3s ease-in-out",
+      }}
+      {...props}
+    >
+      {children}
+    </span>
+  );
+}

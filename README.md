@@ -53,3 +53,5 @@
 - CheckBox : 체크박스 인풋 위젯
 - Button : 버튼 위젯
 - Items, Item : ul / li 레이아웃
+- Txt : h1~6 , p 테크
+- TxtSpan : span 테크

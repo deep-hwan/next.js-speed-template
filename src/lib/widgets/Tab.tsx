@@ -1,18 +1,47 @@
-import React, { Children, HTMLAttributes, ReactElement } from "react";
+import React, {
+  Children,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from "react";
 import { colors } from "../theme/colors";
+import { fontSize } from "../theme/size";
+interface TabProps extends HTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+}
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+export function Tab({ children, ...props }: TabProps) {
+  return (
+    <button
+      type="button"
+      css={{
+        position: "relative",
+        fontSize: fontSize.s14,
+        padding: "10px 12px",
+        borderRadius: "14px",
+        color: colors.grey700,
+        backgroundColor: colors.ground100,
+        transition: "0.3s ease-in-out",
+
+        "&:hover": {
+          opacity: 0.86,
+        },
+      }}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+interface IconProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement;
   onClick: () => void;
   size?: number;
 }
 
-export function Tab() {
-  return <button type="button"></button>;
-}
-
 //
-export function IconTab({ children, size = 25, onClick, ...props }: Props) {
+export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
   const child = Children.only(children);
 
   const svgChild = React.cloneElement(child, {
@@ -27,6 +56,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: Props) {
       type="button"
       onClick={onClick}
       css={{
+        position: "relative",
         display: "flex",
         justifyContent: "center",
         padding: "6px",

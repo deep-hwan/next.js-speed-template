@@ -3,11 +3,14 @@ import { Layer } from "./Layer";
 import { IconTab } from "./Tab";
 import { Section } from "./Section";
 import { Input } from "./Input";
-import { CheckBox } from "./CheckBox";
+import { CheckInput } from "./CheckBox";
 import { Skeleton } from "./SkeletonUI";
 import { Button } from "./Button";
 import { SearchBar } from "./SearchBar";
 import { Items, Item } from "./Items";
+import { Txt } from "./Txt";
+import { TxtSpan } from "./TxtSpan";
+import { Tab } from "./Tab";
 
 export {
   Spacing,
@@ -16,9 +19,12 @@ export {
   Layer,
   Input,
   SearchBar,
-  CheckBox,
+  CheckInput,
   Skeleton,
   Button,
+  Tab,
   Items,
   Item,
+  Txt,
+  TxtSpan,
 };

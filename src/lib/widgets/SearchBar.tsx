@@ -5,9 +5,7 @@ import {
   Children,
   ForwardedRef,
   HTMLAttributes,
-  InputHTMLAttributes,
   ReactElement,
-  ReactNode,
   cloneElement,
   forwardRef,
 } from "react";
@@ -20,7 +18,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   onChange: () => void;
 }
 
-export function SearchBar({ children, value, onChange, ...props }: Props) {
+export const SearchBar = forwardRef(function SearchBar(
+  { children, value, onChange, ...props }: Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   const child = Children.only(children);
   const search = child?.props.id ?? "search";
 
@@ -32,7 +33,7 @@ export function SearchBar({ children, value, onChange, ...props }: Props) {
         alignItems: "center",
         columnGap: "12px",
         backgroundColor: colors.white,
-        borderRadius: sizes.br200,
+        borderRadius: sizes.br500,
         padding: "14px",
         border: `1px solid ${colors.grey200}`,
 
@@ -60,7 +61,7 @@ export function SearchBar({ children, value, onChange, ...props }: Props) {
       {child}
     </div>
   );
-}
+});
 
 //
 ///

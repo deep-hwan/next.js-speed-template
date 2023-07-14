@@ -20,10 +20,11 @@ export function Button({
   return (
     <button
       css={{
+        width: "100%",
         minHeight: "54px",
         outline: "none",
         border: "0 solid transparent",
-        borderRadius: sizes.br200,
+        borderRadius: sizes.br500,
         cursor: "pointer",
         transition: "0.3s ease-in-out",
         fontWeight: 500,
@@ -32,6 +33,11 @@ export function Button({
         ...SIZE_VARIANTS[size],
 
         "&:hover": { opacity: "0.95" },
+
+        "&:disabled": {
+          backgroundColor: colors.grey100,
+          color: colors.grey400,
+        },
       }}
       {...props}
     >

@@ -1,5 +1,5 @@
 /// 2023.01.01 타입
-export default function moment(dataVal: string): string {
+export function moment(dataVal: string): string {
   const now = new Date(dataVal);
   const year = now.getFullYear();
   const month = now.getMonth() + 1;

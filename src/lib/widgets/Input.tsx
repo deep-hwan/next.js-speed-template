@@ -29,9 +29,9 @@ export function Input({
 }: InputProps) {
   const child = Children.only(children);
   const id = child.props.id ?? 1;
-  const isError: boolean = child.props.error ?? false;
-  const isErrorText: string = child.props.errorText ?? undefined;
-  const isTolTip: string = child.props.tolTip ?? undefined;
+  const error: boolean = child.props.error ?? false;
+  const errorMsg: string = child.props.errorMsg ?? undefined;
+  const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
     <div
@@ -43,7 +43,7 @@ export function Input({
         css={{
           display: "inline-block",
           fontSize: fontSize.s13,
-          color: isError ? colors.red : colors.grey700,
+          color: error ? colors.red : colors.grey700,
           marginBottom: "5px",
 
           "&:focus-within": {
@@ -57,7 +57,7 @@ export function Input({
           <span
             css={{
               fontSize: fontSize.s12,
-              color: colors.blue,
+              color: error ? colors.red : colors.blue,
               marginLeft: "3px",
             }}
           >
@@ -71,7 +71,7 @@ export function Input({
         ...child.props,
       })}
 
-      {isError && (
+      {error && (
         <div
           css={{
             color: colors.red,
@@ -81,11 +81,11 @@ export function Input({
             marginTop: "8px",
           }}
         >
-          {isErrorText}
+          {errorMsg}
         </div>
       )}
 
-      {isTolTip && !isError && (
+      {tolTip && !error && (
         <div
           css={{
             color: colors.grey500,
@@ -95,7 +95,7 @@ export function Input({
             marginTop: "8px",
           }}
         >
-          {isTolTip}
+          {tolTip}
         </div>
       )}
     </div>
@@ -107,13 +107,13 @@ export function Input({
 interface TextFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   error?: boolean;
-  errorText?: string;
+  errorMsg?: string;
   tolTip?: string;
-  edge?: any;
+  edge?: ReactNode;
 }
 
 Input.TextField = forwardRef(function TextField(
-  { error, errorText, tolTip, edge, ...props }: TextFieldProps,
+  { error, edge, ...props }: TextFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -153,23 +153,33 @@ Input.TextField = forwardRef(function TextField(
         {...props}
       />
 
-      {edge}
+      {edge && (
+        <span
+          css={{
+            fontSize: fontSize.s14,
+            color: colors.grey700,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {edge}
+        </span>
+      )}
     </div>
   );
 });
 
 ////
 ////
+////
+////
 interface TextareaProps
   extends Omit<InputHTMLAttributes<HTMLTextAreaElement>, "size"> {
-  edge?: any;
+  rows?: number;
   error?: boolean;
-  errorText?: string;
-  tolTip?: string;
 }
 
 Input.Textarea = forwardRef(function TextField(
-  { edge, error, errorText, tolTip, ...props }: TextareaProps,
+  { error, rows = 1, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   return (
@@ -193,7 +203,7 @@ Input.Textarea = forwardRef(function TextField(
       }}
     >
       <textarea
-        rows={1}
+        rows={rows}
         css={{
           width: "100%",
           margin: 0,
@@ -210,8 +220,6 @@ Input.Textarea = forwardRef(function TextField(
         ref={ref}
         {...props}
       />
-
-      {edge}
     </div>
   );
 });
