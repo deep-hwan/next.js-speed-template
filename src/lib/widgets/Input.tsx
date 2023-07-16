@@ -43,7 +43,7 @@ export function Input({
         css={{
           display: "inline-block",
           fontSize: fontSize.s13,
-          color: error ? colors.red : colors.grey700,
+          color: error ? colors.red : colors.grey600,
           marginBottom: "5px",
 
           "&:focus-within": {
@@ -113,7 +113,7 @@ interface TextFieldProps
 }
 
 Input.TextField = forwardRef(function TextField(
-  { error, edge, ...props }: TextFieldProps,
+  { error, edge, tolTip, ...props }: TextFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -157,7 +157,7 @@ Input.TextField = forwardRef(function TextField(
         <span
           css={{
             fontSize: fontSize.s14,
-            color: colors.grey700,
+            color: colors.grey600,
             whiteSpace: "nowrap",
           }}
         >

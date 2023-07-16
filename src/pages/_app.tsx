@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "@/lib/contents/Layout";
+import Layout from "@/lib/screen/Layout";
 import { useEffect, useState } from "react";
 import { SessionProvider } from "next-auth/react";
 import { RecoilRoot } from "recoil";

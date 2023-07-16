@@ -5,6 +5,8 @@ export const sizes = {
   br300: "12px",
   br400: "14px",
   br500: "16px",
+  br600: "18px",
+  br700: "20px",
 } as const;
 
 export const fontSize = {

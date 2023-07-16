@@ -14,8 +14,8 @@ export const colors = {
   grey300: "#cccccc",
   grey400: "#aaaaaa",
   grey500: "#9DA2A7",
-  grey600: "#797979",
-  grey700: "#888888",
+  grey600: "#888888",
+  grey700: "#797979",
   grey800: "#555555",
 
   red: "#ED5C5C",

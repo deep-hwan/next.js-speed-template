@@ -14,7 +14,7 @@ export function TxtSpan({ children, ...props }: Props) {
         margin: 0,
         padding: 0,
         fontSize: fontSize.s13,
-        color: colors.grey600,
+        color: colors.grey700,
         fontWeight: 400,
         transition: "0.3s ease-in-out",
       }}

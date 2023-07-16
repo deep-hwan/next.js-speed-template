@@ -24,7 +24,7 @@ export function Button({
         minHeight: "54px",
         outline: "none",
         border: "0 solid transparent",
-        borderRadius: sizes.br500,
+        borderRadius: sizes.br600,
         cursor: "pointer",
         transition: "0.3s ease-in-out",
         fontWeight: 500,
