@@ -9,12 +9,24 @@ export const sizes = {
   br700: "20px",
 } as const;
 
+export const borderRadius = {
+  infinte: "1000px",
+  s100: "6px",
+  s200: "8px",
+  s300: "10px",
+  s400: "12px",
+  s500: "14px",
+  s600: "16px",
+  s700: "18px",
+  s800: "20px",
+} as const;
+
 export const fontSize = {
   s10: "0.625rem",
   s12: "0.75rem",
   s13: "0.813rem",
   s14: "0.875rem",
-  s15: "0.913rem",
+  s15: "0.938rem",
   s16: "1rem",
   s18: "1.125rem",
   s20: "1.25rem",

@@ -1,7 +1,7 @@
 import { CSSProperties, HTMLAttributes } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 export function Layer({ isActive, ...props }: Props) {

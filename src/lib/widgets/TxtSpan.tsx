@@ -1,6 +1,6 @@
 import { colors } from "../theme/colors";
 import { fontSize } from "../theme/size";
-import React, { Children, HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;

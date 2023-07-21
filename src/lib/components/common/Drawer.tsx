@@ -5,7 +5,7 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 
 //menu
-import menus from "./memu.json";
+import menus from "../../json/memu.json";
 
 //ui
 import DrawerUi from "@/lib/widgets/Drawer";

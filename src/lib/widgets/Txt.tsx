@@ -106,15 +106,16 @@ export function Txt(props: Props) {
       )}
 
       {as === "p" && (
-        <strong
+        <p
           css={{
+            whiteSpace: "pre-line",
             ...initialStyle,
             ...TYPOGRAPH_VARIANT["p"],
           }}
           {...Props}
         >
           {children}
-        </strong>
+        </p>
       )}
     </>
   );
@@ -131,46 +132,32 @@ const TYPOGRAPH_VARIANT = {
   h1: {
     fontSize: fontSize.s52,
     fontWeight: 600,
-
-    [MQ[2]]: {
-      fontSize: fontSize.s44,
-    },
+    lineHeight: "1.4",
   },
   h2: {
     fontSize: fontSize.s44,
     fontWeight: 600,
-
-    [MQ[2]]: {
-      fontSize: fontSize.s36,
-    },
+    lineHeight: "1.4",
   },
   h3: {
     fontSize: fontSize.s38,
     fontWeight: 600,
-
-    [MQ[2]]: {
-      fontSize: fontSize.s30,
-    },
+    lineHeight: "1.4",
   },
   h4: {
     fontSize: fontSize.s32,
     fontWeight: 600,
-
-    [MQ[2]]: {
-      fontSize: fontSize.s26,
-    },
+    lineHeight: "1.4",
   },
   h5: {
     fontSize: fontSize.s28,
     fontWeight: 600,
-
-    [MQ[2]]: {
-      fontSize: fontSize.s24,
-    },
+    lineHeight: "1.4",
   },
   h6: {
     fontSize: fontSize.s20,
     fontWeight: 600,
+    lineHeight: "1.4",
   },
   strong: {
     fontSize: fontSize.s20,

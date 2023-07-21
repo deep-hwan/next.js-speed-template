@@ -21,7 +21,7 @@ export const colors = {
   red: "#ED5C5C",
   redBg: "#FFF2F2",
 
-  blue: "#4E9AFF",
+  blue: "#3788f4",
   blueBg: "#EEF4FD",
 
   ground100: "#f8f9fc",

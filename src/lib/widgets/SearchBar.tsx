@@ -10,7 +10,7 @@ import {
   forwardRef,
 } from "react";
 import { colors } from "../theme/colors";
-import { fontSize, sizes } from "../theme/size";
+import { borderRadius, fontSize } from "../theme/size";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children?: ReactElement;
@@ -33,11 +33,9 @@ export const SearchBar = forwardRef(function SearchBar(
         alignItems: "center",
         columnGap: "12px",
         backgroundColor: colors.white,
-        borderRadius: sizes.br500,
+        borderRadius: borderRadius.s600,
         padding: "14px",
         border: `1px solid ${colors.grey200}`,
-
-        ...TextInputGlobalStyles,
       }}
       {...props}
     >
@@ -46,13 +44,17 @@ export const SearchBar = forwardRef(function SearchBar(
       {cloneElement(
         <input
           type="search"
-          placeholder="검색어를 입력하세요."
+          placeholder="검색어를 입력하세요"
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
               document.getElementById(search)?.click();
             }
           }}
-          css={{ fontSize: fontSize.s15, width: "100%" }}
+          css={{
+            fontSize: fontSize.s15,
+            width: "100%",
+            ...TextInputGlobalStyles,
+          }}
           value={value}
           onChange={onChange}
         />

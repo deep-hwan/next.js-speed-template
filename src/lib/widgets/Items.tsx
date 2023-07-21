@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLUListElement | HTMLLIElement> {
 export function Items({ direction = "vertical", children, ...props }: Props) {
   return (
     <ul
-      css={{
+      css={{position:'relative',
         width: "100%",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
@@ -25,7 +25,7 @@ export function Items({ direction = "vertical", children, ...props }: Props) {
 export function Item({ direction = "vertical", children, ...props }: Props) {
   return (
     <li
-      css={{
+      css={{position:'relative',
         width: "100%",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",

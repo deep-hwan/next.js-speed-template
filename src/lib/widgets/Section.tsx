@@ -1,4 +1,4 @@
-import React, { CSSProperties, HTMLAttributes, ReactNode, memo } from "react";
+import React, { HTMLAttributes, ReactNode, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLOptionElement> {
   direction?: "horizontal" | "vertical";
@@ -15,6 +15,7 @@ export const Section = memo(function Section({
   return (
     <section
       css={{
+        position: "relative",
         width: "100%",
         height: "100%",
         display: "flex",

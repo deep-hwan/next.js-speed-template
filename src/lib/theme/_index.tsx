@@ -1,4 +1,4 @@
 import { colors } from "./colors";
-import { fontSize, sizes } from "./size";
+import { fontSize, sizes, borderRadius } from "./size";
 
-export { colors, fontSize, sizes };
+export { colors, fontSize, sizes, borderRadius };

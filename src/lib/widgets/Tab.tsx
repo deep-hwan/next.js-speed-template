@@ -5,7 +5,7 @@ import React, {
   ReactNode,
 } from "react";
 import { colors } from "../theme/colors";
-import { fontSize, sizes } from "../theme/size";
+import { borderRadius, fontSize } from "../theme/size";
 interface TabProps extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
@@ -17,14 +17,18 @@ export function Tab({ children, ...props }: TabProps) {
       css={{
         position: "relative",
         fontSize: fontSize.s14,
-        padding: "10px 12px",
-        borderRadius: sizes.br600,
+        padding: "12px 20px",
+        borderRadius: borderRadius.s500,
         color: colors.grey700,
         backgroundColor: colors.ground100,
         transition: "0.3s ease-in-out",
 
         "&:hover": {
           opacity: 0.9,
+        },
+
+        "&:disabled": {
+          opacity: "0.4",
         },
       }}
       {...props}

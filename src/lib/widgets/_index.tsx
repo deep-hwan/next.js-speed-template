@@ -11,10 +11,15 @@ import { Items, Item } from "./Items";
 import { Txt } from "./Txt";
 import { TxtSpan } from "./TxtSpan";
 import { Tab } from "./Tab";
+import { Container, Wrap, Box } from "./Container";
+import { SelectBox, Option } from "./Select";
 
 export {
   Spacing,
   Section,
+  Container,
+  Wrap,
+  Box,
   IconTab,
   Layer,
   Input,
@@ -27,4 +32,6 @@ export {
   Item,
   Txt,
   TxtSpan,
+  SelectBox,
+  Option,
 };

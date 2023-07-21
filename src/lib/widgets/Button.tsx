@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import { colors } from "../theme/colors";
-import { fontSize, sizes } from "../theme/size";
+import { borderRadius, fontSize } from "../theme/size";
 
 //
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -24,7 +24,7 @@ export function Button({
         minHeight: "54px",
         outline: "none",
         border: "0 solid transparent",
-        borderRadius: sizes.br600,
+        borderRadius: borderRadius.s600,
         cursor: "pointer",
         transition: "0.3s ease-in-out",
         fontWeight: 500,
@@ -32,11 +32,10 @@ export function Button({
         ...TYPE_VARIANTS[variant],
         ...SIZE_VARIANTS[size],
 
-        "&:hover": { opacity: "0.95" },
+        "&:hover": { opacity: "0.9" },
 
         "&:disabled": {
-          backgroundColor: colors.grey100,
-          color: colors.grey400,
+          opacity: "0.25",
         },
       }}
       {...props}

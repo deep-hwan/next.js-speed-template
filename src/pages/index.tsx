@@ -4,6 +4,7 @@ import {
   Button,
   CheckInput,
   Input,
+  SearchBar,
   Section,
   Spacing,
   Tab,
@@ -69,7 +70,9 @@ export default function Index() {
           {/* /// */}
           <Spacing size={36} />
 
-          <Button css={{ width: "100%" }}>제출</Button>
+          <Button css={{ width: "100%" }} disabled={true}>
+            제출
+          </Button>
         </div>
       </Section>
     </>

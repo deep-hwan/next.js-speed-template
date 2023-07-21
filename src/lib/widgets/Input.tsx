@@ -43,7 +43,7 @@ export function Input({
         css={{
           display: "inline-block",
           fontSize: fontSize.s13,
-          color: error ? colors.red : colors.grey600,
+          color: error ? colors.red : colors.grey700,
           marginBottom: "5px",
 
           "&:focus-within": {
