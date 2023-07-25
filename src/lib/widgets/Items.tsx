@@ -1,14 +1,19 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLUListElement | HTMLLIElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
 }
 
-export function Items({ direction = "vertical", children, ...props }: Props) {
+export const Items = memo(function Items({
+  direction = "vertical",
+  children,
+  ...props
+}: Props) {
   return (
     <ul
-      css={{position:'relative',
+      css={{
+        position: "relative",
         width: "100%",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
@@ -20,12 +25,17 @@ export function Items({ direction = "vertical", children, ...props }: Props) {
       {children}
     </ul>
   );
-}
+});
 
-export function Item({ direction = "vertical", children, ...props }: Props) {
+export const Item = memo(function Item({
+  direction = "vertical",
+  children,
+  ...props
+}: Props) {
   return (
     <li
-      css={{position:'relative',
+      css={{
+        position: "relative",
         width: "100%",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
@@ -36,4 +46,4 @@ export function Item({ direction = "vertical", children, ...props }: Props) {
       {children}
     </li>
   );
-}
+});

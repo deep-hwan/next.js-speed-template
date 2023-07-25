@@ -13,11 +13,7 @@ interface SelectBoxProps extends SelectHTMLAttributes<HTMLSelectElement> {
   placeholder?: string;
 }
 
-export const SelectBox = memo(function SelectBox({
-  children,
-  placeholder,
-  ...props
-}: SelectBoxProps) {
+export function SelectBox({ children, placeholder, ...props }: SelectBoxProps) {
   const { value } = props;
 
   return (
@@ -31,7 +27,7 @@ export const SelectBox = memo(function SelectBox({
             margin: "0px",
             border: `1px solid ${colors.grey200}`,
             backgroundColor: colors.white,
-            borderRadius: borderRadius.s500,
+            borderRadius: borderRadius.s600,
             fontSize: fontSize.s15,
             color: value !== "" ? colors.grey800 : colors.grey300,
 
@@ -63,7 +59,7 @@ export const SelectBox = memo(function SelectBox({
       )}
     </>
   );
-});
+}
 
 interface OptionProps extends OptionHTMLAttributes<HTMLOptionElement> {
   children: ReactElement;

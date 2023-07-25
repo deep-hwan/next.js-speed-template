@@ -6,6 +6,7 @@ import {
   InputHTMLAttributes,
   ReactElement,
   ReactNode,
+  TextareaHTMLAttributes,
   cloneElement,
   forwardRef,
 } from "react";
@@ -173,7 +174,7 @@ Input.TextField = forwardRef(function TextField(
 ////
 ////
 interface TextareaProps
-  extends Omit<InputHTMLAttributes<HTMLTextAreaElement>, "size"> {
+  extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
   rows?: number;
   error?: boolean;
 }

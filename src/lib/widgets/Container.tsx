@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactNode, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   gap?: number;
 }
 
-export function Container({
+export const Container = memo(function Container({
   children,
   direction = "vertical",
   gap,
@@ -28,9 +28,9 @@ export function Container({
       {children}
     </div>
   );
-}
+});
 
-export function Wrap({
+export const Wrap = memo(function Wrap({
   children,
   direction = "vertical",
   gap,
@@ -52,9 +52,9 @@ export function Wrap({
       {children}
     </div>
   );
-}
+});
 
-export function Box({
+export const Box = memo(function Box({
   children,
   direction = "vertical",
   gap,
@@ -76,4 +76,31 @@ export function Box({
       {children}
     </div>
   );
-}
+});
+
+export const BoxShadow = memo(function BoxShadow({
+  children,
+  direction = "vertical",
+  gap,
+  ...props
+}: Props) {
+  return (
+    <div
+      css={{
+        position: "relative",
+        width: "100%",
+        display: "flex",
+        flexDirection: direction === "horizontal" ? "row" : "column",
+        transition: "0.3s ease-in-out",
+        rowGap: direction === "vertical" ? `${gap}px` : undefined,
+        columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        boxShadow: "0px 2px 20px rgba(0,0,0,0.1)",
+        background: "#fff",
+        borderRadius: "16px",
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});

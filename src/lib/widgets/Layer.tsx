@@ -1,10 +1,10 @@
-import { CSSProperties, HTMLAttributes } from "react";
+import { CSSProperties, HTMLAttributes, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   isActive?: boolean;
 }
 
-export function Layer({ isActive, ...props }: Props) {
+export const Layer = memo(function Layer({ isActive, ...props }: Props) {
   return (
     <div
       css={{
@@ -22,4 +22,4 @@ export function Layer({ isActive, ...props }: Props) {
       {...props}
     />
   );
-}
+});

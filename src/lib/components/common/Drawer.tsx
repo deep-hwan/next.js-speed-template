@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import menus from "../../json/memu.json";
 
 //ui
-import DrawerUi from "@/lib/widgets/Drawer";
+import DrawerBox from "@/lib/widgets/Drawer";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -19,7 +19,7 @@ interface DrawerType {
 export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
-      <DrawerUi view={isDrawer} onCancel={handleCloseDrawer}>
+      <DrawerBox view={isDrawer} onCancel={handleCloseDrawer}>
         <Menus>
           {menus.map((item, i) => {
             return (
@@ -32,7 +32,7 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
             );
           })}
         </Menus>
-      </DrawerUi>
+      </DrawerBox>
     </>
   );
 }

@@ -70,7 +70,8 @@ CheckInput.CheckBox = forwardRef(function CheckBox(
     <div
       css={{
         display: "flex",
-        alignItems: "center",
+        maxWidth: "28px",
+        maxHeight: "28px",
         justifyContent: "center",
         padding: "6px",
         borderRadius: "100px",

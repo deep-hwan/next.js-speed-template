@@ -54,7 +54,7 @@ const TYPE_VARIANTS = {
     },
   },
   secondary: {
-    color: colors.grey700,
+    color: colors.grey500,
     backgroundColor: colors.grey100,
     "&:hover": {
       backgroundColor: colors.grey300,

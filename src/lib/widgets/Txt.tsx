@@ -108,6 +108,7 @@ export function Txt(props: Props) {
       {as === "p" && (
         <p
           css={{
+            lineHeight: "1.6",
             whiteSpace: "pre-line",
             ...initialStyle,
             ...TYPOGRAPH_VARIANT["p"],

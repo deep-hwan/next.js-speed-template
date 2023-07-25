@@ -12,12 +12,16 @@ import { Txt } from "./Txt";
 import { TxtSpan } from "./TxtSpan";
 import { Tab } from "./Tab";
 import { Container, Wrap, Box } from "./Container";
+import { BoxShadow } from "./Container";
 import { SelectBox, Option } from "./Select";
+import { Form } from "./Form";
 
 export {
   Spacing,
   Section,
   Container,
+  BoxShadow,
+  Form,
   Wrap,
   Box,
   IconTab,
