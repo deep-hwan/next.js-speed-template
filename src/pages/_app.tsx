@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "@/lib/screen/Layout";
 import { useEffect, useState } from "react";
@@ -9,13 +8,14 @@ import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
-} from "@tanstack/react-query";
+} from "react-query";
 
-//
-export default function App({ Component, pageProps }: AppProps) {
+import "@/styles/globals.css";
+import "react-indiana-drag-scroll/dist/style.css";
+
+function MyApp({ Component, pageProps }: AppProps) {
   const [client] = useState(() => new QueryClient());
-  const queryClient = new QueryClient();
-  const dehydratedState = dehydrate(queryClient);
+  const dehydratedState = dehydrate(client);
 
   return (
     <QueryClientProvider client={client}>
@@ -31,3 +31,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
+
+export default MyApp;
