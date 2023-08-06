@@ -59,11 +59,12 @@ export function CheckInput({ label, children, ...props }: InputProps) {
 //
 interface CheckProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  size?: number; // 이 부분을 변경합니다.
+  size?: number;
+  type?: string;
 }
 
 CheckInput.CheckBox = forwardRef(function CheckBox(
-  { ...props }: CheckProps,
+  { type, ...props }: CheckProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -84,7 +85,7 @@ CheckInput.CheckBox = forwardRef(function CheckBox(
       }}
     >
       <input
-        type="checkbox"
+        type={type ? type : "checkbox"}
         css={{
           width: "16px",
           minWidth: "16px",

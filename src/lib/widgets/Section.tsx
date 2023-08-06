@@ -14,6 +14,7 @@ export function Section({
   return (
     <section
       css={{
+        position: "relative",
         width: "100%",
         height: "100%",
         display: "flex",
@@ -23,6 +24,7 @@ export function Section({
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         transition: "0.3s ease-in-out",
+        overflowX: "hidden",
       }}
       {...props}
     >

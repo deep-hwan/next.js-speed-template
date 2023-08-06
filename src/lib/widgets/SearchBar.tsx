@@ -1,30 +1,30 @@
 import { CSSObject } from "@emotion/react";
 
 import React from "react";
+
+import { colors } from "../theme/colors";
+import { borderRadius, fontSize } from "../theme/size";
 import {
-  Children,
   ForwardedRef,
   HTMLAttributes,
   ReactElement,
   cloneElement,
   forwardRef,
 } from "react";
-import { colors } from "../theme/colors";
-import { borderRadius, fontSize } from "../theme/size";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children?: ReactElement;
+  id?: string;
   value: string | number;
   onChange: () => void;
+  onClick?: () => void;
+  searchTab?: boolean;
 }
 
 export const SearchBar = forwardRef(function SearchBar(
-  { children, value, onChange, ...props }: Props,
+  { value, id, onChange, onClick, searchTab, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
-  const child = Children.only(children);
-  const search = child?.props.id ?? "search";
-
   return (
     <div
       css={{
@@ -36,6 +36,8 @@ export const SearchBar = forwardRef(function SearchBar(
         borderRadius: borderRadius.s600,
         padding: "14px",
         border: `1px solid ${colors.grey200}`,
+
+        ...TextInputGlobalStyles,
       }}
       {...props}
     >
@@ -43,24 +45,44 @@ export const SearchBar = forwardRef(function SearchBar(
 
       {cloneElement(
         <input
+          ref={ref}
           type="search"
           placeholder="검색어를 입력하세요"
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
-              document.getElementById(search)?.click();
+              document.getElementById(id ? id : "search")?.click();
             }
           }}
-          css={{
-            fontSize: fontSize.s15,
-            width: "100%",
-            ...TextInputGlobalStyles,
-          }}
+          css={{ fontSize: fontSize.s15, width: "100%" }}
           value={value}
           onChange={onChange}
         />
       )}
 
-      {child}
+      {searchTab && (
+        <>
+          {cloneElement(
+            <button
+              type="button"
+              id={id}
+              css={{
+                whiteSpace: "nowrap",
+                position: "relative",
+                fontSize: fontSize.s14,
+                color: colors.keyColor,
+                transition: "0.3s ease-in-out",
+
+                "&:hover": {
+                  fontWeight: "500",
+                },
+              }}
+              onClick={onClick}
+            >
+              검색
+            </button>
+          )}
+        </>
+      )}
     </div>
   );
 });

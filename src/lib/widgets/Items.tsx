@@ -1,13 +1,15 @@
-import React, { HTMLAttributes, ReactNode, memo } from "react";
+import React, { HTMLAttributes, ReactNode } from "react";
 
 interface Props extends HTMLAttributes<HTMLUListElement | HTMLLIElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
+  gap?: number;
 }
 
-export const Items = memo(function Items({
+export function Items({
   direction = "vertical",
   children,
+  gap,
   ...props
 }: Props) {
   return (
@@ -19,17 +21,20 @@ export const Items = memo(function Items({
         flexDirection: direction === "vertical" ? "column" : "row",
         overflow: "auto",
         transition: "0.3s ease-in-out",
+        rowGap: direction === "vertical" ? `${gap}px` : undefined,
+        columnGap: direction === "horizontal" ? `${gap}px` : undefined,
       }}
       {...props}
     >
       {children}
     </ul>
   );
-});
+}
 
-export const Item = memo(function Item({
+export function Item({
   direction = "vertical",
   children,
+  gap,
   ...props
 }: Props) {
   return (
@@ -40,10 +45,12 @@ export const Item = memo(function Item({
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
         transition: "0.3s ease-in-out",
+        rowGap: direction === "vertical" ? `${gap}px` : undefined,
+        columnGap: direction === "horizontal" ? `${gap}px` : undefined,
       }}
       {...props}
     >
       {children}
     </li>
   );
-});
+}

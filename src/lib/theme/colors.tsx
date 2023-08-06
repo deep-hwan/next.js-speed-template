@@ -4,7 +4,7 @@ export const colors = {
   none: "transparent",
   white: "#ffffff",
 
-  black100: "#33333",
+  black100: "#333333",
   black200: "#222222",
   black300: "#181818",
 

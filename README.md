@@ -65,3 +65,5 @@
 
 - Txt : h1~6 , p 테크
 - TxtSpan : span 테크
+
+- Dialog : Dialog 타입의 모달 팝업

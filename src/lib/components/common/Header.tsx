@@ -16,6 +16,7 @@ import ToastIcon from "@/icons/toast-icon.svg";
 
 //menu
 import menus from "../../json/memu.json";
+import { Box } from "@/lib/widgets/Container";
 
 //
 export default function Header() {
@@ -40,22 +41,27 @@ export default function Header() {
             })}
           </Menus>
 
-          <IconTab
-            onClick={() => setIsDrawer(!isDrawer)}
+          <Box
             css={{
+              width: "auto",
               display: "none",
               [MQ[1]]: {
                 display: "flex",
               },
-
-              [MQ[3]]: {
-                width: "24px",
-                height: "24px",
-              },
             }}
           >
-            <ToastIcon fill="#333" />
-          </IconTab>
+            <IconTab
+              onClick={() => setIsDrawer(!isDrawer)}
+              css={{
+                [MQ[3]]: {
+                  width: "24px",
+                  height: "24px",
+                },
+              }}
+            >
+              <ToastIcon fill="#555" />
+            </IconTab>
+          </Box>
         </NavView>
       </AppBar>
 

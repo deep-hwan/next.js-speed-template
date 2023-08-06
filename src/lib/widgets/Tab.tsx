@@ -1,4 +1,5 @@
 import React, {
+  ButtonHTMLAttributes,
   Children,
   HTMLAttributes,
   ReactElement,
@@ -6,7 +7,7 @@ import React, {
 } from "react";
 import { colors } from "../theme/colors";
 import { borderRadius, fontSize } from "../theme/size";
-interface TabProps extends HTMLAttributes<HTMLButtonElement> {
+interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
@@ -16,19 +17,15 @@ export function Tab({ children, ...props }: TabProps) {
       type="button"
       css={{
         position: "relative",
-        fontSize: fontSize.s14,
+        fontSize: fontSize.s15,
         padding: "12px 20px",
         borderRadius: borderRadius.s500,
         color: colors.grey700,
-        backgroundColor: colors.ground100,
+        backgroundColor: colors.ground200,
         transition: "0.3s ease-in-out",
 
         "&:hover": {
           opacity: 0.9,
-        },
-
-        "&:disabled": {
-          opacity: "0.4",
         },
       }}
       {...props}
@@ -38,7 +35,7 @@ export function Tab({ children, ...props }: TabProps) {
   );
 }
 
-interface IconProps extends HTMLAttributes<HTMLDivElement> {
+interface IconProps extends HTMLAttributes<HTMLElement> {
   children: ReactElement;
   onClick: () => void;
   size?: number;
@@ -69,7 +66,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
         cursor: "pointer",
 
         "&:hover": {
-          backgroundColor: colors.grey000,
+          backgroundColor: "rgba(0,0,0,0.05)",
         },
       }}
     >
@@ -87,6 +84,30 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
       >
         {svgChild}
       </div>
+    </button>
+  );
+}
+
+//
+////
+/////
+export function TxtTab({ children, ...props }: TabProps) {
+  return (
+    <button
+      type="button"
+      css={{
+        position: "relative",
+        fontSize: fontSize.s14,
+        color: colors.keyColor,
+        transition: "0.3s ease-in-out",
+
+        "&:hover": {
+          fontWeight: "500",
+        },
+      }}
+      {...props}
+    >
+      {children}
     </button>
   );
 }

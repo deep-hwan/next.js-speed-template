@@ -7,6 +7,9 @@ import styled from "@emotion/styled";
 //menu
 import menus from "../../json/memu.json";
 
+//public
+import PathIcon from "public/icons/href-icon.svg";
+
 //ui
 import DrawerBox from "@/lib/widgets/Drawer";
 
@@ -26,7 +29,7 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
               <Menu key={i} onClick={() => handleCloseDrawer()}>
                 <Link href={item.a}>
                   <MenuName>{item.name}</MenuName>
-                  {/* <HrefIcon /> */}
+                  <PathIcon />
                 </Link>
               </Menu>
             );
@@ -38,29 +41,31 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
 }
 
 // styled
-
 const Menus = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
-  column-gap: 10px;
-  row-gap: 6px;
-  margin-top: 0px;
+  margin-top: 10px;
 `;
 
 const Menu = styled.li`
   width: 100%;
-  padding: 6px 10px;
+  padding: 2px 14px;
 
   a {
-    padding: 6px 10px;
+    padding: 16px 10px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 12px;
 
     svg {
-      fill: #999;
+      fill: #aaa;
+    }
+
+    :hover {
+      background-color: #f8f8f8;
     }
   }
 `;

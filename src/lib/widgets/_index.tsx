@@ -1,6 +1,6 @@
 import { Spacing } from "./Spacing";
 import { Layer } from "./Layer";
-import { IconTab } from "./Tab";
+import { IconTab, Tab, TxtTab } from "./Tab";
 import { Section } from "./Section";
 import { Input } from "./Input";
 import { CheckInput } from "./CheckBox";
@@ -10,7 +10,6 @@ import { SearchBar } from "./SearchBar";
 import { Items, Item } from "./Items";
 import { Txt } from "./Txt";
 import { TxtSpan } from "./TxtSpan";
-import { Tab } from "./Tab";
 import { Container, Wrap, Box } from "./Container";
 import { BoxShadow } from "./Container";
 import { SelectBox, Option } from "./Select";
@@ -35,6 +34,7 @@ export {
   Items,
   Item,
   Txt,
+  TxtTab,
   TxtSpan,
   SelectBox,
   Option,
