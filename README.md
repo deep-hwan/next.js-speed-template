@@ -21,6 +21,7 @@
 - Emotion : 11.11.2
 - React-cookie : 4.1.1
 - React-raise-editor: 0.1.4
+- next-sitemap: 4.1.8
 
 ---
 

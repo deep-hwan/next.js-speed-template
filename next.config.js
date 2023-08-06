@@ -4,6 +4,11 @@ const withPWA = require("next-pwa")({
 });
 
 const nextConfig = withPWA({
+  siteUrl: "https://site_domain.url/",
+  generateRobotsTxt: true,
+  sitemapSize: 7000,
+  changefreq: "daily",
+  priority: 0.5,
   reactStrictMode: true,
   swcMinify: true,
   images: {
