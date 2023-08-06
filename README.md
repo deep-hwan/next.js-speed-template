@@ -68,3 +68,12 @@
 - TxtSpan : span 테크
 
 - Dialog : Dialog 타입의 모달 팝업
+
+---
+
+## Site-map
+
+1. src > pages > api > sitemap.ts 에서 staticPages 라우트 추가 / dynamicRoutes 동적 라우트의 서버 api URL 추가
+2. next.config.js 에서 siteUrl > 도메인 주소로 변경
+3. next-sitemap.config.js에서 siteUrl : 도메인 주소로 변경 / additionalSitemaps : 도메인 주소/sitemap.xml로 변경
+4. npm run build

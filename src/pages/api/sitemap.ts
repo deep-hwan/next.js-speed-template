@@ -7,11 +7,9 @@ const generateSitemap = async () => {
   xml += '<?xml version="1.0" encoding="UTF-8"?>';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-  // Static pages
+  // 동적 라우터 메뉴 pathname 추가
   const staticPages = [
     "",
-    "contactUs",
-    "faq",
     "portfolio",
     // ... other static routes
   ];
@@ -25,7 +23,7 @@ const generateSitemap = async () => {
   });
 
   // 서버 클라우드 API 주소 입력
-  // 동적 사이트맵 라우터 처리
+  // 동적 사이트맵 라우터 처리 : 동적 라우터의 서버 api 주소 추가
   const dynamicRoutes = {
     portfolio: "https://server.api.domain.app/v1/portfolio/getDetailPortfolio",
   };
