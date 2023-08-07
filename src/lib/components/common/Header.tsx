@@ -4,18 +4,20 @@ import styled from "@emotion/styled";
 
 //components
 import AppBar from "@/lib/widgets/AppBar";
-import { Drawer } from "./Drawer";
+import { DrawerMenu } from "./DrawerMenu";
 
 //lib
 import { IconTab } from "@/lib/widgets/Tab";
 import { MQ } from "@/lib/theme/mediaQuery";
 
 //png,svg
-import Logo from "@/images/logo.svg";
-import ToastIcon from "@/icons/toast-icon.svg";
+import Logo from "public/images/logo.svg";
+import ToastIcon from "public/icons/toast-icon.svg";
 
 //menu
-import menus from "../../json/memu.json";
+import menus from "../../json/menu.json";
+
+//widgets
 import { Box } from "@/lib/widgets/Container";
 
 //
@@ -35,7 +37,7 @@ export default function Header() {
             {menus.map((item, i) => {
               return (
                 <Menu key={i}>
-                  <Link href={item.a}>{item.name}</Link>
+                  <Link href={item.path}>{item.name}</Link>
                 </Menu>
               );
             })}
@@ -66,7 +68,7 @@ export default function Header() {
       </AppBar>
 
       {/* 드로어 메뉴 */}
-      <Drawer isDrawer={isDrawer} handleCloseDrawer={handleCloseDrawer} />
+      <DrawerMenu isDrawer={isDrawer} handleCloseDrawer={handleCloseDrawer} />
     </>
   );
 }

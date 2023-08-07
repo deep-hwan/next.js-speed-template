@@ -66,7 +66,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
         cursor: "pointer",
 
         "&:hover": {
-          backgroundColor: "rgba(0,0,0,0.05)",
+          backgroundColor: "rgba(0,0,0,0.03)",
         },
       }}
     >

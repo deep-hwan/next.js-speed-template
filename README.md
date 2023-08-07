@@ -7,6 +7,10 @@
 </p>
 </div>
 
+## Install
+
+    npm install typescript @types/react @types/react-dom @emotion/styled @emotion/react
+
 ## Setting Library
 
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.

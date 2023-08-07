@@ -20,6 +20,9 @@ export function Button({
   return (
     <button
       css={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         width: "100%",
         minHeight: "54px",
         outline: "none",

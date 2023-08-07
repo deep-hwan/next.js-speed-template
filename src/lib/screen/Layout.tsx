@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
-import Header from "../components/common/Header";
 import { NextRouter, useRouter } from "next/router";
+import Header from "../components/common/Header";
 
+//
 type LayoutProps = {
   children: ReactNode;
 };

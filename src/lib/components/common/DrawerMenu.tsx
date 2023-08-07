@@ -5,13 +5,13 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 
 //menu
-import menus from "../../json/memu.json";
+import menus from "../../json/menu.json";
 
 //public
 import PathIcon from "public/icons/href-icon.svg";
 
 //ui
-import DrawerBox from "@/lib/widgets/Drawer";
+import Drawer from "@/lib/widgets/Drawer";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -19,15 +19,15 @@ interface DrawerType {
 }
 
 //
-export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
+export function DrawerMenu({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
-      <DrawerBox view={isDrawer} onCancel={handleCloseDrawer}>
+      <Drawer view={isDrawer} onCancel={handleCloseDrawer}>
         <Menus>
           {menus.map((item, i) => {
             return (
               <Menu key={i} onClick={() => handleCloseDrawer()}>
-                <Link href={item.a}>
+                <Link href={item.path}>
                   <MenuName>{item.name}</MenuName>
                   <PathIcon />
                 </Link>
@@ -35,7 +35,7 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
             );
           })}
         </Menus>
-      </DrawerBox>
+      </Drawer>
     </>
   );
 }

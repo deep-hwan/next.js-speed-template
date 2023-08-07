@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 // json
-import menus from "../../json/memu.json";
+import menus from "../../json/menu.json";
 
 //libs
 import { colors } from "@/lib/theme/colors";
@@ -20,7 +20,7 @@ import {
 //
 interface MenuItem {
   name: string;
-  a: string;
+  path: string;
 }
 
 //
@@ -55,7 +55,7 @@ export default function Footer() {
           {menusLust?.map((item: MenuItem, i: number) => (
             <Item key={i} css={{ width: "auto", padding: "5px 0" }}>
               <Link
-                href={item.a}
+                href={item.path}
                 css={{ fontSize: fontSize.s14, color: colors.grey700 }}
               >
                 {item.name}

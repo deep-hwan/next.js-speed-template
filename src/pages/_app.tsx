@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
-import Layout from "@/lib/screen/Layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+//hooks
 import { SessionProvider } from "next-auth/react";
 import { RecoilRoot } from "recoil";
 import {
@@ -10,9 +11,14 @@ import {
   QueryClientProvider,
 } from "react-query";
 
+//style
 import "@/styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+//components
+import Layout from "@/lib/screen/Layout";
+
+//
+export default function MyApp({ Component, pageProps }: AppProps) {
   const [client] = useState(() => new QueryClient());
   const dehydratedState = dehydrate(client);
 
@@ -30,5 +36,3 @@ function MyApp({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
-
-export default MyApp;
