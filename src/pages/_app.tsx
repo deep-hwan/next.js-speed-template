@@ -11,7 +11,6 @@ import {
 } from "react-query";
 
 import "@/styles/globals.css";
-import "react-indiana-drag-scroll/dist/style.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [client] = useState(() => new QueryClient());
