@@ -25,7 +25,7 @@ const generateSitemap = async () => {
   // 서버 클라우드 API 주소 입력
   // 동적 사이트맵 라우터 처리 : 동적 라우터의 서버 api 주소 추가
   const dynamicRoutes = {
-    portfolio: "https://server.api.domain.app/v1/portfolio/getDetailPortfolio",
+    portfolio: `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/getDetailPortfolio`,
   };
 
   // Loop over dynamic routes to fetch their data and add to sitemap
