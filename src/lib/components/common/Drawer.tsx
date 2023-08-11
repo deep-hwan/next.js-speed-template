@@ -11,7 +11,7 @@ import menus from "../../json/menu.json";
 import PathIcon from "public/icons/href-icon.svg";
 
 //ui
-import Drawer from "@/lib/widgets/Drawer";
+import AppDrawer from "@/lib/widgets/layout/AppDrawer";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -19,10 +19,10 @@ interface DrawerType {
 }
 
 //
-export function DrawerMenu({ isDrawer, handleCloseDrawer }: DrawerType) {
+export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
-      <Drawer view={isDrawer} onCancel={handleCloseDrawer}>
+      <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
         <Menus>
           {menus.map((item, i) => {
             return (
@@ -35,7 +35,7 @@ export function DrawerMenu({ isDrawer, handleCloseDrawer }: DrawerType) {
             );
           })}
         </Menus>
-      </Drawer>
+      </AppDrawer>
     </>
   );
 }

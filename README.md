@@ -46,10 +46,13 @@
 즉시 사용할 수 있는 UI 위젯입니다.
 
 - Appbar : 헤더의 앱바
-- Drawer : 메뉴 드로어
+- AppDrawer : 메뉴 드로어
 
 - ScrollTopTab : 스크롤 > 클리 시 화면 최상위로 이동하는 탭
+
 - SkeletonUI : 로딩 스켈레톤 UI
+- LoaddingSpinner : 로딩 스피너
+- LoadingLayer : 로딩 중 레이어
 
 - Layout : 팝업 및 모달 시 노출되는 백그라운드 레이아웃
 - Section : 섹션 레이아웃
@@ -70,6 +73,8 @@
 
 - Txt : h1~6 , p 테크
 - TxtSpan : span 테크
+
+- Accordion : 아코디언 드롭다운 UI 위젯
 
 - Dialog : Dialog 타입의 모달 팝업
 

@@ -1,5 +1,5 @@
-import { colors } from "../theme/colors";
-import { fontSize } from "../theme/size";
+import { colors } from "../../theme/colors";
+import { fontSize } from "../../theme/size";
 import React, { HTMLAttributes, ReactNode } from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -10,6 +10,8 @@ export function TxtSpan({ children, ...props }: Props) {
   return (
     <span
       css={{
+        display: "flex",
+        alignItems: "center",
         whiteSpace: "pre-line",
         margin: 0,
         padding: 0,

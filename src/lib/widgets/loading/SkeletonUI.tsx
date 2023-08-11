@@ -1,14 +1,17 @@
-import React, { memo } from "react";
+import React, { HTMLAttributes, memo } from "react";
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  width?: number;
+  height?: number;
+  br?: number;
+}
 
 export const Skeleton = memo(function Skeleton({
   width,
   height,
   br,
-}: {
-  width?: number;
-  height?: number;
-  br?: number;
-}) {
+  ...props
+}: Props) {
   const loadAnimation = `
     @keyframes load {
       100% {
@@ -23,7 +26,6 @@ export const Skeleton = memo(function Skeleton({
       <div
         css={{
           width: width ? `${width}px` : "100%",
-          minWidth: width ? `${width}px` : "100%",
           height: height ? `${height}px` : "10px",
           minHeight: height ? `${height}px` : "10px",
           background:
@@ -33,6 +35,7 @@ export const Skeleton = memo(function Skeleton({
           backgroundPosition: "100% 0",
           animation: "load 1s infinite", // Added animation property
         }}
+        {...props}
       />
     </>
   );

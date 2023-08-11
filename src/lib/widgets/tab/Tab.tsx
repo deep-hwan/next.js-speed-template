@@ -5,8 +5,8 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
-import { colors } from "../theme/colors";
-import { borderRadius, fontSize } from "../theme/size";
+import { colors } from "../../theme/colors";
+import { borderRadius, fontSize } from "../../theme/size";
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
@@ -22,6 +22,7 @@ export function Tab({ children, ...props }: TabProps) {
         borderRadius: borderRadius.s500,
         color: colors.grey700,
         backgroundColor: colors.ground200,
+        whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
 
         "&:hover": {
@@ -62,6 +63,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
         justifyContent: "center",
         padding: "6px",
         borderRadius: "8px",
+        whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
         cursor: "pointer",
 
@@ -78,6 +80,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
           width: `${size}px`,
           height: `${size}px`,
           transition: "0.3s ease-in-out",
+          whiteSpace: "nowrap",
           cursor: "pointer",
         }}
         {...props}
@@ -99,6 +102,7 @@ export function TxtTab({ children, ...props }: TabProps) {
         position: "relative",
         fontSize: fontSize.s14,
         color: colors.keyColor,
+        whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
 
         "&:hover": {

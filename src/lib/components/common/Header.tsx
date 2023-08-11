@@ -3,11 +3,11 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 
 //components
-import AppBar from "@/lib/widgets/AppBar";
-import { DrawerMenu } from "./DrawerMenu";
+import AppBar from "@/lib/widgets/layout/AppBar";
+import { Drawer } from "./Drawer";
 
 //lib
-import { IconTab } from "@/lib/widgets/Tab";
+import { IconTab } from "@/lib/widgets/tab/Tab";
 import { MQ } from "@/lib/theme/mediaQuery";
 
 //png,svg
@@ -18,7 +18,7 @@ import ToastIcon from "public/icons/toast-icon.svg";
 import menus from "../../json/menu.json";
 
 //widgets
-import { Box } from "@/lib/widgets/Container";
+import { Box } from "@/lib/widgets/layout/Container";
 
 //
 export default function Header() {
@@ -68,7 +68,7 @@ export default function Header() {
       </AppBar>
 
       {/* 드로어 메뉴 */}
-      <DrawerMenu isDrawer={isDrawer} handleCloseDrawer={handleCloseDrawer} />
+      <Drawer isDrawer={isDrawer} handleCloseDrawer={handleCloseDrawer} />
     </>
   );
 }

@@ -10,7 +10,7 @@ import {
   cloneElement,
   forwardRef,
 } from "react";
-import { colors, fontSize } from "../theme/_index";
+import { colors, fontSize } from "../../theme/_index";
 
 ////
 interface InputProps extends HTMLAttributes<HTMLDivElement> {

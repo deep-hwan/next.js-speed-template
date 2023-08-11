@@ -2,8 +2,8 @@ import { CSSObject } from "@emotion/react";
 
 import React from "react";
 
-import { colors } from "../theme/colors";
-import { borderRadius, fontSize } from "../theme/size";
+import { colors } from "../../theme/colors";
+import { borderRadius, fontSize } from "../../theme/size";
 import {
   ForwardedRef,
   HTMLAttributes,
@@ -16,13 +16,12 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   children?: ReactElement;
   id?: string;
   value: string | number;
-  onChange: () => void;
   onClick?: () => void;
   searchTab?: boolean;
 }
 
 export const SearchBar = forwardRef(function SearchBar(
-  { value, id, onChange, onClick, searchTab, ...props }: Props,
+  { id = "search_id", onClick, searchTab, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -36,10 +35,7 @@ export const SearchBar = forwardRef(function SearchBar(
         borderRadius: borderRadius.s600,
         padding: "14px",
         border: `1px solid ${colors.grey200}`,
-
-        ...TextInputGlobalStyles,
       }}
-      {...props}
     >
       <SearchIcon />
 
@@ -47,15 +43,17 @@ export const SearchBar = forwardRef(function SearchBar(
         <input
           ref={ref}
           type="search"
-          placeholder="검색어를 입력하세요"
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
               document.getElementById(id ? id : "search")?.click();
             }
           }}
-          css={{ fontSize: fontSize.s15, width: "100%" }}
-          value={value}
-          onChange={onChange}
+          css={{
+            fontSize: fontSize.s15,
+            width: "100%",
+            ...TextInputGlobalStyles,
+          }}
+          {...props}
         />
       )}
 
@@ -69,7 +67,7 @@ export const SearchBar = forwardRef(function SearchBar(
                 whiteSpace: "nowrap",
                 position: "relative",
                 fontSize: fontSize.s14,
-                color: colors.keyColor,
+                color: colors.blue,
                 transition: "0.3s ease-in-out",
 
                 "&:hover": {

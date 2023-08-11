@@ -1,7 +1,6 @@
-import { colors } from "../theme/colors";
-import { MQ } from "../theme/mediaQuery";
-import { fontSize } from "../theme/size";
-import React, { ReactNode } from "react";
+import { colors } from "../../theme/colors";
+import { fontSize } from "../../theme/size";
+import React, { ForwardedRef, ReactNode, forwardRef } from "react";
 import { HTMLAttributes } from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -9,9 +8,10 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 
-export function Txt(props: Props) {
-  const { as = "p", children, ...Props } = props as Props;
-
+export const Txt = forwardRef(function Txt(
+  { as = "p", children, ...Props }: Props,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   return (
     <>
       {as === "h1" && (
@@ -120,12 +120,14 @@ export function Txt(props: Props) {
       )}
     </>
   );
-}
+});
 
 const initialStyle = {
   margin: 0,
   padding: 0,
   color: colors.black100,
+  display: "flex",
+  alignItems: "center",
   transition: "0.3s ease-in-out",
 };
 

@@ -1,6 +1,6 @@
 import React, { Children, ReactElement, useEffect, useState } from "react";
-import { MQ } from "../theme/mediaQuery";
-import { colors } from "../theme/colors";
+import { MQ } from "../../theme/mediaQuery";
+import { colors } from "../../theme/colors";
 
 //
 interface AppBarType {
@@ -50,7 +50,7 @@ export default function AppBar({ variant = "primary", children }: AppBarType) {
         [MQ[2]]: { height: "58px", minHeight: "58px" },
       }}
     >
-      <h1
+      <strong
         aria-hidden="true"
         css={{
           width: "0px",
@@ -63,7 +63,7 @@ export default function AppBar({ variant = "primary", children }: AppBarType) {
         }}
       >
         서비스명
-      </h1>
+      </strong>
 
       <nav
         css={{

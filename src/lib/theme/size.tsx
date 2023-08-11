@@ -11,6 +11,7 @@ export const sizes = {
 
 export const borderRadius = {
   infinte: "1000px",
+  s000: "0px",
   s100: "6px",
   s200: "8px",
   s300: "10px",

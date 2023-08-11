@@ -1,10 +1,10 @@
 import React, { ReactNode, useRef } from "react";
 import CancelIcon from "@/icons/cancel-icon.svg";
-import { useClickOutside } from "../hooks/useClickOutSide";
-import { Layer } from "./Layer";
-import { IconTab } from "./Tab";
-import { MQ } from "../theme/mediaQuery";
-import { colors } from "../theme/colors";
+import { useClickOutside } from "../../hooks/useClickOutSide";
+import { Layer } from "../loading/Layer";
+import { IconTab } from "../tab/Tab";
+import { MQ } from "../../theme/mediaQuery";
+import { colors } from "../../theme/colors";
 
 interface Props {
   view: boolean;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 //
-export default function Drawer(props: Props) {
+export default function AppDrawer(props: Props) {
   const { view, onCancel, children } = props;
   const boxRef = useRef<HTMLDivElement>(null);
 

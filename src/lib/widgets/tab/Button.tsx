@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import { colors } from "../theme/colors";
-import { borderRadius, fontSize } from "../theme/size";
+import { colors } from "../../theme/colors";
+import { borderRadius, fontSize } from "../../theme/size";
 
 //
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,6 +28,7 @@ export function Button({
         outline: "none",
         border: "0 solid transparent",
         borderRadius: borderRadius.s600,
+        whiteSpace: "nowrap",
         cursor: "pointer",
         transition: "0.3s ease-in-out",
         fontWeight: 500,

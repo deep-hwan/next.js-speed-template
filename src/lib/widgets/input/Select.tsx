@@ -1,5 +1,5 @@
-import { colors } from "../theme/colors";
-import { fontSize, borderRadius } from "../theme/size";
+import { colors } from "../../theme/colors";
+import { fontSize, borderRadius } from "../../theme/size";
 import React, {
   OptionHTMLAttributes,
   ReactElement,
