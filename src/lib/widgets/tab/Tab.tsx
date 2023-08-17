@@ -71,6 +71,7 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
           backgroundColor: "rgba(0,0,0,0.03)",
         },
       }}
+      {...props}
     >
       <div
         css={{
@@ -83,7 +84,6 @@ export function IconTab({ children, size = 25, onClick, ...props }: IconProps) {
           whiteSpace: "nowrap",
           cursor: "pointer",
         }}
-        {...props}
       >
         {svgChild}
       </div>

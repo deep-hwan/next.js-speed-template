@@ -1,6 +1,6 @@
 import { CSSObject } from "@emotion/react";
 
-import React from "react";
+import React, { Children, InputHTMLAttributes } from "react";
 
 import { colors } from "../../theme/colors";
 import { borderRadius, fontSize } from "../../theme/size";
@@ -13,49 +13,39 @@ import {
 } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactElement;
+  children: ReactElement;
   id?: string;
-  value: string | number;
   onClick?: () => void;
   searchTab?: boolean;
 }
 
-export const SearchBar = forwardRef(function SearchBar(
-  { id = "search_id", onClick, searchTab, ...props }: Props,
+export function SearchBar(
+  { onClick, searchTab, children, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
+  const child = Children.only(children);
+  const id = child.props.id ?? "seerchId";
+
   return (
     <div
       css={{
         width: "100%",
         display: "flex",
         alignItems: "center",
-        columnGap: "12px",
         backgroundColor: colors.white,
         borderRadius: borderRadius.s600,
-        padding: "14px",
         border: `1px solid ${colors.grey200}`,
+        columnGap: "12px",
+        padding: "14px",
       }}
+      {...props}
     >
       <SearchIcon />
 
-      {cloneElement(
-        <input
-          ref={ref}
-          type="search"
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              document.getElementById(id ? id : "search")?.click();
-            }
-          }}
-          css={{
-            fontSize: fontSize.s15,
-            width: "100%",
-            ...TextInputGlobalStyles,
-          }}
-          {...props}
-        />
-      )}
+      {cloneElement(child, {
+        id,
+        ...child.props,
+      })}
 
       {searchTab && (
         <>
@@ -82,6 +72,34 @@ export const SearchBar = forwardRef(function SearchBar(
         </>
       )}
     </div>
+  );
+}
+
+interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+}
+
+SearchBar.SearchInput = forwardRef(function SearchInput(
+  { id, ...props }: SearchInputProps,
+  ref: ForwardedRef<HTMLInputElement>
+) {
+  return (
+    <input
+      ref={ref}
+      type="search"
+      placeholder="검색어를 입력하세요"
+      onKeyDown={(e) => {
+        if (e.keyCode === 13) {
+          document.getElementById(id ? id : "searchId")?.click();
+        }
+      }}
+      css={{
+        fontSize: fontSize.s15,
+        width: "100%",
+        ...TextInputGlobalStyles,
+      }}
+      {...props}
+    />
   );
 });
 

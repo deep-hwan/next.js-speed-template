@@ -23,7 +23,7 @@ export function SelectBox({ children, placeholder, ...props }: SelectBoxProps) {
           css={{
             width: "100%",
             display: "flex",
-            padding: "14px 10px 14px 12px !important",
+            padding: "14px 10px 14px 12px",
             margin: "0px",
             border: `1px solid ${colors.grey200}`,
             backgroundColor: colors.white,
@@ -46,6 +46,12 @@ export function SelectBox({ children, placeholder, ...props }: SelectBoxProps) {
             backgroundRepeat: "no-repeat",
             outline: "0",
             paddingRight: "30px",
+
+            "&:disabled": {
+              backgroundColor: "#f2f2f2",
+              color: "#999",
+              opacity: "0.9",
+            },
           }}
           {...props}
         >
