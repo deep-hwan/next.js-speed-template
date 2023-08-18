@@ -48,36 +48,44 @@
 
 즉시 사용할 수 있는 UI 위젯입니다.
 
+**Layout Widgets**
+
 - Appbar : 헤더의 앱바
 - AppDrawer : 메뉴 드로어
-
-- ScrollTopTab : 스크롤 > 클리 시 화면 최상위로 이동하는 탭
-
-- SkeletonUI : 로딩 스켈레톤 UI
-- LoaddingSpinner : 로딩 스피너
-- LoadingLayer : 로딩 중 레이어
-
-- Layout : 팝업 및 모달 시 노출되는 백그라운드 레이아웃
 - Section : 섹션 레이아웃
 - Container / Wrap / Box : 레이아웃 위젯
 - BoxShadow : 그림자 형태의 박스 레이아웃 위젝
 - Form : form 위젯
 - Items, Item : ul / li 레이아웃
-
 - Spacing : 공간 및 여백을 설정하는 박스 레이아웃
+- Layout : 팝업 및 모달 시 노출되는 백그라운드 레이아웃
+- Accordion / AccordionPanel : 아코디언 드롭다운의 타이틀 및 아코디언 패널
+
+**Input Widgets**
 
 - Input : label + input / label + Textarea 커스텀 위젯
 - SearchBar : 검색 인풋 위젯
-- Select : select / option 인풋 위젯
 - CheckBox : 체크박스 인풋 위젯
+- Select / Option : select / option 인풋 위젯
 
-- Button : 버튼 위젯
-- Tab : 아이콘 탭을 커스텀할 수 있는 버튼
+**Tab Widgets**
 
-- Txt : h1~6 , p 테크
-- TxtSpan : span 테크
+- Button : 타이틀 버튼 위젯
+- Tab : 서브 타이틀 버튼 위젯
+- IconTab : 아이콘 탭을 커스텀 버튼 위젯
 
-- Accordion : 아코디언 드롭다운 UI 위젯
+**Typography Widgets**
+
+- TxtTab : 텍스트 형식의 버튼 위젯
+- ScrollTopTab : 스크롤 > 클리 시 화면 최상위로 이동하는 탭
+
+**Loading Widgets**
+
+- SkeletonUI : 로딩 스켈레톤 UI
+- LoaddingSpinner : 로딩 스피너
+- LoadingLayer : 로딩 중 레이어
+
+**Modal Widgets**
 
 - Dialog : Dialog 타입의 모달 팝업
 

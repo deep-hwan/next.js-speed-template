@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 
 //
-export default function ScrollTopTab() {
+export function ScrollTopTab() {
   const [ScrollY, setScrollY] = useState<number>(0);
 
   // 스크롤 수치 감지
