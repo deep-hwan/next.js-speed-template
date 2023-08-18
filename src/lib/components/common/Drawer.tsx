@@ -23,8 +23,8 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
+        <Spacing size={20} />
         <Items>
-          <Spacing size={20} />
           {menus.map((item, i) => {
             return (
               <Item
