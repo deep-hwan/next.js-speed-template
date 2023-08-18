@@ -1,2 +1,13 @@
+# *
+User-agent: *
+Disallow: /404
+
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://site_domain.url/
+
+# Sitemaps
+Sitemap: https://site_domain.url/sitemap.xml

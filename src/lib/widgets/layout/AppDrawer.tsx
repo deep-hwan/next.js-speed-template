@@ -1,10 +1,8 @@
-import React, { ReactNode, useRef } from "react";
-import CancelIcon from "@/icons/cancel-icon.svg";
-import { useClickOutside } from "../../hooks/useClickOutSide";
-import { Layer } from "../loading/Layer";
-import { IconTab } from "../tab/Tab";
-import { MQ } from "../../theme/mediaQuery";
-import { colors } from "../../theme/colors";
+import React, { ReactNode, useEffect, useRef } from "react";
+import { Interpolation, Theme } from "@emotion/react";
+
+import { IconTab, Layer } from "../_index";
+import { MQ, colors } from "../../theme/_index";
 
 interface Props {
   view: boolean;
@@ -13,11 +11,34 @@ interface Props {
 }
 
 //
-export default function AppDrawer(props: Props) {
+export function AppDrawer(props: Props) {
   const { view, onCancel, children } = props;
-  const boxRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside({ ref: boxRef, state: view, handler: onCancel });
+  const clickModalOutside = (event: MouseEvent) => {
+    if (
+      view &&
+      drawerRef.current &&
+      !drawerRef.current.contains(event.target as Node)
+    ) {
+      onCancel();
+    }
+  };
+
+  useEffect(() => {
+    drawerRef.current?.scrollTo(0, 0);
+
+    if (view) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+
+    document.addEventListener("mousedown", clickModalOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  });
 
   return (
     <>
@@ -34,43 +55,15 @@ export default function AppDrawer(props: Props) {
       </div>
 
       <div
-        ref={boxRef}
-        css={{
-          zIndex: "9999",
-          position: "fixed",
-          top: "0",
-          right: view ? "0" : "-100%",
-          display: "none",
-          flexDirection: "column",
-          width: "100%",
-          maxWidth: "390px",
-          height: "100vh",
-          minHeight: "100vh",
-          backgroundColor: colors.white,
-          overflow: "auto",
-          transition: "0.3s ease-in-out",
-
-          ":webkit-scrollbar": {
-            display: "none",
-          },
-
-          [MQ[1]]: {
-            display: "flex",
-          },
-        }}
+        ref={drawerRef}
+        css={
+          {
+            ...theme.container,
+            right: view ? "0" : "-100%",
+          } as Interpolation<Theme>
+        }
       >
-        <div
-          css={{
-            zIndex: "11",
-            position: "sticky",
-            left: "0",
-            top: "8px",
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            paddingRight: "10px",
-          }}
-        >
+        <div css={theme.wrap as Interpolation<Theme>}>
           <IconTab onClick={onCancel}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,23 +81,58 @@ export default function AppDrawer(props: Props) {
           </IconTab>
         </div>
 
-        <div
-          css={{
-            zIndex: "10",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "auto",
-
-            ":webkit-scrollbar": {
-              display: "none",
-            },
-          }}
-        >
-          {children}
-        </div>
+        <div css={theme.box as Interpolation<Theme>}>{children}</div>
       </div>
     </>
   );
 }
+
+//
+const theme = {
+  container: {
+    zIndex: "9999",
+    position: "fixed",
+    top: "0",
+    display: "none",
+    flexDirection: "column",
+    width: "100%",
+    maxWidth: "390px",
+    height: "100vh",
+    minHeight: "100vh",
+    backgroundColor: colors.white,
+    overflow: "auto",
+    transition: "0.3s ease-in-out",
+
+    ":webkit-scrollbar": {
+      display: "none",
+    },
+
+    [MQ[1]]: {
+      display: "flex",
+    },
+  },
+
+  wrap: {
+    zIndex: "11",
+    position: "sticky",
+    left: "0",
+    top: "8px",
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end",
+    paddingRight: "10px",
+  },
+
+  box: {
+    zIndex: "10",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "auto",
+
+    ":webkit-scrollbar": {
+      display: "none",
+    },
+  },
+};

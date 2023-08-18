@@ -1,7 +1,6 @@
-import { colors } from "../../theme/colors";
-import { fontSize } from "../../theme/size";
 import React, { ForwardedRef, ReactNode, forwardRef } from "react";
 import { HTMLAttributes } from "react";
+import { colors, fontSize } from "../../theme/_index";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "strong" | "p";

@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import styled from "@emotion/styled";
+import { Interpolation, Theme } from "@emotion/react";
 
 //components
-import AppBar from "@/lib/widgets/layout/AppBar";
 import { Drawer } from "./Drawer";
 
-//lib
-import { IconTab } from "@/lib/widgets/tab/Tab";
+//libs
 import { MQ } from "@/lib/theme/mediaQuery";
+import { borderRadius, fontSize } from "@/lib/theme/size";
+import { colors } from "@/lib/theme/colors";
+import {
+  AppBar,
+  IconTab,
+  Box,
+  Items,
+  Item,
+  Container,
+} from "@/lib/widgets/_index";
 
-//png,svg
-import Logo from "public/images/logo.svg";
-import ToastIcon from "public/icons/toast-icon.svg";
+//assets
+import { LogoIcon, ToastIcon } from "@/lib/assets/icon";
 
 //menu
 import menus from "../../json/menu.json";
-
-//widgets
-import { Box } from "@/lib/widgets/layout/Container";
 
 //
 export default function Header() {
@@ -28,43 +32,40 @@ export default function Header() {
   return (
     <>
       <AppBar>
-        <NavView>
-          <Link href="/" className="logo">
-            <Logo alt="서비스명" />
+        <Container css={theme.container as Interpolation<Theme>}>
+          <Link href="/" css={theme.logo as Interpolation<Theme>}>
+            <LogoIcon alt="서비스명" />
           </Link>
 
-          <Menus>
+          <Items
+            direction="horizontal"
+            gap={30}
+            css={theme.menuItems as Interpolation<Theme>}
+          >
             {menus.map((item, i) => {
               return (
-                <Menu key={i}>
-                  <Link href={item.path}>{item.name}</Link>
-                </Menu>
+                <Item key={i} css={theme.menuItem}>
+                  <Link
+                    href={item.path}
+                    css={theme.linkItem as Interpolation<Theme>}
+                  >
+                    {item.name}
+                  </Link>
+                </Item>
               );
             })}
-          </Menus>
+          </Items>
 
-          <Box
-            css={{
-              width: "auto",
-              display: "none",
-              [MQ[1]]: {
-                display: "flex",
-              },
-            }}
-          >
+          <Box css={theme.iconBox as Interpolation<Theme>}>
             <IconTab
               onClick={() => setIsDrawer(!isDrawer)}
-              css={{
-                [MQ[3]]: {
-                  width: "24px",
-                  height: "24px",
-                },
-              }}
+              iconSize={26}
+              css={theme.iconTab as Interpolation<Theme>}
             >
               <ToastIcon fill="#555" />
             </IconTab>
           </Box>
-        </NavView>
+        </Container>
       </AppBar>
 
       {/* 드로어 메뉴 */}
@@ -74,51 +75,60 @@ export default function Header() {
 }
 
 // styled
-const NavView = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: auto;
+const theme = {
+  container: {
+    width: "100%",
+    maxWidth: "1200px",
+    padding: "0 20px",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 
-  .logo {
-    width: 80px;
-    display: flex;
+  logo: {
+    width: "80px",
+    display: "flex",
+    [MQ[1]]: {
+      width: "76px",
+    },
+  },
 
-    @media (max-width: 1080px) {
-      width: 76px;
-    }
+  menuItems: {
+    alignItems: "center",
+    justifyContent: "center",
 
-    svg {
-      width: 100%;
-    }
-  }
-`;
+    [MQ[1]]: {
+      display: "none",
+    },
+  },
 
-const Menus = styled.ul`
-  display: flex;
-  align-items: center;
-  column-gap: 30px;
+  menuItem: {
+    width: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-  @media (max-width: 1080px) {
-    display: none;
-  }
-`;
+  linkItem: {
+    fontSize: fontSize.s15,
+    padding: "0.8em",
+    "&:hover": {
+      backgroundColor: colors.ground100,
+      borderRadius: borderRadius.s400,
+    },
+  },
 
-const Menu = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  iconBox: {
+    width: "auto",
+    display: "none",
+    [MQ[1]]: {
+      display: "flex",
+    },
+  },
 
-  a {
-    font-size: 0.938rem;
-    padding: 0.75em;
-
-    &:hover {
-      background-color: #f8f8f8;
-      border-radius: 0.375em;
-    }
-  }
-`;
+  iconTab: {
+    [MQ[3]]: {
+      width: "24px",
+      height: "24px",
+    },
+  },
+};

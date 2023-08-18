@@ -1,5 +1,3 @@
-import { colors } from "../../theme/colors";
-import { fontSize, borderRadius } from "../../theme/size";
 import React, {
   OptionHTMLAttributes,
   ReactElement,
@@ -7,6 +5,7 @@ import React, {
   cloneElement,
   memo,
 } from "react";
+import { colors, fontSize, borderRadius } from "../../theme/_index";
 
 interface SelectBoxProps extends SelectHTMLAttributes<HTMLSelectElement> {
   children: ReactElement;

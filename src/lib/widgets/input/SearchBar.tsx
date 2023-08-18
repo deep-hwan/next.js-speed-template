@@ -2,8 +2,7 @@ import { CSSObject } from "@emotion/react";
 
 import React, { Children, InputHTMLAttributes } from "react";
 
-import { colors } from "../../theme/colors";
-import { borderRadius, fontSize } from "../../theme/size";
+import { colors, borderRadius, fontSize } from "../../theme/_index";
 import {
   ForwardedRef,
   HTMLAttributes,
@@ -35,7 +34,7 @@ export function SearchBar(
         backgroundColor: colors.white,
         borderRadius: borderRadius.s600,
         border: `1px solid ${colors.grey200}`,
-        columnGap: "12px",
+        columnGap: "8px",
         padding: "14px",
       }}
       {...props}

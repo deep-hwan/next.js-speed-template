@@ -11,12 +11,15 @@
 
     npm install typescript @types/react @types/react-dom @emotion/styled @emotion/react
 
+---
+
 ## Setting Library
 
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.
 
 - Next : 13.4.9
 - TypeScript : 5.1.6
+- Next-PWA : 5.6.0
 - Axios : 1.4.0
 - React-query : 3.39.3
 - Recoil: 0.7.7
@@ -83,6 +86,23 @@
 ## Site-map
 
 1. src > pages > api > sitemap.ts 에서 staticPages 라우트 추가 / dynamicRoutes 동적 라우트의 서버 api URL 추가
+
 2. next.config.js 에서 siteUrl > 도메인 주소로 변경
+
 3. next-sitemap.config.js에서 siteUrl : 도메인 주소로 변경 / additionalSitemaps : 도메인 주소/sitemap.xml로 변경
+
+4. npm run build
+
+---
+
+## 배포 전 주의사항
+
+배포 전 반드시 아래에 내용을 배포하는 서비스에 맞게 수정한 후 빌드하세요!
+
+1. pages > api > sitemap.ts 에서 사이트 맵을 수정하세요.
+
+2. public > manifest.json 에서 PWA 내용 수정
+
+3. next.config.js 에서 사이트명 수정
+
 4. npm run build

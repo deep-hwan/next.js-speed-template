@@ -1,17 +1,17 @@
 import React from "react";
 import Link from "next/link";
-
-//styles
-import styled from "@emotion/styled";
+import { Interpolation, Theme } from "@emotion/react";
 
 //menu
 import menus from "../../json/menu.json";
 
-//public
-import PathIcon from "public/icons/href-icon.svg";
+//libs
+import { AppDrawer, Item, Items, Spacing, Txt } from "@/lib/widgets/_index";
+import { colors } from "@/lib/theme/colors";
+import { borderRadius } from "@/lib/theme/size";
 
-//ui
-import AppDrawer from "@/lib/widgets/layout/AppDrawer";
+//assets
+import { PathIcon } from "@/lib/assets/icon";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -23,53 +23,51 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
-        <Menus>
+        <Items>
+          <Spacing size={20} />
           {menus.map((item, i) => {
             return (
-              <Menu key={i} onClick={() => handleCloseDrawer()}>
-                <Link href={item.path}>
-                  <MenuName>{item.name}</MenuName>
-                  <PathIcon />
+              <Item
+                key={i}
+                css={theme.menus}
+                onClick={() => handleCloseDrawer()}
+              >
+                <Link
+                  href={item.path}
+                  css={theme.menuLink as Interpolation<Theme>}
+                >
+                  <Txt>{item.name}</Txt>
+                  <PathIcon fill={colors.grey300} />
                 </Link>
-              </Menu>
+              </Item>
             );
           })}
-        </Menus>
+        </Items>
       </AppDrawer>
     </>
   );
 }
 
 // styled
-const Menus = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-`;
+const theme = {
+  container: {
+    marginTop: "20px",
+  },
 
-const Menu = styled.li`
-  width: 100%;
-  padding: 2px 14px;
+  menus: {
+    padding: "2px 14px",
+  },
 
-  a {
-    padding: 16px 10px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 12px;
+  menuLink: {
+    width: "100%",
+    padding: "16px 10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: borderRadius.s400,
 
-    svg {
-      fill: #aaa;
-    }
-
-    :hover {
-      background-color: #f8f8f8;
-    }
-  }
-`;
-
-const MenuName = styled.span`
-  font-size: 0.938rem;
-`;
+    "&:hover": {
+      backgroundColor: colors.ground100,
+    },
+  },
+};

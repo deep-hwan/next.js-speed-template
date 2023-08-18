@@ -13,6 +13,8 @@ interface Props extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLDivElement>;
 }
 
+//
+/// Container
 export const Container = forwardRef(function Container(
   { children, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
@@ -36,6 +38,8 @@ export const Container = forwardRef(function Container(
   );
 });
 
+//
+/// Wrap
 export const Wrap = forwardRef(function Wrap(
   { children, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
@@ -59,6 +63,8 @@ export const Wrap = forwardRef(function Wrap(
   );
 });
 
+//
+/// Box
 export const Box = forwardRef(function Box(
   { children, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
@@ -82,6 +88,8 @@ export const Box = forwardRef(function Box(
   );
 });
 
+//
+/// BoxShadow
 export const BoxShadow = forwardRef(function BoxShadow(
   { children, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>

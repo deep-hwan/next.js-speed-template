@@ -14,7 +14,8 @@ export default function Document() {
       />
       <meta name="robots" content="index, follow" />
       <meta name="keyword" content="키워드1, 키워드2, 키워드3" />
-      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      <link rel="icon preload" href="/favicon.ico" type="image/x-icon" />
+      <link rel="manifest" href="/manifest.json" />
       <body>
         <Main />
         <NextScript />

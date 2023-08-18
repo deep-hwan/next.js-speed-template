@@ -8,8 +8,7 @@ import React, {
   cloneElement,
   forwardRef,
 } from "react";
-import { fontSize } from "../../theme/size";
-import { colors } from "../../theme/colors";
+import { fontSize, colors } from "../../theme/_index";
 
 ////
 interface InputProps extends HTMLAttributes<HTMLDivElement> {

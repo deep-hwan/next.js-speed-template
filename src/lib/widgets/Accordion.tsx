@@ -5,8 +5,7 @@ import React, {
   Ref,
   forwardRef,
 } from "react";
-import { colors } from "../theme/colors";
-import { borderRadius, fontSize } from "../theme/size";
+import { colors, borderRadius, fontSize } from "../theme/_index";
 
 //
 interface AcodiProps extends HTMLAttributes<HTMLDivElement> {

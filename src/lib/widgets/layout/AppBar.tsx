@@ -1,6 +1,5 @@
 import React, { Children, ReactElement, useEffect, useState } from "react";
-import { MQ } from "../../theme/mediaQuery";
-import { colors } from "../../theme/colors";
+import { MQ, colors } from "../../theme/_index";
 
 //
 interface AppBarType {
@@ -9,7 +8,7 @@ interface AppBarType {
 }
 
 //
-export default function AppBar({ variant = "primary", children }: AppBarType) {
+export function AppBar({ variant = "primary", children }: AppBarType) {
   const child = Children.only(children);
 
   const [isActive, setIsActive] = useState<boolean>(false);

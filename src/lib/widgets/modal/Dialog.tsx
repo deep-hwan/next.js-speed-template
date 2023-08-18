@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 import { HTMLAttributes } from "react";
-import { colors } from "../../theme/colors";
-import { borderRadius } from "../../theme/size";
-import { IconTab } from "../tab/Tab";
+
+import { IconTab } from "../_index";
+import { borderRadius, colors } from "../../theme/_index";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;

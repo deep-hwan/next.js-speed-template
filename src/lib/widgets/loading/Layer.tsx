@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, memo } from "react";
+import { HTMLAttributes, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   isActive?: boolean;

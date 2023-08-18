@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import { colors } from "../../theme/colors";
-import { borderRadius, fontSize } from "../../theme/size";
+
+import { colors, borderRadius, fontSize } from "../../theme/_index";
 
 //
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

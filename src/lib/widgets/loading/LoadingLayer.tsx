@@ -1,8 +1,7 @@
 import React from "react";
-import { css, Theme } from "@emotion/react"; // Import the required types
-import { Layer } from "./Layer";
-import { colors } from "@/lib/theme/colors";
-import { fontSize } from "@/lib/theme/size";
+import { css } from "@emotion/react"; // Import the required types
+import { Layer } from "../_index";
+import { fontSize, colors } from "../../theme/_index";
 
 export function LoadingLayer() {
   return (

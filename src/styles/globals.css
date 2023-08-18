@@ -181,7 +181,6 @@ input[type="radio"] {
 select {
   -webkit-appearance: none;
   appearance: none;
-  /* background: url('public/icons/accordion-icon.svg') no-repeat 90% 55%; */
   outline: none;
   border: none;
   cursor: pointer;

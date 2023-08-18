@@ -16,7 +16,7 @@ const generateSitemap = async () => {
 
   staticPages.forEach((slug) => {
     xml += "<url>";
-    xml += `<loc>${process.env.SITE_URL}/${slug}</loc>`;
+    xml += `<loc>${process.env.NEXT_PUBLIC_SITE_URL}/${slug}</loc>`;
     xml += `<changefreq>daily</changefreq>`;
     xml += `<priority>0.7</priority>`;
     xml += "</url>";
@@ -33,7 +33,7 @@ const generateSitemap = async () => {
     const { data: items } = await axios.get(endpoint);
     items.forEach((item: any) => {
       xml += "<url>";
-      xml += `<loc>${process.env.SITE_URL}/${route}/${item.id}</loc>`; // Assuming `id` is the dynamic part
+      xml += `<loc>${process.env.NEXT_PUBLIC_SITE_URL}/${route}/${item.id}</loc>`; // Assuming `id` is the dynamic part
       xml += `<changefreq>daily</changefreq>`;
       xml += `<priority>0.9</priority>`;
       xml += "</url>";
