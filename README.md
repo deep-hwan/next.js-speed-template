@@ -26,7 +26,7 @@
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.
 
 - Next : 13.4.9
-- TypeScript : 5.1.6\*\*\*\*
+- TypeScript : 5.1.6
 - Next-PWA : 5.6.0
 - Axios : 1.4.0
 - React-query : 3.39.3
