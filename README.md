@@ -13,12 +13,20 @@
 
 ---
 
+## SITE URL (사이트 데모)
+
+해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 위젯들을 경험할 수 있어요
+
+    https://next-typescript-tamplate.vercel.app/
+
+---
+
 ## Setting Library
 
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.
 
 - Next : 13.4.9
-- TypeScript : 5.1.6
+- TypeScript : 5.1.6\*\*\*\*
 - Next-PWA : 5.6.0
 - Axios : 1.4.0
 - React-query : 3.39.3
@@ -88,6 +96,7 @@
 **Modal Widgets**
 
 - Dialog : Dialog 타입의 모달 팝업
+- BottomSheet : BottomSheet 타입의 IOS 모달
 
 ---
 

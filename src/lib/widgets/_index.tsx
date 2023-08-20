@@ -33,6 +33,7 @@ import { LoadingLayer } from "./loading/LoadingLayer";
 
 //modal
 import { Dialog } from "./modal/Dialog";
+import { BottomSheet } from "./modal/BottomSheet";
 
 export {
   AppBar,
@@ -65,4 +66,5 @@ export {
   AccordionPanel,
   ScrollTopTab,
   Dialog,
+  BottomSheet,
 };

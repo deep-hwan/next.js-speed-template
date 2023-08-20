@@ -7,8 +7,7 @@ import { Drawer } from "./Drawer";
 
 //libs
 import { MQ } from "@/lib/theme/mediaQuery";
-import { borderRadius, fontSize } from "@/lib/theme/size";
-import { colors } from "@/lib/theme/colors";
+import { borderRadius, fontSize, colors } from "@/lib/theme/_index";
 import {
   AppBar,
   IconTab,
@@ -86,10 +85,10 @@ const theme = {
   },
 
   logo: {
-    width: "80px",
+    width: "100px",
     display: "flex",
     [MQ[1]]: {
-      width: "76px",
+      width: "86px",
     },
   },
 

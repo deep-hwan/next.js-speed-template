@@ -2,7 +2,7 @@ import React from "react";
 import { NextRouter, useRouter } from "next/router";
 
 import { Section, Txt, Spacing, Tab } from "@/lib/widgets/_index";
-import { colors } from "@/lib/theme/colors";
+import { colors, borderRadius } from "@/lib/theme/_index";
 
 import SEO from "@/seo.config";
 
@@ -26,6 +26,7 @@ export default function Error() {
             background: colors.keyColor,
             color: colors.white,
             padding: "14px 30px",
+            borderRadius: borderRadius.s700,
           }}
           onClick={() => router.back()}
         >
