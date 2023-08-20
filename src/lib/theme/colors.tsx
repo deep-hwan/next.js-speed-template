@@ -1,5 +1,5 @@
 export const colors = {
-  keyColor: "#333333",
+  keyColor: "#4788f4",
 
   none: "transparent",
   white: "#ffffff",
@@ -8,7 +8,7 @@ export const colors = {
   black200: "#222222",
   black300: "#181818",
 
-  grey000: "#f5f5f5",
+  grey000: "#f6f6f6",
   grey100: "#eeeeee",
   grey200: "#e2e2e2",
   grey300: "#cccccc",
@@ -21,7 +21,7 @@ export const colors = {
   red: "#ED5C5C",
   redBg: "#FFF2F2",
 
-  blue: "#3788f4",
+  blue: "#4788f4",
   blueBg: "#EEF4FD",
 
   ground100: "#f8f9fc",

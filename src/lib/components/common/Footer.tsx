@@ -5,9 +5,7 @@ import Link from "next/link";
 import menus from "../../json/menu.json";
 
 //libs
-import { colors } from "@/lib/theme/colors";
-import { fontSize } from "@/lib/theme/size";
-import { MQ } from "@/lib/theme/mediaQuery";
+import { MQ, fontSize, colors } from "@/lib/theme/_index";
 import {
   Container,
   Item,

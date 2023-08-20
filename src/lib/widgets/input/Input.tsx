@@ -114,7 +114,7 @@ interface TextFieldProps
 }
 
 Input.TextField = forwardRef(function TextField(
-  { error, edge, tolTip, ...props }: TextFieldProps,
+  { error, edge, ...props }: TextFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -177,6 +177,8 @@ interface TextareaProps
   extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
   rows?: number;
   error?: boolean;
+  errorMsg?: string;
+  tolTip?: string;
 }
 
 Input.Textarea = forwardRef(function TextField(

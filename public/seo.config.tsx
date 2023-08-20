@@ -8,15 +8,19 @@ interface SEOProps extends NextSeoProps {
 function SEO({ title, image }: SEOProps) {
   return (
     <NextSeo
-      title={title ? `${title} | 템플릿 타이틀` : "템플릿 타이틀"} // 50~60자 이하
-      description="템플릿 디스크립션" // 50~160자 이하
-      canonical="https://www.developerdiary.kr/"
+      title={
+        title
+          ? `${title} | Next.js 템플릿에 오신 것을 환영합니다`
+          : "Next.js 템플릿에 오신 것을 환영합니다"
+      } // 50~60자 이하
+      description="Next.js 템플릿에 오신 것을 환영합니다" // 50~160자 이하
+      canonical="https://www.deepfactory.kr/"
       openGraph={{
         type: "website",
         locale: "en_KR",
-        url: "https://www.developerdiary.kr/",
-        title: "템플릿 타이틀",
-        description: "템플릿 디스크립션",
+        url: "https://www.deepfactory.kr/",
+        title: "Next.js 템플릿에 오신 것을 환영합니다",
+        description: "Next.js 템플릿에 오신 것을 환영합니다",
         site_name: "템플릿 사이트명",
         images: [
           {
@@ -30,7 +34,7 @@ function SEO({ title, image }: SEOProps) {
       twitter={{
         cardType: "summary_large_image", //4096x4096 이하 2:1
         handle: "@사이트명",
-        site: "https://www.developerdiary.kr/",
+        site: "https://www.deepfactory.kr/",
       }}
     />
   );
