@@ -15,7 +15,7 @@
 
 ## SITE URL (사이트 데모)
 
-해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 위젯들을 경험할 수 있어요
+해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 위젯들을 경험할 수 있습니다.
 
     https://next-typescript-tamplate.vercel.app/
 
@@ -54,7 +54,9 @@
 
 ##### src > lib > widgets
 
-즉시 사용할 수 있는 UI 위젯입니다.
+즉시 사용할 수 있는 디자인 UI 위젯입니다.
+
+디자인 위젯은 앞으로 계속해서 추가 및 업데이트 될 예정입니다.
 
 **Layout Widgets**
 
