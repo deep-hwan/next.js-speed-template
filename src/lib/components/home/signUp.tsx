@@ -8,6 +8,7 @@ import {
   Button,
   CheckInput,
   Container,
+  Dialog,
   Form,
   Input,
   LoadingLayer,
@@ -37,6 +38,7 @@ export default function SignUp() {
   const router: NextRouter = useRouter();
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [isValues, setIsValues] = useState<isValuesProps>({
     name: "",
     tel: "",
@@ -159,7 +161,7 @@ export default function SignUp() {
               css={theme.infoTab}
               onClick={() => modalQueryRouter("이용약관")}
             >
-              (자세히 보기)
+              (자세히 보기📎)
             </TxtSpan>
           </Txt>
 
@@ -178,7 +180,7 @@ export default function SignUp() {
               css={theme.infoTab}
               onClick={() => modalQueryRouter("개인정보 처리방침")}
             >
-              (자세히 보기)
+              (자세히 보기📎)
             </TxtSpan>
           </Txt>
 
@@ -188,7 +190,16 @@ export default function SignUp() {
             <CheckInput.CheckBox
               id="마케팅 수신동의"
               checked={check3}
-              onChange={(e) => setIsValues({ ...isValues, check3: !check3 })}
+              onClick={() => {
+                if (!check3) {
+                  setIsDialogOpen(true);
+                }
+              }}
+              onChange={(e) => {
+                if (check3) {
+                  setIsValues({ ...isValues, check3: false });
+                }
+              }}
             />
           </CheckInput>
           <Txt css={theme.infoTxt}>이벤트 및 마케팅 소식을 알려드릴게요</Txt>
@@ -208,7 +219,7 @@ export default function SignUp() {
         </Button>
       </Form>
 
-      {/* 바텀시트 */}
+      {/* Modal: BottomSheet */}
       <BottomSheet view={!!router.query.modal} onCancel={() => router.back()}>
         <Container css={{ padding: "20px" }} gap={20}>
           <Txt as="h6">{router.query.modal}</Txt>
@@ -239,6 +250,26 @@ export default function SignUp() {
           </Txt>
         </Container>
       </BottomSheet>
+
+      {/* Modal: Dialog */}
+      <Dialog view={isDialogOpen} onCancel={() => setIsDialogOpen(false)}>
+        <Txt as="h6">{`마케팅 수신동의를\n하시겠어요?`}</Txt>
+        <Spacing size={10} />
+        <Txt
+          css={{ color: colors.grey600 }}
+        >{`이벤트 및 다양한 소식을 꾸준히 알려드릴게요\n아래의 동의버튼을 눌러주세요!`}</Txt>
+
+        <Spacing size={24} />
+        <Button
+          type="button"
+          onClick={() => {
+            setIsDialogOpen(false);
+            setIsValues({ ...isValues, check3: true });
+          }}
+        >
+          수신동의
+        </Button>
+      </Dialog>
     </>
   );
 }

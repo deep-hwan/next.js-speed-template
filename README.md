@@ -15,7 +15,7 @@
 
 ## SITE URL (사이트 데모)
 
-해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 위젯들을 경험할 수 있습니다.
+해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 다양한 위젯들을 경험할 수 있습니다.
 
     https://next-typescript-tamplate.vercel.app/
 
@@ -26,7 +26,7 @@
 현재 패키지에 설치 및 적용된 **NPM 패키지 라이브러리 / 버전 정보** 입니다.
 
 - Next : 13.4.9
-- TypeScript : 5.1.6\*\*\*\*
+- TypeScript : 5.1.6
 - Next-PWA : 5.6.0
 - Axios : 1.4.0
 - React-query : 3.39.3
@@ -46,7 +46,7 @@
 
 ##### src > lib > theme
 
-상황에 따른 컬러 및 사이즈를 사용할 수 있는 디자인 시스템입니다.
+상황에 따른 컬러 및 사이즈 등을 사용할 수 있는 디자인 테마 시스템입니다.
 
 ---
 
