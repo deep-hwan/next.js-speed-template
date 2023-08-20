@@ -9,14 +9,15 @@ const withPWA = require("next-pwa")({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.deepfactory.kr/";
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://next-typescript-tamplate.vercel.app/";
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   minimumCacheTTL: 60,
 
-  siteUrl: "https://deepfactory.kr/",
+  siteUrl: "https://next-typescript-tamplate.vercel.app/",
   additionalSitemaps: [`${siteUrl}server-sitemap.xml`],
   generateRobotsTxt: true,
   sitemapSize: 7000,
