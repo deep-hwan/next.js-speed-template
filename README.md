@@ -15,7 +15,7 @@
 
 ## SITE URL (사이트 데모)
 
-해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 위젯들을 경험할 수 있습니다.
+해당 링크에 접속하여 오직 **Next-Ts-Template**에서만 제공하는 다양한 위젯들을 경험할 수 있습니다.
 
     https://next-typescript-tamplate.vercel.app/
 
