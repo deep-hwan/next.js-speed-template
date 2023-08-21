@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, {
+  ForwardedRef,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -6,14 +11,13 @@ interface Props extends HTMLAttributes<HTMLElement> {
   gap?: number;
 }
 
-export function Form({
-  children,
-  direction = "vertical",
-  gap,
-  ...props
-}: Props) {
+export const Form = forwardRef(function Form(
+  { children, direction = "vertical", gap, ...props }: Props,
+  ref: ForwardedRef<HTMLFormElement>
+) {
   return (
     <form
+      ref={ref}
       css={{
         position: "relative",
         width: "100%",
@@ -28,4 +32,4 @@ export function Form({
       {children}
     </form>
   );
-}
+});

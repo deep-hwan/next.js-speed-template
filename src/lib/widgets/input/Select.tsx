@@ -1,8 +1,10 @@
 import React, {
+  ForwardedRef,
   OptionHTMLAttributes,
   ReactElement,
   SelectHTMLAttributes,
   cloneElement,
+  forwardRef,
   memo,
 } from "react";
 import { colors, fontSize, borderRadius } from "../../theme/_index";
@@ -12,13 +14,17 @@ interface SelectBoxProps extends SelectHTMLAttributes<HTMLSelectElement> {
   placeholder?: string;
 }
 
-export function SelectBox({ children, placeholder, ...props }: SelectBoxProps) {
+export const SelectBox = forwardRef(function SelectBox(
+  { children, placeholder, ...props }: SelectBoxProps,
+  ref: ForwardedRef<HTMLSelectElement>
+) {
   const { value } = props;
 
   return (
     <>
       {cloneElement(
         <select
+          ref={ref}
           css={{
             width: "100%",
             display: "flex",
@@ -64,7 +70,7 @@ export function SelectBox({ children, placeholder, ...props }: SelectBoxProps) {
       )}
     </>
   );
-}
+});
 
 interface OptionProps extends OptionHTMLAttributes<HTMLOptionElement> {
   children: ReactElement;

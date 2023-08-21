@@ -1,4 +1,11 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, {
+  ForwardedRef,
+  ReactNode,
+  Ref,
+  forwardRef,
+  useEffect,
+  useRef,
+} from "react";
 import { Interpolation, Theme } from "@emotion/react";
 
 import { IconTab, Layer } from "../_index";
@@ -11,8 +18,10 @@ interface Props {
 }
 
 //
-export function AppDrawer(props: Props) {
-  const { view, onCancel, children } = props;
+export const AppDrawer = forwardRef(function AppDrawer(
+  { view, onCancel, children, ...props }: Props,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const drawerRef = useRef<HTMLDivElement>(null);
 
   const clickModalOutside = (event: MouseEvent) => {
@@ -63,7 +72,7 @@ export function AppDrawer(props: Props) {
           } as Interpolation<Theme>
         }
       >
-        <div css={theme.wrap as Interpolation<Theme>}>
+        <div ref={ref} css={theme.wrap as Interpolation<Theme>} {...props}>
           <IconTab onClick={onCancel}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +94,7 @@ export function AppDrawer(props: Props) {
       </div>
     </>
   );
-}
+});
 
 //
 const theme = {

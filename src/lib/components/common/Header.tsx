@@ -33,7 +33,7 @@ export default function Header() {
       <AppBar>
         <Container css={theme.container as Interpolation<Theme>}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
-            <LogoIcon alt="서비스명" width="100%" height="auto" />
+            <LogoIcon alt="서비스명" width="100%" />
           </Link>
 
           <Items
@@ -82,6 +82,10 @@ const theme = {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+
+    [MQ[1]]: {
+      padding: "0 14px 0 20px",
+    },
   },
 
   logo: {
@@ -119,6 +123,7 @@ const theme = {
   iconBox: {
     width: "auto",
     display: "none",
+
     [MQ[1]]: {
       display: "flex",
     },

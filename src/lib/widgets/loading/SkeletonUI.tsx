@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, memo } from "react";
+import React, { ForwardedRef, HTMLAttributes, forwardRef, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   width?: number;
@@ -6,37 +6,38 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   br?: number;
 }
 
-export const Skeleton = memo(function Skeleton({
-  width,
-  height,
-  br,
-  ...props
-}: Props) {
-  const loadAnimation = `
-    @keyframes load {
-      100% {
-        background-position: -100% 0;
+export const Skeleton = memo(
+  forwardRef(function Skeleton(
+    { width, height, br, ...props }: Props,
+    ref: ForwardedRef<HTMLDivElement>
+  ) {
+    const loadAnimation = `
+      @keyframes load {
+        100% {
+          background-position: -100% 0;
+        }
       }
-    }
-  `;
+    `;
 
-  return (
-    <>
-      <style>{loadAnimation}</style>
-      <div
-        css={{
-          width: width ? `${width}px` : "100%",
-          height: height ? `${height}px` : "10px",
-          minHeight: height ? `${height}px` : "10px",
-          background:
-            "linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%)",
-          borderRadius: br ? `${br}px` : "1000px",
-          backgroundSize: "200% 100%",
-          backgroundPosition: "100% 0",
-          animation: "load 1s infinite", // Added animation property
-        }}
-        {...props}
-      />
-    </>
-  );
-});
+    return (
+      <>
+        <style>{loadAnimation}</style>
+        <div
+          ref={ref}
+          css={{
+            width: width ? `${width}px` : "100%",
+            height: height ? `${height}px` : "10px",
+            minHeight: height ? `${height}px` : "10px",
+            background:
+              "linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%)",
+            borderRadius: br ? `${br}px` : "1000px",
+            backgroundSize: "200% 100%",
+            backgroundPosition: "100% 0",
+            animation: "load 1s infinite", // Added animation property
+          }}
+          {...props}
+        />
+      </>
+    );
+  })
+);

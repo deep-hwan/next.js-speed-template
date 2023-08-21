@@ -1,19 +1,23 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, {
+  ForwardedRef,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from "react";
 
-interface Props extends HTMLAttributes<HTMLUListElement | HTMLLIElement> {
+interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
 }
 
-export function Items({
-  direction = "vertical",
-  children,
-  gap,
-  ...props
-}: Props) {
+export const Items = forwardRef(function Items(
+  { direction = "vertical", children, gap, ...props }: ItemsProps,
+  ref: ForwardedRef<HTMLUListElement>
+) {
   return (
     <ul
+      ref={ref}
       css={{
         position: "relative",
         width: "100%",
@@ -29,16 +33,21 @@ export function Items({
       {children}
     </ul>
   );
+});
+
+interface ItemProps extends HTMLAttributes<HTMLLIElement> {
+  direction?: "horizontal" | "vertical";
+  children: ReactNode;
+  gap?: number;
 }
 
-export function Item({
-  direction = "vertical",
-  children,
-  gap,
-  ...props
-}: Props) {
+export const Item = forwardRef(function Item(
+  { direction = "vertical", children, gap, ...props }: ItemProps,
+  ref: ForwardedRef<HTMLLIElement>
+) {
   return (
     <li
+      ref={ref}
       css={{
         position: "relative",
         width: "100%",
@@ -53,4 +62,4 @@ export function Item({
       {children}
     </li>
   );
-}
+});

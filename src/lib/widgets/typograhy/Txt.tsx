@@ -15,6 +15,7 @@ export const Txt = forwardRef(function Txt(
     <>
       {as === "h1" && (
         <h1
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -28,6 +29,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "h2" && (
         <h2
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -41,6 +43,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "h3" && (
         <h3
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -54,6 +57,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "h4" && (
         <h4
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -67,6 +71,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "h5" && (
         <h5
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -80,6 +85,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "h6" && (
         <h6
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -93,6 +99,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "strong" && (
         <strong
+          ref={ref}
           css={{
             whiteSpace: "pre-line",
             ...initialStyle,
@@ -106,6 +113,7 @@ export const Txt = forwardRef(function Txt(
 
       {as === "p" && (
         <p
+          ref={ref}
           css={{
             lineHeight: "1.55",
             whiteSpace: "pre-line",

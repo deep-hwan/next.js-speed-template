@@ -2,7 +2,6 @@ import React, {
   ForwardedRef,
   HTMLAttributes,
   ReactNode,
-  Ref,
   forwardRef,
 } from "react";
 
@@ -10,7 +9,6 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: "horizontal" | "vertical";
   gap?: number;
-  ref?: Ref<HTMLDivElement>;
 }
 
 //

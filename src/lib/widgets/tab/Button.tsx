@@ -1,4 +1,9 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import React, {
+  ForwardedRef,
+  ButtonHTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 import { colors, borderRadius, fontSize } from "../../theme/_index";
 
@@ -11,14 +16,13 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 //
 
-export function Button({
-  variant = "primary",
-  size = "medium",
-  children,
-  ...props
-}: Props) {
+export const Button = forwardRef(function Button(
+  { variant = "primary", size = "medium", children, ...props }: Props,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <button
+      ref={ref}
       css={{
         display: "flex",
         justifyContent: "center",
@@ -47,7 +51,7 @@ export function Button({
       {children}
     </button>
   );
-}
+});
 
 const TYPE_VARIANTS = {
   primary: {

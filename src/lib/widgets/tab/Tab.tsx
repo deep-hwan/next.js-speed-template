@@ -1,4 +1,9 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+} from "react";
 import { colors, borderRadius, fontSize } from "../../theme/_index";
 
 ///
@@ -6,10 +11,14 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export function Tab({ children, ...props }: TabProps) {
+export const Tab = forwardRef(function Tab(
+  { children, ...props }: TabProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <button
       type="button"
+      ref={ref}
       css={{
         position: "relative",
         fontSize: fontSize.s15,
@@ -29,15 +38,19 @@ export function Tab({ children, ...props }: TabProps) {
       {children}
     </button>
   );
-}
+});
 
 //
 ////
 /////
-export function TxtTab({ children, ...props }: TabProps) {
+export const TxtTab = forwardRef(function TxtTab(
+  { children, ...props }: TabProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <button
       type="button"
+      ref={ref}
       css={{
         position: "relative",
         fontSize: fontSize.s14,
@@ -54,4 +67,4 @@ export function TxtTab({ children, ...props }: TabProps) {
       {children}
     </button>
   );
-}
+});

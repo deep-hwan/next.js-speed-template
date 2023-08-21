@@ -1,4 +1,10 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, {
+  HTMLAttributes,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Interpolation, Theme } from "@emotion/react";
 
 import { Layer } from "../_index";
@@ -13,7 +19,7 @@ interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
 }
 
 //
-export function BottomSheet({
+export const BottomSheet = forwardRef(function BottomSheet({
   children,
   view,
   onCancel,
@@ -111,7 +117,7 @@ export function BottomSheet({
       </div>
     </>
   );
-}
+});
 
 const styles = {
   container: {

@@ -1,4 +1,10 @@
-import React, { Children, HTMLAttributes, ReactElement } from "react";
+import React, {
+  Children,
+  ForwardedRef,
+  HTMLAttributes,
+  ReactElement,
+  forwardRef,
+} from "react";
 
 interface IconProps extends HTMLAttributes<HTMLElement> {
   children: ReactElement;
@@ -7,13 +13,10 @@ interface IconProps extends HTMLAttributes<HTMLElement> {
   iconSize?: number;
 }
 
-export function IconTab({
-  children,
-  size,
-  iconSize = 24,
-  onClick,
-  ...props
-}: IconProps) {
+export const IconTab = forwardRef(function IconTab(
+  { children, size, iconSize = 24, onClick, ...props }: IconProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   const child = Children.only(children);
 
   const svgChild = React.cloneElement(child, {
@@ -27,6 +30,7 @@ export function IconTab({
     <button
       type="button"
       onClick={onClick}
+      ref={ref}
       css={{
         position: "relative",
         width: `${size}px`,
@@ -63,4 +67,4 @@ export function IconTab({
       </div>
     </button>
   );
-}
+});

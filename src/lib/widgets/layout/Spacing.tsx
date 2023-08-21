@@ -1,4 +1,4 @@
-import { HTMLAttributes, memo } from "react";
+import { ForwardedRef, HTMLAttributes, forwardRef, memo } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children?: never[];
@@ -6,19 +6,21 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   size: number;
 }
 
-export const Spacing = memo(function Spacing({
-  direction = "vertical",
-  size,
-  ...props
-}: Props) {
-  return (
-    <div
-      css={{
-        flex: "none",
-        width: direction === "horizontal" ? `${size}px` : "100%",
-        height: direction === "vertical" ? `${size}px` : "100%",
-      }}
-      {...props}
-    />
-  );
-});
+export const Spacing = memo(
+  forwardRef(function Spacing(
+    { direction = "vertical", size, ...props }: Props,
+    ref: ForwardedRef<HTMLDivElement>
+  ) {
+    return (
+      <div
+        ref={ref}
+        css={{
+          flex: "none",
+          width: direction === "horizontal" ? `${size}px` : "100%",
+          height: direction === "vertical" ? `${size}px` : "100%",
+        }}
+        {...props}
+      />
+    );
+  })
+);

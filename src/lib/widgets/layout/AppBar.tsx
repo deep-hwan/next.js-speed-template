@@ -1,14 +1,24 @@
-import React, { Children, ReactElement, useEffect, useState } from "react";
+import React, {
+  Children,
+  ForwardedRef,
+  ReactElement,
+  forwardRef,
+  useEffect,
+  useState,
+} from "react";
 import { MQ, colors } from "../../theme/_index";
 
 //
-interface AppBarType {
+interface Props {
   children: ReactElement;
   variant?: "primary" | "dark";
 }
 
 //
-export function AppBar({ variant = "primary", children }: AppBarType) {
+export const AppBar = forwardRef(function AppBar(
+  { variant = "primary", children, ...props }: Props,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const child = Children.only(children);
 
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -65,6 +75,7 @@ export function AppBar({ variant = "primary", children }: AppBarType) {
       </strong>
 
       <nav
+        ref={ref}
         css={{
           zIndex: 8999,
           position: "fixed",
@@ -82,9 +93,10 @@ export function AppBar({ variant = "primary", children }: AppBarType) {
 
           [MQ[2]]: { height: "58px", minHeight: "58px" },
         }}
+        {...props}
       >
         {child}
       </nav>
     </header>
   );
-}
+});
