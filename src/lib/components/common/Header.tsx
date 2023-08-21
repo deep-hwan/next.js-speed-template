@@ -77,6 +77,7 @@ export default function Header() {
 const theme = {
   container: {
     width: "100%",
+    height: "100%",
     maxWidth: "1200px",
     padding: "0 20px",
     flexDirection: "row",
@@ -90,7 +91,11 @@ const theme = {
 
   logo: {
     width: "100px",
+    height: "auto",
     display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
     [MQ[1]]: {
       width: "86px",
     },
@@ -122,10 +127,13 @@ const theme = {
 
   iconBox: {
     width: "auto",
+    height: "100%",
     display: "none",
 
     [MQ[1]]: {
       display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 
