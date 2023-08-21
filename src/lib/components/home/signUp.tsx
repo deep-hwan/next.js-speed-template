@@ -220,7 +220,10 @@ export default function SignUp() {
       </Form>
 
       {/* Modal: BottomSheet */}
-      <BottomSheet view={!!router.query.modal} onCancel={() => router.back()}>
+      <BottomSheet
+        view={!!router.query.modal}
+        onCancel={() => router.push({}, undefined, { scroll: false })}
+      >
         <Container css={{ padding: "20px" }} gap={20}>
           <Txt as="h6">{router.query.modal}</Txt>
           <Txt>
@@ -252,7 +255,11 @@ export default function SignUp() {
       </BottomSheet>
 
       {/* Modal: Dialog */}
-      <Dialog view={isDialogOpen} onCancel={() => setIsDialogOpen(false)}>
+      <Dialog
+        view={isDialogOpen}
+        onCancel={() => setIsDialogOpen(false)}
+        css={{ maxWidth: "360px" }}
+      >
         <Txt as="h6">{`마케팅 수신동의를\n하시겠어요?`}</Txt>
         <Spacing size={10} />
         <Txt

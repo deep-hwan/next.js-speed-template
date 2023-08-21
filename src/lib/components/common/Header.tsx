@@ -33,7 +33,7 @@ export default function Header() {
       <AppBar>
         <Container css={theme.container as Interpolation<Theme>}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
-            <LogoIcon alt="서비스명" />
+            <LogoIcon alt="서비스명" width="100%" height="auto" />
           </Link>
 
           <Items
@@ -61,7 +61,7 @@ export default function Header() {
               iconSize={26}
               css={theme.iconTab as Interpolation<Theme>}
             >
-              <ToastIcon fill="#555" />
+              <ToastIcon fill="#555" width="100%" height="auto" />
             </IconTab>
           </Box>
         </Container>
