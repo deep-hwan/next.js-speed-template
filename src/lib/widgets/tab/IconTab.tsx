@@ -46,6 +46,7 @@ export function IconTab({
       }}
     >
       <div
+        onClick={onClick}
         css={{
           display: "flex",
           justifyContent: "center",
