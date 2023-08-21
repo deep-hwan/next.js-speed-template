@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, {
+  ForwardedRef,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   direction?: "horizontal" | "vertical";
@@ -6,15 +11,14 @@ interface Props extends HTMLAttributes<HTMLElement> {
   maxWidth?: number;
   children: ReactNode;
 }
-export function Section({
-  direction = "vertical",
-  gap,
-  maxWidth,
-  children,
-  ...props
-}: Props) {
+
+export const Section = forwardRef(function Section(
+  { direction = "vertical", gap, maxWidth, children, ...props }: Props,
+  ref: ForwardedRef<HTMLElement>
+) {
   return (
     <section
+      ref={ref}
       css={{
         position: "relative",
         maxWidth: `${maxWidth}px`,
@@ -29,9 +33,9 @@ export function Section({
         transition: "0.3s ease-in-out",
         overflowX: "hidden",
       }}
-      {...props}
+      {...props} // Remove the ref from here
     >
       {children}
     </section>
   );
-}
+});

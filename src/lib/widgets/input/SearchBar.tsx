@@ -20,7 +20,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 export function SearchBar(
   { onClick, searchTab, children, ...props }: Props,
-  ref: ForwardedRef<HTMLInputElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) {
   const child = Children.only(children);
   const id = child.props.id ?? "seerchId";
@@ -37,6 +37,7 @@ export function SearchBar(
         columnGap: "8px",
         padding: "14px",
       }}
+      ref={ref}
       {...props}
     >
       <SearchIcon />
