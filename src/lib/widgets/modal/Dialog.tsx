@@ -83,7 +83,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "30px",
+    padding: "20px 30px 50px",
     transition: "0.4s ease-in-out",
   },
 
@@ -91,7 +91,7 @@ const styles = {
     width: "100%",
     minWidth: "300px",
     maxWidth: "460px",
-    padding: "26px 24px 16px",
+    padding: "26px 20px 16px",
     borderRadius: borderRadius.s700,
     backgroundColor: colors.white,
     boxShadow: "0 2px 20px rgba(0,0,0,0.1)",
