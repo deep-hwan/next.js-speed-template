@@ -45,7 +45,7 @@ export const AppBar = forwardRef(function AppBar(
   };
 
   return (
-    <header
+    <div
       css={{
         position: "relative",
         width: "100%",
@@ -59,22 +59,7 @@ export const AppBar = forwardRef(function AppBar(
         [MQ[2]]: { height: "58px", minHeight: "58px" },
       }}
     >
-      <strong
-        aria-hidden="true"
-        css={{
-          width: "0px",
-          height: "0px",
-          clip: "rect(0 0 0 0)",
-          clipPath: "inset(50%)",
-          position: "absolute",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-        }}
-      >
-        서비스명
-      </strong>
-
-      <nav
+      <header
         ref={ref}
         css={{
           zIndex: 8999,
@@ -95,8 +80,32 @@ export const AppBar = forwardRef(function AppBar(
         }}
         {...props}
       >
-        {child}
-      </nav>
-    </header>
+        <strong
+          aria-hidden="true"
+          css={{
+            width: "0px",
+            height: "0px",
+            clip: "rect(0 0 0 0)",
+            clipPath: "inset(50%)",
+            position: "absolute",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}
+        >
+          서비스명
+        </strong>
+
+        <nav
+          css={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {child}
+        </nav>
+      </header>
+    </div>
   );
 });
