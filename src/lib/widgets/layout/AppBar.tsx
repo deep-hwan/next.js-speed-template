@@ -97,7 +97,9 @@ export const AppBar = forwardRef(function AppBar(
 
         <nav
           css={{
+            position: "relative",
             width: "100%",
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
