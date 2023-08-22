@@ -81,7 +81,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
         css={
           {
             ...styles.container,
-            top: view ? "0" : "100%",
+            top: view ? "0" : "120%",
           } as Interpolation<Theme>
         }
       >

@@ -41,7 +41,7 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
         css={
           {
             ...styles.container,
-            top: view ? "0" : "-100%",
+            top: view ? "0" : "120%",
           } as Interpolation<Theme>
         }
       >
@@ -84,7 +84,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     padding: "20px 30px 50px",
-    transition: "0.4s ease-in-out",
+    transition: "0.25s ease-in-out",
   },
 
   box: {

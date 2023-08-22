@@ -36,16 +36,20 @@ export const AppBar = forwardRef(function AppBar(
   const TYPE_VARIANTS = {
     primary: {
       backgroundColor: colors.white,
-      borderBottom: isActive ? `1px solid ${colors.grey200}` : "none",
+      borderBottom: isActive
+        ? `1px solid ${colors.grey200}`
+        : "1px solid transparent",
     },
     dark: {
       backgroundColor: colors.black200,
-      borderBottom: isActive ? `1px solid ${colors.black300}` : "none",
+      borderBottom: isActive
+        ? `1px solid ${colors.black300}`
+        : "1px solid transparent",
     },
   };
 
   return (
-    <div
+    <header
       css={{
         position: "relative",
         width: "100%",
@@ -59,7 +63,7 @@ export const AppBar = forwardRef(function AppBar(
         [MQ[2]]: { height: "58px", minHeight: "58px" },
       }}
     >
-      <header
+      <nav
         ref={ref}
         css={{
           zIndex: 8999,
@@ -95,19 +99,8 @@ export const AppBar = forwardRef(function AppBar(
           서비스명
         </strong>
 
-        <nav
-          css={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {child}
-        </nav>
-      </header>
-    </div>
+        {child}
+      </nav>
+    </header>
   );
 });
