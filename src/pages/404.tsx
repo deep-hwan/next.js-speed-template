@@ -13,7 +13,7 @@ export default function Error() {
   return (
     <>
       <SEO title="페이지를 찾을 수 없습니다" />
-      <Section css={{ justifyContent: "center" }}>
+      <Section css={{ justifyContent: "center", flex: "1 auto" }}>
         <Txt as="h4" css={{ [MQ[3]]: { fontSize: fontSize.s26 } }}>
           페이지를 찾을 수 없습니다
         </Txt>
