@@ -42,7 +42,7 @@ export default function Index() {
             <Txt css={theme.appTxt}>
               {router.query.results
                 ? `빠르게 트랜디한 UI를 만들어보세요\n당신의 개발 효율이 압도적으로 오를 거에요`
-                : ` "위젯을 조합하여 빠르게 UI를 만들어보세요"\nCSS없이 오직 커스텀 위젯만으로도 UI를 만들 수 있어요😄`}
+                : `위젯을 조합하여 빠르게 UI를 만들어보세요\nCSS없이 오직 커스텀 위젯만으로도 UI를 만들 수 있어요😄`}
             </Txt>
           </Wrap>
 

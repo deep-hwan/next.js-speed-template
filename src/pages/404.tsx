@@ -2,7 +2,7 @@ import React from "react";
 import { NextRouter, useRouter } from "next/router";
 
 import { Section, Txt, Spacing, Tab } from "@/lib/widgets/_index";
-import { colors, borderRadius } from "@/lib/theme/_index";
+import { colors, borderRadius, MQ, fontSize } from "@/lib/theme/_index";
 
 import SEO from "@/seo.config";
 
@@ -14,7 +14,9 @@ export default function Error() {
     <>
       <SEO title="페이지를 찾을 수 없습니다" />
       <Section css={{ justifyContent: "center" }}>
-        <Txt as="h4">페이지를 찾을 수 없습니다</Txt>
+        <Txt as="h4" css={{ [MQ[3]]: { fontSize: fontSize.s26 } }}>
+          페이지를 찾을 수 없습니다
+        </Txt>
         <Spacing size={14} />
         <Txt as="p" css={{ color: "#797979" }}>
           아래 버튼을 통해 이전페이지로 이동하세요
