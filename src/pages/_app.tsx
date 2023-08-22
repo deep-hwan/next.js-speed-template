@@ -16,6 +16,7 @@ import "@/styles/globals.css";
 
 //components
 import Layout from "@/lib/screen/Layout";
+import { GlobalStyles } from "@/styles/GlobalStyles";
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -27,6 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Hydrate state={dehydratedState}>
         <SessionProvider session={pageProps.session} basePath="/api/auth">
           <RecoilRoot>
+            <GlobalStyles />
             <Layout>
               <Component {...pageProps} />
             </Layout>
