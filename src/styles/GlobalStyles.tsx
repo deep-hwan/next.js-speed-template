@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { css, Global } from "@emotion/react";
 
+const getWindowInnerHeight = () =>
+  Number((window.innerHeight * 0.01).toFixed(2));
+
 export function GlobalStyles() {
+  const [vh, setVh] = useState<number>(0);
+
+  const updateVh = useCallback(() => {
+    const innerHeight = getWindowInnerHeight();
+
+    document.documentElement.style.setProperty("--vh", `${innerHeight}px`);
+    setVh(innerHeight);
+  }, [setVh]);
+
+  useEffect(() => {
+    updateVh();
+    window.addEventListener("resize", updateVh);
+
+    return () => {
+      window.removeEventListener("resize", updateVh);
+    };
+  }, [updateVh]);
+
   const globalStyles = css`
     html {
       height: -webkit-fill-available;
     }
 
     body {
-      display: flex;
-      height: 100%;
-      min-height: 100vh; // 실제 뷰포트 높이를 사용
+      height: ${`100 + ${vh}px`};
+      /* min-height: 100vh; */
       width: 100%;
       overflow-y: auto;
       overflow-x: hidden;
