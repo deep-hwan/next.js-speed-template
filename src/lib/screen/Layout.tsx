@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
   const errPath = router.pathname === "/404";
 
   return (
-    <div className="layout">
+    <div id="layout">
       {!errPath && <Header />}
       <main>{children}</main>
     </div>
