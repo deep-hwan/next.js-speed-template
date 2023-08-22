@@ -45,8 +45,17 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
   flex: 1;
+}
+
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    min-height: -webkit-fill-available;
+  }
+  #layout {
+    min-height: -webkit-fill-available;
+  }
 }
 
 footer {
