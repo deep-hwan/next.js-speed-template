@@ -24,6 +24,7 @@ export const borderRadius = {
 
 export const fontSize = {
   s10: "0.625rem",
+  s11: "0.688rem",
   s12: "0.75rem",
   s13: "0.813rem",
   s14: "0.875rem",

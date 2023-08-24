@@ -124,12 +124,14 @@ const theme = {
   wrap: {
     zIndex: "11",
     position: "sticky",
+    top: "0",
     left: "0",
-    top: "8px",
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
+    paddingTop: "calc(env(safe-area-inset-top) + 8px)",
     paddingRight: "10px",
+    // paddingRight: "calc(env(safe-area-inset-right) + 10px)",
   },
 
   box: {
@@ -138,7 +140,9 @@ const theme = {
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    overflow: "auto",
+    overflowY: "auto",
+    paddingTop: "env(safe-area-inset-top)",
+    paddingBottom: "env(safe-area-inset-bottom)",
 
     ":webkit-scrollbar": {
       display: "none",

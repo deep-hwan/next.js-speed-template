@@ -1,6 +1,7 @@
 import React, {
   HTMLAttributes,
   forwardRef,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -54,14 +55,16 @@ export const BottomSheet = forwardRef(function BottomSheet({
 
   //
   // 외부클릭
-  const clickModalOutside = (event: MouseEvent) => {
-    if (view && ref.current && !ref.current.contains(event.target as Node)) {
-      onCancel();
-    }
-  };
-  useEffect(() => {
-    ref.current?.scrollTo(0, 0);
+  const clickModalOutside = useCallback(
+    (event: MouseEvent) => {
+      if (view && ref.current && !ref.current.contains(event.target as Node)) {
+        onCancel();
+      }
+    },
+    [view, onCancel]
+  );
 
+  useEffect(() => {
     if (view) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -72,7 +75,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
     return () => {
       document.removeEventListener("mousedown", clickModalOutside);
     };
-  }, [view]);
+  }, [view, clickModalOutside]);
 
   return (
     <>
@@ -130,9 +133,9 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     transition: "0.25s ease-in-out",
-    paddingTop: "80px",
+    paddingTop: "60px",
 
-    [MQ[2]]: {
+    [MQ[1]]: {
       paddingTop: "10px",
     },
   },
@@ -149,6 +152,10 @@ const styles = {
 
     "&:webkit-scrollbar": {
       display: "none",
+    },
+
+    [MQ[1]]: {
+      maxWidth: "100%",
     },
   },
 

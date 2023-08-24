@@ -6,12 +6,12 @@ import { Interpolation, Theme } from "@emotion/react";
 import menus from "../../json/menu.json";
 
 //libs
-import { AppDrawer, Item, Items, Spacing, Txt } from "@/lib/widgets/_index";
+import { AppDrawer, Item, Items, Txt } from "@/lib/widgets/_index";
 import { colors } from "@/lib/theme/colors";
 import { borderRadius } from "@/lib/theme/size";
 
 //assets
-import { PathIcon } from "@/lib/assets/icon";
+import { PathIcon } from "@/lib/assets/icons";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -23,13 +23,12 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
-        <Spacing size={20} />
-        <Items>
+        <Items css={theme.menus}>
           {menus.map((item, i) => {
             return (
               <Item
                 key={i}
-                css={theme.menus}
+                css={theme.menu}
                 onClick={() => handleCloseDrawer()}
               >
                 <Link
@@ -50,17 +49,21 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
 
 // styled
 const theme = {
-  container: {
-    marginTop: "20px",
+  menus: {
+    paddingTop: "10px",
+    paddingBottom: "calc(env(safe-area-inset-bottom) + 50px)",
   },
 
-  menus: {
+  menu: {
     padding: "2px 14px",
   },
 
   menuLink: {
     width: "100%",
     padding: "16px 10px",
+    paddingLeft: "10px",
+    // paddingRight: "calc(env(safe-area-inset-right) + 10px)",
+    // paddingLeft: "calc(env(safe-area-inset-left) + 10px)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
