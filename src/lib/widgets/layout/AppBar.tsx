@@ -1,7 +1,7 @@
 import React, {
   Children,
   ForwardedRef,
-  ReactElement,
+  ReactNode,
   forwardRef,
   useEffect,
   useState,
@@ -10,17 +10,16 @@ import { MQ, colors } from "../../theme/_index";
 
 //
 interface Props {
-  children: ReactElement;
+  children: ReactNode;
   variant?: "primary" | "dark";
+  width?: number;
 }
 
 //
 export const AppBar = forwardRef(function AppBar(
-  { variant = "primary", children, ...props }: Props,
+  { variant = "primary", width, children, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
-  const child = Children.only(children);
-
   const [isActive, setIsActive] = useState<boolean>(false);
   const scrollActive = () => {
     if (window.scrollY >= 100) {
@@ -49,7 +48,7 @@ export const AppBar = forwardRef(function AppBar(
   };
 
   return (
-    <header
+    <div
       css={{
         position: "relative",
         width: "100%",
@@ -63,7 +62,7 @@ export const AppBar = forwardRef(function AppBar(
         [MQ[2]]: { height: "58px", minHeight: "58px" },
       }}
     >
-      <nav
+      <header
         ref={ref}
         css={{
           zIndex: 8999,
@@ -99,8 +98,35 @@ export const AppBar = forwardRef(function AppBar(
           서비스명
         </strong>
 
-        {child}
-      </nav>
-    </header>
+        <nav
+          css={{
+            position: "relative",
+            maxWidth: width ? `${width}px` : "100%",
+            width: "100%",
+            height: "100%",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0 20px",
+
+            [MQ[1]]: {
+              padding: "0 14px 0 20px",
+
+              "@supports(padding: max(0px))": {
+                paddingInlineStart: "max(20px, env(safe-area-inset-left))",
+                paddingInlineEnd: "max(14px, env(safe-area-inset-right))",
+              },
+            },
+
+            "@supports(padding: max(0px))": {
+              paddingInlineStart: "max(20px, env(safe-area-inset-left))",
+              paddingInlineEnd: "max(20px, env(safe-area-inset-right))",
+            },
+          }}
+        >
+          {children}
+        </nav>
+      </header>
+    </div>
   );
 });

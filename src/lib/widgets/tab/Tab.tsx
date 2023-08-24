@@ -32,6 +32,10 @@ export const Tab = forwardRef(function Tab(
         "&:hover": {
           opacity: 0.9,
         },
+
+        "&:disabled": {
+          opacity: 0.4,
+        },
       }}
       {...props}
     >
@@ -60,6 +64,9 @@ export const TxtTab = forwardRef(function TxtTab(
 
         "&:hover": {
           fontWeight: "500",
+        },
+        "&:disabled": {
+          opacity: 0.4,
         },
       }}
       {...props}

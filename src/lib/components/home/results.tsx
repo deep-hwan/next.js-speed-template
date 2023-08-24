@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import Image from "next/image";
 
 //assets
-import { WidgetsImg } from "@/lib/assets/image";
+import { WidgetsImg } from "@/lib/assets/images";
 
 //libs
 import { borderRadius, skeletonURL } from "@/lib/theme/_index";

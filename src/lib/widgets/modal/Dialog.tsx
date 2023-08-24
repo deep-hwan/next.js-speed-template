@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useCallback, useEffect, useRef } from "react";
 import { HTMLAttributes } from "react";
 import { Interpolation, Theme } from "@emotion/react";
 
@@ -15,11 +15,14 @@ interface Props extends HTMLAttributes<HTMLElement> {
 export function Dialog({ children, view, onCancel, ...props }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const clickModalOutside = (event: MouseEvent) => {
-    if (view && ref.current && !ref.current.contains(event.target as Node)) {
-      onCancel();
-    }
-  };
+  const clickModalOutside = useCallback(
+    (event: MouseEvent) => {
+      if (view && ref.current && !ref.current.contains(event.target as Node)) {
+        onCancel();
+      }
+    },
+    [view, onCancel]
+  );
 
   useEffect(() => {
     if (view) {
@@ -32,7 +35,7 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
     return () => {
       document.removeEventListener("mousedown", clickModalOutside);
     };
-  }, [view]);
+  }, [view, clickModalOutside]);
 
   return (
     <>
@@ -83,14 +86,20 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "20px 30px 50px",
     transition: "0.25s ease-in-out",
+
+    "@supports(padding: max(0px))": {
+      paddingTop: "max(30px, env(safe-area-inset-top))",
+      paddingBottom: "max(60px, env(safe-area-inset-top))",
+      paddingInlineStart: "max(30px, env(safe-area-inset-top))",
+      paddingInlineEnd: "max(30px, env(safe-area-inset-bottom))",
+    },
   },
 
   box: {
     width: "100%",
     minWidth: "300px",
-    maxWidth: "460px",
+    maxWidth: "400px",
     padding: "26px 20px 16px",
     borderRadius: borderRadius.s700,
     backgroundColor: colors.white,

@@ -6,7 +6,7 @@ export default function Document() {
       <Head />
       <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, viewport-fit=cover, shrink-to-fit=no"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1, minimal-ui, viewport-fit=cover, shrink-to-fit=no"
       />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="robots" content="index, follow" />

@@ -1,6 +1,10 @@
 //layout
 import { AppBar } from "./layout/AppBar";
 import { AppDrawer } from "./layout/AppDrawer";
+import {
+  NavigationMenu,
+  BottomNavigationBar,
+} from "./layout/BottomNavigationBar";
 import { Section } from "./layout/Section";
 import { Container, Wrap, Box } from "./layout/Container";
 import { Form } from "./layout/Form";
@@ -38,6 +42,8 @@ import { BottomSheet } from "./modal/BottomSheet";
 export {
   AppBar,
   AppDrawer,
+  BottomNavigationBar,
+  NavigationMenu,
   Spacing,
   Section,
   Container,

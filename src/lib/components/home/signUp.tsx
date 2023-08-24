@@ -224,7 +224,7 @@ export default function SignUp() {
         view={!!router.query.modal}
         onCancel={() => router.push({}, undefined, { scroll: false })}
       >
-        <Container css={{ padding: "20px" }} gap={20}>
+        <Container css={theme.modalContainer} gap={20}>
           <Txt as="h6">{router.query.modal}</Txt>
           <Txt>
             테스트 은(는) 「개인정보 보호법」 제30조에 따라 정보주체의
@@ -301,5 +301,15 @@ const theme = {
     color: colors.grey500,
     fontWeight: 500,
     cursor: "pointer",
+  },
+  modalContainer: {
+    padding: "20px 20px 40px 20px",
+
+    "@supports(padding: max(0px))": {
+      paddingTop: "max(20px, env(safe-area-inset-top))",
+      paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)",
+      paddingRight: "max(20px, env(safe-area-inset-right))",
+      paddingLeft: "max(20px, env(safe-area-inset-left))",
+    },
   },
 };

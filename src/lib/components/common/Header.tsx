@@ -18,7 +18,7 @@ import {
 } from "@/lib/widgets/_index";
 
 //assets
-import { LogoIcon, ToastIcon } from "@/lib/assets/icon";
+import { LogoIcon, ToastIcon } from "@/lib/assets/icons";
 
 //menu
 import menus from "../../json/menu.json";
@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <AppBar>
+      <AppBar width={1200}>
         <Container css={theme.container as Interpolation<Theme>}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
             <LogoIcon alt="서비스명" width="100%" />
@@ -76,17 +76,10 @@ export default function Header() {
 // styled
 const theme = {
   container: {
-    width: "100%",
     height: "100%",
-    maxWidth: "1200px",
-    padding: "0 20px",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-
-    [MQ[1]]: {
-      padding: "0 14px 0 20px",
-    },
   },
 
   logo: {
@@ -97,11 +90,12 @@ const theme = {
     justifyContent: "center",
 
     [MQ[1]]: {
-      width: "86px",
+      width: "84px",
     },
   },
 
   menuItems: {
+    width: "auto",
     alignItems: "center",
     justifyContent: "center",
 

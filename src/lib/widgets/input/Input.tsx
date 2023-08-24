@@ -78,8 +78,8 @@ export function Input({
             color: colors.red,
             fontSize: fontSize.s12,
             whiteSpace: "pre-line",
-            lineHeight: "1.5",
-            marginTop: "8px",
+            lineHeight: "1.4",
+            marginTop: "6px",
           }}
         >
           {errorMsg}
@@ -89,10 +89,10 @@ export function Input({
       {tolTip && !error && (
         <div
           css={{
-            color: colors.grey500,
+            color: colors.grey600,
             fontSize: fontSize.s12,
             whiteSpace: "pre-line",
-            lineHeight: "1.5",
+            lineHeight: "1.4",
             marginTop: "8px",
           }}
         >
@@ -107,8 +107,8 @@ export function Input({
 ////
 interface TextFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  error?: boolean;
-  errorMsg?: string;
+  error?: boolean | string;
+  errorMsg?: boolean | string;
   tolTip?: string;
   edge?: ReactNode;
 }

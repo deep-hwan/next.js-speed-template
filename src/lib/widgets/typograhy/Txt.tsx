@@ -115,7 +115,7 @@ export const Txt = forwardRef(function Txt(
         <p
           ref={ref}
           css={{
-            lineHeight: "1.55",
+            lineHeight: "1.4",
             whiteSpace: "pre-line",
             ...initialStyle,
             ...TYPOGRAPH_VARIANT["p"],
