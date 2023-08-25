@@ -38,6 +38,16 @@ body {
   }
 }
 
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    min-height: -webkit-fill-available;
+  }
+  #layout {
+    min-height: -webkit-fill-available;
+  }
+}
+
 #layout {
   position: relative;
   width: 100%;
@@ -59,18 +69,16 @@ main {
   flex: 1;
 }
 
-@supports (-webkit-touch-callout: none) {
-  html,
-  body {
-    min-height: -webkit-fill-available;
-  }
-  #layout {
-    min-height: -webkit-fill-available;
-  }
-}
-
-footer {
+.header {
   width: 100%;
+  padding: 0 0 calc(constant(safe-area-inset-top) + 5px);
+  padding: 0 0 calc(env(safe-area-inset-top) + 5px);
+  transition: 0.3s ease-in-out;
+}
+.footer {
+  width: 100%;
+  padding: 0 0 calc(constant(safe-area-inset-bottom));
+  padding: 0 0 calc(env(safe-area-inset-bottom));
   transition: 0.3s ease-in-out;
 }
 
