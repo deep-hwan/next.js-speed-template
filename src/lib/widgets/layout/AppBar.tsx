@@ -107,21 +107,8 @@ export const AppBar = forwardRef(function AppBar(
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            padding: "0 20px",
-
-            [MQ[1]]: {
-              padding: "0 14px 0 20px",
-
-              "@supports(padding: max(0px))": {
-                paddingInlineStart: "max(20px, env(safe-area-inset-left))",
-                paddingInlineEnd: "max(14px, env(safe-area-inset-right))",
-              },
-            },
-
-            "@supports(padding: max(0px))": {
-              paddingInlineStart: "max(20px, env(safe-area-inset-left))",
-              paddingInlineEnd: "max(20px, env(safe-area-inset-right))",
-            },
+            paddingRight: "env(safe-area-inset-right)",
+            paddingLeft: "env(safe-area-inset-left)",
           }}
         >
           {children}

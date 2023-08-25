@@ -90,9 +90,9 @@ const styles = {
 
     "@supports(padding: max(0px))": {
       paddingTop: "max(30px, env(safe-area-inset-top))",
-      paddingBottom: "max(60px, env(safe-area-inset-top))",
-      paddingInlineStart: "max(30px, env(safe-area-inset-top))",
-      paddingInlineEnd: "max(30px, env(safe-area-inset-bottom))",
+      paddingBottom: "max(60px, env(safe-area-inset-bottom))",
+      paddingInlineStart: "max(30px, env(safe-area-inset-left))",
+      paddingInlineEnd: "max(30px, env(safe-area-inset-right))",
     },
   },
 
