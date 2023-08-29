@@ -51,17 +51,7 @@ export const AppDrawer = forwardRef(function AppDrawer(
 
   return (
     <>
-      <div
-        css={{
-          display: "none",
-
-          [MQ[1]]: {
-            display: view ? "flex" : "none",
-          },
-        }}
-      >
-        <Layer isActive={view} />
-      </div>
+      <Layer isActive={view} />
 
       <div
         ref={drawerRef}
@@ -102,22 +92,21 @@ const theme = {
     zIndex: "9999",
     position: "fixed",
     top: "0",
-    display: "none",
+    bottom: "0",
+    display: "flex",
     flexDirection: "column",
     width: "100%",
     maxWidth: "390px",
-    height: "100vh",
-    minHeight: "100vh",
+    height: "100%",
+
+    paddingTop: "env(safe-area-inset-top)",
+    paddingBottom: "env(safe-area-inset-bottom)",
     backgroundColor: colors.white,
     overflow: "auto",
     transition: "0.3s ease-in-out",
 
     ":webkit-scrollbar": {
       display: "none",
-    },
-
-    [MQ[1]]: {
-      display: "flex",
     },
   },
 

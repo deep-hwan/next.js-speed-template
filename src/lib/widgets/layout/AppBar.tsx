@@ -76,7 +76,7 @@ export const AppBar = forwardRef(function AppBar(
           justifyContent: "center",
           alignItems: "center",
 
-          paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)",
+          paddingBottom: "10px",
           paddingTop: "calc(env(safe-area-inset-top) + 10px)",
 
           transition: "0.3s ease-in-out",
@@ -84,7 +84,7 @@ export const AppBar = forwardRef(function AppBar(
 
           [MQ[2]]: {
             minHeight: "58px",
-            paddingBottom: "calc(env(safe-area-inset-bottom) + 9px)",
+            paddingBottom: "9px",
             paddingTop: "calc(env(safe-area-inset-top) + 9px)",
           },
         }}
