@@ -6,12 +6,13 @@ import { Interpolation, Theme } from "@emotion/react";
 import menus from "../../json/menu.json";
 
 //libs
-import { AppDrawer, Item, Items, Txt } from "@/lib/widgets/_index";
+import { AppDrawer, Container, Item, Items, Txt } from "@/lib/widgets/_index";
 import { colors } from "@/lib/theme/colors";
 import { borderRadius } from "@/lib/theme/size";
 
 //assets
 import { PathIcon } from "@/lib/assets/icons";
+import { MQ } from "@/lib/theme/mediaQuery";
 
 interface DrawerType {
   isDrawer: boolean;
@@ -21,7 +22,7 @@ interface DrawerType {
 //
 export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
-    <>
+    <Container css={theme.appContainer}>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
         <Items css={theme.menus}>
           {menus.map((item, i) => {
@@ -43,12 +44,19 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
           })}
         </Items>
       </AppDrawer>
-    </>
+    </Container>
   );
 }
 
 // styled
 const theme = {
+  appContainer: {
+    display: "none",
+    [MQ[1]]: {
+      display: "flex",
+    },
+  },
+
   menus: {
     paddingTop: "10px",
     paddingBottom: "calc(env(safe-area-inset-bottom) + 50px)",

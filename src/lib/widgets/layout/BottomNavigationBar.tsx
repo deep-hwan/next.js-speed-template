@@ -160,6 +160,7 @@ const theme = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    transition: "0.3s ease-in-out",
   },
 
   navMenu: {
