@@ -9,10 +9,11 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
+  maxWidth?: number;
 }
 
 export const Items = forwardRef(function Items(
-  { direction = "vertical", children, gap, ...props }: ItemsProps,
+  { direction = "vertical", maxWidth, children, gap, ...props }: ItemsProps,
   ref: ForwardedRef<HTMLUListElement>
 ) {
   return (
@@ -21,12 +22,14 @@ export const Items = forwardRef(function Items(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
-        overflow: "auto",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        overflow: "auto",
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >
@@ -39,10 +42,11 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
+  maxWidth?: number;
 }
 
 export const Item = forwardRef(function Item(
-  { direction = "vertical", children, gap, ...props }: ItemProps,
+  { direction = "vertical", maxWidth, children, gap, ...props }: ItemProps,
   ref: ForwardedRef<HTMLLIElement>
 ) {
   return (
@@ -51,11 +55,13 @@ export const Item = forwardRef(function Item(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >

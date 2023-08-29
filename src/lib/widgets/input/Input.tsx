@@ -229,7 +229,7 @@ Input.Textarea = forwardRef(function TextField(
 
 ////
 ////
-const TextInputGlobalStyles: CSSObject = {
+export const TextInputGlobalStyles: CSSObject = {
   "::placeholder": { color: colors.grey300 },
 
   "&[type='number']::-webkit-outer-spin-button, &[type='number']::-webkit-inner-spin-button":

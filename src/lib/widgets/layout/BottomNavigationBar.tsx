@@ -177,7 +177,7 @@ const theme = {
     },
 
     [MQ[2]]: {
-      rowGap: "2px",
+      rowGap: "3px",
       width: "60px",
       maxWidth: "60px",
       minWidth: "60px",
@@ -194,7 +194,7 @@ const theme = {
     width: "auto",
     height: "28px",
     [MQ[2]]: {
-      height: "24px",
+      height: "23px",
     },
   },
 

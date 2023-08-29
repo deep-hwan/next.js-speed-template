@@ -24,6 +24,7 @@ export function CheckInput({ label, children, ...props }: InputProps) {
     <div
       css={{
         display: "flex",
+        alignItems: "center",
         columnGap: "2px",
         cursor: "pointer",
         userSelect: "none",

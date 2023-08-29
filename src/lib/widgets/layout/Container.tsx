@@ -9,12 +9,13 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: "horizontal" | "vertical";
   gap?: number;
+  maxWidth?: number;
 }
 
 //
 /// Container
 export const Container = forwardRef(function Container(
-  { children, direction = "vertical", gap, ...props }: Props,
+  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -23,12 +24,13 @@ export const Container = forwardRef(function Container(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        alignItems: "flex-start",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >
@@ -40,7 +42,7 @@ export const Container = forwardRef(function Container(
 //
 /// Wrap
 export const Wrap = forwardRef(function Wrap(
-  { children, direction = "vertical", gap, ...props }: Props,
+  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -49,12 +51,13 @@ export const Wrap = forwardRef(function Wrap(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        alignItems: "flex-start",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >
@@ -66,7 +69,7 @@ export const Wrap = forwardRef(function Wrap(
 //
 /// Box
 export const Box = forwardRef(function Box(
-  { children, direction = "vertical", gap, ...props }: Props,
+  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -75,12 +78,13 @@ export const Box = forwardRef(function Box(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        alignItems: "flex-start",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >
@@ -92,7 +96,7 @@ export const Box = forwardRef(function Box(
 //
 /// BoxShadow
 export const BoxShadow = forwardRef(function BoxShadow(
-  { children, direction = "vertical", gap, ...props }: Props,
+  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -101,15 +105,16 @@ export const BoxShadow = forwardRef(function BoxShadow(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        alignItems: "flex-start",
-        transition: "0.3s ease-in-out",
+        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
-        boxShadow: "0px 2px 16px rgba(0,0,0,0.1)",
+        boxShadow: "0px 2px 30px rgba(0,0,0,0.08)",
         background: "#fff",
         borderRadius: "16px",
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >

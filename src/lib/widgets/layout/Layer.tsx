@@ -17,12 +17,15 @@ export const Layer = memo(
           position: "fixed",
           top: 0,
           left: 0,
+          right: 0,
           width: "100vw",
           minWidth: "100vw",
           height: "100vh",
           minHeight: "100vh",
           display: isActive ? "flex" : "none",
           backgroundColor: "rgba(0,0,0,0.35)",
+          paddingTop: "env(safe-area-inset-top)",
+          paddingBottom: "env(safe-area-inset-bottom)",
         }}
         {...props}
       />

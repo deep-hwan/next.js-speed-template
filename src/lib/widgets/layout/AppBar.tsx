@@ -52,14 +52,13 @@ export const AppBar = forwardRef(function AppBar(
       css={{
         position: "relative",
         width: "100%",
-        height: "66px",
-        minHeight: "66px",
+        paddingBottom: "calc(env(safe-area-inset-bottom) + 66px)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         transition: "0.3s ease-in-out",
 
-        [MQ[2]]: { height: "58px", minHeight: "58px" },
+        [MQ[2]]: { paddingBottom: "calc(env(safe-area-inset-bottom) + 58px)" },
       }}
     >
       <header
@@ -71,15 +70,23 @@ export const AppBar = forwardRef(function AppBar(
           left: 0,
           right: 0,
           width: "100%",
-          height: "66px",
           minHeight: "66px",
+
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+
+          paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)",
+          paddingTop: "calc(env(safe-area-inset-top) + 10px)",
+
           transition: "0.3s ease-in-out",
           ...TYPE_VARIANTS[variant],
 
-          [MQ[2]]: { height: "58px", minHeight: "58px" },
+          [MQ[2]]: {
+            minHeight: "58px",
+            paddingBottom: "calc(env(safe-area-inset-bottom) + 9px)",
+            paddingTop: "calc(env(safe-area-inset-top) + 9px)",
+          },
         }}
         {...props}
       >

@@ -126,17 +126,20 @@ const styles = {
   container: {
     zIndex: "9999",
     position: "fixed",
+    bottom: "0",
     left: "0",
+    right: "0",
+
     width: "100%",
-    height: "100vh",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     transition: "0.25s ease-in-out",
-    paddingTop: "60px",
+    paddingTop: "calc(env(safe-area-inset-top) + 70px)",
 
     [MQ[1]]: {
-      paddingTop: "10px",
+      paddingTop: "calc(env(safe-area-inset-top) + 10px)",
     },
   },
 
@@ -144,11 +147,16 @@ const styles = {
     width: "100%",
     maxWidth: "560px",
     height: "100%",
+
     display: "flex",
     flexDirection: "column",
+
     borderRadius: "22px 22px 0 0",
     boxShadow: "0 3px 30px rgba(0,0,0,0.1)",
     transition: "0.25s ease-in-out",
+
+    paddingTop: "env(safe-area-inset-top)",
+    paddingBottom: "env(safe-area-inset-bottom)",
 
     "&:webkit-scrollbar": {
       display: "none",
@@ -157,6 +165,23 @@ const styles = {
     [MQ[1]]: {
       maxWidth: "100%",
     },
+  },
+
+  tabBox: {
+    width: "100%",
+    padding: "11px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  tab: {
+    width: "50px",
+    height: "6px",
+    border: "none",
+    outline: "none",
+    borderRadius: "1000px",
+    cursor: "pointer",
   },
 
   box: {
@@ -190,22 +215,5 @@ const styles = {
       height: 0,
       backgroundColor: "transparent",
     },
-  },
-
-  tabBox: {
-    width: "100%",
-    padding: "11px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  tab: {
-    width: "50px",
-    height: "6px",
-    border: "none",
-    outline: "none",
-    borderRadius: "1000px",
-    cursor: "pointer",
   },
 };
