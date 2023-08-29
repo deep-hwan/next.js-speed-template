@@ -93,11 +93,12 @@ const theme = {
     position: "fixed",
     top: "0",
     bottom: "0",
-    display: "flex",
-    flexDirection: "column",
+
     width: "100%",
     maxWidth: "390px",
-    height: "100%",
+
+    display: "flex",
+    flexDirection: "column",
 
     paddingTop: "env(safe-area-inset-top)",
     paddingBottom: "env(safe-area-inset-bottom)",
