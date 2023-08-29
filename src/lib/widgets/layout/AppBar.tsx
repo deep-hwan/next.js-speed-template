@@ -52,13 +52,14 @@ export const AppBar = forwardRef(function AppBar(
       css={{
         position: "relative",
         width: "100%",
-        paddingTop: "calc(env(safe-area-inset-top) + 66px)",
+        paddingTop: "env(safe-area-inset-top)",
+        minHeight: "66px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         transition: "0.3s ease-in-out",
 
-        [MQ[2]]: { paddingTop: "calc(env(safe-area-inset-top) + 58px)" },
+        [MQ[2]]: { minHeight: "58px" },
       }}
     >
       <header
