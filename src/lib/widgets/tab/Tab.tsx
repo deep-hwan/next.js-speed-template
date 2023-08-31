@@ -28,6 +28,8 @@ export const Tab = forwardRef(function Tab(
         backgroundColor: colors.ground200,
         whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
+        outline: "none",
+        border: "none",
 
         "&:hover": {
           opacity: 0.9,
@@ -61,6 +63,8 @@ export const TxtTab = forwardRef(function TxtTab(
         color: colors.keyColor,
         whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
+        outline: "none",
+        border: "none",
 
         "&:hover": {
           fontWeight: "500",

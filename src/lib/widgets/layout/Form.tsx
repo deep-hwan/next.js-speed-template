@@ -9,11 +9,12 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   direction?: "horizontal" | "vertical";
   gap?: number;
+  maxWidth?: number;
 }
 
 export const Form = forwardRef(function Form(
-  { children, direction = "vertical", gap, ...props }: Props,
-  ref: ForwardedRef<HTMLFormElement>
+  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
+  ref?: ForwardedRef<HTMLFormElement>
 ) {
   return (
     <form
@@ -21,6 +22,7 @@ export const Form = forwardRef(function Form(
       css={{
         position: "relative",
         width: "100%",
+        maxWidth: `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
         transition: "0.3s ease-in-out",

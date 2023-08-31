@@ -22,8 +22,11 @@ export const Layer = memo(
 
           display: isActive ? "flex" : "none",
           backgroundColor: "rgba(0,0,0,0.35)",
-          paddingTop: "env(safe-area-inset-top)",
-          paddingBottom: "env(safe-area-inset-bottom)",
+
+          "@supports(padding: max(0px))": {
+            paddingTop: "env(safe-area-inset-top)",
+            paddingBottom: "env(safe-area-inset-bottom)",
+          },
         }}
         {...props}
       />

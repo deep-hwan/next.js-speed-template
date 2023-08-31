@@ -1,14 +1,22 @@
-export const sizes = {
-  br0: "6px",
-  br100: "8px",
-  br200: "10px",
-  br300: "12px",
-  br400: "14px",
-  br500: "16px",
-  br600: "18px",
-  br700: "20px",
+// ------------------------------
+// -------- Padding Size --------
+// ------------------------------
+export const padding = {
+  s000: "4px 8px",
+  s100: "8px 12px",
+  s200: "10px 14px",
+  s300: "12px 14px",
+  s400: "16px 14px",
+  s500: "18px 16px",
+  s600: "20px 18px",
+  s700: "22px 20px",
+  s800: "24px 20px",
+  s900: "30px 26px",
 } as const;
 
+// ------------------------------
+// -------- BorderRadius --------
+// ------------------------------
 export const borderRadius = {
   infinte: "1000px",
   s000: "0px",
@@ -20,8 +28,16 @@ export const borderRadius = {
   s600: "16px",
   s700: "18px",
   s800: "20px",
+  s900: "22px",
+  s1000: "24px",
+  s1100: "26px",
+  s1200: "28px",
+  s1300: "30px",
 } as const;
 
+// ---------------------------
+// -------- Font Size --------
+// ---------------------------
 export const fontSize = {
   s10: "0.625rem",
   s11: "0.688rem",

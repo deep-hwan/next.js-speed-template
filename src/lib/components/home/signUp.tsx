@@ -27,6 +27,7 @@ interface isValuesProps {
   name: string;
   tel: string;
   email: string;
+  price: string;
   context: string;
   check1: boolean;
   check2: boolean;
@@ -43,12 +44,15 @@ export default function SignUp() {
     name: "",
     tel: "",
     email: "",
+    price: "",
     context: "",
     check1: false,
     check2: false,
     check3: false,
   });
-  const { name, tel, email, context, check1, check2, check3 } = isValues;
+  const { name, tel, email, price, context, check1, check2, check3 } = isValues;
+
+  const [isSearch, setIsSearch] = useState("");
 
   //
   /// 입력 핸들러
@@ -95,6 +99,7 @@ export default function SignUp() {
     <>
       {isLoading && <LoadingLayer />}
       <Form gap={24} onSubmit={handleOnSubmit}>
+        {/* ----- 이름 텍스트 타입 인풋 : TextField ----- */}
         <Input label="이름">
           <Input.TextField
             placeholder="이름을 입력하세요"
@@ -105,27 +110,16 @@ export default function SignUp() {
           />
         </Input>
 
+        {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
         <Input label="연락처">
-          <Input.TextField
+          <Input.PhoneNumberField
             placeholder="연락처를 입력하세요"
-            type="text"
-            name="tel"
-            maxLength={13}
             value={tel}
-            onChange={(e) => {
-              const inputVal = e.target.value.trim().replace(/[^0-9]/g, "");
-              let formattedVal = inputVal;
-              if (inputVal.length === 11) {
-                formattedVal = inputVal.replace(
-                  /(\d{3})(\d{4})(\d{4})/,
-                  "$1-$2-$3"
-                );
-              }
-              setIsValues({ ...isValues, tel: formattedVal });
-            }}
+            onChange={handleOnChange}
           />
         </Input>
 
+        {/* ----- 이메일 텍스트 타입 인풋 : PhoneNumberField ----- */}
         <Input label="이메일">
           <Input.TextField
             placeholder="이메일을 입력하세요"
@@ -136,6 +130,18 @@ export default function SignUp() {
           />
         </Input>
 
+        {/* ----- 가격 넘버릭 타입 인풋 : NumericField ----- */}
+        <Input label="가격">
+          <Input.NumericField
+            placeholder="가격을 입력하세요"
+            name="price"
+            value={price}
+            onChange={handleOnChange}
+            edge="원"
+          />
+        </Input>
+
+        {/* ----- 에디터 타입 인풋 : Textarea ----- */}
         <Input label="내용">
           <Input.Textarea
             placeholder="내용을 입력하세요"
@@ -147,6 +153,16 @@ export default function SignUp() {
           />
         </Input>
 
+        <Input label="검색">
+          <Input.SearchField
+            value={isSearch}
+            onChange={(e) => setIsSearch(e.target.value)}
+            searchTab={true}
+            onClick={() => router.push({ query: isSearch })}
+          />
+        </Input>
+
+        {/* ----- 체크박스 ----- */}
         <Box css={theme.checkBox}>
           <CheckInput label="이용약관">
             <CheckInput.CheckBox
@@ -174,6 +190,7 @@ export default function SignUp() {
               onChange={(e) => setIsValues({ ...isValues, check2: !check2 })}
             />
           </CheckInput>
+
           <Txt css={theme.infoTxt}>
             개인정보 처리방침에 동의합니다.&nbsp;
             <TxtSpan
@@ -208,18 +225,13 @@ export default function SignUp() {
         <Button
           type="submit"
           css={{ width: "100%" }}
-          disabled={
-            (name && email && context) === "" ||
-            !check1 ||
-            !check2 ||
-            !/^\d{3}-\d{4}-\d{4}$/.test(tel)
-          }
+          disabled={(name && email && context) === "" || !check1 || !check2}
         >
           제출
         </Button>
       </Form>
 
-      {/* Modal: BottomSheet */}
+      {/* ----- 모달 : 바텀시트 ----- */}
       <BottomSheet
         view={!!router.query.modal}
         onCancel={() => router.push({}, undefined, { scroll: false })}
@@ -254,7 +266,7 @@ export default function SignUp() {
         </Container>
       </BottomSheet>
 
-      {/* Modal: Dialog */}
+      {/* ----- 모달 : 다이아로그 ----- */}
       <Dialog
         view={isDialogOpen}
         onCancel={() => setIsDialogOpen(false)}

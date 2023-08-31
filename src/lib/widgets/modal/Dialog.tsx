@@ -99,7 +99,7 @@ const styles = {
   box: {
     width: "100%",
     minWidth: "300px",
-    maxWidth: "400px",
+    maxWidth: "380px",
     padding: "26px 20px 16px",
     borderRadius: borderRadius.s700,
     backgroundColor: colors.white,

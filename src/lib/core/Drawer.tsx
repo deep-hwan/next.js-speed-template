@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Interpolation, Theme } from "@emotion/react";
 
 //menu
-import menus from "../../json/menu.json";
+import menus from "../json/menu.json";
 
 //libs
 import { AppDrawer, Container, Item, Items, Txt } from "@/lib/widgets/_index";
