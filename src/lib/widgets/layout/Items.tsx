@@ -23,13 +23,15 @@ export const Items = forwardRef(function Items(
         position: "relative",
         width: "100%",
         maxWidth: maxWidth && `${maxWidth}px`,
+        padding: "0",
+        margin: "0",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
-        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
+        alignItems: direction === "horizontal" ? "stretch" : "center",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
-        overflow: "auto",
         transition: "0.3s ease-in-out",
+        listStyle: "none",
       }}
       {...props}
     >
@@ -56,12 +58,15 @@ export const Item = forwardRef(function Item(
         position: "relative",
         width: "100%",
         maxWidth: maxWidth && `${maxWidth}px`,
+        padding: "0",
+        margin: "0",
         display: "flex",
         flexDirection: direction === "vertical" ? "column" : "row",
         alignItems: direction === "horizontal" ? "stretch" : "flex-start",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         transition: "0.3s ease-in-out",
+        listStyle: "none",
       }}
       {...props}
     >

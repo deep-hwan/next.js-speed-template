@@ -31,7 +31,6 @@ export const Section = forwardRef(function Section(
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         transition: "0.3s ease-in-out",
-        overflowX: "hidden",
       }}
       {...props} // Remove the ref from here
     >

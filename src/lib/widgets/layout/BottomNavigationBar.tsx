@@ -31,6 +31,7 @@ export function BottomNavigationBar({
   if (childrenArray.length < 6) {
     return (
       <>
+        {/* ===== 디자인 타입 ===== */}
         {design === "shape" && (
           <Container
             css={{
@@ -78,6 +79,7 @@ export function BottomNavigationBar({
           </Container>
         )}
 
+        {/* ===== 기본 타입 ===== */}
         {design === "default" && (
           <Container
             css={{

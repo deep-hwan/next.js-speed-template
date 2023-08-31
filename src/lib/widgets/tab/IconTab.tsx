@@ -43,6 +43,8 @@ export const IconTab = forwardRef(function IconTab(
         whiteSpace: "nowrap",
         transition: "0.3s ease-in-out",
         cursor: "pointer",
+        outline: "none",
+        border: "none",
 
         "&:hover": {
           backgroundColor: "rgba(0,0,0,0.03)",

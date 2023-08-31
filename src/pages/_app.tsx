@@ -15,7 +15,7 @@ import {
 import "@/styles/globals.css";
 
 //components
-import Layout from "@/lib/screen/Layout";
+import Layout from "@/lib/core/Layout";
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {

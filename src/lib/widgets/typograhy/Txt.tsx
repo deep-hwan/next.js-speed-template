@@ -1,5 +1,10 @@
-import React, { ForwardedRef, ReactNode, forwardRef } from "react";
-import { HTMLAttributes } from "react";
+import React, {
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  HTMLAttributes,
+} from "react";
+import { Interpolation, Theme } from "@emotion/react";
 import { colors, fontSize } from "../../theme/_index";
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -16,11 +21,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h1" && (
         <h1
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h1"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h1"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -30,11 +36,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h2" && (
         <h2
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h2"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h2"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -44,11 +51,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h3" && (
         <h3
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h3"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h3"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -58,11 +66,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h4" && (
         <h4
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h4"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h4"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -72,11 +81,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h5" && (
         <h5
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h5"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h5"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -86,11 +96,12 @@ export const Txt = forwardRef(function Txt(
       {as === "h6" && (
         <h6
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["h6"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["h6"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -100,11 +111,12 @@ export const Txt = forwardRef(function Txt(
       {as === "strong" && (
         <strong
           ref={ref}
-          css={{
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["strong"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["strong"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -114,12 +126,12 @@ export const Txt = forwardRef(function Txt(
       {as === "p" && (
         <p
           ref={ref}
-          css={{
-            lineHeight: "1.4",
-            whiteSpace: "pre-line",
-            ...initialStyle,
-            ...TYPOGRAPH_VARIANT["p"],
-          }}
+          css={
+            {
+              ...initialStyle,
+              ...TYPOGRAPH_VARIANT["p"],
+            } as Interpolation<Theme>
+          }
           {...Props}
         >
           {children}
@@ -129,12 +141,16 @@ export const Txt = forwardRef(function Txt(
   );
 });
 
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
 const initialStyle = {
   margin: 0,
   padding: 0,
   color: colors.black100,
   display: "flex",
   alignItems: "center",
+  whiteSpace: "pre-line",
   transition: "0.3s ease-in-out",
 };
 
@@ -176,5 +192,6 @@ const TYPOGRAPH_VARIANT = {
   p: {
     fontSize: fontSize.s15,
     fontWeight: 400,
+    lineHeight: "1.4",
   },
 };

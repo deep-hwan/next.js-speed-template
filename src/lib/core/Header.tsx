@@ -21,7 +21,7 @@ import {
 import { LogoIcon, ToastIcon } from "@/lib/assets/icons";
 
 //menu
-import menus from "../../json/menu.json";
+import menus from "../json/menu.json";
 
 //
 export default function Header() {

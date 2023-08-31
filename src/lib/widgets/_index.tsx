@@ -13,12 +13,12 @@ import { Layer } from "./layout/Layer";
 import { Items, Item } from "./layout/Items";
 import { BoxShadow } from "./layout/Container";
 import { Accordion, AccordionPanel } from "./layout/Accordion";
+import { DragScrollContainer } from "./layout/DragScrollContainer";
 
 //input
 import { Input } from "./input/Input";
 import { CheckInput } from "./input/CheckBox";
-import { SearchBar } from "./input/SearchBar";
-import { SelectBox, Option } from "./input/Select";
+import { Select, Option } from "./input/Select";
 
 //tab
 import { Button } from "./tab/Button";
@@ -47,6 +47,7 @@ export {
   Spacing,
   Section,
   Container,
+  DragScrollContainer,
   BoxShadow,
   Form,
   Wrap,
@@ -54,7 +55,6 @@ export {
   Layer,
   LoadingSpinner,
   Input,
-  SearchBar,
   CheckInput,
   Skeleton,
   Button,
@@ -65,7 +65,7 @@ export {
   Txt,
   TxtTab,
   TxtSpan,
-  SelectBox,
+  Select,
   Option,
   Accordion,
   LoadingLayer,

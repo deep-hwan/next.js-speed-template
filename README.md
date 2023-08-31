@@ -66,7 +66,8 @@
 - NavigationMenu : 바텀네비게이션 바 > 메뉴
 - Section : 섹션 레이아웃\*\*\*\*
 - Container / Wrap / Box : 레이아웃 위젯
-- BoxShadow : 그림자 형태의 박스 레이아웃 위젝
+- BoxShadow : 그림자 형태의 박스 레이아웃 위젯
+- DragScrollContainer : 가로 터치 스크롤이 가능한 레이아웃 위젯
 - Form : form 위젯
 - Items, Item : ul / li 레이아웃
 - Spacing : 공간 및 여백을 설정하는 박스 레이아웃
@@ -75,10 +76,9 @@
 
 **Input Widgets**
 
-- Input : label + input / label + Textarea 커스텀 위젯
-- SearchBar : 검색 인풋 위젯
+- Input : label + input의 hooks : TextField(텍스트) / SearchField(검색) / PhoneNumberField(연락처정렬) / NumericField(단위) / TextArea(에디터) [박스 타입 / 바 타입] 지원
+- Select / Option : select / option 인풋 위젯 [박스 타입 / 바 타입] 지원
 - CheckBox : 체크박스 인풋 위젯
-- Select / Option : select / option 인풋 위젯
 
 **Tab Widgets**
 

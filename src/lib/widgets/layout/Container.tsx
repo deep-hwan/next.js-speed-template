@@ -27,7 +27,8 @@ export const Container = forwardRef(function Container(
         maxWidth: maxWidth && `${maxWidth}px`,
         display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        alignItems: direction === "horizontal" ? "stretch" : "flex-start",
+        alignItems: direction === "horizontal" ? "stretch" : "center",
+        justifyContent: direction === "horizontal" ? "" : "center",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         transition: "0.3s ease-in-out",
@@ -113,7 +114,7 @@ export const BoxShadow = forwardRef(function BoxShadow(
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         boxShadow: "0px 2px 30px rgba(0,0,0,0.08)",
         background: "#fff",
-        borderRadius: "16px",
+        borderRadius: "18px",
         transition: "0.3s ease-in-out",
       }}
       {...props}
