@@ -6,14 +6,23 @@ import React, {
 } from "react";
 import { colors, borderRadius, fontSize } from "../../theme/_index";
 
-//
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface AcodiProps extends HTMLAttributes<HTMLDivElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
 }
 
-//
+interface PanelProps extends HTMLAttributes<HTMLDivElement> {
+  view: boolean;
+  children: ReactNode;
+}
+
+// ---------------------------------------
+// -------------- Accordion --------------
+// ---------------------------------------
 export const Accordion = forwardRef(function Accordion(
   { direction = "horizontal", gap, children, ...props }: AcodiProps,
   ref: ForwardedRef<HTMLDivElement>
@@ -47,13 +56,9 @@ export const Accordion = forwardRef(function Accordion(
   );
 });
 
-//
-interface PanelProps extends HTMLAttributes<HTMLDivElement> {
-  view: boolean;
-  children: ReactNode;
-}
-
-//
+// -----------------------------------
+// -------------- Panel --------------
+// -----------------------------------
 export function AccordionPanel({ view, children, ...props }: PanelProps) {
   return (
     <div

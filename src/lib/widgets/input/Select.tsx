@@ -99,25 +99,8 @@ Select.SelectBox = forwardRef(function SelectBox(
           css={
             {
               ...styles.select,
+              ...SelectTypeStyles(shape, error),
               color: value !== "" ? colors.grey800 : colors.grey300,
-              borderBottom:
-                shape === "default" &&
-                `${
-                  error
-                    ? `1px solid ${colors.red}`
-                    : `1px solid ${colors.grey200}`
-                }`,
-              border:
-                shape === "box" &&
-                `${
-                  error
-                    ? `1px solid ${colors.red}`
-                    : `1px solid ${colors.grey200}`
-                }`,
-              backgroundColor:
-                shape === "box" ? colors.white : colors.ground100,
-              borderRadius: shape === "box" && borderRadius.s500,
-              padding: shape === "box" ? `14px 12px` : `12px`,
             } as Interpolation<Theme>
           }
           {...props}
@@ -143,6 +126,38 @@ export const Option = memo(function Option({
 }: OptionProps) {
   return cloneElement(<option {...props}>{children}</option>);
 });
+
+// -----------------------------------------
+// -------------- THEME_STYLE --------------
+// -----------------------------------------
+function SelectTypeStyles(shape: "default" | "box", error?: boolean | string) {
+  let styles: Record<string, string | any> = {};
+
+  if (shape === "default") {
+    styles = {
+      padding: "12px",
+      borderBottom: error
+        ? `1px solid ${colors.red}`
+        : `1px solid ${colors.grey200}`,
+      backgroundColor: error ? "#FFF8F8" : colors.ground100,
+      "&:focus, &:hover, &:active": {
+        backgroundColor: error ? "#FFF4F4" : colors.ground200,
+      },
+    };
+  } else if (shape === "box") {
+    styles = {
+      padding: "14px 12px",
+      border: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
+      backgroundColor: error ? "#FFF8F8" : colors.white,
+      borderRadius: borderRadius.s500,
+      "&:focus, &:hover, &:active": {
+        backgroundColor: error ? "#FFF4F4" : "#fafafa",
+      },
+    };
+  }
+
+  return styles;
+}
 
 // ------------------------------------
 // -------------- Styles --------------
@@ -199,6 +214,7 @@ const styles = {
     backgroundRepeat: "no-repeat",
     outline: "0",
     paddingRight: "30px",
+    transition: "0.4s ease-in-out",
 
     "&:disabled": {
       backgroundColor: "#f2f2f2",

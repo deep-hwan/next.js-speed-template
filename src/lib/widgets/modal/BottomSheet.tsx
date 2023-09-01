@@ -8,10 +8,12 @@ import React, {
 } from "react";
 import { Interpolation, Theme } from "@emotion/react";
 
-import { Layer } from "../_index";
+import { Box, Container, Layer, Wrap } from "../_index";
 import { MQ } from "@/lib/theme/mediaQuery";
 
-//
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   view: boolean;
@@ -19,7 +21,9 @@ interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
   theme?: string;
 }
 
-//
+// -----------------------------------------
+// -------------- BottomSheet --------------
+// -----------------------------------------
 export const BottomSheet = forwardRef(function BottomSheet({
   children,
   view,
@@ -80,7 +84,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
   return (
     <>
       <Layer isActive={view} />
-      <div
+      <Container
         css={
           {
             ...styles.container,
@@ -88,40 +92,45 @@ export const BottomSheet = forwardRef(function BottomSheet({
           } as Interpolation<Theme>
         }
       >
-        <div
-          ref={ref}
-          css={
-            {
-              ...styles.wrap,
-              backgroundColor: theme === "dark" ? "#222222" : "#ffffff",
-              opacity: view ? "1" : "0",
-            } as Interpolation<Theme>
-          }
-          {...props}
-        >
-          <div
-            css={styles.tabBox}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+        <Wrap css={styles.wrap}>
+          <Box
+            ref={ref}
+            css={
+              {
+                ...styles.box,
+                backgroundColor: theme === "dark" ? "#222222" : "#ffffff",
+                opacity: view ? "1" : "0",
+              } as Interpolation<Theme>
+            }
+            {...props}
           >
-            <button
-              type="button"
-              onClick={onCancel}
-              css={{
-                ...styles.tab,
-                backgroundColor: theme === "dark" ? "#444444" : "#e0e0e0",
-              }}
-            />
-          </div>
+            <div
+              css={styles.tabBox}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <button
+                type="button"
+                onClick={onCancel}
+                css={{
+                  ...styles.tab,
+                  backgroundColor: theme === "dark" ? "#444444" : "#e0e0e0",
+                }}
+              />
+            </div>
 
-          <div css={styles.box as Interpolation<Theme>}>{children}</div>
-        </div>
-      </div>
+            <div css={styles.view as Interpolation<Theme>}>{children}</div>
+          </Box>
+        </Wrap>
+      </Container>
     </>
   );
 });
 
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
 const styles = {
   container: {
     zIndex: "9999",
@@ -132,10 +141,13 @@ const styles = {
 
     width: "100%",
     height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
     transition: "0.25s ease-in-out",
+  },
+
+  wrap: {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
     paddingTop: "calc(env(safe-area-inset-top) + 70px)",
 
     [MQ[1]]: {
@@ -143,7 +155,7 @@ const styles = {
     },
   },
 
-  wrap: {
+  box: {
     width: "100%",
     maxWidth: "560px",
     height: "100%",
@@ -184,7 +196,7 @@ const styles = {
     cursor: "pointer",
   },
 
-  box: {
+  view: {
     display: "flex",
     flexDirection: "column",
     overflowY: "auto",

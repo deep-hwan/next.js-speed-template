@@ -97,10 +97,12 @@ export default function SignUp() {
   return (
     <>
       {isLoading && <LoadingLayer />}
+
       <Form gap={24} onSubmit={handleOnSubmit}>
         {/* ----- 검색 타입 인풋 : TextField ----- */}
         <Input label="검색">
           <Input.SearchField
+            shape="box"
             value={isSearch}
             onChange={(e) => setIsSearch(e.target.value)}
             searchTab={true}
@@ -111,6 +113,7 @@ export default function SignUp() {
         {/* ----- 이름 텍스트 타입 인풋 : TextField ----- */}
         <Input label="이름">
           <Input.TextField
+            shape="box"
             placeholder="이름을 입력하세요"
             type="text"
             name="name"
@@ -122,6 +125,7 @@ export default function SignUp() {
         {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
         <Input label="연락처">
           <Input.PhoneNumberField
+            shape="box"
             placeholder="연락처를 입력하세요"
             value={tel}
             onChange={handleOnChange}
@@ -131,6 +135,7 @@ export default function SignUp() {
         {/* ----- 이메일 텍스트 타입 인풋 : PhoneNumberField ----- */}
         <Input label="이메일">
           <Input.TextField
+            shape="box"
             placeholder="이메일을 입력하세요"
             type="text"
             name="email"
@@ -142,6 +147,7 @@ export default function SignUp() {
         {/* ----- 가격 넘버릭 타입 인풋 : NumericField ----- */}
         <Input label="가격">
           <Input.NumericField
+            shape="box"
             placeholder="가격을 입력하세요"
             name="price"
             value={price}
@@ -153,6 +159,7 @@ export default function SignUp() {
         {/* ----- 에디터 타입 인풋 : Textarea ----- */}
         <Input label="내용">
           <Input.Textarea
+            shape="box"
             placeholder="내용을 입력하세요"
             name="context"
             value={context}

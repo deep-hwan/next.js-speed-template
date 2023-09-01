@@ -5,6 +5,9 @@ import React, {
   forwardRef,
 } from "react";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   direction?: "horizontal" | "vertical";
   gap?: number;
@@ -12,6 +15,9 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 
+// -------------------------------------
+// -------------- Section --------------
+// -------------------------------------
 export const Section = forwardRef(function Section(
   { direction = "vertical", gap, maxWidth, children, ...props }: Props,
   ref: ForwardedRef<HTMLElement>

@@ -28,15 +28,16 @@
 - Next : 13.4.9
 - TypeScript : 5.1.6
 - Next-PWA : 5.6.0
+- Next-Seo : 6.1.0
+- Next-sitemap: 4.1.8
+- Next-Auth : 4.22.1
 - Axios : 1.4.0
 - React-query : 3.39.3
 - Recoil: 0.7.7
-- Next-Auth : 4.22.1
-- Next-Seo : 6.1.0
 - Emotion : 11.11.2
 - React-cookie : 4.1.1
 - React-raise-editor: 0.1.4
-- next-sitemap: 4.1.8
+- React-datepicker: 4.16.0
 
 ---
 
@@ -76,7 +77,13 @@
 
 **Input Widgets**
 
-- Input : label + input의 hooks : TextField(텍스트) / SearchField(검색) / PhoneNumberField(연락처정렬) / NumericField(단위) / TextArea(에디터) [박스 타입 / 바 타입] 지원
+- Input : input(label) + input(field) 종류 [박스 타입 / 바 타입]
+  - TextField(텍스트)
+  - SearchField(검색)
+  - PhoneNumberField(연락처정렬)
+  - NumericField(단위)
+  - DateField(달력)
+  - TextArea(에디터)
 - Select / Option : select / option 인풋 위젯 [박스 타입 / 바 타입] 지원
 - CheckBox : 체크박스 인풋 위젯
 

@@ -6,10 +6,16 @@ import React, {
 } from "react";
 import { colors, fontSize } from "../../theme/_index";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 
+// -------------------------------------
+// -------------- TxtSpan --------------
+// -------------------------------------
 export const TxtSpan = forwardRef(function TxtSpan(
   { children, ...props }: Props,
   ref: ForwardedRef<HTMLSpanElement>

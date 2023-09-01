@@ -155,6 +155,14 @@ input::-webkit-search-results-decoration {
   display: none;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition-delay: 9999s;
+  transition-property: background-color, color;
+}
+
 /* input:active,
 input:focus,
 input:focus-within {
@@ -179,14 +187,7 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-input:autofill,
-input:autofill:hover,
-input:autofill:focus,
-input:autofill:active {
-  -webkit-text-fill-color: #555;
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  box-shadow: 0 0 0px 1000px transparent inset;
-  transition: background-color 5000s ease-in-out 0s;
+
 } */
 
 select {
@@ -225,4 +226,9 @@ select::-ms-expand {
   width: 0;
   height: 0;
   background-color: transparent;
+}
+
+/* react-datepicker */
+.react-datepicker-wrapper {
+  width: 100%;
 }

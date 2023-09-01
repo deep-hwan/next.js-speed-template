@@ -11,11 +11,17 @@ import React, {
   TextareaHTMLAttributes,
   cloneElement,
   forwardRef,
+  SyntheticEvent,
+  ReactEventHandler,
 } from "react";
-import { Interpolation, Theme, CSSObject } from "@emotion/react";
+import { Interpolation, Theme } from "@emotion/react";
 
 import { borderRadius, colors, fontSize } from "../../theme/_index";
 import { Box } from "../_index";
+
+import DatePicker from "react-datepicker";
+import { ko } from "date-fns/locale";
+import "react-datepicker/dist/react-datepicker.css";
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -30,6 +36,7 @@ interface InputProps extends HTMLAttributes<HTMLDivElement> {
 interface FieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   shape?: "default" | "box";
+  autocomplete?: "on" | "off";
   error?: boolean | string;
   errorMsg?: boolean | string;
   tolTip?: string;
@@ -42,7 +49,6 @@ interface SearchProps
   id?: string;
   onClick?: () => void;
   searchTab?: boolean;
-  css?: CSSObject;
 }
 
 interface NumericFieldProps
@@ -59,6 +65,19 @@ interface TextareaProps
   error?: boolean | string;
   errorMsg?: boolean | string;
   tolTip?: string;
+}
+
+type DatePickerOnChangeType = (date: Date) => void; // This is a placeholder. Replace it with the correct type from `@types/react-datepicker` if available.
+
+interface DatePickerProps {
+  shape?: "default" | "box";
+  locale?: any;
+  placeholder?: string;
+  dateFormat?: string;
+  selected?: any;
+  error?: any;
+  onChange?: DatePickerOnChangeType;
+  [key: string]: any;
 }
 
 // -------------------------------------------
@@ -116,18 +135,7 @@ Input.TextField = forwardRef(function TextField(
       css={
         {
           ...styles.inputField,
-          borderBottom:
-            shape === "default" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          border:
-            shape === "box" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          backgroundColor: shape === "box" ? colors.white : colors.ground100,
-          borderRadius: shape === "box" && borderRadius.s500,
+          ...FieldTypeStyles(shape, error),
         } as Interpolation<Theme>
       }
     >
@@ -136,7 +144,7 @@ Input.TextField = forwardRef(function TextField(
         css={
           {
             ...styles.input,
-            padding: shape === "box" ? `14px 12px` : `12px`,
+            ...InputTypeStyles("default", shape),
           } as Interpolation<Theme>
         }
         {...props}
@@ -167,7 +175,6 @@ Input.SearchField = forwardRef(function SearchField(
     shape = "default",
     searchTab,
     onClick,
-    css,
     ...props
   }: SearchProps,
   ref: ForwardedRef<HTMLInputElement>
@@ -178,10 +185,7 @@ Input.SearchField = forwardRef(function SearchField(
       css={
         {
           ...styles.searchBox,
-          borderBottom: shape === "default" && `1px solid ${colors.grey200}`,
-          border: shape === "box" && `1px solid ${colors.grey200}`,
-          backgroundColor: shape === "box" ? colors.white : colors.ground100,
-          borderRadius: shape === "box" && borderRadius.s500,
+          ...FieldTypeStyles(shape),
         } as Interpolation<Theme>
       }
     >
@@ -190,6 +194,7 @@ Input.SearchField = forwardRef(function SearchField(
       <input
         id={id}
         type="search"
+        autoComplete="off"
         placeholder="검색어를 입력하세요"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -199,7 +204,7 @@ Input.SearchField = forwardRef(function SearchField(
         css={
           {
             ...styles.input,
-            padding: shape === "box" ? `14px 0` : `12px 0`,
+            ...InputTypeStyles("search", shape),
           } as Interpolation<Theme>
         }
         {...props}
@@ -274,31 +279,21 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
       css={
         {
           ...styles.inputField,
-          borderBottom:
-            shape === "default" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          border:
-            shape === "box" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          backgroundColor: shape === "box" ? colors.white : colors.ground100,
-          borderRadius: shape === "box" && borderRadius.s500,
+          ...FieldTypeStyles(shape, error),
         } as Interpolation<Theme>
       }
     >
       <input
         ref={ref}
         type="text"
+        autocomplete="off"
         maxLength={13}
         value={internalValue}
         onChange={handleInputChange}
         css={
           {
             ...styles.input,
-            padding: shape === "box" ? `14px 12px` : `12px`,
+            ...InputTypeStyles("default", shape),
           } as Interpolation<Theme>
         }
         {...props}
@@ -373,32 +368,22 @@ Input.NumericField = forwardRef(function NumericField(
       css={
         {
           ...styles.inputField,
-          borderBottom:
-            shape === "default" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          border:
-            shape === "box" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          backgroundColor: shape === "box" ? colors.white : colors.ground100,
-          borderRadius: shape === "box" && borderRadius.s500,
+          ...FieldTypeStyles(shape, error),
         } as Interpolation<Theme>
       }
     >
       <input
         ref={ref}
-        css={
-          {
-            ...styles.input,
-            padding: shape === "box" ? `14px 12px` : `12px`,
-          } as Interpolation<Theme>
-        }
         {...props}
         value={displayValue}
         onChange={handleInputChange}
+        autoComplete="off"
+        css={
+          {
+            ...styles.input,
+            ...InputTypeStyles("default", shape),
+          } as Interpolation<Theme>
+        }
       />
 
       {edge && (
@@ -417,6 +402,53 @@ Input.NumericField = forwardRef(function NumericField(
   );
 });
 
+// ----------------------------------------
+// -------------- DatePicker --------------
+// ----------------------------------------
+Input.DateField = forwardRef(function DateField({
+  shape = "default",
+  locale = ko,
+  placeholder = "날짜를 선택하세요",
+  dateFormat = "yyyy.MM.dd",
+  selected = "",
+  error,
+  onChange,
+  ...props
+}: DatePickerProps) {
+  const handleDateChange: DatePickerOnChangeType = (date: Date) => {
+    if (onChange) {
+      onChange(date);
+    }
+  };
+
+  return (
+    <div
+      css={
+        {
+          ...styles.inputField,
+          ...FieldTypeStyles(shape, error),
+        } as Interpolation<Theme>
+      }
+    >
+      <DatePicker
+        placeholderText={placeholder}
+        dateFormat={dateFormat}
+        locale={locale}
+        selected={selected}
+        onChange={handleDateChange}
+        autoComplete="off"
+        css={
+          {
+            ...styles.input,
+            ...InputTypeStyles("default", shape),
+          } as Interpolation<Theme>
+        }
+        {...props}
+      />
+    </div>
+  );
+});
+
 // --------------------------------------
 // -------------- Textarea --------------
 // --------------------------------------
@@ -429,18 +461,7 @@ Input.Textarea = forwardRef(function Textarea(
       css={
         {
           ...styles.inputField,
-          borderBottom:
-            shape === "default" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          border:
-            shape === "box" &&
-            `${
-              error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`
-            }`,
-          backgroundColor: shape === "box" ? colors.white : colors.ground100,
-          borderRadius: shape === "box" && borderRadius.s500,
+          ...FieldTypeStyles(shape, error),
         } as Interpolation<Theme>
       }
     >
@@ -450,7 +471,7 @@ Input.Textarea = forwardRef(function Textarea(
         css={
           {
             ...styles.input,
-            padding: shape === "box" ? `14px 12px` : `12px`,
+            ...InputTypeStyles("default", shape),
           } as Interpolation<Theme>
         }
         {...props}
@@ -458,6 +479,66 @@ Input.Textarea = forwardRef(function Textarea(
     </div>
   );
 });
+
+// -----------------------------------------
+// -------------- THEME_STYLE --------------
+// -----------------------------------------
+function FieldTypeStyles(shape: "default" | "box", error?: boolean | string) {
+  let styles: Record<string, string | any> = {};
+
+  if (shape === "default") {
+    styles = {
+      borderBottom: error
+        ? `1px solid ${colors.red}`
+        : `1px solid ${colors.grey200}`,
+      backgroundColor: error ? "#FFF8F8" : colors.ground100,
+      "&:focus, &:hover, &:active": {
+        backgroundColor: error ? "#FFF4F4" : colors.ground200,
+      },
+    };
+  } else if (shape === "box") {
+    styles = {
+      border: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
+      backgroundColor: error ? "#FFF8F8" : colors.white,
+      borderRadius: borderRadius.s500,
+      "&:focus, &:hover, &:active": {
+        backgroundColor: error ? "#FFF4F4" : "#fafafa",
+      },
+    };
+  }
+
+  return styles;
+}
+
+function InputTypeStyles(
+  type: "default" | "search",
+  shape: "default" | "box"
+): { padding: string } {
+  const VARIANTS: {
+    [key in "default" | "search"]: {
+      [key in "default" | "box"]: { padding: string };
+    };
+  } = {
+    default: {
+      default: {
+        padding: "12px",
+      },
+      box: {
+        padding: "14px 12px",
+      },
+    },
+    search: {
+      default: {
+        padding: "12px 0",
+      },
+      box: {
+        padding: "14px 0",
+      },
+    },
+  };
+
+  return VARIANTS[type][shape] || VARIANTS[type].default;
+}
 
 // ------------------------------------
 // -------------- Styles --------------
@@ -502,11 +583,9 @@ const styles = {
     alignItems: "center",
     border: "none",
     backgroundColor: colors.ground100,
-    transition: "all 0.3s ease-in-out",
+    transition: "0.4s ease-in-out",
 
-    "&:focus, &:hover, &:active": {
-      backgroundColor: colors.none,
-    },
+    "&:focus, &:hover, &:active": { transition: "0.4s ease-in-out" },
   },
 
   input: {
@@ -522,6 +601,7 @@ const styles = {
     color: colors.grey800,
     overflow: "hidden",
     resize: "none",
+    transition: "0.4s ease-in-out",
 
     "::placeholder": { color: colors.grey300 },
 
@@ -537,6 +617,8 @@ const styles = {
         WebkitBoxShadow: "0 0 0px 1000px transparent inset",
         boxShadow: "0 0 0px 1000px transparent inset",
         transition: "background-color 5000s ease-in-out 0s",
+        transitionDelay: "9999s",
+        transitionProperty: "background-color, color",
       },
 
     "&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active": {
@@ -564,6 +646,7 @@ const styles = {
     alignItems: "center",
     columnGap: "9px",
     padding: "0 12px",
+    transition: "0.4s ease-in-out",
   },
 
   searchTab: {

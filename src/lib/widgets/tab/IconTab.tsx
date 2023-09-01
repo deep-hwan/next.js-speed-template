@@ -5,7 +5,11 @@ import React, {
   ReactElement,
   forwardRef,
 } from "react";
+import { Interpolation, Theme } from "@emotion/react";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface IconProps extends HTMLAttributes<HTMLElement> {
   children: ReactElement;
   onClick: () => void;
@@ -13,6 +17,9 @@ interface IconProps extends HTMLAttributes<HTMLElement> {
   iconSize?: number;
 }
 
+// -------------------------------------
+// -------------- IconTab --------------
+// -------------------------------------
 export const IconTab = forwardRef(function IconTab(
   { children, size, iconSize = 24, onClick, ...props }: IconProps,
   ref: ForwardedRef<HTMLButtonElement>
@@ -31,38 +38,23 @@ export const IconTab = forwardRef(function IconTab(
       type="button"
       onClick={onClick}
       ref={ref}
-      css={{
-        position: "relative",
-        width: `${size}px`,
-        height: `${size}px`,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "6px",
-        borderRadius: "8px",
-        whiteSpace: "nowrap",
-        transition: "0.3s ease-in-out",
-        cursor: "pointer",
-        outline: "none",
-        border: "none",
-
-        "&:hover": {
-          backgroundColor: "rgba(0,0,0,0.03)",
-        },
-      }}
+      css={
+        {
+          width: `${size}px`,
+          height: `${size}px`,
+          ...styles.button,
+        } as Interpolation<Theme>
+      }
     >
       <div
         onClick={onClick}
-        css={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: `${iconSize}px`,
-          height: `${iconSize}px`,
-          transition: "0.3s ease-in-out",
-          whiteSpace: "nowrap",
-          cursor: "pointer",
-        }}
+        css={
+          {
+            ...styles.iconBox,
+            width: `${iconSize}px`,
+            height: `${iconSize}px`,
+          } as Interpolation<Theme>
+        }
         {...props}
       >
         {svgChild}
@@ -70,3 +62,35 @@ export const IconTab = forwardRef(function IconTab(
     </button>
   );
 });
+
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
+const styles = {
+  button: {
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "6px",
+    borderRadius: "8px",
+    whiteSpace: "nowrap",
+    transition: "0.3s ease-in-out",
+    cursor: "pointer",
+    outline: "none",
+    border: "none",
+
+    "&:hover": {
+      backgroundColor: "rgba(0,0,0,0.03)",
+    },
+  },
+
+  iconBox: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    transition: "0.3s ease-in-out",
+    whiteSpace: "nowrap",
+    cursor: "pointer",
+  },
+};

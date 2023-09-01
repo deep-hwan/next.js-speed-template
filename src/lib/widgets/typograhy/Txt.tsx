@@ -7,11 +7,17 @@ import React, {
 import { Interpolation, Theme } from "@emotion/react";
 import { colors, fontSize } from "../../theme/_index";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "strong" | "p";
   children: ReactNode;
 }
 
+// -----------------------------------------------------
+// -------------- Txt [h1~6 / strong / p] --------------
+// -----------------------------------------------------
 export const Txt = forwardRef(function Txt(
   { as = "p", children, ...Props }: Props,
   ref: ForwardedRef<HTMLDivElement>

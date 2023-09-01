@@ -5,6 +5,9 @@ import React, {
   forwardRef,
 } from "react";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   direction?: "horizontal" | "vertical";
@@ -12,6 +15,9 @@ interface Props extends HTMLAttributes<HTMLElement> {
   maxWidth?: number;
 }
 
+// ----------------------------------
+// -------------- Form --------------
+// ----------------------------------
 export const Form = forwardRef(function Form(
   { children, maxWidth, direction = "vertical", gap, ...props }: Props,
   ref?: ForwardedRef<HTMLFormElement>
@@ -21,13 +27,13 @@ export const Form = forwardRef(function Form(
       ref={ref}
       css={{
         position: "relative",
+        display: "flex",
         width: "100%",
         maxWidth: `${maxWidth}px`,
-        display: "flex",
         flexDirection: direction === "horizontal" ? "row" : "column",
-        transition: "0.3s ease-in-out",
         rowGap: direction === "vertical" ? `${gap}px` : undefined,
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+        transition: "0.3s ease-in-out",
       }}
       {...props}
     >

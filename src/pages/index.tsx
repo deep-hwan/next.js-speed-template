@@ -20,8 +20,6 @@ export default function Index() {
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState<string>("");
 
-  const [check, setCheck] = useState<boolean>(false);
-
   useRaiseEditor({
     state: text,
     ref: textRef,

@@ -6,10 +6,16 @@ import React, {
   ReactNode,
 } from "react";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
+// -------------------------------------------------
+// -------------- DragScrollContainer --------------
+// -------------------------------------------------
 export const DragScrollContainer = ({ children, ...props }: Props) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);

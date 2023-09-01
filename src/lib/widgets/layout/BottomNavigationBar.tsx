@@ -7,20 +7,28 @@ import React, {
 import { Interpolation, Theme } from "@emotion/react";
 
 import Link from "next/link";
-import { Box, Container, Wrap } from "./Container";
-import { TxtSpan } from "../_index";
-import { borderRadius, fontSize } from "@/lib/theme/size";
-import { MQ } from "@/lib/theme/mediaQuery";
-import { colors } from "@/lib/theme/colors";
 
-//
+import { TxtSpan, Container, Wrap } from "../_index";
+import { MQ, colors, borderRadius, fontSize } from "@/lib/theme/_index";
+
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   design?: "default" | "shape";
   maxWidth?: number;
 }
 
-//
+interface MenuProps extends HTMLAttributes<HTMLLinkElement> {
+  children: ReactElement;
+  href: string;
+  label?: string;
+}
+
+// -------------------------------------------------
+// -------------- BottomNavigationBar --------------
+// -------------------------------------------------
 export function BottomNavigationBar({
   children,
   design = "default",
@@ -31,29 +39,14 @@ export function BottomNavigationBar({
   if (childrenArray.length < 6) {
     return (
       <>
-        {/* ===== 디자인 타입 ===== */}
+        {/* ========== 디자인 타입 ========== */}
         {design === "shape" && (
-          <Container
-            css={{
-              height: "100%",
-              paddingBottom: "calc(env(safe-area-inset-bottom) + 114.33px)",
-              [MQ[2]]: {
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 86px)",
-              },
-            }}
-          >
+          <Container css={theme.shapeContainer}>
             <Wrap
               css={
                 {
                   ...theme.wrap,
-                  paddingTop: "env(safe-area-inset-top)",
-                  paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)",
-                  paddingLeft: "calc(env(safe-area-inset-left) + 14px)",
-                  paddingRight: "calc(env(safe-area-inset-right) + 14px)",
-
-                  [MQ[2]]: {
-                    paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)",
-                  },
+                  ...theme.shapeWrap,
                 } as Interpolation<Theme>
               }
             >
@@ -61,15 +54,8 @@ export function BottomNavigationBar({
                 css={
                   {
                     ...theme.nav,
+                    ...theme.shapeNav,
                     maxWidth: `${maxWidth}px`,
-                    boxShadow: "0 2px 26px rgba(0,0,0,0.08)",
-                    borderRadius: borderRadius.infinte,
-                    backgroundColor: colors.white,
-                    padding: "4px 14px",
-
-                    [MQ[2]]: {
-                      padding: "4px 6px",
-                    },
                   } as Interpolation<Theme>
                 }
               >
@@ -79,26 +65,14 @@ export function BottomNavigationBar({
           </Container>
         )}
 
-        {/* ===== 기본 타입 ===== */}
+        {/* ========== 기본 타입 ========== */}
         {design === "default" && (
-          <Container
-            css={{
-              height: "100%",
-              paddingBottom: "calc(env(safe-area-inset-bottom) + 75px)",
-
-              [MQ[2]]: {
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 66.67px)",
-              },
-            }}
-          >
+          <Container css={theme.defaultContainer}>
             <Wrap
               css={
                 {
                   ...theme.wrap,
-                  paddingTop: "env(safe-area-inset-top)",
-                  paddingBottom: "env(safe-area-inset-bottom)",
-                  borderTop: "1px solid #e2e2e2",
-                  backgroundColor: colors.white,
+                  ...theme.defaultWrap,
                 } as Interpolation<Theme>
               }
             >
@@ -106,8 +80,8 @@ export function BottomNavigationBar({
                 css={
                   {
                     ...theme.nav,
+                    ...theme.defaultNav,
                     maxWidth: `${maxWidth}px`,
-                    padding: "4px 10px",
                   } as Interpolation<Theme>
                 }
               >
@@ -121,14 +95,9 @@ export function BottomNavigationBar({
   }
 }
 
-//
-interface MenuProps extends HTMLAttributes<HTMLLinkElement> {
-  children: ReactElement;
-  href: string;
-  label?: string;
-}
-
-//
+// --------------------------------------------
+// -------------- NavigationMenu --------------
+// --------------------------------------------
 export function NavigationMenu({ children, href, label, ...props }: MenuProps) {
   const child = Children.only(children);
 
@@ -142,9 +111,60 @@ export function NavigationMenu({ children, href, label, ...props }: MenuProps) {
   );
 }
 
-//
-/// styled
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
 const theme = {
+  shapeContainer: {
+    height: "100%",
+    paddingBottom: "calc(env(safe-area-inset-bottom) + 114.33px)",
+    [MQ[2]]: {
+      paddingBottom: "calc(env(safe-area-inset-bottom) + 86px)",
+    },
+  },
+
+  shapeWrap: {
+    paddingTop: "env(safe-area-inset-top)",
+    paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)",
+    paddingLeft: "calc(env(safe-area-inset-left) + 14px)",
+    paddingRight: "calc(env(safe-area-inset-right) + 14px)",
+
+    [MQ[2]]: {
+      paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)",
+    },
+  },
+
+  shapeNav: {
+    boxShadow: "0 2px 26px rgba(0,0,0,0.08)",
+    borderRadius: borderRadius.infinte,
+    backgroundColor: colors.white,
+    padding: "4px 14px",
+
+    [MQ[2]]: {
+      padding: "4px 6px",
+    },
+  },
+
+  defaultContainer: {
+    height: "100%",
+    paddingBottom: "calc(env(safe-area-inset-bottom) + 75px)",
+
+    [MQ[2]]: {
+      paddingBottom: "calc(env(safe-area-inset-bottom) + 66.67px)",
+    },
+  },
+
+  defaultWrap: {
+    paddingTop: "env(safe-area-inset-top)",
+    paddingBottom: "env(safe-area-inset-bottom)",
+    borderTop: "1px solid #e2e2e2",
+    backgroundColor: colors.white,
+  },
+
+  defaultNav: {
+    padding: "4px 10px",
+  },
+
   wrap: {
     zIndex: "8999",
     position: "fixed",

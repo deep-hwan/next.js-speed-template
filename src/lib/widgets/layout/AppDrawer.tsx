@@ -1,7 +1,6 @@
 import React, {
   ForwardedRef,
   ReactNode,
-  Ref,
   forwardRef,
   useEffect,
   useRef,
@@ -9,15 +8,20 @@ import React, {
 import { Interpolation, Theme } from "@emotion/react";
 
 import { IconTab, Layer } from "../_index";
-import { MQ, colors } from "../../theme/_index";
+import { colors } from "../../theme/_index";
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface Props {
   view: boolean;
   onCancel: () => void;
   children: ReactNode;
 }
 
-//
+// ---------------------------------------
+// -------------- AppDrawer --------------
+// ---------------------------------------
 export const AppDrawer = forwardRef(function AppDrawer(
   { view, onCancel, children, ...props }: Props,
   ref: ForwardedRef<HTMLDivElement>
@@ -86,7 +90,9 @@ export const AppDrawer = forwardRef(function AppDrawer(
   );
 });
 
-//
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
 const theme = {
   container: {
     zIndex: "9999",
