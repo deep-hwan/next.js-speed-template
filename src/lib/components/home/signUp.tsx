@@ -52,6 +52,7 @@ export default function SignUp() {
     check3: false,
   });
   const { name, tel, email, price, context, check1, check2, check3 } = isValues;
+  const [isSearch, setIsSearch] = useState("");
 
   //
   /// 입력 핸들러
@@ -98,6 +99,7 @@ export default function SignUp() {
     <>
       {isLoading && <LoadingLayer />}
       <Form gap={24} onSubmit={handleOnSubmit}>
+
         {/* ----- 검색 타입 인풋 : TextField ----- */}
         <Input label="검색">
           <Input.SearchField
@@ -107,6 +109,7 @@ export default function SignUp() {
             onClick={() => router.push({ query: isSearch })}
           />
         </Input>
+
 
         {/* ----- 이름 텍스트 타입 인풋 : TextField ----- */}
         <Input label="이름">
