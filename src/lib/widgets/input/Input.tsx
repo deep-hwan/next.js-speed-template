@@ -184,7 +184,6 @@ Input.SearchField = forwardRef(function SearchField(
           borderRadius: shape === "box" && borderRadius.s500,
         } as Interpolation<Theme>
       }
-      {...props}
     >
       <SearchIcon />
 
@@ -203,6 +202,7 @@ Input.SearchField = forwardRef(function SearchField(
             padding: shape === "box" ? `14px 0` : `12px 0`,
           } as Interpolation<Theme>
         }
+        {...props}
       />
 
       {searchTab && (

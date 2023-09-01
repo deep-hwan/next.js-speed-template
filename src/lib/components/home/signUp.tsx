@@ -40,6 +40,7 @@ export default function SignUp() {
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [isSearch, setIsSearch] = useState("");
   const [isValues, setIsValues] = useState<isValuesProps>({
     name: "",
     tel: "",
@@ -51,7 +52,6 @@ export default function SignUp() {
     check3: false,
   });
   const { name, tel, email, price, context, check1, check2, check3 } = isValues;
-
   const [isSearch, setIsSearch] = useState("");
 
   //
@@ -99,6 +99,18 @@ export default function SignUp() {
     <>
       {isLoading && <LoadingLayer />}
       <Form gap={24} onSubmit={handleOnSubmit}>
+
+        {/* ----- 검색 타입 인풋 : TextField ----- */}
+        <Input label="검색">
+          <Input.SearchField
+            value={isSearch}
+            onChange={(e) => setIsSearch(e.target.value)}
+            searchTab={true}
+            onClick={() => router.push({ query: isSearch })}
+          />
+        </Input>
+
+
         {/* ----- 이름 텍스트 타입 인풋 : TextField ----- */}
         <Input label="이름">
           <Input.TextField
@@ -150,15 +162,6 @@ export default function SignUp() {
             ref={textRef}
             onChange={handleOnChange}
             tolTip="문의 내용을 자유룝게 작성해주세요"
-          />
-        </Input>
-
-        <Input label="검색">
-          <Input.SearchField
-            value={isSearch}
-            onChange={(e) => setIsSearch(e.target.value)}
-            searchTab={true}
-            onClick={() => router.push({ query: isSearch })}
           />
         </Input>
 
@@ -315,6 +318,7 @@ const theme = {
     cursor: "pointer",
   },
   modalContainer: {
+    alignItems: "flex-start",
     padding: "20px 20px 40px 20px",
 
     "@supports(padding: max(0px))": {
