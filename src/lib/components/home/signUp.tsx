@@ -40,7 +40,7 @@ export default function SignUp() {
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [isSearch, setIsSearch] = useState("");
+  const [isSearch, setIsSearch] = useState<string>("");
   const [isValues, setIsValues] = useState<isValuesProps>({
     name: "",
     tel: "",

@@ -104,6 +104,7 @@ a {
   text-decoration: none;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  color: #333333;
 }
 
 ul,
