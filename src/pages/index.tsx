@@ -28,7 +28,7 @@ export default function Index() {
   return (
     <>
       <SEO />
-      <Section css={theme.section as Interpolation<Theme>}>
+      <Section maxWidth={560} css={theme.section as Interpolation<Theme>}>
         <Container css={theme.container as Interpolation<Theme>}>
           <Wrap gap={16}>
             <Txt as="h1" css={theme.appTitle}>
@@ -53,9 +53,7 @@ export default function Index() {
 
 // styled
 const theme = {
-  section: {
-    maxWidth: "600px",
-  },
+  section: {},
 
   container: {
     padding: "60px 0 50px",

@@ -65,7 +65,7 @@
 - AppDrawer : 메뉴 드로어
 - BottomNavigationBar : 바텀네비게이션 바
 - NavigationMenu : 바텀네비게이션 바 > 메뉴
-- Section : 섹션 레이아웃\*\*\*\*
+- Section : 섹션 레이아웃
 - Container / Wrap / Box : 레이아웃 위젯
 - BoxShadow : 그림자 형태의 박스 레이아웃 위젯
 - DragScrollContainer : 가로 터치 스크롤이 가능한 레이아웃 위젯
@@ -80,12 +80,13 @@
 - Input : input(label) + input(field) 종류 [박스 타입 / 바 타입]
   - TextField(텍스트)
   - SearchField(검색)
-  - PhoneNumberField(연락처정렬)
+  - PhoneNumberField(연락처 정렬)
   - NumericField(단위)
   - DateField(달력)
   - TextArea(에디터)
 - Select / Option : select / option 인풋 위젯 [박스 타입 / 바 타입] 지원
 - CheckBox : 체크박스 인풋 위젯
+- ProfileUploadBox : 프로필 이미지 업로드
 
 **Tab Widgets**
 
