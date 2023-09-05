@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, {
   ForwardedRef,
   HTMLAttributes,
@@ -38,7 +39,7 @@ export const Section = forwardRef(function Section(
         columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         transition: "0.3s ease-in-out",
       }}
-      {...props} // Remove the ref from here
+      {...props}
     >
       {children}
     </section>

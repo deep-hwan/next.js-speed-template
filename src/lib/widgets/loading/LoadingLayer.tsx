@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React from "react";
 import { Interpolation, Theme } from "@emotion/react";
 import { keyframes } from "@emotion/css";

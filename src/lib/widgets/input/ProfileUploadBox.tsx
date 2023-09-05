@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { useRef, ChangeEvent } from "react";
 import { Interpolation, Theme } from "@emotion/react";
 import Image from "next/image";

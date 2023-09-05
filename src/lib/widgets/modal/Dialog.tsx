@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { ReactNode, useCallback, useEffect, useRef } from "react";
 import { HTMLAttributes } from "react";
 import { Interpolation, Theme } from "@emotion/react";
