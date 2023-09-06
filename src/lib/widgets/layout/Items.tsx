@@ -15,6 +15,8 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
+  width?: "auto" | "100%";
+  minWidth?: number;
   maxWidth?: number;
 }
 
@@ -22,6 +24,8 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   direction?: "horizontal" | "vertical";
   children: ReactNode;
   gap?: number;
+  width?: "auto" | "100%";
+  minWidth?: number;
   maxWidth?: number;
 }
 
@@ -29,7 +33,15 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
 // -------------- Items --------------
 // -----------------------------------
 export const Items = forwardRef(function Items(
-  { direction = "vertical", maxWidth, children, gap, ...props }: ItemsProps,
+  {
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    children,
+    gap = 0,
+    ...props
+  }: ItemsProps,
   ref: ForwardedRef<HTMLUListElement>
 ) {
   return (
@@ -38,6 +50,8 @@ export const Items = forwardRef(function Items(
       css={
         {
           ...defaultStyles,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "vertical" ? "column" : "row",
           alignItems: direction === "horizontal" ? "stretch" : "center",
@@ -56,7 +70,15 @@ export const Items = forwardRef(function Items(
 // -------------- Item --------------
 // ----------------------------------
 export const Item = forwardRef(function Item(
-  { direction = "vertical", maxWidth, children, gap, ...props }: ItemProps,
+  {
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    children,
+    gap = 0,
+    ...props
+  }: ItemProps,
   ref: ForwardedRef<HTMLLIElement>
 ) {
   return (
@@ -65,6 +87,8 @@ export const Item = forwardRef(function Item(
       css={
         {
           ...defaultStyles,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "vertical" ? "column" : "row",
           alignItems: direction === "horizontal" ? "stretch" : "flex-start",
@@ -84,7 +108,6 @@ export const Item = forwardRef(function Item(
 // ------------------------------------
 const defaultStyles = {
   position: "relative",
-  width: "100%",
   padding: "0",
   margin: "0",
   display: "flex",

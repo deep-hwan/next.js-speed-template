@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, {
   useRef,
   useState,
@@ -12,12 +11,17 @@ import React, {
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
+  maxWidth?: number;
 }
 
 // -------------------------------------------------
 // -------------- DragScrollContainer --------------
 // -------------------------------------------------
-export const DragScrollContainer = ({ children, ...props }: Props) => {
+export const DragScrollContainer = ({
+  children,
+  maxWidth,
+  ...props
+}: Props) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
@@ -51,6 +55,8 @@ export const DragScrollContainer = ({ children, ...props }: Props) => {
       onMouseUp={endDrag}
       onMouseMove={doDrag}
       css={{
+        width: "100%",
+        maxWidth: `${maxWidth}px`,
         display: "flex",
         overflowX: "auto",
         cursor: isDragging ? "grabbing" : "auto",

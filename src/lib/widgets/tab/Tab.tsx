@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -13,20 +12,28 @@ import { colors, borderRadius, fontSize } from "../../theme/_index";
 // --------------------------------------------
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  weight?: "lighter" | "normal" | "medium" | "bold";
+  size?: number;
+  color?: string;
 }
 
 // ---------------------------------
 // -------------- Tab --------------
 // ---------------------------------
 export const Tab = forwardRef(function Tab(
-  { children, ...props }: TabProps,
+  { children, size, ...props }: TabProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
     <button
       type="button"
       ref={ref}
-      css={styles.tab as Interpolation<Theme>}
+      css={
+        {
+          ...styles.tab,
+          fontSize: size ? `${size / 16}rem` : "0.875rem",
+        } as Interpolation<Theme>
+      }
       {...props}
     >
       {children}
@@ -38,14 +45,21 @@ export const Tab = forwardRef(function Tab(
 // -------------- TxtTab --------------
 // ------------------------------------
 export const TxtTab = forwardRef(function TxtTab(
-  { children, ...props }: TabProps,
+  { children, size, weight, color, ...props }: TabProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
     <button
       type="button"
       ref={ref}
-      css={styles.txtTab as Interpolation<Theme>}
+      css={
+        {
+          ...styles.txtTab,
+          ...TYPOGRAPH_WEIGHT[weight ? weight : "normal"],
+          fontSize: size ? `${size / 16}rem` : "0.875rem",
+          color: color ? color : colors.keyColor,
+        } as Interpolation<Theme>
+      }
       {...props}
     >
       {children}
@@ -59,7 +73,6 @@ export const TxtTab = forwardRef(function TxtTab(
 const styles = {
   tab: {
     position: "relative",
-    fontSize: fontSize.s15,
     padding: "12px 20px",
     borderRadius: borderRadius.s500,
     color: colors.grey700,
@@ -80,8 +93,6 @@ const styles = {
 
   txtTab: {
     position: "relative",
-    fontSize: fontSize.s14,
-    color: colors.keyColor,
     whiteSpace: "nowrap",
     transition: "0.3s ease-in-out",
     outline: "none",
@@ -94,4 +105,11 @@ const styles = {
       opacity: 0.4,
     },
   },
+};
+
+const TYPOGRAPH_WEIGHT = {
+  lighter: { fontWeight: "300" },
+  normal: { fontWeight: "400" },
+  medium: { fontWeight: "500" },
+  bold: { fontWeight: "600" },
 };

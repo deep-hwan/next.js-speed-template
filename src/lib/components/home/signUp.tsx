@@ -11,6 +11,8 @@ import {
   Dialog,
   Form,
   Input,
+  Item,
+  Items,
   LoadingLayer,
   Spacing,
   Txt,
@@ -178,7 +180,8 @@ export default function SignUp() {
               onChange={(e) => setIsValues({ ...isValues, check1: !check1 })}
             />
           </CheckInput>
-          <Txt css={theme.infoTxt}>
+
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
             서비스 이용약관에 동의합니다.&nbsp;
             <TxtSpan
               css={theme.infoTab}
@@ -198,7 +201,7 @@ export default function SignUp() {
             />
           </CheckInput>
 
-          <Txt css={theme.infoTxt}>
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
             개인정보 처리방침에 동의합니다.&nbsp;
             <TxtSpan
               css={theme.infoTab}
@@ -226,7 +229,10 @@ export default function SignUp() {
               }}
             />
           </CheckInput>
-          <Txt css={theme.infoTxt}>이벤트 및 마케팅 소식을 알려드릴게요</Txt>
+
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
+            이벤트 및 마케팅 소식을 알려드릴게요
+          </Txt>
         </Box>
 
         <Button
@@ -309,18 +315,13 @@ const theme = {
     borderRadius: borderRadius.s500,
   },
 
-  infoTxt: {
-    fontSize: fontSize.s13,
-    color: colors.grey500,
-    paddingLeft: "30px",
-  },
-
   infoTab: {
     fontSize: fontSize.s12,
     color: colors.grey500,
     fontWeight: 500,
     cursor: "pointer",
   },
+
   modalContainer: {
     alignItems: "flex-start",
     padding: "20px 20px 40px 20px",

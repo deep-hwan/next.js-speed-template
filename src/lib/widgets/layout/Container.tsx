@@ -15,6 +15,8 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: "horizontal" | "vertical";
   gap?: number;
+  width?: "auto" | "100%";
+  minWidth?: number;
   maxWidth?: number;
 }
 
@@ -22,7 +24,15 @@ interface Props extends HTMLAttributes<HTMLElement> {
 // -------------- Cantainer (부모1) --------------
 // -----------------------------------------------
 export const Container = forwardRef(function Container(
-  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
+  {
+    children,
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    gap = 0,
+    ...props
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -31,10 +41,11 @@ export const Container = forwardRef(function Container(
       css={
         {
           ...styles.default,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "horizontal" ? "row" : "column",
           alignItems: direction === "horizontal" ? "stretch" : "center",
-          justifyContent: direction === "horizontal" ? "" : "center",
           rowGap: direction === "vertical" ? `${gap}px` : undefined,
           columnGap: direction === "horizontal" ? `${gap}px` : undefined,
         } as Interpolation<Theme>
@@ -50,7 +61,15 @@ export const Container = forwardRef(function Container(
 // -------------- Wrap (부모2) --------------
 // ------------------------------------------
 export const Wrap = forwardRef(function Wrap(
-  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
+  {
+    children,
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    gap = 0,
+    ...props
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -59,6 +78,8 @@ export const Wrap = forwardRef(function Wrap(
       css={
         {
           ...styles.default,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "horizontal" ? "row" : "column",
           alignItems: direction === "horizontal" ? "stretch" : "flex-start",
@@ -77,7 +98,15 @@ export const Wrap = forwardRef(function Wrap(
 // -------------- Box (부모3) --------------
 // -----------------------------------------
 export const Box = forwardRef(function Box(
-  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
+  {
+    children,
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    gap = 0,
+    ...props
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -86,6 +115,8 @@ export const Box = forwardRef(function Box(
       css={
         {
           ...styles.default,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "horizontal" ? "row" : "column",
           alignItems: direction === "horizontal" ? "stretch" : "flex-start",
@@ -104,7 +135,15 @@ export const Box = forwardRef(function Box(
 // -------------- BoxShadow (부모3 : 그림자타입) --------------
 // -----------------------------------------------------------
 export const BoxShadow = forwardRef(function BoxShadow(
-  { children, maxWidth, direction = "vertical", gap, ...props }: Props,
+  {
+    children,
+    direction = "vertical",
+    width = "100%",
+    minWidth,
+    maxWidth,
+    gap = 0,
+    ...props
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -113,6 +152,8 @@ export const BoxShadow = forwardRef(function BoxShadow(
       css={
         {
           ...styles.boxShadow,
+          width: width,
+          minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
           flexDirection: direction === "horizontal" ? "row" : "column",
           alignItems: direction === "horizontal" ? "stretch" : "flex-start",
@@ -133,14 +174,12 @@ export const BoxShadow = forwardRef(function BoxShadow(
 const styles = {
   default: {
     position: "relative",
-    width: "100%",
     display: "flex",
     transition: "0.3s ease-in-out",
   },
 
   boxShadow: {
     position: "relative",
-    width: "100%",
     display: "flex",
     boxShadow: "0px 2px 30px rgba(0,0,0,0.08)",
     background: "#fff",

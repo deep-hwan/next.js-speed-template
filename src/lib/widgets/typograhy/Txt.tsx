@@ -6,23 +6,43 @@ import React, {
   HTMLAttributes,
 } from "react";
 import { Interpolation, Theme } from "@emotion/react";
-import { colors, fontSize } from "../../theme/_index";
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "strong" | "p";
   children: ReactNode;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "strong" | "p";
+  weight?: "lighter" | "normal" | "medium" | "bold";
+  size?: number;
+  color?: string;
+  direction?: "horizontal" | "vertical";
+  gap?: number;
 }
 
 // -----------------------------------------------------
 // -------------- Txt [h1~6 / strong / p] --------------
 // -----------------------------------------------------
 export const Txt = forwardRef(function Txt(
-  { as = "p", children, ...Props }: Props,
+  {
+    as = "p",
+    size,
+    weight,
+    color = "#333333",
+    direction = "horizontal",
+    gap = 4,
+    children,
+    ...Props
+  }: Props,
   ref: ForwardedRef<HTMLDivElement>
 ) {
+  const display = {
+    flexDirection: direction === "horizontal" ? "row" : "column",
+    rowGap: direction === "vertical" ? `${gap}px` : undefined,
+    columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+    alignItems: "center",
+  };
+
   return (
     <>
       {as === "h1" && (
@@ -30,8 +50,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h1"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "3.25rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -45,8 +68,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h2"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "2.75rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -60,8 +86,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h3"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "2.375rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -75,8 +104,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h4"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "2rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -90,8 +122,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h5"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "1.75rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -105,8 +140,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["h6"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "bold"],
+              fontSize: size ? `${size / 16}rem` : "1.25rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -120,8 +158,11 @@ export const Txt = forwardRef(function Txt(
           ref={ref}
           css={
             {
+              ...display,
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["strong"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "medium"],
+              fontSize: size ? `${size / 16}rem` : "1.125rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -136,7 +177,9 @@ export const Txt = forwardRef(function Txt(
           css={
             {
               ...initialStyle,
-              ...TYPOGRAPH_VARIANT["p"],
+              ...TYPOGRAPH_WEIGHT[weight ? weight : "normal"],
+              fontSize: size ? `${size / 16}rem` : "0.938rem",
+              color: color,
             } as Interpolation<Theme>
           }
           {...Props}
@@ -152,53 +195,19 @@ export const Txt = forwardRef(function Txt(
 // -------------- Styles --------------
 // ------------------------------------
 const initialStyle = {
+  position: "relative",
   margin: 0,
   padding: 0,
-  color: colors.black100,
+  lineHeight: "1.4",
   display: "flex",
   alignItems: "center",
   whiteSpace: "pre-line",
   transition: "0.3s ease-in-out",
 };
 
-const TYPOGRAPH_VARIANT = {
-  h1: {
-    fontSize: fontSize.s52,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  h2: {
-    fontSize: fontSize.s44,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  h3: {
-    fontSize: fontSize.s38,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  h4: {
-    fontSize: fontSize.s32,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  h5: {
-    fontSize: fontSize.s28,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  h6: {
-    fontSize: fontSize.s20,
-    fontWeight: 600,
-    lineHeight: "1.4",
-  },
-  strong: {
-    fontSize: fontSize.s20,
-    fontWeight: 500,
-  },
-  p: {
-    fontSize: fontSize.s15,
-    fontWeight: 400,
-    lineHeight: "1.4",
-  },
+const TYPOGRAPH_WEIGHT = {
+  lighter: { fontWeight: "300" },
+  normal: { fontWeight: "400" },
+  medium: { fontWeight: "500" },
+  bold: { fontWeight: "600" },
 };
