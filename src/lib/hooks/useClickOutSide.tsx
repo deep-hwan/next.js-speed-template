@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import { RefObject, useEffect } from 'react';
 
 interface ClickOutsideProps {
   ref: RefObject<HTMLDivElement>;
@@ -17,14 +17,14 @@ export const useClickOutside = ({ ref, state, handler }: ClickOutsideProps) => {
     ref.current?.scrollTo(0, 0);
 
     if (state) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     }
 
-    document.addEventListener("mousedown", clickModalOutside);
+    document.addEventListener('mousedown', clickModalOutside);
     return () => {
-      document.removeEventListener("mousedown", clickModalOutside);
+      document.removeEventListener('mousedown', clickModalOutside);
     };
   });
 };

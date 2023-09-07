@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { keyframes } from "@emotion/react";
-import { HTMLAttributes, memo } from "react";
+import { keyframes } from '@emotion/react';
+import { HTMLAttributes, memo } from 'react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -26,9 +26,9 @@ function LoadingSpinnerUi({ size = 40, ...props }: Props) {
   return (
     <div
       css={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
       }}
       {...props}
     >
@@ -38,11 +38,11 @@ function LoadingSpinnerUi({ size = 40, ...props }: Props) {
           minWidth: `${size}px`,
           height: `${size}px`,
           minHeight: `${size}px`,
-          border: "4px solid #ccc",
-          borderBottomColor: "transparent",
-          borderRadius: "50%",
-          display: "inline-block",
-          boxSizing: "border-box",
+          border: '4px solid #ccc',
+          borderBottomColor: 'transparent',
+          borderRadius: '50%',
+          display: 'inline-block',
+          boxSizing: 'border-box',
           animation: `${rotation} 1s linear infinite`,
         }}
       />

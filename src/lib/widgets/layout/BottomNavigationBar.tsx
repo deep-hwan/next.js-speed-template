@@ -1,23 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  Children,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { Children, HTMLAttributes, ReactElement, ReactNode } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { TxtSpan, Container, Wrap } from "../_index";
-import { MQ, colors, borderRadius, fontSize } from "@/lib/theme/_index";
+import { TxtSpan, Container, Wrap } from '../_index';
+import { MQ, colors, borderRadius, fontSize } from '@/lib/theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  design?: "default" | "shape";
+  design?: 'default' | 'shape';
   maxWidth?: number;
 }
 
@@ -30,18 +25,14 @@ interface MenuProps extends HTMLAttributes<HTMLLinkElement> {
 // -------------------------------------------------
 // -------------- BottomNavigationBar --------------
 // -------------------------------------------------
-export function BottomNavigationBar({
-  children,
-  design = "default",
-  maxWidth = 600,
-}: Props) {
+export function BottomNavigationBar({ children, design = 'default', maxWidth = 600 }: Props) {
   const childrenArray = Children.toArray(children);
 
   if (childrenArray.length < 6) {
     return (
       <>
         {/* ========== 디자인 타입 ========== */}
-        {design === "shape" && (
+        {design === 'shape' && (
           <Container css={theme.shapeContainer}>
             <Wrap
               css={
@@ -67,7 +58,7 @@ export function BottomNavigationBar({
         )}
 
         {/* ========== 기본 타입 ========== */}
-        {design === "default" && (
+        {design === 'default' && (
           <Container css={theme.defaultContainer}>
             <Wrap
               css={
@@ -117,114 +108,114 @@ export function NavigationMenu({ children, href, label, ...props }: MenuProps) {
 // ------------------------------------
 const theme = {
   shapeContainer: {
-    height: "100%",
-    paddingBottom: "calc(env(safe-area-inset-bottom) + 114.33px)",
+    height: '100%',
+    paddingBottom: 'calc(env(safe-area-inset-bottom) + 114.33px)',
     [MQ[2]]: {
-      paddingBottom: "calc(env(safe-area-inset-bottom) + 86px)",
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 86px)',
     },
   },
 
   shapeWrap: {
-    paddingTop: "env(safe-area-inset-top)",
-    paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)",
-    paddingLeft: "calc(env(safe-area-inset-left) + 14px)",
-    paddingRight: "calc(env(safe-area-inset-right) + 14px)",
+    paddingTop: 'env(safe-area-inset-top)',
+    paddingBottom: 'calc(env(safe-area-inset-bottom) + 40px)',
+    paddingLeft: 'calc(env(safe-area-inset-left) + 14px)',
+    paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
 
     [MQ[2]]: {
-      paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)",
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)',
     },
   },
 
   shapeNav: {
-    boxShadow: "0 2px 26px rgba(0,0,0,0.08)",
+    boxShadow: '0 2px 26px rgba(0,0,0,0.08)',
     borderRadius: borderRadius.infinte,
     backgroundColor: colors.white,
-    padding: "4px 14px",
+    padding: '4px 14px',
 
     [MQ[2]]: {
-      padding: "4px 6px",
+      padding: '4px 6px',
     },
   },
 
   defaultContainer: {
-    height: "100%",
-    paddingBottom: "calc(env(safe-area-inset-bottom) + 75px)",
+    height: '100%',
+    paddingBottom: 'calc(env(safe-area-inset-bottom) + 75px)',
 
     [MQ[2]]: {
-      paddingBottom: "calc(env(safe-area-inset-bottom) + 66.67px)",
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 66.67px)',
     },
   },
 
   defaultWrap: {
-    paddingTop: "env(safe-area-inset-top)",
-    paddingBottom: "env(safe-area-inset-bottom)",
-    borderTop: "1px solid #e2e2e2",
+    paddingTop: 'env(safe-area-inset-top)',
+    paddingBottom: 'env(safe-area-inset-bottom)',
+    borderTop: '1px solid #e2e2e2',
     backgroundColor: colors.white,
   },
 
   defaultNav: {
-    padding: "4px 10px",
+    padding: '4px 10px',
   },
 
   wrap: {
-    zIndex: "8999",
-    position: "fixed",
-    bottom: "0",
-    left: "0",
-    right: "0",
-    alignItems: "center",
-    justifyContent: "center",
+    zIndex: '8999',
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    right: '0',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   nav: {
-    width: "100%",
-    height: "100%",
-    zIndex: "8999",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    transition: "0.3s ease-in-out",
+    width: '100%',
+    height: '100%',
+    zIndex: '8999',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    transition: '0.3s ease-in-out',
   },
 
   navMenu: {
-    width: "100%",
-    padding: "8px",
-    display: "flex",
-    rowGap: "3px",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    width: '100%',
+    padding: '8px',
+    display: 'flex',
+    rowGap: '3px',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: borderRadius.s500,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: colors.ground100,
     },
 
     [MQ[2]]: {
-      rowGap: "3px",
-      width: "60px",
-      maxWidth: "60px",
-      minWidth: "60px",
-      "&:hover": {
+      rowGap: '3px',
+      width: '60px',
+      maxWidth: '60px',
+      minWidth: '60px',
+      '&:hover': {
         backgroundColor: colors.none,
       },
     },
   },
 
   navMenuIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "auto",
-    height: "28px",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'auto',
+    height: '28px',
     [MQ[2]]: {
-      height: "23px",
+      height: '23px',
     },
   },
 
   navMenuLabel: {
     fontSize: fontSize.s13,
-    whiteSpace: "nowrap",
+    whiteSpace: 'nowrap',
     [MQ[2]]: {
       fontSize: fontSize.s11,
     },

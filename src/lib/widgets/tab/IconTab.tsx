@@ -1,12 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  Children,
-  ForwardedRef,
-  HTMLAttributes,
-  ReactElement,
-  forwardRef,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { Children, ForwardedRef, HTMLAttributes, ReactElement, forwardRef } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -23,7 +17,7 @@ interface IconProps extends HTMLAttributes<HTMLElement> {
 // -------------------------------------
 export const IconTab = forwardRef(function IconTab(
   { children, size, iconSize = 24, onClick, ...props }: IconProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>,
 ) {
   const child = Children.only(children);
 
@@ -69,29 +63,29 @@ export const IconTab = forwardRef(function IconTab(
 // ------------------------------------
 const styles = {
   button: {
-    position: "relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "6px",
-    borderRadius: "8px",
-    whiteSpace: "nowrap",
-    transition: "0.3s ease-in-out",
-    cursor: "pointer",
-    outline: "none",
-    border: "none",
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '6px',
+    borderRadius: '8px',
+    whiteSpace: 'nowrap',
+    transition: '0.3s ease-in-out',
+    cursor: 'pointer',
+    outline: 'none',
+    border: 'none',
 
-    "&:hover": {
-      backgroundColor: "rgba(0,0,0,0.03)",
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,0.03)',
     },
   },
 
   iconBox: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    transition: "0.3s ease-in-out",
-    whiteSpace: "nowrap",
-    cursor: "pointer",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    transition: '0.3s ease-in-out',
+    whiteSpace: 'nowrap',
+    cursor: 'pointer',
   },
 };

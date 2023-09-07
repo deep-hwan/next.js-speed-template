@@ -1,18 +1,13 @@
-import React, {
-  ButtonHTMLAttributes,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
-import { colors, borderRadius, fontSize } from "../../theme/_index";
+import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
+import { colors, borderRadius, fontSize } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  weight?: "lighter" | "normal" | "medium" | "bold";
+  weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   size?: number;
   color?: string;
 }
@@ -22,7 +17,7 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 // ---------------------------------
 export const Tab = forwardRef(function Tab(
   { children, size, ...props }: TabProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button
@@ -31,7 +26,7 @@ export const Tab = forwardRef(function Tab(
       css={
         {
           ...styles.tab,
-          fontSize: size ? `${size / 16}rem` : "0.875rem",
+          fontSize: size ? `${size / 16}rem` : '0.875rem',
         } as Interpolation<Theme>
       }
       {...props}
@@ -46,7 +41,7 @@ export const Tab = forwardRef(function Tab(
 // ------------------------------------
 export const TxtTab = forwardRef(function TxtTab(
   { children, size, weight, color, ...props }: TabProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button
@@ -55,8 +50,8 @@ export const TxtTab = forwardRef(function TxtTab(
       css={
         {
           ...styles.txtTab,
-          ...TYPOGRAPH_WEIGHT[weight ? weight : "normal"],
-          fontSize: size ? `${size / 16}rem` : "0.875rem",
+          ...TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
+          fontSize: size ? `${size / 16}rem` : '0.875rem',
           color: color ? color : colors.keyColor,
         } as Interpolation<Theme>
       }
@@ -72,44 +67,44 @@ export const TxtTab = forwardRef(function TxtTab(
 // ------------------------------------
 const styles = {
   tab: {
-    position: "relative",
-    padding: "12px 20px",
+    position: 'relative',
+    padding: '12px 20px',
     borderRadius: borderRadius.s500,
     color: colors.grey700,
     backgroundColor: colors.ground200,
-    whiteSpace: "nowrap",
-    transition: "0.3s ease-in-out",
-    outline: "none",
-    border: "none",
+    whiteSpace: 'nowrap',
+    transition: '0.3s ease-in-out',
+    outline: 'none',
+    border: 'none',
 
-    "&:hover": {
+    '&:hover': {
       opacity: 0.9,
     },
 
-    "&:disabled": {
+    '&:disabled': {
       opacity: 0.4,
     },
   },
 
   txtTab: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    transition: "0.3s ease-in-out",
-    outline: "none",
-    border: "none",
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    transition: '0.3s ease-in-out',
+    outline: 'none',
+    border: 'none',
 
-    "&:hover": {
-      fontWeight: "500",
+    '&:hover': {
+      fontWeight: '500',
     },
-    "&:disabled": {
+    '&:disabled': {
       opacity: 0.4,
     },
   },
 };
 
 const TYPOGRAPH_WEIGHT = {
-  lighter: { fontWeight: "300" },
-  normal: { fontWeight: "400" },
-  medium: { fontWeight: "500" },
-  bold: { fontWeight: "600" },
+  lighter: { fontWeight: '300' },
+  normal: { fontWeight: '400' },
+  medium: { fontWeight: '500' },
+  bold: { fontWeight: '600' },
 };

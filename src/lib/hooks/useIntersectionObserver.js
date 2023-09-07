@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 export const useObserver = ({
   target, // 감지할 대상, ref를 넘길 예정
@@ -8,7 +8,7 @@ export const useObserver = ({
   threshold = 0.0, // 임계점. 1.0이면 root내에서 target이 100% 보여질 때 callback이 실행된다.
 }) => {
   useEffect(() => {
-    let observer
+    let observer;
 
     // 넘어오는 element가 있어야 observer를 생성할 수 있도록 한다.
     if (target && target.current) {
@@ -20,12 +20,12 @@ export const useObserver = ({
         root,
         rootMargin,
         threshold,
-      })
+      });
       // 실제 Element가 들어있는 current 관측을 시작한다.
-      observer.observe(target.current)
+      observer.observe(target.current);
     }
 
     // observer를 사용하는 컴포넌트가 해제되면 observer 역시 꺼 주자.
-    return () => observer && observer.disconnect()
-  }, [target, rootMargin, threshold, onIntersect])
-}
+    return () => observer && observer.disconnect();
+  }, [target, rootMargin, threshold, onIntersect]);
+};

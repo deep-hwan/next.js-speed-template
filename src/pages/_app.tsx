@@ -1,21 +1,16 @@
-import type { AppProps } from "next/app";
-import { useState } from "react";
+import type { AppProps } from 'next/app';
+import { useState } from 'react';
 
 //hooks
-import { SessionProvider } from "next-auth/react";
-import { RecoilRoot } from "recoil";
-import {
-  dehydrate,
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import { SessionProvider } from 'next-auth/react';
+import { RecoilRoot } from 'recoil';
+import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 //style
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
 //components
-import Layout from "@/lib/core/Layout";
+import Layout from '@/lib/core/Layout';
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {

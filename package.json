@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap.config.js"
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@emotion/css": "^11.11.2",
@@ -38,7 +40,10 @@
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.15.0",
-    "next-pwa": "^5.6.0"
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "next-pwa": "^5.6.0",
+    "prettier": "^3.0.3"
   },
   "main": "index.js",
   "repository": "https://github.com/deep-hwan/Next_Typescript_Tamplate.git",

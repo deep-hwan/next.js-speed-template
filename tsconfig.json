@@ -20,13 +20,6 @@
       "@/*": ["./src/*", "./public/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.js",
-    "**/*.js",
-    "**/*.jsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next-env.d.js", "**/*.js", "**/*.jsx"],
   "exclude": ["node_modules"]
 }

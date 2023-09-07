@@ -1,21 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-  useEffect,
-  useState,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
-import { MQ, colors } from "../../theme/_index";
+import { MQ, colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props {
   children: ReactNode;
-  variant?: "primary" | "dark";
+  variant?: 'primary' | 'dark';
   width?: number;
 }
 
@@ -23,8 +17,8 @@ interface Props {
 // -------------- AppBar --------------
 // ------------------------------------
 export const AppBar = forwardRef(function AppBar(
-  { variant = "primary", width, children, ...props }: Props,
-  ref: ForwardedRef<HTMLDivElement>
+  { variant = 'primary', width, children, ...props }: Props,
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const scrollActive = () => {
@@ -35,21 +29,17 @@ export const AppBar = forwardRef(function AppBar(
     }
   };
   useEffect(() => {
-    window.addEventListener("scroll", scrollActive);
+    window.addEventListener('scroll', scrollActive);
   }, []);
 
   const TYPE_VARIANTS = {
     primary: {
       backgroundColor: colors.white,
-      borderBottom: isActive
-        ? `1px solid ${colors.grey200}`
-        : "1px solid transparent",
+      borderBottom: isActive ? `1px solid ${colors.grey200}` : '1px solid transparent',
     },
     dark: {
       backgroundColor: colors.black200,
-      borderBottom: isActive
-        ? `1px solid ${colors.black300}`
-        : "1px solid transparent",
+      borderBottom: isActive ? `1px solid ${colors.black300}` : '1px solid transparent',
     },
   };
 
@@ -73,7 +63,7 @@ export const AppBar = forwardRef(function AppBar(
           css={
             {
               ...styles.nav,
-              maxWidth: width ? `${width}px` : "100%",
+              maxWidth: width ? `${width}px` : '100%',
             } as Interpolation<Theme>
           }
         >
@@ -89,58 +79,58 @@ export const AppBar = forwardRef(function AppBar(
 // ------------------------------------
 const styles = {
   container: {
-    position: "relative",
-    width: "100%",
-    paddingTop: "env(safe-area-inset-top)",
-    minHeight: "66px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    transition: "0.3s ease-in-out",
+    position: 'relative',
+    width: '100%',
+    paddingTop: 'env(safe-area-inset-top)',
+    minHeight: '66px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    transition: '0.3s ease-in-out',
 
-    [MQ[2]]: { minHeight: "58px" },
+    [MQ[2]]: { minHeight: '58px' },
   },
 
   header: {
     zIndex: 8999,
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    width: "100%",
-    minHeight: "66px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: "10px",
-    paddingTop: "calc(env(safe-area-inset-top) + 10px)",
-    transition: "0.3s ease-in-out",
+    width: '100%',
+    minHeight: '66px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: '10px',
+    paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
+    transition: '0.3s ease-in-out',
 
     [MQ[2]]: {
-      minHeight: "58px",
-      paddingBottom: "9px",
-      paddingTop: "calc(env(safe-area-inset-top) + 9px)",
+      minHeight: '58px',
+      paddingBottom: '9px',
+      paddingTop: 'calc(env(safe-area-inset-top) + 9px)',
     },
   },
 
   name: {
-    width: "0px",
-    height: "0px",
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    position: "absolute",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
+    width: '0px',
+    height: '0px',
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    position: 'absolute',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
   },
 
   nav: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingRight: "env(safe-area-inset-right)",
-    paddingLeft: "env(safe-area-inset-left)",
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 'env(safe-area-inset-right)',
+    paddingLeft: 'env(safe-area-inset-left)',
   },
 };

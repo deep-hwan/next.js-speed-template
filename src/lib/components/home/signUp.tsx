@@ -1,5 +1,5 @@
-import React, { useRef, useState, ChangeEvent, FormEvent } from "react";
-import { useRouter, NextRouter } from "next/router";
+import React, { useRef, useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter, NextRouter } from 'next/router';
 
 //libs
 import {
@@ -17,12 +17,12 @@ import {
   Spacing,
   Txt,
   TxtSpan,
-} from "@/lib/widgets/_index";
+} from '@/lib/widgets/_index';
 
 //hooks
-import { useRaiseEditor } from "react-raise-editor";
-import { borderRadius, fontSize } from "@/lib/theme/size";
-import { colors } from "@/lib/theme/colors";
+import { useRaiseEditor } from 'react-raise-editor';
+import { borderRadius, fontSize } from '@/lib/theme/size';
+import { colors } from '@/lib/theme/colors';
 
 //
 interface isValuesProps {
@@ -42,13 +42,13 @@ export default function SignUp() {
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [isSearch, setIsSearch] = useState<string>("");
+  const [isSearch, setIsSearch] = useState<string>('');
   const [isValues, setIsValues] = useState<isValuesProps>({
-    name: "",
-    tel: "",
-    email: "",
-    price: "",
-    context: "",
+    name: '',
+    tel: '',
+    email: '',
+    price: '',
+    context: '',
     check1: false,
     check2: false,
     check3: false,
@@ -57,9 +57,7 @@ export default function SignUp() {
 
   //
   /// 입력 핸들러
-  const handleOnChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setIsValues({ ...isValues, [name]: value });
   };
@@ -81,7 +79,7 @@ export default function SignUp() {
         },
       },
       undefined,
-      { scroll: false }
+      { scroll: false },
     );
 
   //
@@ -181,12 +179,9 @@ export default function SignUp() {
             />
           </CheckInput>
 
-          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: '30px' }}>
             서비스 이용약관에 동의합니다.&nbsp;
-            <TxtSpan
-              css={theme.infoTab}
-              onClick={() => modalQueryRouter("이용약관")}
-            >
+            <TxtSpan css={theme.infoTab} onClick={() => modalQueryRouter('이용약관')}>
               (자세히 보기📎)
             </TxtSpan>
           </Txt>
@@ -201,12 +196,9 @@ export default function SignUp() {
             />
           </CheckInput>
 
-          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: '30px' }}>
             개인정보 처리방침에 동의합니다.&nbsp;
-            <TxtSpan
-              css={theme.infoTab}
-              onClick={() => modalQueryRouter("개인정보 처리방침")}
-            >
+            <TxtSpan css={theme.infoTab} onClick={() => modalQueryRouter('개인정보 처리방침')}>
               (자세히 보기📎)
             </TxtSpan>
           </Txt>
@@ -230,15 +222,15 @@ export default function SignUp() {
             />
           </CheckInput>
 
-          <Txt size={13} color={colors.grey500} css={{ paddingLeft: "30px" }}>
+          <Txt size={13} color={colors.grey500} css={{ paddingLeft: '30px' }}>
             이벤트 및 마케팅 소식을 알려드릴게요
           </Txt>
         </Box>
 
         <Button
           type="submit"
-          css={{ width: "100%" }}
-          disabled={(name && email && context) === "" || !check1 || !check2}
+          css={{ width: '100%' }}
+          disabled={(name && email && context) === '' || !check1 || !check2}
         >
           제출
         </Button>
@@ -252,29 +244,24 @@ export default function SignUp() {
         <Container css={theme.modalContainer} gap={20}>
           <Txt as="h6">{router.query.modal}</Txt>
           <Txt>
-            테스트 은(는) 「개인정보 보호법」 제30조에 따라 정보주체의
-            개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수
-            있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
-            해당 개인정보처리방침은 서비스 이용 가입시 적용됩니다. 제1조
-            (개인정보의 처리 목적) 테스트(Test) 이용약관 은(는) 다음의 목적을
-            위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적
-            이외의 용도로는 이용되지 않으며 이용 목적이 변경되는 경우에는
-            「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한
-            조치를 이행할 예정입니다. 1. 홈페이지 회원가입 및 관리 : 회원
-            가입의사 확인 목적으로 개인정보를 처리합니다. 2. 의뢰 및 채용 공고 :
-            게시한 공고가 신용이 있는지에 대한 확인 목적으로 개인정보를
-            처리합니다. 3. “테스트(Test)”은 소셜 SNS (카카오톡 , 구글) 회원 가입
-            방식을 취급하고 있으며, 이에 대해 제공받는 정보는 해당 소셜SNS에
-            대한 개인정보인 이메일, 쿠키 만 제공받고 있으며 이에 대해 서비스
-            유지를 위해 개인정보를 처리합니다. 제2조(개인정보의 처리 및 보유
-            기간) ① 테스트(Test) 이용약관 은(는) 법령에 따른 개인정보
-            보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은
-            개인정보 보유·이용기간 내에서 개인정보를 처리·보유합니다. ② 각각의
-            개인정보 처리 및 보유 기간은 다음과 같습니다. - 서비스 회원가입 및
-            관리 와 관련한 개인정보는 수집.이용에 관한 동의일로부터 10년 까지 위
-            이용목적을 위하여 보유.이용됩니다. - 보유근거 : 서비스 이용 및
-            제공을 위해 개인정보를 보유하게 됩니다. - 관련법령 : 신용정보의
-            수집/처리 및 이용 등에 관한 기록 : 3년
+            테스트 은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와
+            관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보
+            처리방침을 수립·공개합니다. 해당 개인정보처리방침은 서비스 이용 가입시 적용됩니다. 제1조
+            (개인정보의 처리 목적) 테스트(Test) 이용약관 은(는) 다음의 목적을 위하여 개인정보를
+            처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며 이용
+            목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한
+            조치를 이행할 예정입니다. 1. 홈페이지 회원가입 및 관리 : 회원 가입의사 확인 목적으로
+            개인정보를 처리합니다. 2. 의뢰 및 채용 공고 : 게시한 공고가 신용이 있는지에 대한 확인
+            목적으로 개인정보를 처리합니다. 3. “테스트(Test)”은 소셜 SNS (카카오톡 , 구글) 회원 가입
+            방식을 취급하고 있으며, 이에 대해 제공받는 정보는 해당 소셜SNS에 대한 개인정보인 이메일,
+            쿠키 만 제공받고 있으며 이에 대해 서비스 유지를 위해 개인정보를 처리합니다.
+            제2조(개인정보의 처리 및 보유 기간) ① 테스트(Test) 이용약관 은(는) 법령에 따른 개인정보
+            보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은 개인정보 보유·이용기간
+            내에서 개인정보를 처리·보유합니다. ② 각각의 개인정보 처리 및 보유 기간은 다음과
+            같습니다. - 서비스 회원가입 및 관리 와 관련한 개인정보는 수집.이용에 관한 동의일로부터
+            10년 까지 위 이용목적을 위하여 보유.이용됩니다. - 보유근거 : 서비스 이용 및 제공을 위해
+            개인정보를 보유하게 됩니다. - 관련법령 : 신용정보의 수집/처리 및 이용 등에 관한 기록 :
+            3년
           </Txt>
         </Container>
       </BottomSheet>
@@ -283,7 +270,7 @@ export default function SignUp() {
       <Dialog
         view={isDialogOpen}
         onCancel={() => setIsDialogOpen(false)}
-        css={{ maxWidth: "360px" }}
+        css={{ maxWidth: '360px' }}
       >
         <Txt as="h6">{`마케팅 수신동의를\n하시겠어요?`}</Txt>
         <Spacing size={10} />
@@ -309,8 +296,8 @@ export default function SignUp() {
 //
 const theme = {
   checkBox: {
-    marginTop: "10px",
-    padding: "16px 12px",
+    marginTop: '10px',
+    padding: '16px 12px',
     backgroundColor: colors.ground100,
     borderRadius: borderRadius.s500,
   },
@@ -319,18 +306,18 @@ const theme = {
     fontSize: fontSize.s12,
     color: colors.grey500,
     fontWeight: 500,
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 
   modalContainer: {
-    alignItems: "flex-start",
-    padding: "20px 20px 40px 20px",
+    alignItems: 'flex-start',
+    padding: '20px 20px 40px 20px',
 
-    "@supports(padding: max(0px))": {
-      paddingTop: "max(20px, env(safe-area-inset-top))",
-      paddingBottom: "calc(env(safe-area-inset-bottom) + 40px)",
-      paddingRight: "max(20px, env(safe-area-inset-right))",
-      paddingLeft: "max(20px, env(safe-area-inset-left))",
+    '@supports(padding: max(0px))': {
+      paddingTop: 'max(20px, env(safe-area-inset-top))',
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 40px)',
+      paddingRight: 'max(20px, env(safe-area-inset-right))',
+      paddingLeft: 'max(20px, env(safe-area-inset-left))',
     },
   },
 };

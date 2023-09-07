@@ -1,16 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  HTMLAttributes,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
-import { Box, Container, Layer, Wrap } from "../_index";
-import { MQ } from "@/lib/theme/mediaQuery";
+import { Box, Container, Layer, Wrap } from '../_index';
+import { MQ } from '@/lib/theme/mediaQuery';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -29,7 +22,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
   children,
   view,
   onCancel,
-  theme = "light",
+  theme = 'light',
   ...props
 }: BottomSheetProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -66,19 +59,19 @@ export const BottomSheet = forwardRef(function BottomSheet({
         onCancel();
       }
     },
-    [view, onCancel]
+    [view, onCancel],
   );
 
   useEffect(() => {
     if (view) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     }
 
-    document.addEventListener("mousedown", clickModalOutside);
+    document.addEventListener('mousedown', clickModalOutside);
     return () => {
-      document.removeEventListener("mousedown", clickModalOutside);
+      document.removeEventListener('mousedown', clickModalOutside);
     };
   }, [view, clickModalOutside]);
 
@@ -89,7 +82,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
         css={
           {
             ...styles.container,
-            top: view ? "0" : "120%",
+            top: view ? '0' : '120%',
           } as Interpolation<Theme>
         }
       >
@@ -99,8 +92,8 @@ export const BottomSheet = forwardRef(function BottomSheet({
             css={
               {
                 ...styles.box,
-                backgroundColor: theme === "dark" ? "#222222" : "#ffffff",
-                opacity: view ? "1" : "0",
+                backgroundColor: theme === 'dark' ? '#222222' : '#ffffff',
+                opacity: view ? '1' : '0',
               } as Interpolation<Theme>
             }
             {...props}
@@ -116,7 +109,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
                 onClick={onCancel}
                 css={{
                   ...styles.tab,
-                  backgroundColor: theme === "dark" ? "#444444" : "#e0e0e0",
+                  backgroundColor: theme === 'dark' ? '#444444' : '#e0e0e0',
                 }}
               />
             </div>
@@ -134,101 +127,101 @@ export const BottomSheet = forwardRef(function BottomSheet({
 // ------------------------------------
 const styles = {
   container: {
-    zIndex: "9999",
-    position: "fixed",
-    bottom: "0",
-    left: "0",
-    right: "0",
+    zIndex: '9999',
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    right: '0',
 
-    width: "100%",
-    height: "100%",
-    transition: "0.25s ease-in-out",
+    width: '100%',
+    height: '100%',
+    transition: '0.25s ease-in-out',
   },
 
   wrap: {
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "calc(env(safe-area-inset-top) + 70px)",
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 'calc(env(safe-area-inset-top) + 70px)',
 
     [MQ[1]]: {
-      paddingTop: "calc(env(safe-area-inset-top) + 10px)",
+      paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
     },
   },
 
   box: {
-    width: "100%",
-    maxWidth: "560px",
-    height: "100%",
+    width: '100%',
+    maxWidth: '560px',
+    height: '100%',
 
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
 
-    borderRadius: "22px 22px 0 0",
-    boxShadow: "0 3px 30px rgba(0,0,0,0.1)",
-    transition: "0.25s ease-in-out",
+    borderRadius: '22px 22px 0 0',
+    boxShadow: '0 3px 30px rgba(0,0,0,0.1)',
+    transition: '0.25s ease-in-out',
 
-    paddingTop: "env(safe-area-inset-top)",
-    paddingBottom: "env(safe-area-inset-bottom)",
+    paddingTop: 'env(safe-area-inset-top)',
+    paddingBottom: 'env(safe-area-inset-bottom)',
 
-    "&:webkit-scrollbar": {
-      display: "none",
+    '&:webkit-scrollbar': {
+      display: 'none',
     },
 
     [MQ[1]]: {
-      maxWidth: "100%",
+      maxWidth: '100%',
     },
   },
 
   tabBox: {
-    width: "100%",
-    padding: "11px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    padding: '11px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   tab: {
-    width: "50px",
-    height: "6px",
-    border: "none",
-    outline: "none",
-    borderRadius: "1000px",
-    cursor: "pointer",
+    width: '50px',
+    height: '6px',
+    border: 'none',
+    outline: 'none',
+    borderRadius: '1000px',
+    cursor: 'pointer',
   },
 
   view: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    overflowY: "auto",
-    "@supports (-webkit-touch-callout: none)": {
-      height: "-webkit-fill-available",
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflowY: 'auto',
+    '@supports (-webkit-touch-callout: none)': {
+      height: '-webkit-fill-available',
     },
-    "&::-webkit-scrollbar": {
-      width: "4px",
-      height: "6px",
+    '&::-webkit-scrollbar': {
+      width: '4px',
+      height: '6px',
     },
-    "&::-webkit-scrollbar-track": {
-      backgroundColor: "transparent",
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'transparent',
     },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#e9e9e9",
-      borderRadius: "100px",
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#e9e9e9',
+      borderRadius: '100px',
     },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "#e2e2e2",
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: '#e2e2e2',
     },
-    "&::-webkit-scrollbar-button:start:decrement": {
+    '&::-webkit-scrollbar-button:start:decrement': {
       width: 0,
       height: 0,
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
     },
-    "&::-webkit-scrollbar-button:end:increment": {
+    '&::-webkit-scrollbar-button:end:increment': {
       width: 0,
       height: 0,
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
     },
   },
 };

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from "react";
-import { css } from "@emotion/react";
+import React, { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 
 // ------------------------------------------
 // -------------- ScrollTopTab --------------
@@ -17,18 +17,18 @@ export function ScrollTopTab() {
   const handleTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
     setScrollY(0); // ScrollY 의 값을 초기화
   };
 
   useEffect(() => {
     const watch = () => {
-      window.addEventListener("scroll", handleFollow);
+      window.addEventListener('scroll', handleFollow);
     };
     watch();
     return () => {
-      window.removeEventListener("scroll", handleFollow);
+      window.removeEventListener('scroll', handleFollow);
     };
   }, [ScrollY]);
 
@@ -46,16 +46,8 @@ export function ScrollTopTab() {
                 transform="translate(98 931)"
                 fill="none"
               />
-              <g
-                id="그룹_95636"
-                data-name="그룹 95636"
-                transform="translate(99 947) rotate(-90)"
-              >
-                <g
-                  id="그룹_94352"
-                  data-name="그룹 94352"
-                  transform="translate(0 0)"
-                >
+              <g id="그룹_95636" data-name="그룹 95636" transform="translate(99 947) rotate(-90)">
+                <g id="그룹_94352" data-name="그룹 94352" transform="translate(0 0)">
                   <path
                     id="패스_86881"
                     data-name="패스 86881"

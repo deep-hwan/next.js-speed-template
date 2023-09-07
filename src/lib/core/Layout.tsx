@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import { NextRouter, useRouter } from "next/router";
-import Header from "./Header";
-import BottomNaviTabBar from "./BottomNaviTabBar";
+import React, { ReactNode } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import Header from './Header';
+import BottomNaviTabBar from './BottomNaviTabBar';
 
 //
 type LayoutProps = {
@@ -11,7 +11,7 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps): JSX.Element {
   const router: NextRouter = useRouter();
 
-  const errPath = router.pathname === "/404";
+  const errPath = router.pathname === '/404';
 
   return (
     <div id="layout">

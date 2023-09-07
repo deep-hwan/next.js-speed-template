@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import React, { useRef, ChangeEvent } from "react";
-import { Interpolation, Theme } from "@emotion/react";
-import Image from "next/image";
+import React, { useRef, ChangeEvent } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
+import Image from 'next/image';
 
-import { Box, Container } from "../_index";
-import { borderRadius, colors } from "@/lib/theme/_index";
+import { Box, Container } from '../_index';
+import { borderRadius, colors } from '@/lib/theme/_index';
 
 interface ProfileUploadBoxProps {
   imageOnload: (base64: string | ArrayBuffer | null) => void;
@@ -17,7 +17,7 @@ interface ProfileUploadBoxProps {
 export function ProfileUploadBox({
   size = 100,
   image,
-  alt = "업로드 이미지",
+  alt = '업로드 이미지',
   imageOnload,
   uploadCancel,
 }: ProfileUploadBoxProps) {
@@ -34,7 +34,7 @@ export function ProfileUploadBox({
 
     // If you want to handle errors
     reader.onerror = (error) => {
-      console.error("File reading error:", error);
+      console.error('File reading error:', error);
     };
   };
 
@@ -51,7 +51,7 @@ export function ProfileUploadBox({
         minWidth: `${size}px`,
         maxHeight: `${size}px`,
         minHeight: `${size}px`,
-        cursor: "pointer",
+        cursor: 'pointer',
       }}
     >
       {image ? (
@@ -68,7 +68,7 @@ export function ProfileUploadBox({
               maxHeight: `${size}px`,
               minHeight: `${size}px`,
               borderRadius: borderRadius.infinte,
-              objectFit: "cover",
+              objectFit: 'cover',
             }}
           />
           <button
@@ -88,9 +88,9 @@ export function ProfileUploadBox({
             minHeight: `${size}px`,
             backgroundColor: colors.grey000,
             borderRadius: borderRadius.infinte,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <CameraIcon size={size} />
@@ -142,32 +142,32 @@ const CancelIcon = () => {
 
 const theme = {
   input: {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    right: "0",
-    bottom: "0",
-    width: "100%",
-    height: "100%",
-    opacity: "0",
-    cursor: "pointer",
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    width: '100%',
+    height: '100%',
+    opacity: '0',
+    cursor: 'pointer',
   },
 
   cancelTab: {
-    maxWidth: "28px",
-    minWidth: "28px",
-    maxHeight: "28px",
-    minHeight: "28px",
-    zIndex: "10",
-    position: "absolute",
-    bottom: "0",
-    right: "0",
+    maxWidth: '28px',
+    minWidth: '28px',
+    maxHeight: '28px',
+    minHeight: '28px',
+    zIndex: '10',
+    position: 'absolute',
+    bottom: '0',
+    right: '0',
     backgroundColor: colors.white,
-    border: "1px solid #e2e2e2",
+    border: '1px solid #e2e2e2',
     borderRadius: borderRadius.infinte,
-    padding: "5px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    padding: '5px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };

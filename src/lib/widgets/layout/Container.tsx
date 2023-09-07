@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  ForwardedRef,
-  HTMLAttributes,
-  ReactNode,
-  forwardRef,
-} from "react";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -13,9 +8,9 @@ import { Interpolation, Theme } from "@emotion/react";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   gap?: number;
-  width?: "auto" | "100%";
+  width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
 }
@@ -26,14 +21,14 @@ interface Props extends HTMLAttributes<HTMLElement> {
 export const Container = forwardRef(function Container(
   {
     children,
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     gap = 0,
     ...props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -44,10 +39,10 @@ export const Container = forwardRef(function Container(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "horizontal" ? "row" : "column",
-          alignItems: direction === "horizontal" ? "stretch" : "center",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'center',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -63,14 +58,14 @@ export const Container = forwardRef(function Container(
 export const Wrap = forwardRef(function Wrap(
   {
     children,
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     gap = 0,
     ...props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -81,10 +76,10 @@ export const Wrap = forwardRef(function Wrap(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "horizontal" ? "row" : "column",
-          alignItems: direction === "horizontal" ? "stretch" : "flex-start",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'flex-start',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -100,14 +95,14 @@ export const Wrap = forwardRef(function Wrap(
 export const Box = forwardRef(function Box(
   {
     children,
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     gap = 0,
     ...props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -118,10 +113,10 @@ export const Box = forwardRef(function Box(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "horizontal" ? "row" : "column",
-          alignItems: direction === "horizontal" ? "stretch" : "flex-start",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'flex-start',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -137,14 +132,14 @@ export const Box = forwardRef(function Box(
 export const BoxShadow = forwardRef(function BoxShadow(
   {
     children,
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     gap = 0,
     ...props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -155,10 +150,10 @@ export const BoxShadow = forwardRef(function BoxShadow(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "horizontal" ? "row" : "column",
-          alignItems: direction === "horizontal" ? "stretch" : "flex-start",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'flex-start',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -173,17 +168,17 @@ export const BoxShadow = forwardRef(function BoxShadow(
 // ------------------------------------
 const styles = {
   default: {
-    position: "relative",
-    display: "flex",
-    transition: "0.3s ease-in-out",
+    position: 'relative',
+    display: 'flex',
+    transition: '0.3s ease-in-out',
   },
 
   boxShadow: {
-    position: "relative",
-    display: "flex",
-    boxShadow: "0px 2px 30px rgba(0,0,0,0.08)",
-    background: "#fff",
-    borderRadius: "18px",
-    transition: "0.3s ease-in-out",
+    position: 'relative',
+    display: 'flex',
+    boxShadow: '0px 2px 30px rgba(0,0,0,0.08)',
+    background: '#fff',
+    borderRadius: '18px',
+    transition: '0.3s ease-in-out',
   },
 };

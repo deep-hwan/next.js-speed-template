@@ -1,5 +1,5 @@
-import { type } from "os";
-import { Cookies } from "react-cookie";
+import { type } from 'os';
+import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
@@ -14,7 +14,7 @@ type SETCOOKIE = (name: string, value: string, option: any) => void;
 
 export const setCookie: SETCOOKIE = (name, value, option) => {
   return cookies.set(name, value, {
-    path: "/",
+    path: '/',
     // domain: process.env.COOKIE_DOMAIN,
   });
 };
@@ -24,7 +24,7 @@ export const getCookie = (name: string) => {
 };
 
 export const removeCookie = (name: string) => {
-  cookies.remove(name, { path: "/" });
+  cookies.remove(name, { path: '/' });
 };
 
 // export const removeCookie = name => {

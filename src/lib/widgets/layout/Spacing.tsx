@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { ForwardedRef, HTMLAttributes, forwardRef, memo } from "react";
+import { ForwardedRef, HTMLAttributes, forwardRef, memo } from 'react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children?: never[];
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   size: number;
 }
 
@@ -15,19 +15,19 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 // -------------------------------------
 export const Spacing = memo(
   forwardRef(function Spacing(
-    { direction = "vertical", size, ...props }: Props,
-    ref: ForwardedRef<HTMLDivElement>
+    { direction = 'vertical', size, ...props }: Props,
+    ref: ForwardedRef<HTMLDivElement>,
   ) {
     return (
       <div
         ref={ref}
         css={{
-          flex: "none",
-          width: direction === "horizontal" ? `${size}px` : "100%",
-          height: direction === "vertical" ? `${size}px` : "100%",
+          flex: 'none',
+          width: direction === 'horizontal' ? `${size}px` : '100%',
+          height: direction === 'vertical' ? `${size}px` : '100%',
         }}
         {...props}
       />
     );
-  })
+  }),
 );

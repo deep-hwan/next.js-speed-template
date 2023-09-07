@@ -1,10 +1,10 @@
-import React from "react";
-import { NextRouter, useRouter } from "next/router";
+import React from 'react';
+import { NextRouter, useRouter } from 'next/router';
 
-import { Section, Txt, Spacing, Tab } from "@/lib/widgets/_index";
-import { colors, borderRadius, MQ, fontSize } from "@/lib/theme/_index";
+import { Section, Txt, Spacing, Tab } from '@/lib/widgets/_index';
+import { colors, borderRadius, MQ, fontSize } from '@/lib/theme/_index';
 
-import SEO from "@/seo.config";
+import SEO from '@/seo.config';
 
 //
 export default function Error() {
@@ -15,12 +15,12 @@ export default function Error() {
       <SEO title="페이지를 찾을 수 없습니다" />
       <Section
         css={{
-          justifyContent: "center",
-          flex: "1 auto",
-          paddingTop: "max(20px, env(safe-area-inset-top))",
-          paddingBottom: "max(20px, env(safe-area-inset-bottom))",
-          paddingInlineStart: "max(20px, env(safe-area-inset-left))",
-          paddingInlineEnd: "max(20px, env(safe-area-inset-right))",
+          justifyContent: 'center',
+          flex: '1 auto',
+          paddingTop: 'max(20px, env(safe-area-inset-top))',
+          paddingBottom: 'max(20px, env(safe-area-inset-bottom))',
+          paddingInlineStart: 'max(20px, env(safe-area-inset-left))',
+          paddingInlineEnd: 'max(20px, env(safe-area-inset-right))',
         }}
       >
         <Txt as="h4" css={{ [MQ[3]]: { fontSize: fontSize.s26 } }}>
@@ -36,7 +36,7 @@ export default function Error() {
           css={{
             background: colors.keyColor,
             color: colors.white,
-            padding: "14px 30px",
+            padding: '14px 30px',
             borderRadius: borderRadius.s700,
           }}
           onClick={() => router.back()}

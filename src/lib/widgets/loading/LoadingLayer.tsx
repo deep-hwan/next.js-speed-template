@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
-import { Interpolation, Theme } from "@emotion/react";
-import { keyframes } from "@emotion/css";
+import React from 'react';
+import { Interpolation, Theme } from '@emotion/react';
+import { keyframes } from '@emotion/css';
 
-import { Layer } from "../_index";
-import { fontSize, colors } from "../../theme/_index";
+import { Layer } from '../_index';
+import { fontSize, colors } from '../../theme/_index';
 
 // ------------------------------------------
 // -------------- LoadingLayer --------------
@@ -35,33 +35,33 @@ export function LoadingLayer({ size = 48 }: { size?: number }) {
       <div css={styles.wrap as Interpolation<Theme>}>
         <span
           css={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             width: `${size}px`,
             minWidth: `${size}px`,
             height: `${size}px`,
             minHeight: `${size}px`,
-            margin: "15px auto",
-            color: "#fff",
-            boxSizing: "border-box",
+            margin: '15px auto',
+            color: '#fff',
+            boxSizing: 'border-box',
             animation: `${rotation} 1s linear infinite`,
-            "&::after, &::before": {
+            '&::after, &::before': {
               content: '""',
-              boxSizing: "border-box",
-              position: "absolute",
-              width: "24px",
-              height: "24px",
-              top: "0",
-              backgroundColor: "#fff",
-              borderRadius: "50%",
+              boxSizing: 'border-box',
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              top: '0',
+              backgroundColor: '#fff',
+              borderRadius: '50%',
               animation: `${scale50} 1s infinite ease-in-out`,
             },
-            "&::before": {
-              top: "auto",
-              bottom: "0",
+            '&::before': {
+              top: 'auto',
+              bottom: '0',
               backgroundColor: colors.blue,
-              animationDelay: "0.5s",
+              animationDelay: '0.5s',
             },
           }}
         />
@@ -77,16 +77,16 @@ export function LoadingLayer({ size = 48 }: { size?: number }) {
 // ------------------------------------
 const styles = {
   wrap: {
-    position: "fixed",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: "9999",
+    position: 'fixed',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '9999',
   },
 
   txt: {

@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  MouseEvent,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import React, { useRef, useState, MouseEvent, HTMLAttributes, ReactNode } from 'react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -17,11 +11,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 // -------------------------------------------------
 // -------------- DragScrollContainer --------------
 // -------------------------------------------------
-export const DragScrollContainer = ({
-  children,
-  maxWidth,
-  ...props
-}: Props) => {
+export const DragScrollContainer = ({ children, maxWidth, ...props }: Props) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
@@ -55,15 +45,15 @@ export const DragScrollContainer = ({
       onMouseUp={endDrag}
       onMouseMove={doDrag}
       css={{
-        width: "100%",
+        width: '100%',
         maxWidth: `${maxWidth}px`,
-        display: "flex",
-        overflowX: "auto",
-        cursor: isDragging ? "grabbing" : "auto",
-        padding: "1px 0 ",
+        display: 'flex',
+        overflowX: 'auto',
+        cursor: isDragging ? 'grabbing' : 'auto',
+        padding: '1px 0 ',
 
-        "&::-webkit-scrollbar": {
-          display: "none",
+        '&::-webkit-scrollbar': {
+          display: 'none',
         },
       }}
       {...props}

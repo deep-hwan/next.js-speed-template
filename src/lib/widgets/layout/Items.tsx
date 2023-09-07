@@ -1,30 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  ForwardedRef,
-  HTMLAttributes,
-  ReactNode,
-  forwardRef,
-} from "react";
+import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
 
-import { Interpolation, Theme } from "@emotion/react";
+import { Interpolation, Theme } from '@emotion/react';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   children: ReactNode;
   gap?: number;
-  width?: "auto" | "100%";
+  width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
 }
 
 interface ItemProps extends HTMLAttributes<HTMLLIElement> {
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   children: ReactNode;
   gap?: number;
-  width?: "auto" | "100%";
+  width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
 }
@@ -34,15 +29,15 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
 // -----------------------------------
 export const Items = forwardRef(function Items(
   {
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     children,
     gap = 0,
     ...props
   }: ItemsProps,
-  ref: ForwardedRef<HTMLUListElement>
+  ref: ForwardedRef<HTMLUListElement>,
 ) {
   return (
     <ul
@@ -53,10 +48,10 @@ export const Items = forwardRef(function Items(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "vertical" ? "column" : "row",
-          alignItems: direction === "horizontal" ? "stretch" : "center",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'vertical' ? 'column' : 'row',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'center',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -71,15 +66,15 @@ export const Items = forwardRef(function Items(
 // ----------------------------------
 export const Item = forwardRef(function Item(
   {
-    direction = "vertical",
-    width = "100%",
+    direction = 'vertical',
+    width = '100%',
     minWidth,
     maxWidth,
     children,
     gap = 0,
     ...props
   }: ItemProps,
-  ref: ForwardedRef<HTMLLIElement>
+  ref: ForwardedRef<HTMLLIElement>,
 ) {
   return (
     <li
@@ -90,10 +85,10 @@ export const Item = forwardRef(function Item(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
-          flexDirection: direction === "vertical" ? "column" : "row",
-          alignItems: direction === "horizontal" ? "stretch" : "flex-start",
-          rowGap: direction === "vertical" ? `${gap}px` : undefined,
-          columnGap: direction === "horizontal" ? `${gap}px` : undefined,
+          flexDirection: direction === 'vertical' ? 'column' : 'row',
+          alignItems: direction === 'horizontal' ? 'stretch' : 'flex-start',
+          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
+          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
       }
       {...props}
@@ -107,10 +102,10 @@ export const Item = forwardRef(function Item(
 // -------------- Styles --------------
 // ------------------------------------
 const defaultStyles = {
-  position: "relative",
-  padding: "0",
-  margin: "0",
-  display: "flex",
-  transition: "0.3s ease-in-out",
-  listStyle: "none",
+  position: 'relative',
+  padding: '0',
+  margin: '0',
+  display: 'flex',
+  transition: '0.3s ease-in-out',
+  listStyle: 'none',
 };

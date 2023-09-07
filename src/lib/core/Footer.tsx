@@ -1,20 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import { Interpolation, Theme } from "@emotion/react";
+import React from 'react';
+import Link from 'next/link';
+import { Interpolation, Theme } from '@emotion/react';
 
 // json
-import menus from "../json/menu.json";
+import menus from '../json/menu.json';
 
 //libs
-import { MQ, fontSize, colors } from "@/lib/theme/_index";
-import {
-  Container,
-  Item,
-  Items,
-  Spacing,
-  Txt,
-  Wrap,
-} from "@/lib/widgets/_index";
+import { MQ, fontSize, colors } from '@/lib/theme/_index';
+import { Container, Item, Items, Spacing, Txt, Wrap } from '@/lib/widgets/_index';
 
 //
 interface MenuItem {
@@ -46,19 +39,14 @@ export default function Footer() {
 
           <Spacing size={14} />
 
-          <Txt css={theme.txt}>
-            이메일 : deep@deepcomu.com | 연락처 : 0507-0178-1277
-          </Txt>
+          <Txt css={theme.txt}>이메일 : deep@deepcomu.com | 연락처 : 0507-0178-1277</Txt>
+          <Spacing size={4} />
+
+          <Txt css={theme.txt}>주소 : 서울특별시 영등포구 영중로 15 타임스퀘어 오피스A동 20층</Txt>
           <Spacing size={4} />
 
           <Txt css={theme.txt}>
-            주소 : 서울특별시 영등포구 영중로 15 타임스퀘어 오피스A동 20층
-          </Txt>
-          <Spacing size={4} />
-
-          <Txt css={theme.txt}>
-            사업자등록번호 : 110-412-598896 | 통신판매등록번호 :
-            2023-서울영등포-0900호
+            사업자등록번호 : 110-412-598896 | 통신판매등록번호 : 2023-서울영등포-0900호
           </Txt>
         </Wrap>
       </Container>
@@ -68,26 +56,26 @@ export default function Footer() {
 
 const theme = {
   footer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
     backgroundColor: colors.grey000,
-    padding: "40px 20px 50px",
+    padding: '40px 20px 50px',
   },
 
   items: {
-    columnGap: "26px",
+    columnGap: '26px',
     [MQ[3]]: {
-      flexDirection: "column",
-      rowGap: "16px",
+      flexDirection: 'column',
+      rowGap: '16px',
     },
   },
 
-  item: { width: "auto", padding: "5px 0" },
+  item: { width: 'auto', padding: '5px 0' },
 
   link: { fontSize: fontSize.s14, color: colors.grey700 },
 
-  title: { fontWeight: "500", color: colors.grey800 },
+  title: { fontWeight: '500', color: colors.grey800 },
 
   txt: {
     fontSize: fontSize.s13,

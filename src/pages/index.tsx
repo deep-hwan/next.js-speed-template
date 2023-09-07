@@ -1,24 +1,24 @@
-import React, { useRef, useState } from "react";
-import { NextRouter, useRouter } from "next/router";
-import { Interpolation, Theme } from "@emotion/react";
+import React, { useRef, useState } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import { Interpolation, Theme } from '@emotion/react';
 
 //libs
-import { Container, Section, Txt, Wrap } from "@/lib/widgets/_index";
-import { MQ, colors } from "@/lib/theme/_index";
+import { Container, Section, Txt, Wrap } from '@/lib/widgets/_index';
+import { MQ, colors } from '@/lib/theme/_index';
 
 //hooks
-import { useRaiseEditor } from "react-raise-editor";
+import { useRaiseEditor } from 'react-raise-editor';
 
 //components
-import SEO from "@/seo.config";
-import SignUp from "@/lib/components/home/signUp";
-import Results from "@/lib/components/home/results";
+import SEO from '@/seo.config';
+import SignUp from '@/lib/components/home/signUp';
+import Results from '@/lib/components/home/results';
 
 //
 export default function Index() {
   const router: NextRouter = useRouter();
   const textRef = useRef<HTMLTextAreaElement | null>(null);
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>('');
 
   useRaiseEditor({
     state: text,
@@ -56,12 +56,12 @@ const theme = {
   section: {},
 
   container: {
-    padding: "60px 0 50px",
-    rowGap: "40px",
+    padding: '60px 0 50px',
+    rowGap: '40px',
 
     [MQ[3]]: {
-      padding: "30px 20px 50px",
-      rowGap: "30px",
+      padding: '30px 20px 50px',
+      rowGap: '30px',
     },
   },
 };
