@@ -9,7 +9,10 @@
 
 ## Install
 
+(선택) emotion 적용 문제 시 아래를 설치하세요
+
     npm install typescript @types/react @types/react-dom @emotion/styled @emotion/react
+    npm install --save-dev eslint-plugin-emotion @emotion/eslint-plugin
 
 ---
 
