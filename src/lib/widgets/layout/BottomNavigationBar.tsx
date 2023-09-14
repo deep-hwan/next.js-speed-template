@@ -1,5 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { Children, HTMLAttributes, ReactElement, ReactNode } from 'react';
+import React, {
+  Children,
+  ForwardedRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  forwardRef,
+} from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
 import Link from 'next/link';
@@ -25,7 +32,10 @@ interface MenuProps extends HTMLAttributes<HTMLLinkElement> {
 // -------------------------------------------------
 // -------------- BottomNavigationBar --------------
 // -------------------------------------------------
-export function BottomNavigationBar({ children, design = 'default', maxWidth = 600 }: Props) {
+export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
+  { children, design = 'default', maxWidth = 600 }: Props,
+  ref?: ForwardedRef<HTMLDivElement>,
+) {
   const childrenArray = Children.toArray(children);
 
   if (childrenArray.length < 6) {
@@ -33,7 +43,7 @@ export function BottomNavigationBar({ children, design = 'default', maxWidth = 6
       <>
         {/* ========== 디자인 타입 ========== */}
         {design === 'shape' && (
-          <Container css={theme.shapeContainer}>
+          <Container ref={ref} css={theme.shapeContainer}>
             <Wrap
               css={
                 {
@@ -59,7 +69,7 @@ export function BottomNavigationBar({ children, design = 'default', maxWidth = 6
 
         {/* ========== 기본 타입 ========== */}
         {design === 'default' && (
-          <Container css={theme.defaultContainer}>
+          <Container ref={ref} css={theme.defaultContainer}>
             <Wrap
               css={
                 {
@@ -85,23 +95,26 @@ export function BottomNavigationBar({ children, design = 'default', maxWidth = 6
       </>
     );
   }
-}
+});
 
 // --------------------------------------------
 // -------------- NavigationMenu --------------
 // --------------------------------------------
-export function NavigationMenu({ children, href, label, ...props }: MenuProps) {
+export const NavigationMenu = forwardRef(function NavigationMenu(
+  { children, href, label, ...props }: MenuProps,
+  ref?: ForwardedRef<HTMLAnchorElement>,
+) {
   const child = Children.only(children);
 
   return (
-    <Link href={href} css={theme.navMenu as Interpolation<Theme>}>
+    <Link ref={ref} href={href} css={theme.navMenu as Interpolation<Theme>}>
       <Wrap css={theme.navMenuIcon}>{child}</Wrap>
       <TxtSpan css={theme.navMenuLabel as Interpolation<Theme>} {...props}>
         {label}
       </TxtSpan>
     </Link>
   );
-}
+});
 
 // ------------------------------------
 // -------------- Styles --------------

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, {
   Children,
   ForwardedRef,
@@ -24,7 +23,7 @@ interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   label?: ReactNode;
   labelEdge?: string;
   children: ReactElement;
-  bottomText?: string;
+  maxWidth?: number;
 }
 
 interface SelectBoxProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -43,7 +42,7 @@ interface OptionProps extends OptionHTMLAttributes<HTMLOptionElement> {
 // -------------------------------------------
 // -------------- Input (Label) --------------
 // -------------------------------------------
-export function Select({ label, labelEdge, children, bottomText, ...props }: SelectProps) {
+export function Select({ children, label, labelEdge, maxWidth, ...props }: SelectProps) {
   const child = Children.only(children);
   const id = child.props.id ?? 1;
   const error: boolean = child.props.error ?? false;
@@ -51,17 +50,19 @@ export function Select({ label, labelEdge, children, bottomText, ...props }: Sel
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <Box {...props}>
-      <label
-        htmlFor={id}
-        css={{
-          color: error ? colors.red : colors.grey700,
-          ...styles.label,
-        }}
-      >
-        {label}
-        {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
-      </label>
+    <Box maxWidth={maxWidth} {...props}>
+      {label && (
+        <label
+          htmlFor={id}
+          css={{
+            color: error ? colors.red : colors.grey700,
+            ...styles.label,
+          }}
+        >
+          {label}
+          {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
+        </label>
+      )}
 
       {cloneElement(child, {
         id,
@@ -80,7 +81,7 @@ export function Select({ label, labelEdge, children, bottomText, ...props }: Sel
 // ---------------------------------------
 Select.SelectBox = forwardRef(function SelectBox(
   { children, shape = 'default', placeholder, error, ...props }: SelectBoxProps,
-  ref: ForwardedRef<HTMLSelectElement>,
+  ref?: ForwardedRef<HTMLSelectElement>,
 ) {
   const { value } = props;
 

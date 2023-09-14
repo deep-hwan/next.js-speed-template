@@ -17,7 +17,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 // ------------------------------------
 export const Button = forwardRef(function Button(
   { variant = 'primary', size = 'medium', children, ...props }: Props,
-  ref: ForwardedRef<HTMLButtonElement>,
+  ref?: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button
@@ -63,7 +63,7 @@ const SIZE_VARIANTS = {
   },
   large: {
     fontSize: fontSize.s16,
-    padding: '11px 22px',
+    padding: '12px 22px',
   },
 };
 

@@ -53,7 +53,7 @@ export function CheckInput({ label, children, ...props }: InputProps) {
 // --------------------------------------
 CheckInput.CheckBox = forwardRef(function CheckBox(
   { type = 'checkbox', ...props }: CheckProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
     <div css={styles.checkBox as Interpolation<Theme>}>

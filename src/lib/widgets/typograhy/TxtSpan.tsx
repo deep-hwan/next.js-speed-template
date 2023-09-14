@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
 // -------------------------------------
 export const TxtSpan = forwardRef(function TxtSpan(
   { children, size, weight = 'normal', color = '#888888', ...props }: Props,
-  ref: ForwardedRef<HTMLSpanElement>,
+  ref?: ForwardedRef<HTMLSpanElement>,
 ) {
   return (
     <span

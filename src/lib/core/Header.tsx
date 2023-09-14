@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -19,14 +19,15 @@ import menus from '../json/menu.json';
 //
 export default function Header() {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
-  const handleCloseDrawer = () => setIsDrawer(false);
+  const handleActiveDrawer = useCallback(() => setIsDrawer(!isDrawer), [isDrawer]);
+  const handleCloseDrawer = useCallback(() => setIsDrawer(false), [isDrawer]);
 
   return (
     <>
       <AppBar width={1200}>
         <Container css={theme.container as Interpolation<Theme>}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
-            <LogoIcon alt="서비스명" width="100%" />
+            <LogoIcon alt="서비스명" width="100%" height="100%" />
           </Link>
 
           <Items direction="horizontal" gap={30} css={theme.menuItems as Interpolation<Theme>}>
@@ -43,11 +44,11 @@ export default function Header() {
 
           <Box css={theme.iconBox as Interpolation<Theme>}>
             <IconTab
-              onClick={() => setIsDrawer(!isDrawer)}
+              onClick={handleActiveDrawer}
               iconSize={26}
               css={theme.iconTab as Interpolation<Theme>}
             >
-              <ToastIcon fill="#555" width="100%" height="auto" />
+              <ToastIcon fill="#555" width="100%" height="100%" />
             </IconTab>
           </Box>
         </Container>

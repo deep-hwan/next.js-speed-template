@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 // -------------- Layer --------------
 // -----------------------------------
 export const Layer = memo(
-  forwardRef(function Layer({ isActive, ...props }: Props, ref: ForwardedRef<HTMLDivElement>) {
+  forwardRef(function Layer({ isActive, ...props }: Props, ref?: ForwardedRef<HTMLDivElement>) {
     return (
       <div
         css={{

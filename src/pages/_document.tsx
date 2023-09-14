@@ -13,7 +13,7 @@ export default function Document() {
 
       <link rel="apple-touch-icon" href="/public/images/logo-192.png" />
       <link rel="apple-touch-startup-image" href="public/images/logo-192.png" />
-      <link rel="icon preload" href="/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="manifest" href="/manifest.json" />
       <body>
         <Main />

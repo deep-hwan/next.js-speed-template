@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 
 // ------------------------------------------
 // -------------- ScrollTopTab --------------
 // ------------------------------------------
-export function ScrollTopTab() {
+export const ScrollTopTab = forwardRef(function ScrollTopTab(
+  ref?: ForwardedRef<HTMLButtonElement>,
+) {
   const [ScrollY, setScrollY] = useState<number>(0);
 
   // 스크롤 수치 감지
@@ -35,7 +37,7 @@ export function ScrollTopTab() {
   return (
     <>
       {ScrollY > 100 && (
-        <button onClick={handleTop} css={tabStyled}>
+        <button onClick={handleTop} css={tabStyled} ref={ref}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <g id="scroll" transform="translate(-98 -931)">
               <rect
@@ -63,7 +65,7 @@ export function ScrollTopTab() {
       )}
     </>
   );
-}
+});
 
 // ------------------------------------
 // -------------- Styles --------------

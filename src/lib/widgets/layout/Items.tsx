@@ -7,21 +7,31 @@ import { Interpolation, Theme } from '@emotion/react';
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
-  direction?: 'horizontal' | 'vertical';
   children: ReactNode;
+  direction?: 'horizontal' | 'vertical';
+  align?: 'start' | 'center' | 'stretch' | 'end';
+  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
+  minHeight?: number;
+  maxHeight?: number;
 }
 
 interface ItemProps extends HTMLAttributes<HTMLLIElement> {
-  direction?: 'horizontal' | 'vertical';
   children: ReactNode;
+  direction?: 'horizontal' | 'vertical';
+  align?: 'start' | 'center' | 'stretch' | 'end';
+  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
+  minHeight?: number;
+  maxHeight?: number;
 }
 
 // -----------------------------------
@@ -29,15 +39,20 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
 // -----------------------------------
 export const Items = forwardRef(function Items(
   {
+    children,
     direction = 'vertical',
+    align,
+    crossAlign,
+    wrap = 'nowrap',
+    gap = 0,
     width = '100%',
     minWidth,
     maxWidth,
-    children,
-    gap = 0,
+    minHeight,
+    maxHeight,
     ...props
   }: ItemsProps,
-  ref: ForwardedRef<HTMLUListElement>,
+  ref?: ForwardedRef<HTMLUListElement>,
 ) {
   return (
     <ul
@@ -48,8 +63,13 @@ export const Items = forwardRef(function Items(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
+          height: maxHeight ? '100%' : 'auto',
+          minHeight: `${minHeight}px`,
+          maxHeight: `${maxHeight}px`,
           flexDirection: direction === 'vertical' ? 'column' : 'row',
-          alignItems: direction === 'horizontal' ? 'stretch' : 'center',
+          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'center',
+          justifyContent: crossAlign && crossAlign,
+          flexWrap: wrap,
           rowGap: direction === 'vertical' ? `${gap}px` : undefined,
           columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>
@@ -66,15 +86,20 @@ export const Items = forwardRef(function Items(
 // ----------------------------------
 export const Item = forwardRef(function Item(
   {
+    children,
     direction = 'vertical',
+    align,
+    crossAlign,
+    wrap = 'nowrap',
+    gap = 0,
     width = '100%',
     minWidth,
     maxWidth,
-    children,
-    gap = 0,
+    minHeight,
+    maxHeight,
     ...props
   }: ItemProps,
-  ref: ForwardedRef<HTMLLIElement>,
+  ref?: ForwardedRef<HTMLLIElement>,
 ) {
   return (
     <li
@@ -85,8 +110,13 @@ export const Item = forwardRef(function Item(
           width: width,
           minWidth: minWidth && `${minWidth}px`,
           maxWidth: maxWidth && `${maxWidth}px`,
+          height: maxHeight ? '100%' : 'auto',
+          minHeight: `${minHeight}px`,
+          maxHeight: `${maxHeight}px`,
           flexDirection: direction === 'vertical' ? 'column' : 'row',
-          alignItems: direction === 'horizontal' ? 'stretch' : 'flex-start',
+          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
+          justifyContent: crossAlign && crossAlign,
+          flexWrap: wrap,
           rowGap: direction === 'vertical' ? `${gap}px` : undefined,
           columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         } as Interpolation<Theme>

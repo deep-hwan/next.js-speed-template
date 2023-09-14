@@ -21,7 +21,7 @@ interface PanelProps extends HTMLAttributes<HTMLDivElement> {
 // ---------------------------------------
 export const Accordion = forwardRef(function Accordion(
   { direction = 'horizontal', gap, children, ...props }: AcodiProps,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref?: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div

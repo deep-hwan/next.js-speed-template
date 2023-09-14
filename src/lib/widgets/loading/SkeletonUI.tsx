@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 export const Skeleton = memo(
   forwardRef(function Skeleton(
     { width, height, borderRadius, ...props }: Props,
-    ref: ForwardedRef<HTMLDivElement>,
+    ref?: ForwardedRef<HTMLDivElement>,
   ) {
     const loadAnimation = `
       @keyframes load {
@@ -33,6 +33,7 @@ export const Skeleton = memo(
           ref={ref}
           css={{
             width: width ? `${width}px` : '100%',
+            minWidth: width ? `${width}px` : '100%',
             height: height ? `${height}px` : '10px',
             minHeight: height ? `${height}px` : '10px',
             background:

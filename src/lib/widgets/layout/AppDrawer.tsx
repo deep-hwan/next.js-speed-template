@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useRef } from 'react';
+import React, { ForwardedRef, ReactNode, forwardRef, memo, useEffect, useRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
 import { IconTab, Layer } from '../_index';
@@ -19,7 +19,7 @@ interface Props {
 // ---------------------------------------
 export const AppDrawer = forwardRef(function AppDrawer(
   { view, onCancel, children, ...props }: Props,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref?: ForwardedRef<HTMLDivElement>,
 ) {
   const drawerRef = useRef<HTMLDivElement>(null);
 

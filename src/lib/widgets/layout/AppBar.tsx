@@ -18,7 +18,7 @@ interface Props {
 // ------------------------------------
 export const AppBar = forwardRef(function AppBar(
   { variant = 'primary', width, children, ...props }: Props,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref?: ForwardedRef<HTMLDivElement>,
 ) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const scrollActive = () => {

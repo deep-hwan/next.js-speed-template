@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Link from 'next/link';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -20,7 +20,7 @@ interface DrawerType {
 }
 
 //
-export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
+export const Drawer = memo(function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
     <Container css={theme.appContainer}>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
@@ -39,7 +39,7 @@ export function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
       </AppDrawer>
     </Container>
   );
-}
+});
 
 // styled
 const theme = {

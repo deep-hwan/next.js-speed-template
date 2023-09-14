@@ -3,12 +3,12 @@ import { AppBar } from './layout/AppBar';
 import { AppDrawer } from './layout/AppDrawer';
 import { NavigationMenu, BottomNavigationBar } from './layout/BottomNavigationBar';
 import { Section } from './layout/Section';
-import { Container, Wrap, Box } from './layout/Container';
+import { Container, Wrap, Box, Row, Column } from './layout/View';
 import { Form } from './layout/Form';
 import { Spacing } from './layout/Spacing';
 import { Layer } from './layout/Layer';
 import { Items, Item } from './layout/Items';
-import { BoxShadow } from './layout/Container';
+import { BoxShadow } from './layout/View';
 import { Accordion, AccordionPanel } from './layout/Accordion';
 import { DragScrollContainer } from './layout/DragScrollContainer';
 
@@ -49,6 +49,8 @@ export {
   Form,
   Wrap,
   Box,
+  Row,
+  Column,
   Layer,
   LoadingSpinner,
   Input,

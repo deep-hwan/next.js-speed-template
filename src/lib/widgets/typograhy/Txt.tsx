@@ -29,7 +29,7 @@ export const Txt = forwardRef(function Txt(
     children,
     ...Props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref?: ForwardedRef<HTMLDivElement>,
 ) {
   const display = {
     flexDirection: direction === 'horizontal' ? 'row' : 'column',
@@ -193,7 +193,7 @@ const initialStyle = {
   position: 'relative',
   margin: 0,
   padding: 0,
-  lineHeight: '1.4',
+  lineHeight: '1.45',
   display: 'flex',
   alignItems: 'center',
   whiteSpace: 'pre-line',

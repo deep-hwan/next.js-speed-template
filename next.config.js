@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const withPWA = require('next-pwa')({
   dest: 'public',
   runtimeCaching: [],
-  // disable: !isProduction,  // 배포할때엔 활성화 하세요
+  disable: !isProduction, // 배포할때엔 활성화 하세요
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://next-typescript-tamplate.vercel.app/';

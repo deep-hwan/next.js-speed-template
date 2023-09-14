@@ -5,17 +5,31 @@ import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'reac
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
-  children: ReactNode;
   direction?: 'horizontal' | 'vertical';
+  align?: 'start' | 'center' | 'stretch' | 'end';
+  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   maxWidth?: number;
+  minWidth?: number;
+  children: ReactNode;
 }
 
 // ----------------------------------
 // -------------- Form --------------
 // ----------------------------------
 export const Form = forwardRef(function Form(
-  { children, maxWidth, direction = 'vertical', gap, ...props }: Props,
+  {
+    direction = 'vertical',
+    align = 'center',
+    crossAlign,
+    wrap = 'nowrap',
+    gap,
+    minWidth,
+    maxWidth,
+    children,
+    ...props
+  }: Props,
   ref?: ForwardedRef<HTMLFormElement>,
 ) {
   return (
@@ -23,10 +37,13 @@ export const Form = forwardRef(function Form(
       ref={ref}
       css={{
         position: 'relative',
-        display: 'flex',
         width: '100%',
         maxWidth: `${maxWidth}px`,
+        minWidth: `${minWidth}px`,
+        display: 'flex',
         flexDirection: direction === 'horizontal' ? 'row' : 'column',
+        alignItems: align,
+        justifyContent: crossAlign,
         rowGap: direction === 'vertical' ? `${gap}px` : undefined,
         columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
         transition: '0.3s ease-in-out',

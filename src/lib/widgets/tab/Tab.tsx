@@ -17,7 +17,7 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 // ---------------------------------
 export const Tab = forwardRef(function Tab(
   { children, size, ...props }: TabProps,
-  ref: ForwardedRef<HTMLButtonElement>,
+  ref?: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button
@@ -41,7 +41,7 @@ export const Tab = forwardRef(function Tab(
 // ------------------------------------
 export const TxtTab = forwardRef(function TxtTab(
   { children, size, weight, color, ...props }: TabProps,
-  ref: ForwardedRef<HTMLButtonElement>,
+  ref?: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button

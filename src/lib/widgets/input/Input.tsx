@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, {
   useState,
   useEffect,
@@ -12,8 +11,6 @@ import React, {
   TextareaHTMLAttributes,
   cloneElement,
   forwardRef,
-  SyntheticEvent,
-  ReactEventHandler,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -28,15 +25,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactElement;
   label?: ReactNode;
   labelEdge?: string;
-  children: ReactElement;
-  bottomText?: string;
+  maxWidth?: number;
 }
 
 interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   shape?: 'default' | 'box';
-  autocomplete?: 'on' | 'off';
+  autoComplete?: 'on' | 'off';
   error?: boolean | string;
   errorMsg?: boolean | string;
   tolTip?: string;
@@ -52,7 +49,8 @@ interface SearchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'
 
 interface NumericFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    FieldProps {
+    Omit<FieldProps, 'autoComplete'> {
+  autoComplete?: 'on' | 'off';
   numericValue?: number | string;
   onNumericChange?: (value: number) => void;
 }
@@ -65,7 +63,7 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
   tolTip?: string;
 }
 
-type DatePickerOnChangeType = (date: Date) => void; // This is a placeholder. Replace it with the correct type from `@types/react-datepicker` if available.
+type DatePickerOnChangeType = (date: Date) => void;
 
 interface DatePickerProps {
   shape?: 'default' | 'box';
@@ -81,7 +79,7 @@ interface DatePickerProps {
 // -------------------------------------------
 // -------------- Input (Label) --------------
 // -------------------------------------------
-export function Input({ label, labelEdge, children, bottomText, ...props }: InputProps) {
+export function Input({ children, label, labelEdge, maxWidth, ...props }: InputProps) {
   const child = Children.only(children);
   const id = child.props.id ?? 1;
   const error: boolean = child.props.error ?? false;
@@ -89,17 +87,19 @@ export function Input({ label, labelEdge, children, bottomText, ...props }: Inpu
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <Box {...props}>
-      <label
-        htmlFor={id}
-        css={{
-          color: error ? colors.red : colors.grey700,
-          ...styles.label,
-        }}
-      >
-        {label}
-        {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
-      </label>
+    <Box maxWidth={maxWidth} {...props}>
+      {label && (
+        <label
+          htmlFor={id}
+          css={{
+            color: error ? colors.red : colors.grey700,
+            ...styles.label,
+          }}
+        >
+          {label}
+          {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
+        </label>
+      )}
 
       {cloneElement(child, {
         id,
@@ -117,8 +117,8 @@ export function Input({ label, labelEdge, children, bottomText, ...props }: Inpu
 // -------------- TextField --------------
 // ---------------------------------------
 Input.TextField = forwardRef(function TextField(
-  { shape = 'default', error, edge, ...props }: FieldProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  { shape = 'default', error, edge, tolTip, ...props }: FieldProps,
+  ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
     <div
@@ -161,7 +161,7 @@ Input.TextField = forwardRef(function TextField(
 // -----------------------------------------
 Input.SearchField = forwardRef(function SearchField(
   { id = 'searchInputId', shape = 'default', searchTab, onClick, ...props }: SearchProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
     <div
@@ -218,9 +218,10 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
     edge,
     value: externalValue,
     onChange: externalOnChange,
+    tolTip,
     ...props
   }: FieldProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  ref?: ForwardedRef<HTMLInputElement>,
 ) {
   const [internalValue, setInternalValue] = useState<string>(String(externalValue) || '');
 
@@ -268,7 +269,7 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
       <input
         ref={ref}
         type="text"
-        autocomplete="off"
+        autoComplete="off"
         maxLength={13}
         value={internalValue}
         onChange={handleInputChange}
@@ -301,8 +302,8 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
 // -------------- PriceField --------------
 // ----------------------------------------
 Input.NumericField = forwardRef(function NumericField(
-  { shape = 'default', error, edge, ...props }: NumericFieldProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  { shape = 'default', error, edge, tolTip, ...props }: NumericFieldProps,
+  ref?: ForwardedRef<HTMLInputElement>,
 ) {
   const [displayValue, setDisplayValue] = useState<string | any>(props.value || '');
 
@@ -393,6 +394,7 @@ Input.DateField = forwardRef(function DateField({
   selected = '',
   error,
   onChange,
+  tolTip,
   ...props
 }: DatePickerProps) {
   const handleDateChange: DatePickerOnChangeType = (date: Date) => {
@@ -433,8 +435,8 @@ Input.DateField = forwardRef(function DateField({
 // -------------- Textarea --------------
 // --------------------------------------
 Input.Textarea = forwardRef(function Textarea(
-  { shape = 'default', error, rows = 1, ...props }: TextareaProps,
-  ref: ForwardedRef<HTMLTextAreaElement>,
+  { shape = 'default', error, rows = 1, tolTip, ...props }: TextareaProps,
+  ref?: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
     <div

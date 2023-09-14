@@ -17,7 +17,7 @@ interface IconProps extends HTMLAttributes<HTMLElement> {
 // -------------------------------------
 export const IconTab = forwardRef(function IconTab(
   { children, size, iconSize = 24, onClick, ...props }: IconProps,
-  ref: ForwardedRef<HTMLButtonElement>,
+  ref?: ForwardedRef<HTMLButtonElement>,
 ) {
   const child = Children.only(children);
 

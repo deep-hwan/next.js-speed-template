@@ -70,6 +70,7 @@
 - NavigationMenu : 바텀네비게이션 바 > 메뉴
 - Section : 섹션 레이아웃
 - Container / Wrap / Box : 레이아웃 위젯
+- Row / Column : 가로 및 세로 정렬 레이아웃 위젯
 - BoxShadow : 그림자 형태의 박스 레이아웃 위젯
 - DragScrollContainer : 가로 터치 스크롤이 가능한 레이아웃 위젯
 - Form : form 위젯
