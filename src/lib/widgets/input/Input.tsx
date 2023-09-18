@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, {
   useState,
   useEffect,
@@ -13,8 +14,6 @@ import React, {
   forwardRef,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
-import { Box } from '../_index';
 
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
@@ -86,7 +85,7 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <Box maxWidth={maxWidth} {...props}>
+    <div css={{ ...styles.wrap, maxWidth: `${maxWidth}px` } as Interpolation<Theme>} {...props}>
       {label && (
         <label
           htmlFor={id}
@@ -108,7 +107,7 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
       {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
 
       {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
-    </Box>
+    </div>
   );
 }
 
@@ -523,6 +522,14 @@ function InputTypeStyles(
 // -------------- Styles --------------
 // ------------------------------------
 const styles = {
+  wrap: {
+    width: '100%',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    transition: '0.3s ease-in-out',
+  },
+
   label: {
     display: 'inline-block',
     fontSize: '0.813rem',

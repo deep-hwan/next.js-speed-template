@@ -8,7 +8,7 @@ import { Drawer } from './Drawer';
 //libs
 import { MQ } from '@/lib/theme/mediaQuery';
 import { borderRadius, fontSize, colors } from '@/lib/theme/_index';
-import { AppBar, IconTab, Box, Items, Item, Container } from '@/lib/widgets/_index';
+import { AppBar, IconTab, Items, Item, Container, Wrap } from '@/lib/widgets/_index';
 
 //assets
 import { LogoIcon, ToastIcon } from '@/lib/assets/icons';
@@ -42,7 +42,7 @@ export default function Header() {
             })}
           </Items>
 
-          <Box css={theme.iconBox as Interpolation<Theme>}>
+          <Wrap css={theme.iconBox as Interpolation<Theme>}>
             <IconTab
               onClick={handleActiveDrawer}
               iconSize={26}
@@ -50,7 +50,7 @@ export default function Header() {
             >
               <ToastIcon fill="#555" width="100%" height="100%" />
             </IconTab>
-          </Box>
+          </Wrap>
         </Container>
       </AppBar>
 

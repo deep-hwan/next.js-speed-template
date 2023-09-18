@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import { colors } from '../../theme/_index';

@@ -2,7 +2,7 @@
 import React, { useRef, ChangeEvent } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import Image from 'next/image';
-import { Box, Container } from '../_index';
+import { Container } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -82,7 +82,7 @@ export function ProfileUploadBox({
           </button>
         </>
       ) : (
-        <Box
+        <div
           css={{
             maxWidth: `${size}px`,
             minWidth: `${size}px`,
@@ -90,13 +90,15 @@ export function ProfileUploadBox({
             minHeight: `${size}px`,
             backgroundColor: '#f8f8f8',
             borderRadius: '10000px',
+            position: 'relative',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            transition: '0.3s ease-in-out',
           }}
         >
           <CameraIcon size={size} />
-        </Box>
+        </div>
       )}
 
       <input

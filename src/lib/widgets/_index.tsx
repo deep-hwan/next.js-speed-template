@@ -3,7 +3,8 @@ import { AppBar } from './layout/AppBar';
 import { AppDrawer } from './layout/AppDrawer';
 import { NavigationMenu, BottomNavigationBar } from './layout/BottomNavigationBar';
 import { Section } from './layout/Section';
-import { Container, Wrap, Box, Row, Column } from './layout/View';
+import { Container, Wrap, Row, Column } from './layout/View';
+import { Padding } from './layout/Padding';
 import { Form } from './layout/Form';
 import { Spacing } from './layout/Spacing';
 import { Layer } from './layout/Layer';
@@ -48,9 +49,9 @@ export {
   BoxShadow,
   Form,
   Wrap,
-  Box,
   Row,
   Column,
+  Padding,
   Layer,
   LoadingSpinner,
   Input,

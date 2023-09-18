@@ -7,7 +7,6 @@ import { useRaiseEditor } from 'react-raise-editor';
 //libs
 import {
   BottomSheet,
-  Box,
   Button,
   CheckInput,
   Container,
@@ -15,6 +14,8 @@ import {
   Form,
   Input,
   LoadingLayer,
+  Padding,
+  Select,
   Spacing,
   Txt,
   TxtSpan,
@@ -153,6 +154,12 @@ export default function SignUp() {
           />
         </Input>
 
+        <Select label="ads">
+          <Select.SelectBox shape="box">
+            <option>adssd</option>
+          </Select.SelectBox>
+        </Select>
+
         {/* ----- 에디터 타입 인풋 : Textarea ----- */}
         <Input label="내용">
           <Input.Textarea
@@ -167,7 +174,7 @@ export default function SignUp() {
         </Input>
 
         {/* ----- 체크박스 ----- */}
-        <Box css={theme.checkBox}>
+        <Padding horizontal={12} vertical={16} css={theme.checkBox}>
           <CheckInput label="이용약관">
             <CheckInput.CheckBox
               id="이용약관"
@@ -222,7 +229,7 @@ export default function SignUp() {
           <Txt size={13} color={colors.grey500} css={{ paddingLeft: '30px' }}>
             이벤트 및 마케팅 소식을 알려드릴게요
           </Txt>
-        </Box>
+        </Padding>
 
         <Button
           type="submit"
@@ -294,7 +301,6 @@ export default function SignUp() {
 const theme = {
   checkBox: {
     marginTop: '10px',
-    padding: '16px 12px',
     backgroundColor: colors.ground100,
     borderRadius: borderRadius.s500,
   },

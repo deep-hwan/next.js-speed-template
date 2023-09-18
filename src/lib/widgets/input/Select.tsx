@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, {
   Children,
   ForwardedRef,
@@ -11,12 +12,10 @@ import React, {
   memo,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { Box } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
-
 interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   label?: ReactNode;
   labelEdge?: string;
@@ -48,7 +47,7 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <Box maxWidth={maxWidth} {...props}>
+    <div css={{ ...styles.wrap, maxWidth: `${maxWidth}px` } as Interpolation<Theme>} {...props}>
       {label && (
         <label
           htmlFor={id}
@@ -70,7 +69,7 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
       {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
 
       {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
-    </Box>
+    </div>
   );
 }
 
@@ -150,6 +149,14 @@ function SelectTypeStyles(shape: 'default' | 'box', error?: boolean | string) {
 // -------------- Styles --------------
 // ------------------------------------
 const styles = {
+  wrap: {
+    width: '100%',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    transition: '0.3s ease-in-out',
+  },
+
   label: {
     display: 'inline-block',
     fontSize: '0.813rem',

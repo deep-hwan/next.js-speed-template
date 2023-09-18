@@ -115,53 +115,6 @@ export const Wrap = forwardRef(function Wrap(
 });
 
 // -----------------------------------------
-// -------------- Box (부모3) --------------
-// -----------------------------------------
-export const Box = forwardRef(function Box(
-  {
-    children,
-    direction = 'vertical',
-    align,
-    crossAlign,
-    wrap = 'nowrap',
-    gap = 0,
-    width = '100%',
-    minWidth,
-    maxWidth,
-    minHeight,
-    maxHeight,
-    ...props
-  }: Props,
-  ref?: ForwardedRef<HTMLDivElement>,
-) {
-  return (
-    <div
-      ref={ref}
-      css={
-        {
-          ...styles.default,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
-
-// -----------------------------------------
 // -------------- Row (부모3) --------------
 // -----------------------------------------
 export const Row = forwardRef(function Row(

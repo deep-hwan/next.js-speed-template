@@ -2,7 +2,7 @@
 import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
-import { Box, Container, Layer, Wrap } from '../_index';
+import { Container, Layer, Wrap } from '../_index';
 import { MQ } from '@/lib/theme/mediaQuery';
 
 // --------------------------------------------
@@ -87,7 +87,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
         }
       >
         <Wrap css={styles.wrap}>
-          <Box
+          <div
             ref={ref}
             css={
               {
@@ -115,7 +115,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
             </div>
 
             <div css={styles.view as Interpolation<Theme>}>{children}</div>
-          </Box>
+          </div>
         </Wrap>
       </Container>
     </>
