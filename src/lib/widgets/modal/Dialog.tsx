@@ -112,7 +112,7 @@ const styles = {
     minWidth: '300px',
     maxWidth: '380px',
     padding: '26px 20px 16px',
-    borderRadius: '18xp',
+    borderRadius: '18px',
     backgroundColor: '#ffffff',
     boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
     position: 'relative',
