@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { ForwardedRef, ReactNode, forwardRef, memo, useEffect, useRef } from 'react';
+import React, { ForwardedRef, ReactNode, forwardRef, useCallback, useEffect, useRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
 import { IconTab, Layer } from '../_index';
-import { colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -23,11 +21,14 @@ export const AppDrawer = forwardRef(function AppDrawer(
 ) {
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  const clickModalOutside = (event: MouseEvent) => {
-    if (view && drawerRef.current && !drawerRef.current.contains(event.target as Node)) {
-      onCancel();
-    }
-  };
+  const clickModalOutside = useCallback(
+    (event: MouseEvent) => {
+      if (view && drawerRef.current && !drawerRef.current.contains(event.target as Node)) {
+        onCancel();
+      }
+    },
+    [view, onCancel, drawerRef],
+  );
 
   useEffect(() => {
     drawerRef.current?.scrollTo(0, 0);
@@ -94,7 +95,7 @@ const theme = {
 
     paddingTop: 'env(safe-area-inset-top)',
     paddingBottom: 'env(safe-area-inset-bottom)',
-    backgroundColor: colors.white,
+    backgroundColor: '#ffffff',
     overflow: 'auto',
     transition: '0.3s ease-in-out',
 

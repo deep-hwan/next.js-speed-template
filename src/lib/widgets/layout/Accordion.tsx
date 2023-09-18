@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-import { colors, borderRadius, fontSize } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -30,7 +29,7 @@ export const Accordion = forwardRef(function Accordion(
         width: '100%',
         padding: '14px',
         cursor: 'pointer',
-        borderRadius: borderRadius.s500,
+        borderRadius: '14px',
         transition: '0.3s ease-in-out',
         display: 'flex',
         flexDirection: direction === 'vertical' ? 'column' : 'row',
@@ -38,7 +37,7 @@ export const Accordion = forwardRef(function Accordion(
         columnGap: direction == 'horizontal' ? `${gap}px` : `6px`,
 
         ':hover': {
-          backgroundColor: colors.ground100,
+          backgroundColor: '#f8f9fc',
         },
 
         '& p:hover': {
@@ -63,10 +62,10 @@ export function AccordionPanel({ view, children, ...props }: PanelProps) {
         height: view ? 'auto' : '0px',
         maxHeight: view ? '9999px' : '0px',
         padding: view ? '20px' : '0 20px',
-        backgroundColor: colors.ground100,
-        borderRadius: borderRadius.s500,
+        backgroundColor: '#f8f9fc',
+        borderRadius: '14px',
         transition: '0.2s ease-in-out',
-        fontSize: fontSize.s15,
+        fontSize: '0.938rem',
         overflow: 'hidden',
         whiteSpace: 'pre-line',
       }}

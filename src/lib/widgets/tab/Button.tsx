@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { colors, borderRadius, fontSize } from '../../theme/_index';
+import { colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -41,28 +41,22 @@ export const Button = forwardRef(function Button(
 // ------------------------------------
 const TYPE_VARIANTS = {
   primary: {
-    color: colors.grey100,
+    color: '#eeeeee',
     backgroundColor: colors.keyColor,
-    '&:hover': {
-      backgroundColor: colors.keyColor,
-    },
   },
   secondary: {
-    color: colors.grey500,
-    backgroundColor: colors.grey100,
-    '&:hover': {
-      backgroundColor: colors.grey300,
-    },
+    color: '#999999',
+    backgroundColor: '#252525',
   },
 };
 
 const SIZE_VARIANTS = {
   medium: {
-    fontSize: fontSize.s15,
+    fontSize: '0.938rem',
     padding: '11px 16px',
   },
   large: {
-    fontSize: fontSize.s16,
+    fontSize: '1rem',
     padding: '12px 22px',
   },
 };
@@ -75,14 +69,14 @@ const buttonStyle = {
   minHeight: '54px',
   outline: 'none',
   border: '0 solid transparent',
-  borderRadius: borderRadius.s600,
+  borderRadius: '18px',
   whiteSpace: 'nowrap',
   cursor: 'pointer',
   transition: '0.3s ease-in-out',
   fontWeight: 500,
   lineHeight: '26px',
 
-  '&:hover': { opacity: '0.9' },
+  '&:hover': { opacity: '0.93' },
 
   '&:disabled': {
     opacity: '0.25',

@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { colors, borderRadius, fontSize } from '../../theme/_index';
+import { colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -69,9 +69,9 @@ const styles = {
   tab: {
     position: 'relative',
     padding: '12px 20px',
-    borderRadius: borderRadius.s500,
-    color: colors.grey700,
-    backgroundColor: colors.ground200,
+    borderRadius: '14px',
+    color: '#797979',
+    backgroundColor: 'f5f7fc',
     whiteSpace: 'nowrap',
     transition: '0.3s ease-in-out',
     outline: 'none',

@@ -1,6 +1,9 @@
 import React, { useRef, useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 
+//hooks
+import { useRaiseEditor } from 'react-raise-editor';
+
 //libs
 import {
   BottomSheet,
@@ -16,11 +19,7 @@ import {
   Txt,
   TxtSpan,
 } from '@/lib/widgets/_index';
-
-//hooks
-import { useRaiseEditor } from 'react-raise-editor';
-import { borderRadius, fontSize } from '@/lib/theme/size';
-import { colors } from '@/lib/theme/colors';
+import { colors, borderRadius, fontSize } from '@/lib/theme/_index';
 
 //
 interface isValuesProps {

@@ -2,10 +2,11 @@
 import React, { useRef, ChangeEvent } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import Image from 'next/image';
-
 import { Box, Container } from '../_index';
-import { borderRadius, colors } from '@/lib/theme/_index';
 
+// --------------------------------------------
+// -------------- Type Interface --------------
+// --------------------------------------------
 interface ProfileUploadBoxProps {
   imageOnload: (base64: string | ArrayBuffer | null) => void;
   uploadCancel: () => void;
@@ -14,6 +15,7 @@ interface ProfileUploadBoxProps {
   size?: number;
 }
 
+//
 export function ProfileUploadBox({
   size = 100,
   image,
@@ -67,7 +69,7 @@ export function ProfileUploadBox({
               minWidth: `${size}px`,
               maxHeight: `${size}px`,
               minHeight: `${size}px`,
-              borderRadius: borderRadius.infinte,
+              borderRadius: '10000px',
               objectFit: 'cover',
             }}
           />
@@ -86,8 +88,8 @@ export function ProfileUploadBox({
             minWidth: `${size}px`,
             maxHeight: `${size}px`,
             minHeight: `${size}px`,
-            backgroundColor: colors.grey000,
-            borderRadius: borderRadius.infinte,
+            backgroundColor: '#f8f8f8',
+            borderRadius: '10000px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -108,6 +110,9 @@ export function ProfileUploadBox({
   );
 }
 
+// -----------------------------------
+// -------------- Icons --------------
+// -----------------------------------
 const CameraIcon = ({ size }: { size: number }) => {
   return (
     <svg
@@ -140,6 +145,9 @@ const CancelIcon = () => {
   );
 };
 
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
 const theme = {
   input: {
     position: 'absolute',
@@ -162,9 +170,9 @@ const theme = {
     position: 'absolute',
     bottom: '0',
     right: '0',
-    backgroundColor: colors.white,
+    backgroundColor: '#ffffff',
     border: '1px solid #e2e2e2',
-    borderRadius: borderRadius.infinte,
+    borderRadius: '100000px',
     padding: '5px',
     display: 'flex',
     justifyContent: 'center',

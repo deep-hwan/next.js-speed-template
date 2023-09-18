@@ -2,9 +2,7 @@
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { HTMLAttributes } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
 import { Container, IconTab, Layer } from '../_index';
-import { borderRadius, colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -114,8 +112,8 @@ const styles = {
     minWidth: '300px',
     maxWidth: '380px',
     padding: '26px 20px 16px',
-    borderRadius: borderRadius.s700,
-    backgroundColor: colors.white,
+    borderRadius: '18xp',
+    backgroundColor: '#ffffff',
     boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
     position: 'relative',
     transition: '0.5s ease-in-out',

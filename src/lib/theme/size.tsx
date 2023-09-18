@@ -18,7 +18,7 @@ export const padding = {
 // -------- BorderRadius --------
 // ------------------------------
 export const borderRadius = {
-  infinte: '1000px',
+  infinte: '100000px',
   s000: '0px',
   s100: '6px',
   s200: '8px',

@@ -12,7 +12,7 @@ import { Interpolation, Theme } from '@emotion/react';
 import Link from 'next/link';
 
 import { TxtSpan, Container, Wrap } from '../_index';
-import { MQ, colors, borderRadius, fontSize } from '@/lib/theme/_index';
+import { MQ } from '@/lib/theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -141,8 +141,8 @@ const theme = {
 
   shapeNav: {
     boxShadow: '0 2px 26px rgba(0,0,0,0.08)',
-    borderRadius: borderRadius.infinte,
-    backgroundColor: colors.white,
+    borderRadius: '10000px',
+    backgroundColor: '#ffffff',
     padding: '4px 14px',
 
     [MQ[2]]: {
@@ -162,8 +162,8 @@ const theme = {
   defaultWrap: {
     paddingTop: 'env(safe-area-inset-top)',
     paddingBottom: 'env(safe-area-inset-bottom)',
-    borderTop: '1px solid #e2e2e2',
-    backgroundColor: colors.white,
+    borderTop: '1px solid #f0f0f0',
+    backgroundColor: '#ffffff',
   },
 
   defaultNav: {
@@ -198,10 +198,10 @@ const theme = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: borderRadius.s500,
+    borderRadius: '14px',
 
     '&:hover': {
-      backgroundColor: colors.ground100,
+      backgroundColor: '#f8f9fc',
     },
 
     [MQ[2]]: {
@@ -210,7 +210,7 @@ const theme = {
       maxWidth: '60px',
       minWidth: '60px',
       '&:hover': {
-        backgroundColor: colors.none,
+        backgroundColor: 'transparent',
       },
     },
   },
@@ -227,10 +227,10 @@ const theme = {
   },
 
   navMenuLabel: {
-    fontSize: fontSize.s13,
+    fontSize: '0.813rem',
     whiteSpace: 'nowrap',
     [MQ[2]]: {
-      fontSize: fontSize.s11,
+      fontSize: '0.68rem',
     },
   },
 };

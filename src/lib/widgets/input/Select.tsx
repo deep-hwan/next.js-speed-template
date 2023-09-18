@@ -11,8 +11,6 @@ import React, {
   memo,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
-import { colors, fontSize, borderRadius } from '../../theme/_index';
 import { Box } from '../_index';
 
 // --------------------------------------------
@@ -55,7 +53,7 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
         <label
           htmlFor={id}
           css={{
-            color: error ? colors.red : colors.grey700,
+            color: error ? '#ED5C5C' : '#797979',
             ...styles.label,
           }}
         >
@@ -94,7 +92,7 @@ Select.SelectBox = forwardRef(function SelectBox(
             {
               ...styles.select,
               ...SelectTypeStyles(shape, error),
-              color: value !== '' ? colors.grey800 : colors.grey300,
+              color: value !== '' ? '#555555' : '#cccccc',
             } as Interpolation<Theme>
           }
           {...props}
@@ -127,18 +125,18 @@ function SelectTypeStyles(shape: 'default' | 'box', error?: boolean | string) {
   if (shape === 'default') {
     styles = {
       padding: '12px',
-      borderBottom: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
-      backgroundColor: error ? '#FFF8F8' : colors.ground100,
+      borderBottom: error ? `1px solid #ED5C5C` : `1px solid #e2e2e2`,
+      backgroundColor: error ? '#FFF8F8' : '#f8f9fc',
       '&:focus, &:hover, &:active': {
-        backgroundColor: error ? '#FFF4F4' : colors.ground200,
+        backgroundColor: error ? '#FFF4F4' : '#f5f7fc',
       },
     };
   } else if (shape === 'box') {
     styles = {
       padding: '14px 12px',
-      border: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
-      backgroundColor: error ? '#FFF8F8' : colors.white,
-      borderRadius: borderRadius.s500,
+      border: error ? `1px solid #ED5C5C` : `1px solid #e2e2e2`,
+      backgroundColor: error ? '#FFF8F8' : '#ffffff',
+      borderRadius: '14px',
       '&:focus, &:hover, &:active': {
         backgroundColor: error ? '#FFF4F4' : '#fafafa',
       },
@@ -154,7 +152,7 @@ function SelectTypeStyles(shape: 'default' | 'box', error?: boolean | string) {
 const styles = {
   label: {
     display: 'inline-block',
-    fontSize: fontSize.s13,
+    fontSize: '0.813rem',
     marginBottom: '5px',
 
     '&:focus-within': {
@@ -163,22 +161,22 @@ const styles = {
   },
 
   labelEdge: {
-    fontSize: fontSize.s12,
-    color: colors.red,
+    fontSize: '0.75rem',
+    color: '#ed5c5c',
     marginLeft: '3px',
   },
 
   errMsg: {
-    color: colors.red,
-    fontSize: fontSize.s12,
+    color: '#ed5c5c',
+    fontSize: '0.75rem',
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
     marginTop: '6px',
   },
 
   tolTip: {
-    color: colors.grey600,
-    fontSize: fontSize.s12,
+    color: '#999999',
+    fontSize: '0.75rem',
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
     marginTop: '8px',
@@ -188,7 +186,7 @@ const styles = {
     width: '100%',
     minWidth: '100px',
     display: 'flex',
-    fontSize: `${fontSize.s15} !important`,
+    fontSize: `0.913rem !important`,
     font: 'inherit',
     WebkitBoxSizing: 'border-box',
     MozBoxSizing: 'border-box',
@@ -211,7 +209,7 @@ const styles = {
       opacity: '0.9',
     },
 
-    '::placeholder': { color: colors.grey300 },
+    '::placeholder': { color: '#cccccc' },
 
     "&[type='number']::-webkit-outer-spin-button, &[type='number']::-webkit-inner-spin-button": {
       WebkitAppearance: 'none',
@@ -220,14 +218,14 @@ const styles = {
 
     '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active':
       {
-        WebkitTextFillColor: colors.grey800,
+        WebkitTextFillColor: '#555555',
         WebkitBoxShadow: '0 0 0px 1000px transparent inset',
         boxShadow: '0 0 0px 1000px transparent inset',
         transition: 'background-color 5000s ease-in-out 0s',
       },
 
     '&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active': {
-      WebkitTextFillColor: colors.grey800,
+      WebkitTextFillColor: '#555555',
       WebkitBoxShadow: '0 0 0px 1000px transparent inset',
       boxShadow: '0 0 0px 1000px transparent inset',
       transition: 'background-color 5000s ease-in-out 0s',

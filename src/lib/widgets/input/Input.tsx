@@ -14,7 +14,6 @@ import React, {
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
-import { borderRadius, colors, fontSize } from '../../theme/_index';
 import { Box } from '../_index';
 
 import DatePicker from 'react-datepicker';
@@ -92,7 +91,7 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
         <label
           htmlFor={id}
           css={{
-            color: error ? colors.red : colors.grey700,
+            color: error ? '#ED5C5C' : '#797979',
             ...styles.label,
           }}
         >
@@ -470,17 +469,17 @@ function FieldTypeStyles(shape: 'default' | 'box', error?: boolean | string) {
 
   if (shape === 'default') {
     styles = {
-      borderBottom: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
-      backgroundColor: error ? '#FFF8F8' : colors.ground100,
+      borderBottom: error ? `1px solid #ED5C5C` : `1px solid #e2e2e2`,
+      backgroundColor: error ? '#FFF8F8' : '#f8f9fc',
       '&:focus, &:hover, &:active': {
-        backgroundColor: error ? '#FFF4F4' : colors.ground200,
+        backgroundColor: error ? '#FFF4F4' : '#f5f7fc',
       },
     };
   } else if (shape === 'box') {
     styles = {
-      border: error ? `1px solid ${colors.red}` : `1px solid ${colors.grey200}`,
-      backgroundColor: error ? '#FFF8F8' : colors.white,
-      borderRadius: borderRadius.s500,
+      border: error ? `1px solid #ED5C5C` : `1px solid #e2e2e2`,
+      backgroundColor: error ? '#FFF8F8' : '#ffffff',
+      borderRadius: '14px',
       '&:focus, &:hover, &:active': {
         backgroundColor: error ? '#FFF4F4' : '#fafafa',
       },
@@ -526,7 +525,7 @@ function InputTypeStyles(
 const styles = {
   label: {
     display: 'inline-block',
-    fontSize: fontSize.s13,
+    fontSize: '0.813rem',
     marginBottom: '5px',
 
     '&:focus-within': {
@@ -535,22 +534,22 @@ const styles = {
   },
 
   labelEdge: {
-    fontSize: fontSize.s12,
-    color: colors.red,
+    fontSize: '0.75rem',
+    color: '#ed5c5c',
     marginLeft: '3px',
   },
 
   errMsg: {
-    color: colors.red,
-    fontSize: fontSize.s12,
+    color: '#ed5c5c',
+    fontSize: '0.75rem',
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
     marginTop: '6px',
   },
 
   tolTip: {
-    color: colors.grey600,
-    fontSize: fontSize.s12,
+    color: '#999999',
+    fontSize: '0.75rem',
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
     marginTop: '8px',
@@ -562,7 +561,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     border: 'none',
-    backgroundColor: colors.ground100,
+    backgroundColor: '#f8f9fc',
     transition: '0.4s ease-in-out',
 
     '&:focus, &:hover, &:active': { transition: '0.4s ease-in-out' },
@@ -577,13 +576,13 @@ const styles = {
     backgroundColor: 'transparent',
     outline: 'none',
     borderRadius: '0px',
-    fontSize: fontSize.s15,
-    color: colors.grey800,
+    fontSize: '0.938rem',
+    color: '#555555',
     overflow: 'hidden',
     resize: 'none',
     transition: '0.4s ease-in-out',
 
-    '::placeholder': { color: colors.grey300 },
+    '::placeholder': { color: '#cccccc' },
 
     "&[type='number']::-webkit-outer-spin-button, &[type='number']::-webkit-inner-spin-button": {
       WebkitAppearance: 'none',
@@ -592,7 +591,7 @@ const styles = {
 
     '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active':
       {
-        WebkitTextFillColor: colors.grey800,
+        WebkitTextFillColor: '#555555',
         WebkitBoxShadow: '0 0 0px 1000px transparent inset',
         boxShadow: '0 0 0px 1000px transparent inset',
         transition: 'background-color 5000s ease-in-out 0s',
@@ -601,7 +600,7 @@ const styles = {
       },
 
     '&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active': {
-      WebkitTextFillColor: colors.grey800,
+      WebkitTextFillColor: '#555555',
       WebkitBoxShadow: '0 0 0px 1000px transparent inset',
       boxShadow: '0 0 0px 1000px transparent inset',
       transition: 'background-color 5000s ease-in-out 0s',
@@ -613,8 +612,8 @@ const styles = {
   },
 
   inputEdge: {
-    fontSize: fontSize.s14,
-    color: colors.grey500,
+    fontSize: '0.875rem',
+    color: '#999999',
     whiteSpace: 'nowrap',
     paddingRight: '12px',
   },
@@ -631,8 +630,8 @@ const styles = {
   searchTab: {
     whiteSpace: 'nowrap',
     position: 'relative',
-    fontSize: fontSize.s14,
-    color: colors.blue,
+    fontSize: '0.875rem',
+    color: '#4788f4',
     backgrounColor: 'transparent !important',
     transition: '0.3s ease-in-out',
     '&:hover': {

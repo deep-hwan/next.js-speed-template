@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
-import { MQ, colors } from '../../theme/_index';
+import { MQ } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -34,12 +33,12 @@ export const AppBar = forwardRef(function AppBar(
 
   const TYPE_VARIANTS = {
     primary: {
-      backgroundColor: colors.white,
-      borderBottom: isActive ? `1px solid ${colors.grey200}` : '1px solid transparent',
+      backgroundColor: '#ffffff',
+      borderBottom: isActive ? `1px solid #e2e2e2` : '1px solid transparent',
     },
     dark: {
-      backgroundColor: colors.black200,
-      borderBottom: isActive ? `1px solid ${colors.black300}` : '1px solid transparent',
+      backgroundColor: '#252525',
+      borderBottom: isActive ? `1px solid #181818` : '1px solid transparent',
     },
   };
 

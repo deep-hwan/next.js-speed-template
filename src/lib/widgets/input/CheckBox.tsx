@@ -10,7 +10,7 @@ import React, {
   forwardRef,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { fontSize, colors } from '../../theme/_index';
+import { colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -76,7 +76,7 @@ const styles = {
 
   labelWrap: { display: 'flex', alignItems: 'center', paddingBottom: '2px' },
 
-  label: { fontSize: fontSize.s15, color: colors.black100, cursor: 'pointer' },
+  label: { fontSize: '0.938rem', color: '#555555', cursor: 'pointer' },
 
   checkBox: {
     display: 'flex',
@@ -89,7 +89,7 @@ const styles = {
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: colors.ground200,
+      backgroundColor: '#f5f7fc',
     },
   },
 
@@ -101,7 +101,7 @@ const styles = {
     border: '0px solid gainsboro',
     borderRadius: '5px !important',
     appearance: 'none',
-    backgroundColor: colors.grey200,
+    backgroundColor: '#e2e2e2',
     userSelect: 'none',
     transition: '0.2s ease-in-out',
     backgroundImage:

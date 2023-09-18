@@ -2,9 +2,7 @@
 import React from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import { keyframes } from '@emotion/css';
-
 import { Layer } from '../_index';
-import { fontSize, colors } from '../../theme/_index';
 
 // ------------------------------------------
 // -------------- LoadingLayer --------------
@@ -43,7 +41,7 @@ export function LoadingLayer({ size = 48 }: { size?: number }) {
             height: `${size}px`,
             minHeight: `${size}px`,
             margin: '15px auto',
-            color: '#fff',
+            color: '#ffffff',
             boxSizing: 'border-box',
             animation: `${rotation} 1s linear infinite`,
             '&::after, &::before': {
@@ -53,14 +51,14 @@ export function LoadingLayer({ size = 48 }: { size?: number }) {
               width: '24px',
               height: '24px',
               top: '0',
-              backgroundColor: '#fff',
+              backgroundColor: '#ffffff',
               borderRadius: '50%',
               animation: `${scale50} 1s infinite ease-in-out`,
             },
             '&::before': {
               top: 'auto',
               bottom: '0',
-              backgroundColor: colors.blue,
+              backgroundColor: '#4788f4',
               animationDelay: '0.5s',
             },
           }}
@@ -90,7 +88,7 @@ const styles = {
   },
 
   txt: {
-    color: colors.white,
-    fontSize: fontSize.s14,
+    color: '#ffffff',
+    fontSize: '0.875rem',
   },
 };
