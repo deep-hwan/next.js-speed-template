@@ -132,7 +132,7 @@ export const Row = forwardRef(function Row(
     maxHeight,
     ...props
   }: Props,
-  ref?: ForwardedRef<HTMLDivElement>,
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -146,12 +146,11 @@ export const Row = forwardRef(function Row(
           height: maxHeight ? '100%' : 'auto',
           minHeight: `${minHeight}px`,
           maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'center' : 'flex-start',
+          flexDirection: 'row',
+          alignItems: align ? align : 'stretch',
           justifyContent: crossAlign && crossAlign,
           flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
+          columnGap: `${gap}px`,
         } as Interpolation<Theme>
       }
       {...props}
@@ -179,7 +178,7 @@ export const Column = forwardRef(function Column(
     maxHeight,
     ...props
   }: Props,
-  ref?: ForwardedRef<HTMLDivElement>,
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div
@@ -193,12 +192,11 @@ export const Column = forwardRef(function Column(
           height: maxHeight ? '100%' : 'auto',
           minHeight: `${minHeight}px`,
           maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
+          flexDirection: 'column',
+          alignItems: align ? align : 'flex-start',
           justifyContent: crossAlign && crossAlign,
           flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
+          rowGap: `${gap}px`,
         } as Interpolation<Theme>
       }
       {...props}
