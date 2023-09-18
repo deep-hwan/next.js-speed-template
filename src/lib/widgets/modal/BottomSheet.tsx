@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -26,6 +25,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
   ...props
 }: BottomSheetProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const viewRef = useRef<HTMLDivElement>(null);
   const [startY, setStartY] = useState(0);
   const [currentY, setCurrentY] = useState(0);
 
@@ -65,6 +65,9 @@ export const BottomSheet = forwardRef(function BottomSheet({
   useEffect(() => {
     if (view) {
       document.body.style.overflowY = 'hidden';
+      if (viewRef.current) {
+        viewRef.current.scrollTop = 0;
+      }
     } else {
       document.body.style.overflowY = 'auto';
     }
@@ -114,7 +117,9 @@ export const BottomSheet = forwardRef(function BottomSheet({
               />
             </div>
 
-            <div css={styles.view as Interpolation<Theme>}>{children}</div>
+            <div ref={viewRef} css={styles.view as Interpolation<Theme>}>
+              {children}
+            </div>
           </div>
         </Wrap>
       </Container>

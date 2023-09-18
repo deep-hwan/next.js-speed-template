@@ -73,7 +73,7 @@ const buttonStyle = {
   whiteSpace: 'nowrap',
   cursor: 'pointer',
   transition: '0.3s ease-in-out',
-  fontWeight: 500,
+  fontWeight: 400,
   lineHeight: '26px',
 
   '&:hover': { opacity: '0.93' },
