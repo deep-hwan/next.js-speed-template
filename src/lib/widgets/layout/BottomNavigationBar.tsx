@@ -11,7 +11,7 @@ import { Interpolation, Theme } from '@emotion/react';
 
 import Link from 'next/link';
 
-import { TxtSpan, Container, Wrap } from '../_index';
+import { TxtSpan, Wrap } from '../_index';
 import { MQ } from '@/lib/theme/_index';
 
 // --------------------------------------------
@@ -43,8 +43,8 @@ export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
       <>
         {/* ========== 디자인 타입 ========== */}
         {design === 'shape' && (
-          <Container ref={ref} css={theme.shapeContainer}>
-            <Wrap
+          <Wrap ref={ref} css={theme.shapeContainer}>
+            <div
               css={
                 {
                   ...theme.wrap,
@@ -63,14 +63,14 @@ export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
               >
                 {childrenArray}
               </nav>
-            </Wrap>
-          </Container>
+            </div>
+          </Wrap>
         )}
 
         {/* ========== 기본 타입 ========== */}
         {design === 'default' && (
-          <Container ref={ref} css={theme.defaultContainer}>
-            <Wrap
+          <Wrap ref={ref} css={theme.defaultContainer}>
+            <div
               css={
                 {
                   ...theme.wrap,
@@ -89,8 +89,8 @@ export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
               >
                 {childrenArray}
               </nav>
-            </Wrap>
-          </Container>
+            </div>
+          </Wrap>
         )}
       </>
     );
@@ -176,6 +176,7 @@ const theme = {
     bottom: '0',
     left: '0',
     right: '0',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },

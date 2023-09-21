@@ -7,7 +7,7 @@ import menus from '../json/menu.json';
 
 //libs
 import { MQ, fontSize, colors } from '@/lib/theme/_index';
-import { Container, Item, Items, Spacing, Txt, Wrap } from '@/lib/widgets/_index';
+import { Column, Item, Items, Spacing, Txt, Wrap } from '@/lib/widgets/_index';
 
 //
 interface MenuItem {
@@ -21,7 +21,7 @@ export default function Footer() {
 
   return (
     <footer css={theme.footer}>
-      <Container maxWidth={1080}>
+      <Column maxWidth={1080}>
         <Items direction="horizontal" css={theme.items as Interpolation<Theme>}>
           {menusLust?.map((item: MenuItem, i: number) => (
             <Item key={i} css={theme.item}>
@@ -49,7 +49,7 @@ export default function Footer() {
             사업자등록번호 : 110-412-598896 | 통신판매등록번호 : 2023-서울영등포-0900호
           </Txt>
         </Wrap>
-      </Container>
+      </Column>
     </footer>
   );
 }

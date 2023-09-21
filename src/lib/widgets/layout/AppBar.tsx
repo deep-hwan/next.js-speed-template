@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { MQ } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -87,7 +86,9 @@ const styles = {
     alignItems: 'center',
     transition: '0.3s ease-in-out',
 
-    [MQ[2]]: { minHeight: '58px' },
+    '@media (max-width:808px)': {
+      minHeight: '58px',
+    },
   },
 
   header: {
@@ -105,7 +106,7 @@ const styles = {
     paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
     transition: '0.3s ease-in-out',
 
-    [MQ[2]]: {
+    '@media (max-width:808px)': {
       minHeight: '58px',
       paddingBottom: '9px',
       paddingTop: 'calc(env(safe-area-inset-top) + 9px)',

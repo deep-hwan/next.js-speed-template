@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-
-import { Interpolation, Theme } from '@emotion/react';
+import {
+  FlexTheme,
+  MarignTheme,
+  PaddingTheme,
+  StyleTheme,
+  ViewportTheme,
+} from '@/lib/theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -18,6 +23,24 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   maxWidth?: number;
   minHeight?: number;
   maxHeight?: number;
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
 
 interface ItemProps extends HTMLAttributes<HTMLLIElement> {
@@ -32,6 +55,36 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   maxWidth?: number;
   minHeight?: number;
   maxHeight?: number;
+  backgroundColor?: string;
+  borderRadius?: number;
+  boxShadow?: {
+    x?: number;
+    y?: number;
+    blur?: number;
+    color?: string;
+  };
+  border?: {
+    solid: number;
+    color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
 
 // -----------------------------------
@@ -50,6 +103,8 @@ export const Items = forwardRef(function Items(
     maxWidth,
     minHeight,
     maxHeight,
+    padding = { all: 0 },
+    margin = { all: 0 },
     ...props
   }: ItemsProps,
   ref?: ForwardedRef<HTMLUListElement>,
@@ -57,23 +112,18 @@ export const Items = forwardRef(function Items(
   return (
     <ul
       ref={ref}
-      css={
-        {
-          ...defaultStyles,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'vertical' ? 'column' : 'row',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'center',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({
+          direction,
+          align: align ? align : direction === 'horizontal' ? 'stretch' : 'center',
+          crossAlign,
+          wrap,
+          gap,
+        }),
+      ]}
       {...props}
     >
       {children}
@@ -97,6 +147,12 @@ export const Item = forwardRef(function Item(
     maxWidth,
     minHeight,
     maxHeight,
+    padding = { all: 0 },
+    margin = { all: 0 },
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
     ...props
   }: ItemProps,
   ref?: ForwardedRef<HTMLLIElement>,
@@ -104,38 +160,16 @@ export const Item = forwardRef(function Item(
   return (
     <li
       ref={ref}
-      css={
-        {
-          ...defaultStyles,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'vertical' ? 'column' : 'row',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
     </li>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const defaultStyles = {
-  position: 'relative',
-  padding: '0',
-  margin: '0',
-  display: 'flex',
-  transition: '0.3s ease-in-out',
-  listStyle: 'none',
-};

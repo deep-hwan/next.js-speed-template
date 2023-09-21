@@ -1,34 +1,101 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
+import { MarignTheme, PaddingTheme, StyleTheme } from '@/lib/theme/global';
 import { colors } from '../../theme/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   children: ReactNode;
-  variant?: 'primary' | 'secondary';
-  size?: 'medium' | 'large';
+  width?: 'auto' | '100%';
+  minWidth?: number;
+  maxWidth?: number;
+  txtSize?: number;
+  weight?: 'lighter' | 'normal' | 'medium' | 'bold';
+  colors?: { button?: string; txt?: string };
+  borderRadius?: number;
+  boxShadow?: {
+    x?: number;
+    y?: number;
+    blur?: number;
+    color?: string;
+  };
+  border?: {
+    solid: number;
+    color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
+type ThemeStyleProps = Omit<Props, 'children'>;
 
 // ------------------------------------
 // -------------- Button --------------
 // ------------------------------------
+const color = colors;
 export const Button = forwardRef(function Button(
-  { variant = 'primary', size = 'medium', children, ...props }: Props,
+  {
+    children,
+    width = '100%',
+    maxWidth,
+    minWidth,
+    txtSize = 15,
+    weight = 'normal',
+    colors = { button: color.keyColor, txt: '#f0f0f0' },
+    borderRadius = 18,
+    border,
+    boxShadow,
+    padding,
+    margin,
+    ...props
+  }: Props,
   ref?: ForwardedRef<HTMLButtonElement>,
 ) {
+  const themeProps = {
+    width,
+    maxWidth,
+    minWidth,
+    txtSize,
+    colors,
+    borderRadius,
+    border,
+    boxShadow,
+  };
+
   return (
     <button
       ref={ref}
-      css={
-        {
-          ...buttonStyle,
-          ...TYPE_VARIANTS[variant],
-          ...SIZE_VARIANTS[size],
-        } as Interpolation<Theme>
-      }
+      css={[
+        buttonStyle as Interpolation<Theme>,
+        TYPOGRAPH_WEIGHT[weight],
+        getThemeStyles(themeProps),
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        StyleTheme({
+          backgroundColor: colors?.button,
+          border,
+          borderRadius,
+          boxShadow,
+        }),
+      ]}
       {...props}
     >
       {children}
@@ -39,46 +106,44 @@ export const Button = forwardRef(function Button(
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-const TYPE_VARIANTS = {
-  primary: {
-    color: '#eeeeee',
-    backgroundColor: colors.keyColor,
-  },
-  secondary: {
-    color: '#999999',
-    backgroundColor: '#252525',
-  },
-};
-
-const SIZE_VARIANTS = {
-  medium: {
-    fontSize: '0.938rem',
-    padding: '11px 16px',
-  },
-  large: {
-    fontSize: '1rem',
-    padding: '12px 22px',
-  },
-};
-
 const buttonStyle = {
+  width: '100%',
+  minHeight: '54px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%',
-  minHeight: '54px',
   outline: 'none',
-  border: '0 solid transparent',
-  borderRadius: '18px',
   whiteSpace: 'nowrap',
   cursor: 'pointer',
   transition: '0.3s ease-in-out',
-  fontWeight: 400,
   lineHeight: '26px',
 
-  '&:hover': { opacity: '0.93' },
+  '&:hover': { opacity: '0.9' },
 
   '&:disabled': {
     opacity: '0.25',
   },
 };
+
+const TYPOGRAPH_WEIGHT = {
+  lighter: { fontWeight: '300' },
+  normal: { fontWeight: '400' },
+  medium: { fontWeight: '500' },
+  bold: { fontWeight: '600' },
+} as const;
+
+function getThemeStyles({
+  width,
+  maxWidth,
+  minWidth,
+  txtSize,
+  colors,
+}: ThemeStyleProps): Interpolation<Theme> {
+  return {
+    width: width,
+    minWidth: minWidth && `${minWidth}px`,
+    maxWidth: maxWidth && `${maxWidth}px`,
+    fontSize: txtSize ? `${txtSize / 16}rem` : '1em',
+    color: colors?.txt,
+  };
+}

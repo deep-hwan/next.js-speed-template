@@ -2,7 +2,6 @@
 import React, { useRef, ChangeEvent } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import Image from 'next/image';
-import { Container } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -47,13 +46,16 @@ export function ProfileUploadBox({
   };
 
   return (
-    <Container
+    <div
       css={{
+        display: 'flex',
+        position: 'relative',
         maxWidth: `${size}px`,
         minWidth: `${size}px`,
         maxHeight: `${size}px`,
         minHeight: `${size}px`,
         cursor: 'pointer',
+        transition: '0.3s ease-in-out',
       }}
     >
       {image ? (
@@ -108,7 +110,7 @@ export function ProfileUploadBox({
         onChange={handleChange}
         css={theme.input as Interpolation<Theme>}
       />
-    </Container>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ import { Interpolation, Theme } from '@emotion/react';
 import menus from '../json/menu.json';
 
 //libs
-import { AppDrawer, Container, Item, Items, Txt } from '@/lib/widgets/_index';
+import { AppDrawer, Item, Items, Txt, Wrap } from '@/lib/widgets/_index';
 import { colors } from '@/lib/theme/colors';
 import { borderRadius } from '@/lib/theme/size';
 
@@ -22,7 +22,7 @@ interface DrawerType {
 //
 export const Drawer = memo(function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
-    <Container css={theme.appContainer}>
+    <Wrap css={theme.appContainer}>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
         <Items css={theme.menus}>
           {menus.map((item, i) => {
@@ -37,7 +37,7 @@ export const Drawer = memo(function Drawer({ isDrawer, handleCloseDrawer }: Draw
           })}
         </Items>
       </AppDrawer>
-    </Container>
+    </Wrap>
   );
 });
 

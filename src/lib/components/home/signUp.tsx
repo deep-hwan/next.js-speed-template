@@ -9,13 +9,12 @@ import {
   BottomSheet,
   Button,
   CheckInput,
-  Container,
+  Column,
   Dialog,
   Form,
   Input,
   LoadingLayer,
   Padding,
-  Select,
   Spacing,
   Txt,
   TxtSpan,
@@ -154,12 +153,6 @@ export default function SignUp() {
           />
         </Input>
 
-        <Select label="ads">
-          <Select.SelectBox shape="box">
-            <option>adssd</option>
-          </Select.SelectBox>
-        </Select>
-
         {/* ----- 에디터 타입 인풋 : Textarea ----- */}
         <Input label="내용">
           <Input.Textarea
@@ -234,7 +227,7 @@ export default function SignUp() {
         <Button
           type="submit"
           css={{ width: '100%' }}
-          disabled={(name && email && context) === '' || !check1 || !check2}
+          // disabled={(name && email && context) === '' || !check1 || !check2}
         >
           제출
         </Button>
@@ -245,7 +238,7 @@ export default function SignUp() {
         view={!!router.query.modal}
         onCancel={() => router.push({}, undefined, { scroll: false })}
       >
-        <Container css={theme.modalContainer} gap={20}>
+        <Column css={theme.modalContainer} gap={20}>
           <Txt as="h6">{router.query.modal}</Txt>
           <Txt>
             테스트 은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와
@@ -267,7 +260,7 @@ export default function SignUp() {
             개인정보를 보유하게 됩니다. - 관련법령 : 신용정보의 수집/처리 및 이용 등에 관한 기록 :
             3년
           </Txt>
-        </Container>
+        </Column>
       </BottomSheet>
 
       {/* ----- 모달 : 다이아로그 ----- */}

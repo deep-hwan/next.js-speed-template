@@ -1,18 +1,59 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
 
+import {
+  FlexTheme,
+  MarignTheme,
+  PaddingTheme,
+  StyleTheme,
+  ViewportTheme,
+} from '@/lib/theme/global';
+
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   direction?: 'horizontal' | 'vertical';
   align?: 'start' | 'center' | 'stretch' | 'end';
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
-  maxWidth?: number;
+  width?: 'auto' | '100%';
   minWidth?: number;
-  children: ReactNode;
+  maxWidth?: number;
+  minHeight?: number;
+  maxHeight?: number;
+  backgroundColor?: string;
+  borderRadius?: number;
+  boxShadow?: {
+    x?: number;
+    y?: number;
+    blur?: number;
+    color?: string;
+  };
+  border?: {
+    solid: number;
+    color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
 
 // ----------------------------------
@@ -20,14 +61,23 @@ interface Props extends HTMLAttributes<HTMLElement> {
 // ----------------------------------
 export const Form = forwardRef(function Form(
   {
+    children,
     direction = 'vertical',
-    align = 'center',
+    align,
     crossAlign,
     wrap = 'nowrap',
-    gap,
+    gap = 0,
+    width = '100%',
     minWidth,
     maxWidth,
-    children,
+    minHeight,
+    maxHeight,
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
+    padding,
+    margin,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLFormElement>,
@@ -35,19 +85,13 @@ export const Form = forwardRef(function Form(
   return (
     <form
       ref={ref}
-      css={{
-        position: 'relative',
-        width: '100%',
-        maxWidth: `${maxWidth}px`,
-        minWidth: `${minWidth}px`,
-        display: 'flex',
-        flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        alignItems: align,
-        justifyContent: crossAlign,
-        rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-        columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        transition: '0.3s ease-in-out',
-      }}
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}

@@ -8,7 +8,7 @@ import { Drawer } from './Drawer';
 //libs
 import { MQ } from '@/lib/theme/mediaQuery';
 import { borderRadius, fontSize, colors } from '@/lib/theme/_index';
-import { AppBar, IconTab, Items, Item, Container, Wrap } from '@/lib/widgets/_index';
+import { AppBar, IconTab, Items, Item, Wrap, Row } from '@/lib/widgets/_index';
 
 //assets
 import { LogoIcon, ToastIcon } from '@/lib/assets/icons';
@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <>
       <AppBar width={1200}>
-        <Container css={theme.container as Interpolation<Theme>}>
+        <Row css={theme.container as Interpolation<Theme>}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
             <LogoIcon alt="서비스명" width="100%" height="100%" />
           </Link>
@@ -51,7 +51,7 @@ export default function Header() {
               <ToastIcon fill="#555" width="100%" height="100%" />
             </IconTab>
           </Wrap>
-        </Container>
+        </Row>
       </AppBar>
 
       {/* 드로어 메뉴 */}

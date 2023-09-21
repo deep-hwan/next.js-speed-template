@@ -17,7 +17,7 @@ interface BottomSheetProps extends HTMLAttributes<HTMLElement> {
 // -----------------------------------------
 // -------------- BottomSheet --------------
 // -----------------------------------------
-export const BottomSheet = forwardRef(function BottomSheet({
+export function BottomSheet({
   children,
   view,
   onCancel,
@@ -63,20 +63,30 @@ export const BottomSheet = forwardRef(function BottomSheet({
   );
 
   useEffect(() => {
-    if (view) {
-      document.body.style.overflowY = 'hidden';
-      if (viewRef.current) {
-        viewRef.current.scrollTop = 0;
-      }
-    } else {
-      document.body.style.overflowY = 'auto';
-    }
+    viewRef.current?.scrollTo(0, 0);
 
+    if (view) {
+      const scrollY = window.scrollY;
+
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.overflowY = 'hidden';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.overflowY = 'auto';
+
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }, [view, viewRef]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', clickModalOutside);
     return () => {
       document.removeEventListener('mousedown', clickModalOutside);
     };
-  }, [view, clickModalOutside]);
+  }, [clickModalOutside, view]);
 
   return (
     <>
@@ -125,7 +135,7 @@ export const BottomSheet = forwardRef(function BottomSheet({
       </Container>
     </>
   );
-});
+}
 
 // ------------------------------------
 // -------------- Styles --------------
@@ -137,7 +147,6 @@ const styles = {
     bottom: '0',
     left: '0',
     right: '0',
-
     width: '100%',
     height: '100%',
     transition: '0.25s ease-in-out',

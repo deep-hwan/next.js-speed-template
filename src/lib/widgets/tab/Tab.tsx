@@ -1,61 +1,106 @@
 /** @jsxImportSource @emotion/react */
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { colors } from '../../theme/_index';
+import { MarignTheme, PaddingTheme, StyleTheme } from '@/lib/theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
-interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  width?: 'auto' | '100%';
+  minWidth?: number;
+  maxWidth?: number;
+  txtSize?: number;
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
-  size?: number;
-  color?: string;
+  colors?: { button?: string; txt?: string };
+  borderRadius?: number;
+  boxShadow?: {
+    x?: number;
+    y?: number;
+    blur?: number;
+    color?: string;
+  };
+  border?: {
+    solid: number;
+    color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
+
+type ThemeStyleProps = Omit<Props, 'children'>;
 
 // ---------------------------------
 // -------------- Tab --------------
 // ---------------------------------
 export const Tab = forwardRef(function Tab(
-  { children, size, ...props }: TabProps,
+  {
+    children,
+    width = 'auto',
+    maxWidth,
+    minWidth,
+    txtSize = 14,
+    weight,
+    colors = {
+      button: '#f5f7fc',
+      txt: '#797979',
+    },
+    borderRadius = 13,
+    border,
+    boxShadow,
+    padding = { horizontal: 14, vertical: 12 },
+    margin,
+    ...props
+  }: Props,
   ref?: ForwardedRef<HTMLButtonElement>,
 ) {
-  return (
-    <button
-      type="button"
-      ref={ref}
-      css={
-        {
-          ...styles.tab,
-          fontSize: size ? `${size / 16}rem` : '0.875rem',
-        } as Interpolation<Theme>
-      }
-      {...props}
-    >
-      {children}
-    </button>
-  );
-});
+  const themeProps = {
+    width,
+    maxWidth,
+    minWidth,
+    txtSize,
+    colors,
+    borderRadius,
+    border,
+    boxShadow,
+    padding,
+    margin,
+  };
 
-// ------------------------------------
-// -------------- TxtTab --------------
-// ------------------------------------
-export const TxtTab = forwardRef(function TxtTab(
-  { children, size, weight, color, ...props }: TabProps,
-  ref?: ForwardedRef<HTMLButtonElement>,
-) {
   return (
     <button
       type="button"
       ref={ref}
-      css={
-        {
-          ...styles.txtTab,
-          ...TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
-          fontSize: size ? `${size / 16}rem` : '0.875rem',
-          color: color ? color : colors.keyColor,
-        } as Interpolation<Theme>
-      }
+      css={[
+        buttonStyles as Interpolation<Theme>,
+        TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
+        getThemeStyles(themeProps),
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        StyleTheme({
+          backgroundColor: colors?.button,
+          border,
+          borderRadius,
+          boxShadow,
+        }),
+      ]}
       {...props}
     >
       {children}
@@ -66,40 +111,19 @@ export const TxtTab = forwardRef(function TxtTab(
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-const styles = {
-  tab: {
-    position: 'relative',
-    padding: '12px 20px',
-    borderRadius: '14px',
-    color: '#797979',
-    backgroundColor: 'f5f7fc',
-    whiteSpace: 'nowrap',
-    transition: '0.3s ease-in-out',
-    outline: 'none',
-    border: 'none',
+const buttonStyles = {
+  position: 'relative',
+  whiteSpace: 'nowrap',
+  transition: '0.3s ease-in-out',
+  outline: 'none',
+  border: 'none',
 
-    '&:hover': {
-      opacity: 0.9,
-    },
-
-    '&:disabled': {
-      opacity: 0.4,
-    },
+  '&:hover': {
+    opacity: 0.85,
   },
 
-  txtTab: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    transition: '0.3s ease-in-out',
-    outline: 'none',
-    border: 'none',
-
-    '&:hover': {
-      fontWeight: '500',
-    },
-    '&:disabled': {
-      opacity: 0.4,
-    },
+  '&:disabled': {
+    opacity: 0.4,
   },
 };
 
@@ -108,4 +132,20 @@ const TYPOGRAPH_WEIGHT = {
   normal: { fontWeight: '400' },
   medium: { fontWeight: '500' },
   bold: { fontWeight: '600' },
-};
+} as const;
+
+function getThemeStyles({
+  width,
+  maxWidth,
+  minWidth,
+  txtSize,
+  colors,
+}: ThemeStyleProps): Interpolation<Theme> {
+  return {
+    width: width,
+    minWidth: minWidth && `${minWidth}px`,
+    maxWidth: maxWidth && `${maxWidth}px`,
+    fontSize: txtSize ? `${txtSize / 16}rem` : '1em',
+    color: colors?.txt,
+  };
+}

@@ -20,7 +20,7 @@ interface CheckProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
   size?: number;
   type?: 'checkbox' | 'radio';
 }
-interface InputProps extends HTMLAttributes<HTMLDivElement> {
+interface InputProps extends HTMLAttributes<HTMLLabelElement> {
   label?: ReactNode;
   children: ReactElement;
 }
@@ -39,8 +39,8 @@ export function CheckInput({ label, children, ...props }: InputProps) {
         ...child.props,
       })}
 
-      <div css={styles.labelWrap} {...props}>
-        <label htmlFor={id} css={styles.label}>
+      <div css={styles.labelWrap}>
+        <label htmlFor={id} css={styles.label} {...props}>
           {label}
         </label>
       </div>

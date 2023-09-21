@@ -51,7 +51,7 @@ export const DragScrollContainer = ({ children, maxWidth, ...props }: Props) => 
         display: 'flex',
         overflowX: 'auto',
         cursor: isDragging ? 'grabbing' : 'auto',
-        padding: '1px 0 ',
+        padding: '1px 0',
 
         '&::-webkit-scrollbar': {
           display: 'none',

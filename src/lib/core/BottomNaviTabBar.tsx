@@ -45,7 +45,7 @@ export default function BottomNaviTabBar() {
       </NavigationMenu>
 
       <NavigationMenu
-        label="다이렉트"
+        label="프로필"
         href=""
         css={{
           color: router.pathname === '/4' ? colors.keyColor : colors.grey300,

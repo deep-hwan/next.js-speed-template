@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { Interpolation, Theme } from '@emotion/react';
 
 //libs
-import { Container, Section, Txt, Wrap } from '@/lib/widgets/_index';
+import { Column, Section, Txt, Wrap } from '@/lib/widgets/_index';
 import { MQ, colors } from '@/lib/theme/_index';
 
 //hooks
@@ -29,7 +29,7 @@ export default function Index() {
     <>
       <SEO />
       <Section maxWidth={560}>
-        <Container css={theme.container as Interpolation<Theme>}>
+        <Column css={theme.container as Interpolation<Theme>}>
           <Wrap gap={16}>
             <Txt as="h1" size={26}>
               {router.query.results
@@ -37,7 +37,7 @@ export default function Index() {
                 : `NEXT.JS 템플릿에 \n오신 것을 환영합니다`}
             </Txt>
 
-            <Txt color={colors.grey700}>
+            <Txt color={colors.grey800}>
               {router.query.results
                 ? `빠르게 트랜디한 UI를 만들어보세요\n당신의 개발 효율이 압도적으로 오를 거에요`
                 : `위젯을 조합하여 빠르게 UI를 만들어보세요\nCSS없이 오직 커스텀 위젯만으로도 UI를 만들 수 있어요😄`}
@@ -45,7 +45,7 @@ export default function Index() {
           </Wrap>
 
           {router.query.results ? <Results /> : <SignUp />}
-        </Container>
+        </Column>
       </Section>
     </>
   );

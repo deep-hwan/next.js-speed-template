@@ -2,7 +2,7 @@
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { HTMLAttributes } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { Container, IconTab, Layer } from '../_index';
+import { IconTab, Layer, Wrap } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -44,10 +44,10 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
   return (
     <>
       <Layer isActive={view} />
-      <Container
+      <Wrap
         css={
           {
-            ...styles.container,
+            ...styles.wrap,
             top: view ? '0' : '120%',
           } as Interpolation<Theme>
         }
@@ -61,7 +61,7 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
             </IconTab>
           </div>
         </div>
-      </Container>
+      </Wrap>
     </>
   );
 }
@@ -86,7 +86,7 @@ function CancelIcon() {
 // -------------- Styles --------------
 // ------------------------------------
 const styles = {
-  container: {
+  wrap: {
     width: '100%',
     height: '100%',
     position: 'fixed',

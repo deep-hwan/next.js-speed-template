@@ -1,29 +1,64 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
+import {
+  FlexTheme,
+  MarignTheme,
+  PaddingTheme,
+  StyleTheme,
+  ViewportTheme,
+} from '@/lib/theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
-
 interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: 'horizontal' | 'vertical';
-  gap?: number;
   align?: 'start' | 'center' | 'stretch' | 'end';
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+  gap?: number;
   width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
   maxHeight?: number;
+  backgroundColor?: string;
+  borderRadius?: number;
+  boxShadow?: {
+    x?: number;
+    y?: number;
+    blur?: number;
+    color?: string;
+  };
+  border?: {
+    solid: number;
+    color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  margin?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
 
-// -----------------------------------------------
-// -------------- Cantainer (부모1) --------------
-// -----------------------------------------------
-export const Container = forwardRef(function Container(
+// ----------------------------------------------
+// -------------- Container (부모1) --------------
+// ----------------------------------------------
+export const Container = forwardRef(function Wrap(
   {
     children,
     direction = 'vertical',
@@ -36,6 +71,12 @@ export const Container = forwardRef(function Container(
     maxWidth,
     minHeight,
     maxHeight,
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
+    padding,
+    margin,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -43,23 +84,13 @@ export const Container = forwardRef(function Container(
   return (
     <div
       ref={ref}
-      css={
-        {
-          ...styles.default,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'center',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
@@ -67,9 +98,9 @@ export const Container = forwardRef(function Container(
   );
 });
 
-// ------------------------------------------
-// -------------- Wrap (부모2) --------------
-// ------------------------------------------
+// -----------------------------------------
+// -------------- Wrap (부모1) --------------
+// -----------------------------------------
 export const Wrap = forwardRef(function Wrap(
   {
     children,
@@ -83,6 +114,12 @@ export const Wrap = forwardRef(function Wrap(
     maxWidth,
     minHeight,
     maxHeight,
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
+    padding,
+    margin,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -90,23 +127,13 @@ export const Wrap = forwardRef(function Wrap(
   return (
     <div
       ref={ref}
-      css={
-        {
-          ...styles.default,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
@@ -121,7 +148,7 @@ export const Row = forwardRef(function Row(
   {
     children,
     direction = 'horizontal',
-    align,
+    align = 'stretch',
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
@@ -130,6 +157,12 @@ export const Row = forwardRef(function Row(
     maxWidth,
     minHeight,
     maxHeight,
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
+    padding,
+    margin,
     ...props
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
@@ -137,22 +170,13 @@ export const Row = forwardRef(function Row(
   return (
     <div
       ref={ref}
-      css={
-        {
-          ...styles.default,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: 'row',
-          alignItems: align ? align : 'stretch',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          columnGap: `${gap}px`,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
@@ -167,7 +191,7 @@ export const Column = forwardRef(function Column(
   {
     children,
     direction = 'vertical',
-    align,
+    align = 'start',
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
@@ -176,6 +200,12 @@ export const Column = forwardRef(function Column(
     maxWidth,
     minHeight,
     maxHeight,
+    border,
+    backgroundColor,
+    borderRadius,
+    boxShadow,
+    padding,
+    margin,
     ...props
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
@@ -183,22 +213,13 @@ export const Column = forwardRef(function Column(
   return (
     <div
       ref={ref}
-      css={
-        {
-          ...styles.default,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: 'column',
-          alignItems: align ? align : 'flex-start',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: `${gap}px`,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
@@ -216,12 +237,23 @@ export const BoxShadow = forwardRef(function BoxShadow(
     align,
     crossAlign,
     wrap = 'nowrap',
+    gap = 0,
     width = '100%',
     minWidth,
     maxWidth,
     minHeight,
     maxHeight,
-    gap = 0,
+    border,
+    backgroundColor = '#ffffff',
+    borderRadius = 18,
+    boxShadow = {
+      x: 0,
+      y: 2,
+      blur: 36,
+      color: 'rgba(0,0,0,0.075)',
+    },
+    padding,
+    margin,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -229,46 +261,16 @@ export const BoxShadow = forwardRef(function BoxShadow(
   return (
     <div
       ref={ref}
-      css={
-        {
-          ...styles.boxShadow,
-          width: width,
-          minWidth: minWidth && `${minWidth}px`,
-          maxWidth: maxWidth && `${maxWidth}px`,
-          height: maxHeight ? '100%' : 'auto',
-          minHeight: `${minHeight}px`,
-          maxHeight: `${maxHeight}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-          alignItems: align ? align : direction === 'horizontal' ? 'stretch' : 'flex-start',
-          justifyContent: crossAlign && crossAlign,
-          flexWrap: wrap,
-          rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-          columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        } as Interpolation<Theme>
-      }
+      css={[
+        PaddingTheme({ padding }),
+        MarignTheme({ margin }),
+        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+      ]}
       {...props}
     >
       {children}
     </div>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  default: {
-    position: 'relative',
-    display: 'flex',
-    transition: '0.3s ease-in-out',
-  },
-
-  boxShadow: {
-    position: 'relative',
-    display: 'flex',
-    boxShadow: '0px 2px 36px rgba(0,0,0,0.07)',
-    background: '#fff',
-    borderRadius: '18px',
-    transition: '0.3s ease-in-out',
-  },
-};

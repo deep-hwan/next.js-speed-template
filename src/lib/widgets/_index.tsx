@@ -20,7 +20,8 @@ import { Select, Option } from './input/Select';
 
 //tab
 import { Button } from './tab/Button';
-import { Tab, TxtTab } from './tab/Tab';
+import { Tab } from './tab/Tab';
+import { TxtTab } from './tab/TxtTab';
 import { IconTab } from './tab/IconTab';
 import { ScrollTopTab } from './tab/ScrollTopTab';
 
