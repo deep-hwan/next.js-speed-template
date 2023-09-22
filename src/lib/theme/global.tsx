@@ -1,6 +1,5 @@
-import { CSSObject, Interpolation } from '@emotion/react';
+import { CSSObject, Interpolation, Theme } from '@emotion/react';
 import { colors } from './colors';
-import { Theme } from 'next-auth';
 
 // -------------------------------------
 // -------- Global_Input_Styles --------

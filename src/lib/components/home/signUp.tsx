@@ -227,7 +227,7 @@ export default function SignUp() {
         <Button
           type="submit"
           css={{ width: '100%' }}
-          // disabled={(name && email && context) === '' || !check1 || !check2}
+          disabled={(name && email && context) === '' || !check1 || !check2}
         >
           제출
         </Button>
