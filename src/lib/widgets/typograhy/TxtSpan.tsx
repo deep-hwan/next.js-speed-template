@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Interpolation } from '@emotion/react';
-import { Theme } from 'next-auth';
+import { Interpolation, Theme } from '@emotion/react';
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
 
 // --------------------------------------------

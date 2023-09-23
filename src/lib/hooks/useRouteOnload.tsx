@@ -1,7 +1,7 @@
 import { NextRouter, useRouter } from 'next/router';
 import { EventHandler, useEffect } from 'react';
 
-export function useOnloadState(handleOnLoad: EventHandler<any>) {
+export function useRouteOnloadState(handleOnLoad: EventHandler<any>) {
   const router: NextRouter = useRouter();
 
   useEffect(() => {

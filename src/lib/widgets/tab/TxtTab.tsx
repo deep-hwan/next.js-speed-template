@@ -9,6 +9,7 @@ import { MarignTheme, PaddingTheme } from '@/lib/theme/global';
 // --------------------------------------------
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  type?: 'button' | 'submit';
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   size?: number;
   color?: string;
@@ -36,12 +37,12 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 // -------------- TxtTab --------------
 // ------------------------------------
 export const TxtTab = forwardRef(function TxtTab(
-  { children, size, weight, color, padding, margin, ...props }: TabProps,
+  { children, type = 'button', size, weight, color, padding, margin, ...props }: TabProps,
   ref?: ForwardedRef<HTMLButtonElement>,
 ) {
   return (
     <button
-      type="button"
+      type={type}
       ref={ref}
       css={[
         TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],

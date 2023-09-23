@@ -18,6 +18,7 @@ import { Interpolation, Theme } from '@emotion/react';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Wrap } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -59,6 +60,7 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
   error?: boolean | string;
   errorMsg?: boolean | string;
   tolTip?: string;
+  edge?: ReactNode;
 }
 
 type DatePickerOnChangeType = (date: Date) => void;
@@ -171,7 +173,9 @@ Input.SearchField = forwardRef(function SearchField(
         } as Interpolation<Theme>
       }
     >
-      <SearchIcon />
+      <Wrap minWidth={17} width="auto">
+        <SearchIcon />
+      </Wrap>
 
       <input
         id={id}
@@ -433,7 +437,7 @@ Input.DateField = forwardRef(function DateField({
 // -------------- Textarea --------------
 // --------------------------------------
 Input.Textarea = forwardRef(function Textarea(
-  { shape = 'default', error, rows = 1, tolTip, ...props }: TextareaProps,
+  { shape = 'default', error, rows = 1, tolTip, edge, ...props }: TextareaProps,
   ref?: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
@@ -442,6 +446,7 @@ Input.Textarea = forwardRef(function Textarea(
         {
           ...styles.inputField,
           ...FieldTypeStyles(shape, error),
+          alignItems: 'flex-end',
         } as Interpolation<Theme>
       }
     >
@@ -456,6 +461,22 @@ Input.Textarea = forwardRef(function Textarea(
         }
         {...props}
       />
+
+      {edge && (
+        <span
+          css={
+            {
+              padding: shape === 'box' ? `10px 10px 10px 0` : `10px 12px 0 8px`,
+              height: shape === 'box' ? '50px' : '46px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            } as Interpolation<Theme>
+          }
+        >
+          {edge}
+        </span>
+      )}
     </div>
   );
 });
@@ -533,7 +554,7 @@ const styles = {
   label: {
     display: 'inline-block',
     fontSize: '0.813rem',
-    marginBottom: '5px',
+    marginBottom: '6px',
 
     '&:focus-within': {
       fontWeight: 500,
@@ -541,7 +562,7 @@ const styles = {
   },
 
   labelEdge: {
-    fontSize: '0.75rem',
+    fontSize: '0.7rem',
     color: '#ed5c5c',
     marginLeft: '3px',
   },
@@ -629,7 +650,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    columnGap: '9px',
+    columnGap: '8px',
     padding: '0 12px',
     transition: '0.4s ease-in-out',
   },
@@ -652,7 +673,7 @@ const styles = {
 // ----------------------------------------
 function SearchIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="17" height="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M22.3866 21.1152C22.3466 20.9052 22.2466 20.7152 22.0966 20.5652L17.1166 15.6052L17.2966 15.3752L17.1366 15.2552L17.2866 15.3752C18.7466 13.4352 19.4066 11.0052 19.1566 8.58523C18.8966 6.16523 17.7366 3.94523 15.8966 2.34523C14.0766 0.765232 11.7066 -0.0747677 9.27655 0.00523228C6.84655 0.0952323 4.54655 1.09523 2.82655 2.81523C1.10655 4.53523 0.0965528 6.84523 0.0065528 9.26523C-0.0834472 11.6952 0.756553 14.0652 2.34655 15.9052C3.93655 17.7452 6.16655 18.9052 8.58655 19.1652C11.0066 19.4252 13.4266 18.7552 15.3766 17.3052L15.6066 17.1252L20.5666 22.1052C20.7666 22.3052 21.0366 22.4152 21.3166 22.4052H21.3266C21.5366 22.4052 21.7466 22.3352 21.9266 22.2152C22.1066 22.0952 22.2366 21.9252 22.3166 21.7352C22.3966 21.5352 22.4166 21.3252 22.3766 21.1152H22.3866ZM9.64655 17.0552C7.67655 17.0552 5.79655 16.2752 4.40655 14.8852C3.01655 13.4952 2.23655 11.6052 2.23655 9.64523C2.23655 7.68523 3.01655 5.79523 4.40655 4.40523C5.79655 3.01523 7.67655 2.23523 9.64655 2.23523C11.5866 2.27523 13.4366 3.07523 14.7966 4.45523C16.1566 5.84523 16.9166 7.70523 16.9166 9.64523C16.9166 11.5852 16.1566 13.4452 14.7966 14.8352C13.4366 16.2252 11.5866 17.0152 9.64655 17.0552Z"
         fill="#999999"

@@ -58,7 +58,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
 // ----------------------------------------------
 // -------------- Container (부모1) --------------
 // ----------------------------------------------
-export const Container = forwardRef(function Wrap(
+export const Container = forwardRef(function Container(
   {
     children,
     direction = 'vertical',

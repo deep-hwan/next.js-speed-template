@@ -8,6 +8,7 @@ import { MarignTheme, PaddingTheme, StyleTheme } from '@/lib/theme/global';
 // --------------------------------------------
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  type?: 'button' | 'submit';
   width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
@@ -53,6 +54,7 @@ type ThemeStyleProps = Omit<Props, 'children'>;
 export const Tab = forwardRef(function Tab(
   {
     children,
+    type = 'button',
     width = 'auto',
     maxWidth,
     minWidth,
@@ -86,7 +88,7 @@ export const Tab = forwardRef(function Tab(
 
   return (
     <button
-      type="button"
+      type={type}
       ref={ref}
       css={[
         buttonStyles as Interpolation<Theme>,

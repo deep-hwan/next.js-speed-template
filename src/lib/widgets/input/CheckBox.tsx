@@ -89,7 +89,7 @@ const styles = {
     cursor: 'pointer',
 
     '&:hover': {
-      backgroundColor: '#f5f7fc',
+      backgroundColor: colors.ground200,
     },
   },
 

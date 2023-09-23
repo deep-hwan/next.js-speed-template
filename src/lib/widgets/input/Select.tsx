@@ -168,7 +168,7 @@ const styles = {
   },
 
   labelEdge: {
-    fontSize: '0.75rem',
+    fontSize: '0.7rem',
     color: '#ed5c5c',
     marginLeft: '3px',
   },
