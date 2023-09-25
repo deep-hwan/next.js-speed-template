@@ -18,7 +18,9 @@ import { Interpolation, Theme } from '@emotion/react';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Wrap } from '../_index';
+
+import { Column, Padding, Row, TxtSpan, TxtTab, Wrap } from '../_index';
+import { GlobalInputStyles } from '../../theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -87,15 +89,9 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <div css={{ ...styles.wrap, maxWidth: `${maxWidth}px` } as Interpolation<Theme>} {...props}>
+    <Column maxWidth={maxWidth} {...props}>
       {label && (
-        <label
-          htmlFor={id}
-          css={{
-            color: error ? '#ED5C5C' : '#797979',
-            ...styles.label,
-          }}
-        >
+        <label htmlFor={id} css={[labelTheme(error)]}>
           {label}
           {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
         </label>
@@ -109,7 +105,7 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
       {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
 
       {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
-    </div>
+    </Column>
   );
 }
 
@@ -121,38 +117,15 @@ Input.TextField = forwardRef(function TextField(
   ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <div
-      css={
-        {
-          ...styles.inputField,
-          ...FieldTypeStyles(shape, error),
-        } as Interpolation<Theme>
-      }
-    >
-      <input
-        ref={ref}
-        css={
-          {
-            ...styles.input,
-            ...InputTypeStyles('default', shape),
-          } as Interpolation<Theme>
-        }
-        {...props}
-      />
+    <Row align="center" css={[FieldTypeStyles(shape, error)]}>
+      <input ref={ref} css={[InputTypeStyles('default', shape), InputTheme()]} {...props} />
 
       {edge && (
-        <span
-          css={
-            {
-              ...styles.inputEdge,
-              paddingRight: shape === 'box' ? `10px` : `12px`,
-            } as Interpolation<Theme>
-          }
-        >
+        <TxtSpan padding={{ right: shape === 'box' ? 10 : 12 }} color="#999999">
           {edge}
-        </span>
+        </TxtSpan>
       )}
-    </div>
+    </Row>
   );
 });
 
@@ -164,15 +137,7 @@ Input.SearchField = forwardRef(function SearchField(
   ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <div
-      ref={ref}
-      css={
-        {
-          ...styles.searchBox,
-          ...FieldTypeStyles(shape),
-        } as Interpolation<Theme>
-      }
-    >
+    <Row align="center" gap={8} css={[FieldTypeStyles(shape)]} padding={{ horizontal: 12 }}>
       <Wrap minWidth={17} width="auto">
         <SearchIcon />
       </Wrap>
@@ -187,26 +152,16 @@ Input.SearchField = forwardRef(function SearchField(
             document.getElementById(`${id}-button`)?.click();
           }
         }}
-        css={
-          {
-            ...styles.input,
-            ...InputTypeStyles('search', shape),
-          } as Interpolation<Theme>
-        }
+        css={[InputTypeStyles('search', shape), InputTheme()]}
         {...props}
       />
 
       {searchTab && (
-        <button
-          type="button"
-          id={`${id}-button`}
-          css={styles.searchTab as Interpolation<Theme>}
-          onClick={onClick}
-        >
+        <TxtTab type="button" id={`${id}-button`} size={14} color="#4788f4" onClick={onClick}>
           검색
-        </button>
+        </TxtTab>
       )}
-    </div>
+    </Row>
   );
 });
 
@@ -260,14 +215,7 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
   };
 
   return (
-    <div
-      css={
-        {
-          ...styles.inputField,
-          ...FieldTypeStyles(shape, error),
-        } as Interpolation<Theme>
-      }
-    >
+    <Row align="center" css={[FieldTypeStyles(shape, error)]}>
       <input
         ref={ref}
         type="text"
@@ -275,28 +223,16 @@ Input.PhoneNumberField = forwardRef(function PhoneNumberField(
         maxLength={13}
         value={internalValue}
         onChange={handleInputChange}
-        css={
-          {
-            ...styles.input,
-            ...InputTypeStyles('default', shape),
-          } as Interpolation<Theme>
-        }
+        css={[InputTypeStyles('default', shape), InputTheme()]}
         {...props}
       />
 
       {edge && (
-        <span
-          css={
-            {
-              ...styles.inputEdge,
-              paddingRight: shape === 'box' ? `10px` : `12px`,
-            } as Interpolation<Theme>
-          }
-        >
+        <TxtSpan padding={{ right: shape === 'box' ? 10 : 12 }} color="#999999">
           {edge}
-        </span>
+        </TxtSpan>
       )}
-    </div>
+    </Row>
   );
 });
 
@@ -347,41 +283,22 @@ Input.NumericField = forwardRef(function NumericField(
     }
   };
   return (
-    <div
-      css={
-        {
-          ...styles.inputField,
-          ...FieldTypeStyles(shape, error),
-        } as Interpolation<Theme>
-      }
-    >
+    <Row align="center" css={[FieldTypeStyles(shape, error)]}>
       <input
         ref={ref}
         {...props}
         value={displayValue}
         onChange={handleInputChange}
         autoComplete="off"
-        css={
-          {
-            ...styles.input,
-            ...InputTypeStyles('default', shape),
-          } as Interpolation<Theme>
-        }
+        css={[InputTypeStyles('default', shape), InputTheme()]}
       />
 
       {edge && (
-        <span
-          css={
-            {
-              ...styles.inputEdge,
-              paddingRight: shape === 'box' ? `10px` : `12px`,
-            } as Interpolation<Theme>
-          }
-        >
+        <TxtSpan padding={{ right: shape === 'box' ? 10 : 12 }} color="#999999">
           {edge}
-        </span>
+        </TxtSpan>
       )}
-    </div>
+    </Row>
   );
 });
 
@@ -406,14 +323,7 @@ Input.DateField = forwardRef(function DateField({
   };
 
   return (
-    <div
-      css={
-        {
-          ...styles.inputField,
-          ...FieldTypeStyles(shape, error),
-        } as Interpolation<Theme>
-      }
-    >
+    <Row align="center" css={[FieldTypeStyles(shape, error)]}>
       <DatePicker
         placeholderText={placeholder}
         dateFormat={dateFormat}
@@ -421,15 +331,10 @@ Input.DateField = forwardRef(function DateField({
         selected={selected}
         onChange={handleDateChange}
         autoComplete="off"
-        css={
-          {
-            ...styles.input,
-            ...InputTypeStyles('default', shape),
-          } as Interpolation<Theme>
-        }
+        css={[InputTypeStyles('default', shape), InputTheme()]}
         {...props}
       />
-    </div>
+    </Row>
   );
 });
 
@@ -441,43 +346,36 @@ Input.Textarea = forwardRef(function Textarea(
   ref?: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
-    <div
-      css={
-        {
-          ...styles.inputField,
-          ...FieldTypeStyles(shape, error),
-          alignItems: 'flex-end',
-        } as Interpolation<Theme>
-      }
-    >
+    <Row align="end" css={[FieldTypeStyles(shape, error)]}>
       <textarea
         ref={ref}
         rows={rows}
-        css={
+        css={[
+          InputTypeStyles('default', shape),
+          InputTheme(),
           {
-            ...styles.input,
-            ...InputTypeStyles('default', shape),
-          } as Interpolation<Theme>
-        }
+            ...(shape === 'box' && rows >= 2 ? styles.textarea : {}),
+          } as Interpolation<Theme>,
+        ]}
         {...props}
       />
 
       {edge && (
-        <span
-          css={
-            {
-              padding: shape === 'box' ? `10px 10px 10px 0` : `10px 12px 0 8px`,
-              height: shape === 'box' ? '50px' : '46px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            } as Interpolation<Theme>
-          }
+        <Padding
+          width="auto"
+          minHeight={shape === 'box' ? 50 : 46}
+          maxHeight={shape === 'box' ? 50 : 46}
+          vertical={10}
+          left={shape === 'box' ? 0 : 8}
+          right={shape === 'box' ? 14 : 12}
+          color="#999999"
+          align="center"
+          crossAlign="center"
         >
           {edge}
-        </span>
+        </Padding>
       )}
-    </div>
+    </Row>
   );
 });
 
@@ -539,19 +437,9 @@ function InputTypeStyles(
   return VARIANTS[type][shape] || VARIANTS[type].default;
 }
 
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  wrap: {
-    width: '100%',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    transition: '0.3s ease-in-out',
-  },
-
-  label: {
+function labelTheme(error: boolean) {
+  return {
+    color: error ? '#ED5C5C' : '#797979',
     display: 'inline-block',
     fontSize: '0.813rem',
     marginBottom: '6px',
@@ -559,8 +447,30 @@ const styles = {
     '&:focus-within': {
       fontWeight: 500,
     },
-  },
+  };
+}
 
+function InputTheme(): Interpolation<Theme> {
+  return {
+    ...GlobalInputStyles,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    margin: 0,
+    border: 'none',
+    backgroundColor: 'transparent',
+    outline: 'none',
+    borderRadius: '0px',
+    fontSize: '0.938rem',
+    color: '#555555',
+    overflow: 'hidden',
+    resize: 'none',
+    transition: '0.4s ease-in-out',
+  };
+}
+
+// -------------- Styles --------------
+const styles = {
   labelEdge: {
     fontSize: '0.7rem',
     color: '#ed5c5c',
@@ -583,87 +493,28 @@ const styles = {
     marginTop: '8px',
   },
 
-  inputField: {
-    position: 'relative',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    border: 'none',
-    backgroundColor: '#f8f9fc',
-    transition: '0.4s ease-in-out',
-
-    '&:focus, &:hover, &:active': { transition: '0.4s ease-in-out' },
-  },
-
-  input: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    margin: 0,
-    border: 'none',
-    backgroundColor: 'transparent',
-    outline: 'none',
-    borderRadius: '0px',
-    fontSize: '0.938rem',
-    color: '#555555',
-    overflow: 'hidden',
-    resize: 'none',
-    transition: '0.4s ease-in-out',
-
-    '::placeholder': { color: '#cccccc' },
-
-    "&[type='number']::-webkit-outer-spin-button, &[type='number']::-webkit-inner-spin-button": {
-      WebkitAppearance: 'none',
-      margin: 0,
-    },
-
-    '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active':
-      {
-        WebkitTextFillColor: '#555555',
-        WebkitBoxShadow: '0 0 0px 1000px transparent inset',
-        boxShadow: '0 0 0px 1000px transparent inset',
-        transition: 'background-color 5000s ease-in-out 0s',
-        transitionDelay: '9999s',
-        transitionProperty: 'background-color, color',
-      },
-
-    '&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active': {
-      WebkitTextFillColor: '#555555',
-      WebkitBoxShadow: '0 0 0px 1000px transparent inset',
-      boxShadow: '0 0 0px 1000px transparent inset',
-      transition: 'background-color 5000s ease-in-out 0s',
-    },
+  textarea: {
+    overflow: 'auto',
 
     '::-webkit-scrollbar': {
-      display: 'none',
+      display: 'flex',
+      width: '6px',
+      height: '6px',
     },
-  },
-
-  inputEdge: {
-    fontSize: '0.875rem',
-    color: '#999999',
-    whiteSpace: 'nowrap',
-    paddingRight: '12px',
-  },
-
-  searchBox: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    columnGap: '8px',
-    padding: '0 12px',
-    transition: '0.4s ease-in-out',
-  },
-
-  searchTab: {
-    whiteSpace: 'nowrap',
-    position: 'relative',
-    fontSize: '0.875rem',
-    color: '#4788f4',
-    backgrounColor: 'transparent !important',
-    transition: '0.3s ease-in-out',
-    '&:hover': {
-      fontWeight: '500',
+    '::-webkit-scrollbar-track': {
+      backgroundColor: 'transparent',
+    },
+    '::-webkit-scrollbar-thumb': {
+      backgroundColor: '#cccccc',
+      borderRadius: '100px',
+    },
+    '::-webkit-scrollbar-thumb:hover': {
+      background: '#e2e2e2',
+    },
+    '::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment': {
+      width: 0,
+      height: 0,
+      backgroundColor: 'transparent',
     },
   },
 };

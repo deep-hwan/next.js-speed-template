@@ -12,6 +12,8 @@ import React, {
   memo,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
+import { Column } from '../_index';
+import { GlobalInputStyles } from '../../theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -47,15 +49,9 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
   const tolTip: string = child.props.tolTip ?? undefined;
 
   return (
-    <div css={{ ...styles.wrap, maxWidth: `${maxWidth}px` } as Interpolation<Theme>} {...props}>
+    <Column maxWidth={maxWidth} {...props}>
       {label && (
-        <label
-          htmlFor={id}
-          css={{
-            color: error ? '#ED5C5C' : '#797979',
-            ...styles.label,
-          }}
-        >
+        <label htmlFor={id} css={[labelTheme(error)]}>
           {label}
           {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
         </label>
@@ -69,7 +65,7 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
       {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
 
       {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
-    </div>
+    </Column>
   );
 }
 
@@ -87,13 +83,7 @@ Select.SelectBox = forwardRef(function SelectBox(
       {cloneElement(
         <select
           ref={ref}
-          css={
-            {
-              ...styles.select,
-              ...SelectTypeStyles(shape, error),
-              color: value !== '' ? '#555555' : '#cccccc',
-            } as Interpolation<Theme>
-          }
+          css={[SelectTypeStyles(shape, error), SelectTheme(value as boolean | string | number)]}
           {...props}
         >
           {placeholder && (
@@ -145,55 +135,27 @@ function SelectTypeStyles(shape: 'default' | 'box', error?: boolean | string) {
   return styles;
 }
 
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  wrap: {
-    width: '100%',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    transition: '0.3s ease-in-out',
-  },
-
-  label: {
+function labelTheme(error: boolean) {
+  return {
+    color: error ? '#ED5C5C' : '#797979',
     display: 'inline-block',
     fontSize: '0.813rem',
-    marginBottom: '5px',
+    marginBottom: '6px',
 
     '&:focus-within': {
       fontWeight: 500,
     },
-  },
+  };
+}
 
-  labelEdge: {
-    fontSize: '0.7rem',
-    color: '#ed5c5c',
-    marginLeft: '3px',
-  },
-
-  errMsg: {
-    color: '#ed5c5c',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '6px',
-  },
-
-  tolTip: {
-    color: '#999999',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '8px',
-  },
-
-  select: {
+function SelectTheme(value: boolean | string | number): Interpolation<Theme> {
+  return {
+    ...GlobalInputStyles,
     width: '100%',
     minWidth: '100px',
     display: 'flex',
     fontSize: `0.913rem !important`,
+    color: value !== '' ? '#555555' : '#cccccc',
     font: 'inherit',
     WebkitBoxSizing: 'border-box',
     MozBoxSizing: 'border-box',
@@ -215,31 +177,32 @@ const styles = {
       color: '#999',
       opacity: '0.9',
     },
+  };
+}
 
-    '::placeholder': { color: '#cccccc' },
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
+const styles = {
+  labelEdge: {
+    fontSize: '0.7rem',
+    color: '#ed5c5c',
+    marginLeft: '3px',
+  },
 
-    "&[type='number']::-webkit-outer-spin-button, &[type='number']::-webkit-inner-spin-button": {
-      WebkitAppearance: 'none',
-      margin: 0,
-    },
+  errMsg: {
+    color: '#ed5c5c',
+    fontSize: '0.75rem',
+    whiteSpace: 'pre-line',
+    lineHeight: '1.4',
+    marginTop: '6px',
+  },
 
-    '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active':
-      {
-        WebkitTextFillColor: '#555555',
-        WebkitBoxShadow: '0 0 0px 1000px transparent inset',
-        boxShadow: '0 0 0px 1000px transparent inset',
-        transition: 'background-color 5000s ease-in-out 0s',
-      },
-
-    '&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active': {
-      WebkitTextFillColor: '#555555',
-      WebkitBoxShadow: '0 0 0px 1000px transparent inset',
-      boxShadow: '0 0 0px 1000px transparent inset',
-      transition: 'background-color 5000s ease-in-out 0s',
-    },
-
-    '::-webkit-scrollbar': {
-      display: 'none',
-    },
+  tolTip: {
+    color: '#999999',
+    fontSize: '0.75rem',
+    whiteSpace: 'pre-line',
+    lineHeight: '1.4',
+    marginTop: '8px',
   },
 };

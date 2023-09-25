@@ -1,13 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import { Interpolation, Theme } from '@emotion/react';
 
 //libs
 import { Column, Section, Txt, Wrap } from '@/lib/widgets/_index';
 import { MQ, colors } from '@/lib/theme/_index';
-
-//hooks
-import { useRaiseEditor } from 'react-raise-editor';
 
 //components
 import SEO from '@/seo.config';
@@ -17,13 +14,6 @@ import Results from '@/lib/components/home/results';
 //
 export default function Index() {
   const router: NextRouter = useRouter();
-  const textRef = useRef<HTMLTextAreaElement | null>(null);
-  const [text, setText] = useState<string>('');
-
-  useRaiseEditor({
-    state: text,
-    ref: textRef,
-  });
 
   return (
     <>

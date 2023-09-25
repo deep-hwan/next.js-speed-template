@@ -18,6 +18,7 @@ export const GlobalInputStyles: CSSObject = {
       WebkitBoxShadow: '0 0 0px 1000px transparent inset',
       boxShadow: '0 0 0px 1000px transparent inset',
       transition: 'background-color 5000s ease-in-out 0s',
+      transitionDelay: '9999s',
     },
 
   '&:autofill, &:autofill:hover, &:autofill:focus, &:autofill:active': {
@@ -27,7 +28,6 @@ export const GlobalInputStyles: CSSObject = {
     transition: 'background-color 5000s ease-in-out 0s',
   },
 
-  // Hide the scrollbar
   '::-webkit-scrollbar': {
     display: 'none',
   },

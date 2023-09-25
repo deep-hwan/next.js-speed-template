@@ -15,6 +15,7 @@ import {
   Input,
   LoadingLayer,
   Padding,
+  Select,
   Spacing,
   Txt,
   TxtSpan,
@@ -118,6 +119,12 @@ export default function SignUp() {
             onChange={handleOnChange}
           />
         </Input>
+
+        <Select label="옵션">
+          <Select.SelectBox placeholder="옵션을 선택하세요" shape="box">
+            <option>asdsa</option>
+          </Select.SelectBox>
+        </Select>
 
         {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
         <Input label="연락처">
