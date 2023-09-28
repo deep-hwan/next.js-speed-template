@@ -19,6 +19,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
+  height?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
@@ -67,6 +68,7 @@ export const Container = forwardRef(function Container(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -87,7 +89,7 @@ export const Container = forwardRef(function Container(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}
@@ -110,6 +112,7 @@ export const Wrap = forwardRef(function Wrap(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -130,7 +133,7 @@ export const Wrap = forwardRef(function Wrap(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}
@@ -153,6 +156,7 @@ export const Row = forwardRef(function Row(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -173,7 +177,7 @@ export const Row = forwardRef(function Row(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}
@@ -196,6 +200,7 @@ export const Column = forwardRef(function Column(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -216,7 +221,7 @@ export const Column = forwardRef(function Column(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}
@@ -239,6 +244,7 @@ export const BoxShadow = forwardRef(function BoxShadow(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -264,7 +270,7 @@ export const BoxShadow = forwardRef(function BoxShadow(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}

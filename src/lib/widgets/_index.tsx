@@ -13,6 +13,10 @@ import { BoxShadow } from './layout/View';
 import { Accordion, AccordionPanel } from './layout/Accordion';
 import { DragScrollContainer } from './layout/DragScrollContainer';
 
+//images
+import { ProfileImage } from './images/ProfileImage';
+import { Img } from './images/Img';
+
 //input
 import { Input } from './input/Input';
 import { CheckInput } from './input/CheckBox';
@@ -44,6 +48,8 @@ export {
   BottomNavigationBar,
   NavigationMenu,
   Spacing,
+  ProfileImage,
+  Img,
   Section,
   Container,
   DragScrollContainer,

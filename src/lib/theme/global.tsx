@@ -110,6 +110,7 @@ export function MarignTheme({
 // ---------------------------
 export function ViewportTheme({
   width,
+  height,
   minWidth,
   maxWidth,
   minHeight,
@@ -118,6 +119,7 @@ export function ViewportTheme({
   width?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
+  height?: 'auto' | '100%';
   minHeight?: number;
   maxHeight?: number;
 }): Interpolation<Theme> {
@@ -125,7 +127,7 @@ export function ViewportTheme({
     width: width,
     minWidth: `${minWidth}px`,
     maxWidth: `${maxWidth}px`,
-    height: maxHeight ? '100%' : 'auto',
+    height: height ? height : maxHeight ? '100%' : 'auto',
     minHeight: `${minHeight}px`,
     maxHeight: `${maxHeight}px`,
     transition: '0.3s ease-in-out',
@@ -179,12 +181,23 @@ export function StyleTheme({
   };
   border?: {
     solid: number;
+    position?: 'left' | 'right' | 'top' | 'bottom';
     color?: string;
   };
 }): Interpolation<Theme> {
   return {
     backgroundColor: backgroundColor,
-    border: `${border?.solid}px solid ${border?.color}`,
+    border:
+      border?.position !== 'bottom' && 'top' && 'right' && 'left'
+        ? `${border?.solid}px solid ${border?.color}`
+        : undefined,
+    borderBottom:
+      border?.position === 'bottom' ? `${border?.solid}px solid ${border?.color}` : undefined,
+    borderTop: border?.position === 'top' ? `${border?.solid}px solid ${border?.color}` : undefined,
+    borderRight:
+      border?.position === 'right' ? `${border?.solid}px solid ${border?.color}` : undefined,
+    borderLeft:
+      border?.position === 'left' ? `${border?.solid}px solid ${border?.color}` : undefined,
     borderRadius: `${borderRadius}px`,
     boxShadow: boxShadow
       ? `${boxShadow?.x}px ${boxShadow?.y}px ${boxShadow?.blur}px ${boxShadow?.color}`

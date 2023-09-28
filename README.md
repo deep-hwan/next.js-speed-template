@@ -9,10 +9,11 @@
 
 ## Install
 
-(선택) emotion 적용 문제 시 아래를 설치하세요
+(선택) typescript 및 emotion 적용 문제 시 아래를 설치하세요
 
     npm install typescript @types/react @types/react-dom @emotion/styled @emotion/react
     npm install --save-dev eslint-plugin-emotion @emotion/eslint-plugin
+    npm update react react-dom @types/react
 
 ---
 
@@ -79,6 +80,11 @@
 - Spacing : 공간 및 여백을 설정하는 박스 레이아웃
 - Layout : 팝업 및 모달 시 노출되는 백그라운드 레이아웃
 - Accordion / AccordionPanel : 아코디언 드롭다운의 타이틀 및 아코디언 패널
+
+**Image Widgets**
+
+- ProfileImage : 프로필 이미지 위젯
+- Img : 최적화 이미지 위젯
 
 **Input Widgets**
 

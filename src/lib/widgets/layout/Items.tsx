@@ -19,6 +19,7 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
+  height?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
@@ -51,6 +52,7 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
+  height?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
@@ -65,6 +67,7 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   };
   border?: {
     solid: number;
+    position?: 'left' | 'right' | 'top' | 'bottom';
     color?: string;
   };
   padding?: {
@@ -99,6 +102,7 @@ export const Items = forwardRef(function Items(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -115,7 +119,7 @@ export const Items = forwardRef(function Items(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({
           direction,
           align: align ? align : direction === 'horizontal' ? 'stretch' : 'center',
@@ -143,6 +147,7 @@ export const Item = forwardRef(function Item(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -163,7 +168,7 @@ export const Item = forwardRef(function Item(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}

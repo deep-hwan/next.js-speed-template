@@ -120,12 +120,6 @@ export default function SignUp() {
           />
         </Input>
 
-        <Select label="옵션">
-          <Select.SelectBox placeholder="옵션을 선택하세요" shape="box">
-            <option>asdsa</option>
-          </Select.SelectBox>
-        </Select>
-
         {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
         <Input label="연락처">
           <Input.PhoneNumberField

@@ -10,7 +10,7 @@ import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from 'react-quer
 import '@/styles/globals.css';
 
 //components
-import Layout from '@/lib/core/Layout';
+import AppLayout from '@/lib/core/App';
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -22,9 +22,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Hydrate state={dehydratedState}>
         <SessionProvider session={pageProps.session} basePath="/api/auth">
           <RecoilRoot>
-            <Layout>
+            <AppLayout>
               <Component {...pageProps} />
-            </Layout>
+            </AppLayout>
           </RecoilRoot>
         </SessionProvider>
       </Hydrate>

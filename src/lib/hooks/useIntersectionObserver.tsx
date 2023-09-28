@@ -1,4 +1,12 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
+
+interface useObserverProps {
+  target: MutableRefObject<Element | null>;
+  onIntersect: IntersectionObserverCallback;
+  root?: Element | null;
+  rootMargin?: string;
+  threshold?: number | number[];
+}
 
 export const useObserver = ({
   target, // 감지할 대상, ref를 넘길 예정
@@ -6,9 +14,9 @@ export const useObserver = ({
   root = null, // 교차할 부모 요소, 아무것도 넘기지 않으면 document가 기본이다.
   rootMargin = '0px', // root와 target이 감지하는 여백의 거리
   threshold = 0.0, // 임계점. 1.0이면 root내에서 target이 100% 보여질 때 callback이 실행된다.
-}) => {
+}: useObserverProps) => {
   useEffect(() => {
-    let observer;
+    let observer: IntersectionObserver | undefined;
 
     // 넘어오는 element가 있어야 observer를 생성할 수 있도록 한다.
     if (target && target.current) {

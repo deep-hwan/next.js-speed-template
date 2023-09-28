@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
@@ -10,7 +9,7 @@ const cookies = new Cookies();
  * @param {*} options
  */
 
-type SETCOOKIE = (name: string, value: string, option: any) => void;
+type SETCOOKIE = (name: string, value: string, option?: any) => void;
 
 export const setCookie: SETCOOKIE = (name, value, option) => {
   return cookies.set(name, value, {

@@ -7,12 +7,13 @@ import React, { useRef, useState, MouseEvent, HTMLAttributes, ReactNode } from '
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   maxWidth?: number;
+  gap?: number;
 }
 
 // -------------------------------------------------
 // -------------- DragScrollContainer --------------
 // -------------------------------------------------
-export const DragScrollContainer = ({ children, maxWidth, ...props }: Props) => {
+export const DragScrollContainer = ({ children, maxWidth, gap, ...props }: Props) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
@@ -48,6 +49,7 @@ export const DragScrollContainer = ({ children, maxWidth, ...props }: Props) => 
       css={{
         width: '100%',
         maxWidth: `${maxWidth}px`,
+        columnGap: `${gap}px`,
         display: 'flex',
         overflowX: 'auto',
         cursor: isDragging ? 'grabbing' : 'auto',

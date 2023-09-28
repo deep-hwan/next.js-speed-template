@@ -20,6 +20,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   width?: 'auto' | '100%';
+  height?: 'auto' | '100%';
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
@@ -68,6 +69,7 @@ export const Form = forwardRef(function Form(
     wrap = 'nowrap',
     gap = 0,
     width = '100%',
+    height,
     minWidth,
     maxWidth,
     minHeight,
@@ -88,7 +90,7 @@ export const Form = forwardRef(function Form(
       css={[
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
       ]}
