@@ -42,6 +42,15 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
     left?: number;
     right?: number;
   };
+  position?: {
+    type?: 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+    top?: number;
+    bottom?: number;
+    right?: number;
+    left?: number;
+    x?: string;
+    y?: string;
+  };
 }
 
 interface ItemProps extends HTMLAttributes<HTMLLIElement> {
