@@ -116,14 +116,14 @@ const StyledWrap = styled.div`
     padding-bottom: 10px;
   }
 
-  // 달력 네비게이션 바
+  // 달력 > 네비게이션 바
   .react-calendar__navigation {
     margin-bottom: 0;
     padding: 10px 10px;
     height: auto;
   }
 
-  // 달력 네비게이션 버튼 : 화살표
+  // 달력 > 네비게이션 버튼 : 화살표
   .react-calendar__navigation button {
     min-width: 40px;
     min-height: 40px;
@@ -132,14 +132,14 @@ const StyledWrap = styled.div`
     color: #797979;
   }
 
-  // 달력 네비게이션 버튼 : 타이틀
+  // 달력 > 네비게이션 버튼 : 타이틀
   .react-calendar__navigation__label__labelText {
     font-weight: 500;
     color: #666666;
     font-size: 15px;
   }
 
-  // 달력 네비게이션 버튼 : 각 화살표 디테일
+  // 달력 > 네비게이션 버튼 : 각 화살표 디테일
   .react-calendar__navigation__prev2-button::before {
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10.999" height="12" viewBox="0 0 10.999 12"><g id="prev2" transform="translate(-475 14431)"><path id="패스_87848" data-name="패스 87848" d="M5.817,1.158,1.62,5.927l4.09,4.927a.685.685,0,0,1-.023.941.682.682,0,0,1-.222.15A.7.7,0,0,1,5.2,12a.71.71,0,0,1-.268-.058.7.7,0,0,1-.224-.155L.185,6.377a.68.68,0,0,1,.008-.939L4.836.209A.662.662,0,0,1,5.057.054a.674.674,0,0,1,.531,0,.662.662,0,0,1,.221.155.695.695,0,0,1,.006.949" transform="translate(475 -14431)" fill="current"/><path id="패스_87849" data-name="패스 87849" d="M10.817,1.158,6.62,5.927l4.089,4.927a.685.685,0,0,1-.023.941.681.681,0,0,1-.222.15A.694.694,0,0,1,10.2,12a.709.709,0,0,1-.268-.058.7.7,0,0,1-.224-.155L5.185,6.377a.68.68,0,0,1,.008-.939L9.836.209a.662.662,0,0,1,.221-.155.674.674,0,0,1,.531,0,.663.663,0,0,1,.221.155.7.7,0,0,1,.006.949" transform="translate(475 -14431)" fill="current"/></g></svg>');
   }
@@ -154,7 +154,7 @@ const StyledWrap = styled.div`
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10.999" height="12" viewBox="0 0 10.999 12"><g id="next2" transform="translate(-438 14431)"><path id="패스_87845" data-name="패스 87845" d="M5.183,10.842l4.2-4.769L5.291,1.145A.672.672,0,0,1,5.114.687.689.689,0,0,1,5.535.054.693.693,0,0,1,5.8,0a.71.71,0,0,1,.268.058.7.7,0,0,1,.224.155l4.524,5.41a.68.68,0,0,1-.008.939L6.164,11.791a.661.661,0,0,1-.221.155.674.674,0,0,1-.531,0,.661.661,0,0,1-.221-.155.7.7,0,0,1-.006-.949" transform="translate(438 -14431)" fill="current"/><path id="패스_87846" data-name="패스 87846" d="M.183,10.842l4.2-4.769L.291,1.145A.672.672,0,0,1,.114.687.676.676,0,0,1,.313.2.683.683,0,0,1,.535.054.693.693,0,0,1,.8,0a.71.71,0,0,1,.268.058.7.7,0,0,1,.224.155l4.524,5.41a.68.68,0,0,1-.008.939L1.164,11.791a.661.661,0,0,1-.221.155.674.674,0,0,1-.531,0,.661.661,0,0,1-.221-.155.7.7,0,0,1-.006-.949" transform="translate(438 -14431)" fill="current"/></g></svg>');
   }
 
-  // 달력 네비게이션 버튼 : hover
+  // 달력 > 네비게이션 버튼 : hover
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
     background-color: #f8f8fa;
@@ -165,6 +165,11 @@ const StyledWrap = styled.div`
   }
   abbr[title] {
     text-decoration: none;
+  }
+
+  // 달력 > 날짜 > 전체 박스
+  .react-calendar__viewContainer {
+    padding: 0 6px;
   }
 
   // 날짜 > 요일
@@ -185,7 +190,7 @@ const StyledWrap = styled.div`
     color: #555;
   }
 
-  // mm 박스 > 달력 > MM날짜
+  // mm 박스 > 달력 > mm날짜
   .react-calendar__year-view__months {
     padding: 0 10px;
   }
