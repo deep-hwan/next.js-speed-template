@@ -3,13 +3,13 @@ import { NextRouter, useRouter } from 'next/router';
 import { Interpolation, Theme } from '@emotion/react';
 
 //libs
-import { Column, Section, Txt, Wrap } from '@/lib/widgets/_index';
-import { MQ, colors } from '@/lib/theme/_index';
+import { Column, Section, Txt, Wrap } from '@/@ui_widgets_libs/_index';
+import { MQ, colors } from '@/libs/theme/_index';
 
 //components
 import SEO from '@/seo.config';
-import SignUp from '@/lib/components/home/signUp';
-import Results from '@/lib/components/home/results';
+import SignUp from '@/libs/components/home/signUp';
+import Results from '@/libs/components/home/results';
 
 //
 export default function Index() {

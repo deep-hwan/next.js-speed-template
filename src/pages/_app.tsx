@@ -10,7 +10,7 @@ import { dehydrate, Hydrate, QueryClient, QueryClientProvider } from 'react-quer
 import '@/styles/globals.css';
 
 //components
-import AppLayout from '@/lib/core/App';
+import AppLayout from '@/libs/core/App';
 
 //
 export default function MyApp({ Component, pageProps }: AppProps) {

@@ -55,9 +55,9 @@
 
 ---
 
-### Weidgets (위젯)
+### UI_Weidgets (위젯)
 
-##### src > lib > widgets
+##### src > @ui_widgets_libs
 
 즉시 사용할 수 있는 디자인 UI 위젯입니다.
 
@@ -121,6 +121,7 @@
 
 - Dialog : Dialog 타입의 모달 팝업
 - BottomSheet : BottomSheet 타입의 IOS 모달
+- CalenderModal : 달력 사용 가능 형태의 모달 위젯
 
 ---
 
