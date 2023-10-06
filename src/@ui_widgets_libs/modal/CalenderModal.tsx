@@ -5,7 +5,8 @@ import styled, { Interpolation } from '@emotion/styled';
 import { Theme } from '@emotion/react';
 
 import { Layer, Wrap } from '../_index';
-import { MQ, colors } from '@/libs/theme/_index';
+import { colors } from '@/libs/theme/colors';
+import { MQ } from '@/libs/theme/mediaQuery';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   view: boolean;
@@ -57,35 +58,46 @@ export function CalenderModal({
     <>
       <Layer isActive={view} />
       <Wrap css={Themes('container', view)}>
-        <div ref={ref} css={[Themes('box')]}>
-          <StyledWrap>
-            <Calendar
-              locale="ko-KR" // Set to Korean
-              calendarType="US"
-              formatDay={(locale, date) => `${date.getDate()}`.padStart(2, '0')}
-              value={value}
-              onChange={onChange}
-              view={
-                dateFormat === 'yyyy-mm-dd'
-                  ? undefined
-                  : undefined || dateFormat === 'yyyy-mm'
-                  ? 'year'
-                  : undefined
-              }
-              maxDetail={
-                dateFormat === 'yyyy-mm-dd'
-                  ? undefined
-                  : undefined || dateFormat === 'yyyy-mm'
-                  ? 'year'
-                  : undefined
-              }
-            />
-          </StyledWrap>
-        </div>
+        <Wrap
+          align="center"
+          crossAlign="center"
+          gap={12}
+          css={{
+            [MQ[3]]: {
+              height: dateFormat === 'yyyy-mm' ? '50%' : '63%',
+            },
+          }}
+        >
+          <div ref={ref} css={[Themes('box')]}>
+            <StyledWrap>
+              <Calendar
+                locale="ko-KR" // Set to Korean
+                calendarType="US"
+                formatDay={(locale, date) => `${date.getDate()}`.padStart(2, '0')}
+                value={value}
+                onChange={onChange}
+                view={
+                  dateFormat === 'yyyy-mm-dd'
+                    ? undefined
+                    : undefined || dateFormat === 'yyyy-mm'
+                    ? 'year'
+                    : undefined
+                }
+                maxDetail={
+                  dateFormat === 'yyyy-mm-dd'
+                    ? undefined
+                    : undefined || dateFormat === 'yyyy-mm'
+                    ? 'year'
+                    : undefined
+                }
+              />
+            </StyledWrap>
+          </div>
 
-        <IconTheme onClick={onCancel}>
-          <CancelIcon />
-        </IconTheme>
+          <IconTheme onClick={onCancel}>
+            <CancelIcon />
+          </IconTheme>
+        </Wrap>
       </Wrap>
     </>
   );
@@ -291,7 +303,6 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      rowGap: '12px',
       transition: '0.25s ease-in-out',
 
       '@supports(padding: max(0px))': {
@@ -302,8 +313,8 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
       },
 
       [MQ[3]]: {
-        justifyContent: 'flex-start',
         '@supports(padding: max(0px))': {
+          justifyContent: 'flex-end',
           paddingTop: 'max(30px, env(safe-area-inset-top))',
           paddingBottom: 'max(0px, env(safe-area-inset-bottom))',
           paddingInlineStart: 'max(0px, env(safe-area-inset-left))',

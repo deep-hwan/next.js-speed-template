@@ -42,6 +42,7 @@
 - React-cookie : 4.1.1
 - React-raise-editor: 0.1.4
 - React-datepicker: 4.16.0
+- React-Calender : 4.16.0
 
 ---
 

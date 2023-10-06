@@ -8,6 +8,7 @@ import { useRaiseEditor } from 'react-raise-editor';
 import {
   BottomSheet,
   Button,
+  CalenderModal,
   CheckInput,
   Column,
   Dialog,
@@ -28,6 +29,7 @@ interface isValuesProps {
   tel: string;
   email: string;
   price: string;
+  date: Date | string;
   context: string;
   check1: boolean;
   check2: boolean;
@@ -40,18 +42,29 @@ export default function SignUp() {
   const textRef = useRef<HTMLTextAreaElement | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [isCalenderOpen, setIsCalenderOpen] = useState<boolean>(false);
   const [isSearch, setIsSearch] = useState<string>('');
+
+  const formatDate = (date: Date) => {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const [isValues, setIsValues] = useState<isValuesProps>({
     name: '',
     tel: '',
     email: '',
     price: '',
+    date: formatDate(new Date()),
     context: '',
     check1: false,
     check2: false,
     check3: false,
   });
-  const { name, tel, email, price, context, check1, check2, check3 } = isValues;
+  const { name, tel, email, price, date, context, check1, check2, check3 } = isValues;
 
   //
   /// 입력 핸들러
@@ -151,6 +164,16 @@ export default function SignUp() {
             value={price}
             onChange={handleOnChange}
             edge="원"
+          />
+        </Input>
+
+        {/* ----- 텍스트 인풋 + 켈렌더 : 날짜 선택 ----- */}
+        <Input label="날짜">
+          <Input.TextField
+            shape="box"
+            placeholder="날짜를 선택하세요"
+            value={date as string}
+            onClick={() => setIsCalenderOpen(true)}
           />
         </Input>
 
@@ -287,6 +310,17 @@ export default function SignUp() {
           수신동의
         </Button>
       </Dialog>
+
+      {/* ----- 모달 : 켈렌더 모달 ----- */}
+      <CalenderModal
+        view={isCalenderOpen}
+        onCancel={() => setIsCalenderOpen(false)}
+        value={date}
+        onChange={(date: any) => {
+          setIsValues({ ...isValues, date: formatDate(date) });
+          setIsCalenderOpen(false);
+        }}
+      />
     </>
   );
 }
