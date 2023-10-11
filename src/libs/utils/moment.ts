@@ -1,7 +1,7 @@
 // -------------------------------
 // ------- 2023.01.01 타입 -------
 // -------------------------------
-export function moment(dataVal: string): string {
+export function moment(dataVal: string | Date): string {
   const now = new Date(dataVal);
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
@@ -13,7 +13,7 @@ export function moment(dataVal: string): string {
 // -------------------------------
 // ------- 2023-01-01 타입 -------
 // -------------------------------
-export function currentMoment(dateVal: string): string {
+export function currentMoment(dateVal: string | Date): string {
   const now = new Date(dateVal);
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
@@ -24,7 +24,7 @@ export function currentMoment(dateVal: string): string {
 // --------------------------------
 // ------- 0시간 전 / 0일 전 -------
 // --------------------------------
-export const detailDate = (dateVal: string): string => {
+export const detailDate = (dateVal: string | Date): string => {
   const nowDate = new Date(dateVal);
   const milliSeconds = new Date().getTime() - nowDate.getTime();
 

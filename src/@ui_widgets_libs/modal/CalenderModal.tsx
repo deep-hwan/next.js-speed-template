@@ -318,8 +318,8 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
       },
 
       [MQ[3]]: {
+        justifyContent: 'flex-end',
         '@supports(padding: max(0px))': {
-          justifyContent: 'flex-end',
           paddingTop: 'max(30px, env(safe-area-inset-top))',
           paddingBottom: 'max(0px, env(safe-area-inset-bottom))',
           paddingInlineStart: 'max(0px, env(safe-area-inset-left))',
@@ -334,12 +334,18 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
       width: '100%',
       minWidth: '300px',
       maxWidth: '380px',
-      padding: '10px 0px 10px',
       borderRadius: '18px',
       backgroundColor: '#ffffff',
       boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
       position: 'relative',
       transition: '0.5s ease-in-out',
+
+      '@supports(padding: max(0px))': {
+        paddingTop: 'max(10px, env(safe-area-inset-top))',
+        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
+        paddingInlineStart: 'max(0px, env(safe-area-inset-left))',
+        paddingInlineEnd: 'max(0px, env(safe-area-inset-right))',
+      },
 
       [MQ[3]]: {
         maxWidth: '100%',

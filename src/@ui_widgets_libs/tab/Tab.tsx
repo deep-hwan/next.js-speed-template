@@ -102,7 +102,7 @@ export const Tab = forwardRef(function Tab(
             backgroundColor: variant === 'border' ? '#fafafa' : undefined,
           },
           '&:disabled': {
-            opacity: variant === 'box' ? '0.4' : undefined,
+            opacity: variant === 'box' ? '0.55' : undefined,
             backgroundColor: variant === 'border' ? '#fafafa' : undefined,
             color: variant === 'border' ? '#aaaaaa' : undefined,
             cursor: 'default',

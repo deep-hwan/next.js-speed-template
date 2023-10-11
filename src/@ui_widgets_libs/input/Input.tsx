@@ -144,6 +144,7 @@ Input.SearchField = forwardRef(function SearchField(
 
       <input
         id={id}
+        ref={ref}
         type="search"
         autoComplete="off"
         placeholder="검색어를 입력하세요"
