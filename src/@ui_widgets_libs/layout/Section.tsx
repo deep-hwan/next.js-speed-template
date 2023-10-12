@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { FlexTheme, PaddingTheme, ViewportTheme } from '@/libs/theme/global';
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
 
 // --------------------------------------------
@@ -11,6 +12,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
+  crossGap?: number;
   maxWidth?: number;
   minWidth?: number;
   backgroundColor?: string;
@@ -34,7 +36,8 @@ export const Section = forwardRef(function Section(
     align = 'center',
     crossAlign,
     wrap = 'nowrap',
-    gap,
+    gap = 0,
+    crossGap = 0,
     minWidth,
     maxWidth,
     children,
@@ -47,62 +50,15 @@ export const Section = forwardRef(function Section(
   return (
     <section
       ref={ref}
-      css={{
-        transition: '0.3s ease-in-out',
-        position: 'relative',
-        maxWidth: `${maxWidth}px`,
-        minWidth: `${minWidth}px`,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flex: '1 auto',
-        flexDirection: direction === 'vertical' ? 'column' : 'row',
-        alignItems: align,
-        justifyContent: crossAlign,
-        rowGap: direction === 'vertical' ? `${gap}px` : undefined,
-        columnGap: direction === 'horizontal' ? `${gap}px` : undefined,
-        backgroundColor: backgroundColor,
-        paddingTop:
-          (padding?.all
-            ? `max(${padding?.all}px, env(safe-area-inset-top))`
-            : 'max(0px, env(safe-area-inset-top))') ||
-          (padding?.vertical
-            ? `max(${padding?.vertical}px, env(safe-area-inset-top))`
-            : 'max(0px, env(safe-area-inset-top))') ||
-          (padding?.top
-            ? `max(${padding?.top}px, env(safe-area-inset-top))`
-            : 'max(0px, env(safe-area-inset-top))'),
-        paddingBottom:
-          (padding?.all
-            ? `max(${padding?.all}px, env(safe-area-inset-bottom))`
-            : 'max(0px, env(safe-area-inset-bottom))') ||
-          (padding?.vertical
-            ? `max(${padding?.vertical}px, env(safe-area-inset-bottom))`
-            : 'max(0px, env(safe-area-inset-bottom))') ||
-          (padding?.bottom
-            ? `max(${padding?.bottom}px, env(safe-area-inset-bottom))`
-            : 'max(0px, env(safe-area-inset-bottom))'),
-        paddingInlineStart:
-          (padding?.all
-            ? `max(${padding?.all}px, env(safe-area-inset-left))`
-            : 'max(0px, env(safe-area-inset-left))') ||
-          (padding?.horizontal
-            ? `max(${padding?.horizontal}px, env(safe-area-inset-left))`
-            : 'max(0px, env(safe-area-inset-left))') ||
-          (padding?.left
-            ? `max(${padding?.left}px, env(safe-area-inset-left))`
-            : 'max(0px, env(safe-area-inset-left))'),
-        paddingInlineEnd:
-          (padding?.all
-            ? `max(${padding?.all}px, env(safe-area-inset-right))`
-            : 'max(0px, env(safe-area-inset-right))') ||
-          (padding?.horizontal
-            ? `max(${padding?.horizontal}px, env(safe-area-inset-right))`
-            : 'max(0px, env(safe-area-inset-right))') ||
-          (padding?.right
-            ? `max(${padding?.right}px, env(safe-area-inset-right))`
-            : 'max(0px, env(safe-area-inset-right))'),
-      }}
+      css={[
+        PaddingTheme({ safeArea: true, padding }),
+        ViewportTheme({ width: '100%', height: '100%', minWidth, maxWidth }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
+        {
+          flex: '1 auto',
+          backgroundColor: backgroundColor,
+        },
+      ]}
       {...props}
     >
       {children}

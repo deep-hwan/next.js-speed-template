@@ -6,7 +6,7 @@ interface Props {
   src: string;
   alt: string;
   size?: number;
-  borderRadius?: number;
+  borderRadius?: number | string;
   onClick?: () => void;
 }
 
@@ -28,7 +28,7 @@ export function ProfileImage({ src, alt, size = 40, borderRadius = 10000, ...pro
             minWidth: `${size}px`,
             minHeight: `${size}px`,
             objectFit: 'cover',
-            borderRadius: `${borderRadius}px`,
+            borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
           }}
           {...props}
         />

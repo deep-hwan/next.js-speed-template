@@ -78,7 +78,6 @@
 - DragScrollContainer : 가로 터치 스크롤이 가능한 레이아웃 위젯
 - Form : form 위젯
 - Items, Item : ul / li 레이아웃
-- Position : 자유로운 배치가 가능한 포지션 위젯
 - Spacing : 공간 및 여백을 설정하는 박스 레이아웃
 - Layout : 팝업 및 모달 시 노출되는 백그라운드 레이아웃
 - Accordion / AccordionPanel : 아코디언 드롭다운의 타이틀 및 아코디언 패널

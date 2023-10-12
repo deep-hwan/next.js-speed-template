@@ -4,6 +4,7 @@ import {
   FlexTheme,
   MarignTheme,
   PaddingTheme,
+  ScrollTheme,
   StyleTheme,
   ViewportTheme,
 } from '@/libs/theme/global';
@@ -18,6 +19,7 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
+  crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
   minWidth?: number;
@@ -44,6 +46,10 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
     left?: number;
     right?: number;
   };
+  scroll?: {
+    type?: 'visible' | 'auto' | 'scroll' | 'hidden';
+    bar?: boolean;
+  };
 }
 
 interface ItemProps extends HTMLAttributes<HTMLLIElement> {
@@ -53,6 +59,7 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
+  crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
   minWidth?: number;
@@ -90,6 +97,10 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
     left?: number;
     right?: number;
   };
+  scroll?: {
+    type?: 'visible' | 'auto' | 'scroll' | 'hidden';
+    bar?: boolean;
+  };
 }
 
 // -----------------------------------
@@ -103,6 +114,7 @@ export const Items = forwardRef(function Items(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -113,6 +125,7 @@ export const Items = forwardRef(function Items(
     margin = { all: 0 },
     backgroundColor,
     borderRadius,
+    scroll,
     ...props
   }: ItemsProps,
   ref?: ForwardedRef<HTMLUListElement>,
@@ -131,7 +144,9 @@ export const Items = forwardRef(function Items(
           crossAlign,
           wrap,
           gap,
+          crossGap,
         }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
@@ -151,6 +166,7 @@ export const Item = forwardRef(function Item(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -163,6 +179,7 @@ export const Item = forwardRef(function Item(
     backgroundColor,
     borderRadius,
     boxShadow,
+    scroll,
     ...props
   }: ItemProps,
   ref?: ForwardedRef<HTMLLIElement>,
@@ -174,8 +191,9 @@ export const Item = forwardRef(function Item(
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
         ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >

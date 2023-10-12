@@ -2,7 +2,7 @@
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { HTMLAttributes } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { IconTab, Layer, Wrap } from '../_index';
+import { Column, IconTab, Layer, Padding, Wrap } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -44,8 +44,27 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
   return (
     <>
       <Layer isActive={view} />
-      <Wrap css={[Themes('container', view)]}>
-        <div ref={ref} css={[Themes('box')]} {...props}>
+      <Padding
+        height="100%"
+        safeArea={true}
+        horizontal={25}
+        top={30}
+        bottom={60}
+        align="center"
+        crossAlign="center"
+        css={[Themes('bg', view)]}
+      >
+        <Column
+          maxWidth={380}
+          minWidth={300}
+          padding={{ horizontal: 18, top: 26, bottom: 16 }}
+          borderRadius={18}
+          backgroundColor="#ffffff"
+          boxShadow={{ x: 0, y: 2, blur: 20, color: 'rgba(0,0,0,0.1' }}
+          ref={ref}
+          css={{ transition: '0.5s ease-in-out' }}
+          {...props}
+        >
           {children}
 
           <IconTheme>
@@ -53,8 +72,8 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
               <CancelIcon />
             </IconTab>
           </IconTheme>
-        </div>
-      </Wrap>
+        </Column>
+      </Padding>
     </>
   );
 }
@@ -79,45 +98,18 @@ function CancelIcon() {
 // -------------- Styles --------------
 // ------------------------------------
 function Themes(name: string, isActive?: boolean): Interpolation<Theme> {
-  if (name === 'container') {
+  if (name === 'bg') {
     return {
-      top: isActive ? '0' : '120%',
-      width: '100%',
-      height: '100%',
-      position: 'fixed',
       zIndex: '9999',
+      position: 'fixed',
+      top: isActive ? '0' : '120%',
       left: '0',
       right: '0',
       bottom: '0',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      transition: '0.25s ease-in-out',
-
-      '@supports(padding: max(0px))': {
-        paddingTop: 'max(30px, env(safe-area-inset-top))',
-        paddingBottom: 'max(60px, env(safe-area-inset-bottom))',
-        paddingInlineStart: 'max(30px, env(safe-area-inset-left))',
-        paddingInlineEnd: 'max(30px, env(safe-area-inset-right))',
-      },
-    };
-  }
-
-  if (name === 'box') {
-    return {
-      width: '100%',
-      minWidth: '300px',
-      maxWidth: '380px',
-      padding: '26px 20px 16px',
-      borderRadius: '18px',
-      backgroundColor: '#ffffff',
-      boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
-      position: 'relative',
-      transition: '0.5s ease-in-out',
     };
   }
 }
 
 function IconTheme({ children }: { children: ReactNode }) {
-  return <div css={{ position: 'absolute', top: '6px', right: '6px' }}>{children}</div>;
+  return <div css={{ position: 'absolute', top: '4px', right: '4px' }}>{children}</div>;
 }

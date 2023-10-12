@@ -7,6 +7,7 @@ import { Interpolation, Theme } from '@emotion/react';
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
+  txtAlign?: 'start' | 'end' | 'center';
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'p';
   direction?: 'horizontal' | 'vertical';
   gap?: number;
@@ -47,6 +48,7 @@ export const Txt = forwardRef(function Txt(
     gap = 4,
     size,
     weight,
+    txtAlign,
     color = '#333333',
     lineHeight = 1.48,
     padding = { all: 0 },
@@ -55,7 +57,7 @@ export const Txt = forwardRef(function Txt(
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
 ) {
-  const themeProps = { direction, gap, lineHeight, color, padding, margin };
+  const themeProps = { txtAlign, direction, gap, lineHeight, color, padding, margin };
 
   return (
     <>
@@ -63,9 +65,8 @@ export const Txt = forwardRef(function Txt(
         <h1
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '3.25rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 52, ...themeProps }),
           ]}
           {...Props}
         >
@@ -77,9 +78,8 @@ export const Txt = forwardRef(function Txt(
         <h2
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '2.75rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 44, ...themeProps }),
           ]}
           {...Props}
         >
@@ -91,9 +91,8 @@ export const Txt = forwardRef(function Txt(
         <h3
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '2.375rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 38, ...themeProps }),
           ]}
           {...Props}
         >
@@ -105,9 +104,8 @@ export const Txt = forwardRef(function Txt(
         <h4
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '2rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 32, ...themeProps }),
           ]}
           {...Props}
         >
@@ -119,9 +117,8 @@ export const Txt = forwardRef(function Txt(
         <h5
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '1.75rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 26, ...themeProps }),
           ]}
           {...Props}
         >
@@ -133,9 +130,8 @@ export const Txt = forwardRef(function Txt(
         <h6
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '1.25rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'bold'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 20, ...themeProps }),
           ]}
           {...Props}
         >
@@ -147,9 +143,8 @@ export const Txt = forwardRef(function Txt(
         <strong
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '1.125rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'medium'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 18, ...themeProps }),
           ]}
           {...Props}
         >
@@ -161,9 +156,8 @@ export const Txt = forwardRef(function Txt(
         <p
           ref={ref}
           css={[
-            { fontSize: size ? `${size / 16}rem` : '0.938rem' },
             TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
-            getThemeStyles(themeProps),
+            getThemeStyles({ size: size ? size : 15, ...themeProps }),
           ]}
           {...Props}
         >
@@ -185,6 +179,8 @@ const TYPOGRAPH_WEIGHT = {
 } as const;
 
 function getThemeStyles({
+  size,
+  txtAlign,
   direction,
   gap,
   lineHeight,
@@ -198,6 +194,8 @@ function getThemeStyles({
     alignItems: 'center',
     whiteSpace: 'pre-line',
     transition: '0.3s ease-in-out',
+    fontSize: size && `${size / 16}rem`,
+    textAlign: txtAlign,
     lineHeight: lineHeight,
     color: color,
     flexDirection: direction === 'horizontal' ? 'row' : 'column',

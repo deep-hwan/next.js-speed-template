@@ -20,7 +20,7 @@ import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { Column, Padding, Row, TxtSpan, TxtTab, Wrap } from '../_index';
-import { GlobalInputStyles } from '@/libs/theme/global';
+import { GlobalInputStyles, ScrollTheme } from '@/libs/theme/global';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -354,9 +354,12 @@ Input.Textarea = forwardRef(function Textarea(
         css={[
           InputTypeStyles('default', shape),
           InputTheme(),
-          {
-            ...(rows >= 2 && styles.textarea),
-          } as Interpolation<Theme>,
+          ScrollTheme({
+            scroll: {
+              type: rows >= 2 ? 'auto' : 'visible',
+              bar: rows >= 2,
+            },
+          }),
         ]}
         {...props}
       />
@@ -495,31 +498,6 @@ const styles = {
     whiteSpace: 'pre-line',
     lineHeight: '1.4',
     marginTop: '8px',
-  },
-
-  textarea: {
-    overflow: 'auto',
-
-    '::-webkit-scrollbar': {
-      display: 'flex',
-      width: '6px',
-      height: '6px',
-    },
-    '::-webkit-scrollbar-track': {
-      backgroundColor: 'transparent',
-    },
-    '::-webkit-scrollbar-thumb': {
-      backgroundColor: '#cccccc',
-      borderRadius: '100px',
-    },
-    '::-webkit-scrollbar-thumb:hover': {
-      background: '#e2e2e2',
-    },
-    '::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment': {
-      width: 0,
-      height: 0,
-      backgroundColor: 'transparent',
-    },
   },
 };
 

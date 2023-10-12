@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
+import { MQ } from '@/libs/theme/mediaQuery';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -86,7 +87,7 @@ const styles = {
     alignItems: 'center',
     transition: '0.3s ease-in-out',
 
-    '@media (max-width:808px)': {
+    [MQ[3]]: {
       minHeight: '58px',
     },
   },
@@ -106,7 +107,7 @@ const styles = {
     paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
     transition: '0.3s ease-in-out',
 
-    '@media (max-width:808px)': {
+    [MQ[2]]: {
       minHeight: '58px',
       paddingBottom: '9px',
       paddingTop: 'calc(env(safe-area-inset-top) + 9px)',

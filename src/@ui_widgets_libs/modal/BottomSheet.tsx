@@ -2,7 +2,7 @@
 import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
-import { Layer, Wrap } from '../_index';
+import { Column, Layer, Padding, Wrap } from '../_index';
 import { MQ } from '@/libs/theme/mediaQuery';
 
 // --------------------------------------------
@@ -94,9 +94,17 @@ export function BottomSheet({
       <Layer isActive={view} />
       <Wrap css={[ContainerTheme(view)]}>
         <Wrap css={[BoxTheme('wrap')]}>
-          <div ref={ref} css={[BoxTheme('wrap-child', view, theme as 'light' | 'dark')]} {...props}>
-            <div
-              css={[TabTheme('box')]}
+          <Column
+            ref={ref}
+            maxWidth={560}
+            height="100%"
+            css={[BoxTheme('wrap-child', view, theme as 'light' | 'dark')]}
+            {...props}
+          >
+            <Padding
+              all={11}
+              align="center"
+              crossAlign="center"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
@@ -104,14 +112,14 @@ export function BottomSheet({
               <button
                 type="button"
                 onClick={onCancel}
-                css={[TabTheme('tab', theme as 'light' | 'dark')]}
+                css={[TabTheme(theme as 'light' | 'dark')]}
               />
-            </div>
+            </Padding>
 
-            <div ref={viewRef} css={[ViewTheme()]}>
+            <Column ref={viewRef} height="100%" scroll={{ type: 'auto', bar: true }}>
               {children}
-            </div>
-          </div>
+            </Column>
+          </Column>
         </Wrap>
       </Wrap>
     </>
@@ -157,13 +165,6 @@ function BoxTheme(
     return {
       backgroundColor: theme === 'dark' ? '#222222' : '#ffffff',
       opacity: isActive ? '1' : '0',
-      width: '100%',
-      maxWidth: '560px',
-      height: '100%',
-
-      display: 'flex',
-      flexDirection: 'column',
-
       borderRadius: '22px 22px 0 0',
       boxShadow: '0 3px 30px rgba(0,0,0,0.1)',
       transition: '0.25s ease-in-out',
@@ -182,63 +183,14 @@ function BoxTheme(
   }
 }
 
-function TabTheme(name: string, theme?: 'light' | 'dark'): Interpolation<Theme> {
-  if (name === 'box') {
-    return {
-      width: '100%',
-      padding: '11px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    };
-  }
-
-  if (name === 'tab') {
-    return {
-      width: '50px',
-      height: '6px',
-      border: 'none',
-      outline: 'none',
-      borderRadius: '1000px',
-      cursor: 'pointer',
-      backgroundColor: theme === 'dark' ? '#444444' : '#e0e0e0',
-    };
-  }
-}
-
-function ViewTheme(): Interpolation<Theme> {
+function TabTheme(theme?: 'light' | 'dark'): Interpolation<Theme> {
   return {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    overflowY: 'auto',
-    '@supports (-webkit-touch-callout: none)': {
-      height: '-webkit-fill-available',
-    },
-    '&::-webkit-scrollbar': {
-      width: '4px',
-      height: '6px',
-    },
-    '&::-webkit-scrollbar-track': {
-      backgroundColor: 'transparent',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#e9e9e9',
-      borderRadius: '100px',
-    },
-    '&::-webkit-scrollbar-thumb:hover': {
-      background: '#e2e2e2',
-    },
-    '&::-webkit-scrollbar-button:start:decrement': {
-      width: 0,
-      height: 0,
-      backgroundColor: 'transparent',
-    },
-    '&::-webkit-scrollbar-button:end:increment': {
-      width: 0,
-      height: 0,
-      backgroundColor: 'transparent',
-    },
+    width: '50px',
+    height: '6px',
+    border: 'none',
+    outline: 'none',
+    borderRadius: '1000px',
+    cursor: 'pointer',
+    backgroundColor: theme === 'dark' ? '#444444' : '#e0e0e0',
   };
 }

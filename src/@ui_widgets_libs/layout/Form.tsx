@@ -5,6 +5,7 @@ import {
   FlexTheme,
   MarignTheme,
   PaddingTheme,
+  ScrollTheme,
   StyleTheme,
   ViewportTheme,
 } from '@/libs/theme/global';
@@ -19,6 +20,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
+  crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
   minWidth?: number;
@@ -55,6 +57,10 @@ interface Props extends HTMLAttributes<HTMLElement> {
     left?: number;
     right?: number;
   };
+  scroll?: {
+    type?: 'visible' | 'auto' | 'scroll' | 'hidden';
+    bar?: boolean;
+  };
 }
 
 // ----------------------------------
@@ -68,6 +74,7 @@ export const Form = forwardRef(function Form(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -80,6 +87,7 @@ export const Form = forwardRef(function Form(
     boxShadow,
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLFormElement>,
@@ -91,8 +99,9 @@ export const Form = forwardRef(function Form(
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
         ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >

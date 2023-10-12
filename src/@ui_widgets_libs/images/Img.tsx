@@ -7,7 +7,7 @@ interface Props {
   alt: string;
   width?: number;
   height?: number;
-  size: {
+  size?: {
     width?: 'auto' | '100%' | string;
     minWidth?: number;
     maxWidth?: number;
@@ -16,14 +16,14 @@ interface Props {
     maxHeight?: number;
   };
   objectFit?: 'cover' | 'contain' | 'fill';
-  borderRadius?: number;
+  borderRadius?: number | string;
 }
 
 export function Img({
   src,
   alt,
-  width = 800,
-  height = 800,
+  width = 500,
+  height = 500,
   size,
   objectFit = 'cover',
   borderRadius = 18,
@@ -41,13 +41,13 @@ export function Img({
         height={height}
         css={{
           width: size?.width ? size?.width : '100%',
-          height: size.height,
-          minWidth: `${size.minWidth}px`,
-          maxWidth: `${size.maxWidth}px`,
-          minHeight: `${size.minHeight}px`,
-          maxHeight: `${size.maxHeight}px`,
+          height: size?.height ? size?.height : 'auto',
+          minWidth: `${size?.minWidth}px`,
+          maxWidth: `${size?.maxWidth}px`,
+          minHeight: `${size?.minHeight}px`,
+          maxHeight: `${size?.maxHeight}px`,
           objectFit: objectFit,
-          borderRadius: `${borderRadius}px`,
+          borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
         }}
         {...props}
       />

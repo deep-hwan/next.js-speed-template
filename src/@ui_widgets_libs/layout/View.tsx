@@ -4,6 +4,7 @@ import {
   FlexTheme,
   MarignTheme,
   PaddingTheme,
+  ScrollTheme,
   StyleTheme,
   ViewportTheme,
 } from '@/libs/theme/global';
@@ -18,6 +19,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
+  crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
   minWidth?: number;
@@ -25,7 +27,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   minHeight?: number;
   maxHeight?: number;
   backgroundColor?: string;
-  borderRadius?: number;
+  borderRadius?: number | string;
   boxShadow?: {
     x?: number;
     y?: number;
@@ -33,8 +35,8 @@ interface Props extends HTMLAttributes<HTMLElement> {
     color?: string;
   };
   border?: {
-    position?: 'left' | 'right' | 'top' | 'bottom';
     solid: number;
+    position?: 'left' | 'right' | 'top' | 'bottom';
     color?: string;
   };
   padding?: {
@@ -55,6 +57,10 @@ interface Props extends HTMLAttributes<HTMLElement> {
     left?: number;
     right?: number;
   };
+  scroll?: {
+    type?: 'visible' | 'auto' | 'scroll' | 'hidden';
+    bar?: boolean;
+  };
 }
 
 // ----------------------------------------------
@@ -68,6 +74,7 @@ export const Container = forwardRef(function Container(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -80,6 +87,7 @@ export const Container = forwardRef(function Container(
     boxShadow,
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -88,11 +96,12 @@ export const Container = forwardRef(function Container(
     <div
       ref={ref}
       css={[
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
@@ -112,6 +121,7 @@ export const Wrap = forwardRef(function Wrap(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -124,6 +134,7 @@ export const Wrap = forwardRef(function Wrap(
     boxShadow,
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -132,11 +143,12 @@ export const Wrap = forwardRef(function Wrap(
     <div
       ref={ref}
       css={[
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
@@ -156,6 +168,7 @@ export const Row = forwardRef(function Row(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -168,6 +181,7 @@ export const Row = forwardRef(function Row(
     boxShadow,
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
@@ -176,11 +190,12 @@ export const Row = forwardRef(function Row(
     <div
       ref={ref}
       css={[
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
@@ -200,6 +215,7 @@ export const Column = forwardRef(function Column(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -212,6 +228,7 @@ export const Column = forwardRef(function Column(
     boxShadow,
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref: ForwardedRef<HTMLDivElement>,
@@ -220,11 +237,12 @@ export const Column = forwardRef(function Column(
     <div
       ref={ref}
       css={[
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
@@ -244,6 +262,7 @@ export const BoxShadow = forwardRef(function BoxShadow(
     crossAlign,
     wrap = 'nowrap',
     gap = 0,
+    crossGap = 0,
     width = '100%',
     height,
     minWidth,
@@ -261,6 +280,7 @@ export const BoxShadow = forwardRef(function BoxShadow(
     },
     padding,
     margin,
+    scroll,
     ...props
   }: Props,
   ref?: ForwardedRef<HTMLDivElement>,
@@ -269,11 +289,12 @@ export const BoxShadow = forwardRef(function BoxShadow(
     <div
       ref={ref}
       css={[
+        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
-        FlexTheme({ direction, align, crossAlign, wrap, gap }),
         StyleTheme({ backgroundColor, border, borderRadius, boxShadow }),
+        ScrollTheme({ scroll }),
       ]}
       {...props}
     >
