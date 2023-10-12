@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <>
       <AppBar width={1200}>
-        <Row css={theme.container as Interpolation<Theme>}>
+        <Row align="center" height="100%" crossAlign="space-between" padding={{ horizontal: 20 }}>
           <Link href="/" css={theme.logo as Interpolation<Theme>}>
             <LogoIcon alt="서비스명" width="100%" height="100%" />
           </Link>
@@ -42,12 +42,14 @@ export default function Header() {
             })}
           </Items>
 
-          <Wrap css={theme.iconBox as Interpolation<Theme>}>
-            <IconTab
-              onClick={handleActiveDrawer}
-              iconSize={26}
-              css={theme.iconTab as Interpolation<Theme>}
-            >
+          <Wrap
+            width="auto"
+            height="100%"
+            align="center"
+            crossAlign="center"
+            css={{ display: 'none', [MQ[1]]: { display: 'flex' } }}
+          >
+            <IconTab onClick={handleActiveDrawer} iconSize={24}>
               <ToastIcon fill="#555" width="100%" height="100%" />
             </IconTab>
           </Wrap>
@@ -62,14 +64,6 @@ export default function Header() {
 
 // styled
 const theme = {
-  container: {
-    height: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0 20px',
-  },
-
   logo: {
     width: '100px',
     height: 'auto',
@@ -104,25 +98,6 @@ const theme = {
     '&:hover': {
       backgroundColor: colors.ground100,
       borderRadius: borderRadius.s400,
-    },
-  },
-
-  iconBox: {
-    width: 'auto',
-    height: '100%',
-    display: 'none',
-
-    [MQ[1]]: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  },
-
-  iconTab: {
-    [MQ[3]]: {
-      width: '24px',
-      height: '24px',
     },
   },
 };

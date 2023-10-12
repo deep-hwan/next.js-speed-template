@@ -17,7 +17,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: 'horizontal' | 'vertical';
   align?: 'start' | 'center' | 'stretch' | 'end';
-  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;
@@ -28,7 +28,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   minHeight?: number;
   maxHeight?: number;
   backgroundColor?: string;
-  borderRadius?: number;
+  borderRadius?: number | string;
   boxShadow?: {
     x?: number;
     y?: number;

@@ -26,12 +26,17 @@ interface SelectProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface SelectBoxProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  children: ReactNode;
+  children?: ReactNode;
   shape?: 'default' | 'box';
   placeholder?: string;
   error?: boolean;
   errorMsg?: string;
   tolTip?: string;
+  options?: {
+    data?: any;
+    value?: any;
+    name?: any;
+  };
 }
 
 interface OptionProps extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -73,7 +78,7 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
 // -------------- SelectBox --------------
 // ---------------------------------------
 Select.SelectBox = forwardRef(function SelectBox(
-  { children, shape = 'default', placeholder, error, ...props }: SelectBoxProps,
+  { children, shape = 'default', placeholder, error, options, ...props }: SelectBoxProps,
   ref?: ForwardedRef<HTMLSelectElement>,
 ) {
   const { value } = props;
@@ -91,7 +96,17 @@ Select.SelectBox = forwardRef(function SelectBox(
               {placeholder}
             </option>
           )}
-          {children}
+          {options?.data ? (
+            <>
+              {options?.data?.map((item: any, i: number) => (
+                <option key={i} value={item?.value}>
+                  {item?.name}
+                </option>
+              ))}
+            </>
+          ) : (
+            <>{children}</>
+          )}
         </select>,
       )}
     </>

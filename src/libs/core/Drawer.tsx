@@ -57,6 +57,7 @@ const theme = {
 
   menu: {
     padding: '2px 14px',
+    paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
   },
 
   menuLink: {

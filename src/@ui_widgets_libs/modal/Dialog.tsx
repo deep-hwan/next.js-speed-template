@@ -30,16 +30,27 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
 
   useEffect(() => {
     if (view) {
+      const scrollY = window.scrollY;
+
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.overflowY = 'hidden';
     } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
       document.body.style.overflowY = 'auto';
-    }
 
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }, [view]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', clickModalOutside);
     return () => {
       document.removeEventListener('mousedown', clickModalOutside);
     };
-  }, [view, clickModalOutside]);
+  }, [clickModalOutside, view]);
 
   return (
     <>

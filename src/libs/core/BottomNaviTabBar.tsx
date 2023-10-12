@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 
-import { BottomNavigationBar, NavigationMenu } from '@/@ui_widgets_libs/_index';
+import { BottomNavigationBar, NavigationTab } from '@/@ui_widgets_libs/_index';
 import { colors } from '@/libs/theme/colors';
 
 import { CopyIcon, HomeIcon, MessageIcon, ProfileIcon, SettingIcon } from '@/libs/assets/icons';
@@ -11,7 +11,7 @@ export default function BottomNaviTabBar() {
 
   return (
     <BottomNavigationBar maxWidth={600}>
-      <NavigationMenu
+      <NavigationTab
         label="홈"
         href="/"
         css={{
@@ -19,22 +19,22 @@ export default function BottomNaviTabBar() {
         }}
       >
         <HomeIcon width="100%" fill={router.pathname === '/' ? colors.keyColor : colors.grey300} />
-      </NavigationMenu>
+      </NavigationTab>
 
-      <NavigationMenu
+      <NavigationTab
         label="메시지"
-        href=""
+        href="/view"
         css={{
-          color: router.pathname === '/2' ? colors.keyColor : colors.grey300,
+          color: router.pathname === '/view' ? colors.keyColor : colors.grey300,
         }}
       >
         <MessageIcon
           width="100%"
-          fill={router.pathname === '/2' ? colors.keyColor : colors.grey300}
+          fill={router.pathname === '/view' ? colors.keyColor : colors.grey300}
         />
-      </NavigationMenu>
+      </NavigationTab>
 
-      <NavigationMenu
+      <NavigationTab
         label="메모"
         href=""
         css={{
@@ -42,9 +42,9 @@ export default function BottomNaviTabBar() {
         }}
       >
         <CopyIcon width="100%" fill={router.pathname === '/3' ? colors.keyColor : colors.grey300} />
-      </NavigationMenu>
+      </NavigationTab>
 
-      <NavigationMenu
+      <NavigationTab
         label="프로필"
         href=""
         css={{
@@ -55,9 +55,9 @@ export default function BottomNaviTabBar() {
           width="100%"
           fill={router.pathname === '/4' ? colors.keyColor : colors.grey300}
         />
-      </NavigationMenu>
+      </NavigationTab>
 
-      <NavigationMenu
+      <NavigationTab
         label="설정"
         href=""
         css={{
@@ -68,7 +68,7 @@ export default function BottomNaviTabBar() {
           width="100%"
           fill={router.pathname === '/5' ? colors.keyColor : colors.grey300}
         />
-      </NavigationMenu>
+      </NavigationTab>
     </BottomNavigationBar>
   );
 }

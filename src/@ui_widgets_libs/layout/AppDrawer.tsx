@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useCallback, useEffect, useRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { IconTab, Layer } from '../_index';
+import { IconTab, Layer, Padding, Wrap } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -49,16 +49,33 @@ export const AppDrawer = forwardRef(function AppDrawer(
     <>
       <Layer isActive={view} />
 
-      <div
+      <Padding
+        safeArea
+        maxWidth={390}
+        top={0}
+        bottom={0}
+        backgroundColor="#fff"
+        scroll={{ type: 'auto', bar: false }}
         ref={drawerRef}
-        css={
-          {
-            ...theme.container,
-            right: view ? '0' : '-100%',
-          } as Interpolation<Theme>
-        }
+        css={{
+          zIndex: '9999',
+          position: 'fixed',
+          top: '0',
+          bottom: '0',
+          right: view ? '0' : '-100%',
+        }}
       >
-        <div ref={ref} css={theme.wrap as Interpolation<Theme>} {...props}>
+        <Padding
+          safeArea
+          direction="horizontal"
+          crossAlign="end"
+          top={8}
+          left={0}
+          right={10}
+          ref={ref}
+          css={{ zIndex: '11', position: 'sticky', top: '0', left: '0' }}
+          {...props}
+        >
           <IconTab onClick={onCancel}>
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26">
               <path
@@ -69,66 +86,18 @@ export const AppDrawer = forwardRef(function AppDrawer(
               />
             </svg>
           </IconTab>
-        </div>
+        </Padding>
 
-        <div css={theme.box as Interpolation<Theme>}>{children}</div>
-      </div>
+        <Padding
+          safeArea
+          height="100%"
+          all={0}
+          scroll={{ type: 'auto', bar: false }}
+          css={{ zIndex: '10' }}
+        >
+          {children}
+        </Padding>
+      </Padding>
     </>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const theme = {
-  container: {
-    zIndex: '9999',
-    position: 'fixed',
-    top: '0',
-    bottom: '0',
-
-    width: '100%',
-    maxWidth: '390px',
-
-    display: 'flex',
-    flexDirection: 'column',
-
-    paddingTop: 'env(safe-area-inset-top)',
-    paddingBottom: 'env(safe-area-inset-bottom)',
-    backgroundColor: '#ffffff',
-    overflow: 'auto',
-    transition: '0.3s ease-in-out',
-
-    ':webkit-scrollbar': {
-      display: 'none',
-    },
-  },
-
-  wrap: {
-    zIndex: '11',
-    position: 'sticky',
-    top: '0',
-    left: '0',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    paddingTop: 'calc(env(safe-area-inset-top) + 8px)',
-    paddingRight: '10px',
-    // paddingRight: "calc(env(safe-area-inset-right) + 10px)",
-  },
-
-  box: {
-    zIndex: '10',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    overflowY: 'auto',
-    paddingTop: 'env(safe-area-inset-top)',
-    paddingBottom: 'env(safe-area-inset-bottom)',
-
-    ':webkit-scrollbar': {
-      display: 'none',
-    },
-  },
-};

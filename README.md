@@ -69,7 +69,7 @@
 - Appbar : 헤더의 앱바
 - AppDrawer : 메뉴 드로어
 - BottomNavigationBar : 바텀네비게이션 바
-- NavigationMenu : 바텀네비게이션 바 > 메뉴
+- NavigationTab : 바텀네비게이션 바 > 메뉴 탭
 - Section : 섹션 레이아웃
 - Container / Wrap : 레이아웃 위젯
 - Row / Column : 가로 및 세로 정렬 레이아웃 위젯

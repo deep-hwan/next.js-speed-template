@@ -16,7 +16,7 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   children: ReactNode;
   direction?: 'horizontal' | 'vertical';
   align?: 'start' | 'center' | 'stretch' | 'end';
-  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;
@@ -27,7 +27,7 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   minHeight?: number;
   maxHeight?: number;
   backgroundColor?: string;
-  borderRadius?: number;
+  borderRadius?: number | string;
   padding?: {
     all?: number;
     horizontal?: number;
@@ -56,7 +56,7 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   children: ReactNode;
   direction?: 'horizontal' | 'vertical';
   align?: 'start' | 'center' | 'stretch' | 'end';
-  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;
@@ -67,7 +67,7 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   minHeight?: number;
   maxHeight?: number;
   backgroundColor?: string;
-  borderRadius?: number;
+  borderRadius?: number | string;
   boxShadow?: {
     x?: number;
     y?: number;

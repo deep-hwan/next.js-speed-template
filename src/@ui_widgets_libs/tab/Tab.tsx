@@ -16,7 +16,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   txtSize?: number;
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   colors?: { button?: string; txt?: string };
-  borderRadius?: number;
+  borderRadius?: number | string;
   boxShadow?: {
     x?: number;
     y?: number;

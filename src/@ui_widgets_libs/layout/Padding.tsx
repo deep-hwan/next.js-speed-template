@@ -17,7 +17,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   direction?: 'horizontal' | 'vertical';
   safeArea?: boolean;
   align?: 'start' | 'center' | 'stretch' | 'end';
-  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;

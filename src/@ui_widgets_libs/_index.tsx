@@ -1,7 +1,7 @@
 //layout
 import { AppBar } from './layout/AppBar';
 import { AppDrawer } from './layout/AppDrawer';
-import { NavigationMenu, BottomNavigationBar } from './layout/BottomNavigationBar';
+import { NavigationTab, BottomNavigationBar } from './layout/BottomNavigationBar';
 import { Section } from './layout/Section';
 import { Container, Wrap, Row, Column } from './layout/View';
 import { Padding } from './layout/Padding';
@@ -47,7 +47,7 @@ export {
   AppBar,
   AppDrawer,
   BottomNavigationBar,
-  NavigationMenu,
+  NavigationTab,
   Spacing,
   ProfileImage,
   Img,

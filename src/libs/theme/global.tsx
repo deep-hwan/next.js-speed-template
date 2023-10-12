@@ -164,8 +164,8 @@ export function FlexTheme({
   crossGap,
 }: {
   direction?: 'horizontal' | 'vertical';
-  align?: 'start' | 'center' | 'stretch' | 'end';
-  crossAlign?: 'start' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  align?: 'start' | 'end' | 'center' | 'stretch';
+  crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;

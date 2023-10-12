@@ -2,6 +2,7 @@
 import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import { MQ } from '@/libs/theme/mediaQuery';
+import { Padding } from './Padding';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -31,6 +32,23 @@ export const AppBar = forwardRef(function AppBar(
     window.addEventListener('scroll', scrollActive);
   }, []);
 
+  return (
+    <Padding top={0} align="center" minHeight={66} css={{ [MQ[3]]: { minHeight: '58px' } }}>
+      <header ref={ref} css={[HeaderTheme(isActive, variant)]} {...props}>
+        <strong aria-hidden="true" css={[NavTheme('name')]}>
+          서비스명
+        </strong>
+
+        <nav css={[NavTheme('nav', width)]}>{children}</nav>
+      </header>
+    </Padding>
+  );
+});
+
+// ------------------------------------
+// -------------- Styles --------------
+// ------------------------------------
+function HeaderTheme(isActive: boolean, variant: 'primary' | 'dark'): Interpolation<Theme> {
   const TYPE_VARIANTS = {
     primary: {
       backgroundColor: '#ffffff',
@@ -42,57 +60,8 @@ export const AppBar = forwardRef(function AppBar(
     },
   };
 
-  return (
-    <div css={styles.container as Interpolation<Theme>}>
-      <header
-        ref={ref}
-        css={
-          {
-            ...styles.header,
-            ...TYPE_VARIANTS[variant],
-          } as Interpolation<Theme>
-        }
-        {...props}
-      >
-        <strong aria-hidden="true" css={styles.name as Interpolation<Theme>}>
-          서비스명
-        </strong>
-
-        <nav
-          css={
-            {
-              ...styles.nav,
-              maxWidth: width ? `${width}px` : '100%',
-            } as Interpolation<Theme>
-          }
-        >
-          {children}
-        </nav>
-      </header>
-    </div>
-  );
-});
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  container: {
-    position: 'relative',
-    width: '100%',
-    paddingTop: 'env(safe-area-inset-top)',
-    minHeight: '66px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    transition: '0.3s ease-in-out',
-
-    [MQ[3]]: {
-      minHeight: '58px',
-    },
-  },
-
-  header: {
+  return {
+    ...TYPE_VARIANTS[variant],
     zIndex: 8999,
     position: 'fixed',
     top: 0,
@@ -112,26 +81,33 @@ const styles = {
       paddingBottom: '9px',
       paddingTop: 'calc(env(safe-area-inset-top) + 9px)',
     },
-  },
+  };
+}
 
-  name: {
-    width: '0px',
-    height: '0px',
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    position: 'absolute',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  },
+function NavTheme(as: 'name' | 'nav', width?: number): Interpolation<Theme> {
+  if (as === 'name') {
+    return {
+      width: '0px',
+      height: '0px',
+      clip: 'rect(0 0 0 0)',
+      clipPath: 'inset(50%)',
+      position: 'absolute',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+    };
+  }
 
-  nav: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: 'env(safe-area-inset-right)',
-    paddingLeft: 'env(safe-area-inset-left)',
-  },
-};
+  if (as === 'nav') {
+    return {
+      position: 'relative',
+      width: '100%',
+      maxWidth: width ? `${width}px` : '100%',
+      height: '100%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingRight: 'env(safe-area-inset-right)',
+      paddingLeft: 'env(safe-area-inset-left)',
+    };
+  }
+}

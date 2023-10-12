@@ -297,7 +297,7 @@ const StyledWrap = styled.div`
 function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
   if (theme === 'container') {
     return {
-      top: isActive ? '0' : '100%',
+      top: isActive ? '0' : '120%',
       width: '100%',
       height: '100%',
       position: 'fixed',

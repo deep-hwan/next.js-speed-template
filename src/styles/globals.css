@@ -40,10 +40,7 @@ body {
 
 @supports (-webkit-touch-callout: none) {
   html,
-  body {
-    min-height: -webkit-fill-available;
-  }
-  #layout {
+  body #layout {
     min-height: -webkit-fill-available;
   }
 }
@@ -69,19 +66,6 @@ main {
   flex: 1;
 }
 
-.header {
-  width: 100%;
-  padding: 0 0 calc(constant(safe-area-inset-top) + 5px);
-  padding: 0 0 calc(env(safe-area-inset-top) + 5px);
-  transition: 0.3s ease-in-out;
-}
-.footer {
-  width: 100%;
-  padding: 0 0 calc(constant(safe-area-inset-bottom));
-  padding: 0 0 calc(env(safe-area-inset-bottom));
-  transition: 0.3s ease-in-out;
-}
-
 /* ////////////////////////////// */
 /* ////////////////////////////// */
 /* ////////////////////////////// */
@@ -102,9 +86,10 @@ p {
 
 a {
   text-decoration: none;
+  color: #333;
   cursor: pointer;
+  white-space: nowrap;
   transition: 0.3s ease-in-out;
-  color: #333333;
 }
 
 ul,
@@ -113,6 +98,7 @@ li {
   padding: 0;
   margin: 0;
   transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 button {
@@ -120,6 +106,8 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
+  font-size: 1rem;
+  width: auto;
   transition: all 0.3s ease-in-out;
 }
 
@@ -127,79 +115,6 @@ svg,
 img,
 picture {
   transition: all 0.3s ease-in-out;
-}
-
-/* ////////////////////////////// */
-/* ////////////////////////////// */
-/* ////////////////////////////// */
-/* ////////////////////////////// */
-
-input,
-textarea,
-select {
-  outline: none;
-  text-decoration: all 0.3s ease-in-out;
-  border: none;
-  resize: none;
-}
-
-input[type='checkbox'],
-input[type='radio'] {
-  cursor: pointer;
-}
-
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button,
-input::-webkit-search-results-button,
-input::-webkit-search-results-decoration {
-  display: none;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition-delay: 9999s;
-  transition-property: background-color, color;
-}
-
-/* input:active,
-input:focus,
-input:focus-within {
-  background-color: transparent;
-  border-radius: 0;
-  border: none;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-text-fill-color: #000;
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  box-shadow: 0 0 0px 1000px transparent inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-
-} */
-
-select {
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-
-select::-ms-expand {
-  display: none;
 }
 
 /* ////////////////////////////// */
@@ -226,6 +141,50 @@ select::-ms-expand {
   width: 0;
   height: 0;
   background-color: transparent;
+}
+
+/* ////////////////////////////// */
+/* ////////////////////////////// */
+/* ////////////////////////////// */
+/* ////////////////////////////// */
+/* input */
+
+input,
+textarea,
+select {
+  border: none;
+  outline: none;
+  text-decoration: all 0.3s ease-in-out;
+  background-color: transparent;
+  background: transparent;
+  border-radius: 0;
+  resize: none;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  cursor: pointer;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/* 크롬의 경우 */
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+  display: none;
 }
 
 /* react-datepicker */

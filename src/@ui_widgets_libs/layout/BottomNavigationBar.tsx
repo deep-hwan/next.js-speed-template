@@ -11,7 +11,7 @@ import { Interpolation, Theme } from '@emotion/react';
 
 import Link from 'next/link';
 
-import { TxtSpan, Wrap } from '../_index';
+import { Column, Row, TxtSpan, Wrap } from '../_index';
 import { MQ } from '@/libs/theme/_index';
 
 // --------------------------------------------
@@ -38,80 +38,57 @@ export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
 ) {
   const childrenArray = Children.toArray(children);
 
-  if (childrenArray.length < 6) {
+  if (childrenArray.length < 7) {
     return (
-      <>
-        {/* ========== 디자인 타입 ========== */}
-        {design === 'shape' && (
-          <Wrap ref={ref} css={theme.shapeContainer}>
-            <div
-              css={
-                {
-                  ...theme.wrap,
-                  ...theme.shapeWrap,
-                } as Interpolation<Theme>
-              }
-            >
-              <nav
-                css={
-                  {
-                    ...theme.nav,
-                    ...theme.shapeNav,
-                    maxWidth: `${maxWidth}px`,
-                  } as Interpolation<Theme>
-                }
-              >
-                {childrenArray}
-              </nav>
-            </div>
-          </Wrap>
-        )}
-
-        {/* ========== 기본 타입 ========== */}
-        {design === 'default' && (
-          <Wrap ref={ref} css={theme.defaultContainer}>
-            <div
-              css={
-                {
-                  ...theme.wrap,
-                  ...theme.defaultWrap,
-                } as Interpolation<Theme>
-              }
-            >
-              <nav
-                css={
-                  {
-                    ...theme.nav,
-                    ...theme.defaultNav,
-                    maxWidth: `${maxWidth}px`,
-                  } as Interpolation<Theme>
-                }
-              >
-                {childrenArray}
-              </nav>
-            </div>
-          </Wrap>
-        )}
-      </>
+      <Wrap ref={ref} css={[WrapTheme(design)]}>
+        <Row align="center" crossAlign="center" css={[RowTheme(design)]}>
+          <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
+        </Row>
+      </Wrap>
     );
   }
 });
 
-// --------------------------------------------
-// -------------- NavigationMenu --------------
-// --------------------------------------------
-export const NavigationMenu = forwardRef(function NavigationMenu(
+// -------------------------------------------
+// -------------- NavigationTab --------------
+// -------------------------------------------
+export const NavigationTab = forwardRef(function NavigationTab(
   { children, href, label, ...props }: MenuProps,
   ref?: ForwardedRef<HTMLAnchorElement>,
 ) {
   const child = Children.only(children);
 
   return (
-    <Link ref={ref} href={href} css={theme.navMenu as Interpolation<Theme>}>
-      <Wrap css={theme.navMenuIcon}>{child}</Wrap>
-      <TxtSpan css={theme.navMenuLabel as Interpolation<Theme>} {...props}>
-        {label}
-      </TxtSpan>
+    <Link ref={ref} href={href}>
+      <Column
+        padding={{ all: 8 }}
+        gap={3}
+        align="center"
+        crossAlign="center"
+        borderRadius={14}
+        css={{
+          '&:hover': { backgroundColor: '#f8f9fc' },
+          [MQ[3]]: {
+            maxWidth: '60px',
+            minWidth: '60px',
+            '&:hover': { backgroundColor: 'transparent' },
+          },
+        }}
+      >
+        <Wrap
+          width="auto"
+          maxHeight={28}
+          minHeight={28}
+          align="center"
+          crossAlign="center"
+          css={{ [MQ[3]]: { maxHeight: '23px', minHeight: '23px' } }}
+        >
+          {child}
+        </Wrap>
+        <TxtSpan size={13} css={{ [MQ[3]]: { fontSize: '0.68rem' } }} {...props}>
+          {label}
+        </TxtSpan>
+      </Column>
     </Link>
   );
 });
@@ -119,119 +96,77 @@ export const NavigationMenu = forwardRef(function NavigationMenu(
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-const theme = {
-  shapeContainer: {
-    height: '100%',
-    paddingBottom: 'calc(env(safe-area-inset-bottom) + 114.33px)',
-    [MQ[2]]: {
-      paddingBottom: 'calc(env(safe-area-inset-bottom) + 86px)',
-    },
-  },
+function WrapTheme(design: 'default' | 'shape'): Interpolation<Theme> {
+  if (design === 'default') {
+    return {
+      height: '100%',
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 75px)',
+      [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 66.67px)' },
+    };
+  }
 
-  shapeWrap: {
-    paddingTop: 'env(safe-area-inset-top)',
-    paddingBottom: 'calc(env(safe-area-inset-bottom) + 40px)',
-    paddingLeft: 'calc(env(safe-area-inset-left) + 14px)',
-    paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
+  if (design === 'shape') {
+    return {
+      height: '100%',
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 114.33px)',
+      [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 86px)' },
+    };
+  }
+}
 
-    [MQ[2]]: {
-      paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)',
-    },
-  },
+function RowTheme(design: 'default' | 'shape'): Interpolation<Theme> {
+  const viewThemes = (): Interpolation<Theme> => {
+    return { zIndex: '8999', position: 'fixed', bottom: '0', left: '0', right: '0' };
+  };
 
-  shapeNav: {
-    boxShadow: '0 2px 26px rgba(0,0,0,0.08)',
-    borderRadius: '10000px',
-    backgroundColor: '#ffffff',
-    padding: '4px 14px',
+  if (design === 'default') {
+    return {
+      ...(viewThemes() as object),
+      paddingTop: 'env(safe-area-inset-top)',
+      paddingBottom: 'env(safe-area-inset-bottom)',
+      borderTop: '1px solid #f0f0f0',
+      backgroundColor: '#ffffff',
+    };
+  }
 
-    [MQ[2]]: {
-      padding: '4px 6px',
-    },
-  },
+  if (design === 'shape') {
+    return {
+      ...(viewThemes() as object),
+      paddingTop: 'env(safe-area-inset-top)',
+      paddingBottom: 'calc(env(safe-area-inset-bottom) + 40px)',
+      paddingLeft: 'calc(env(safe-area-inset-left) + 14px)',
+      paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
 
-  defaultContainer: {
-    height: '100%',
-    paddingBottom: 'calc(env(safe-area-inset-bottom) + 75px)',
+      [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)' },
+    };
+  }
+}
 
-    [MQ[2]]: {
-      paddingBottom: 'calc(env(safe-area-inset-bottom) + 66.67px)',
-    },
-  },
+function NavTheme(design: 'default' | 'shape', maxWidth?: number): Interpolation<Theme> {
+  const viewThemes = (): Interpolation<Theme> => {
+    return {
+      maxWidth: `${maxWidth}px`,
+      width: '100%',
+      height: '100%',
+      zIndex: '8999',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      transition: '0.3s ease-in-out',
+      padding: '4px 10px',
+    };
+  };
 
-  defaultWrap: {
-    paddingTop: 'env(safe-area-inset-top)',
-    paddingBottom: 'env(safe-area-inset-bottom)',
-    borderTop: '1px solid #f0f0f0',
-    backgroundColor: '#ffffff',
-  },
+  if (design === 'default') {
+    return { ...(viewThemes() as object) };
+  }
 
-  defaultNav: {
-    padding: '4px 10px',
-  },
-
-  wrap: {
-    zIndex: '8999',
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    right: '0',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  nav: {
-    width: '100%',
-    height: '100%',
-    zIndex: '8999',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    transition: '0.3s ease-in-out',
-  },
-
-  navMenu: {
-    width: '100%',
-    padding: '8px',
-    display: 'flex',
-    rowGap: '3px',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '14px',
-
-    '&:hover': {
-      backgroundColor: '#f8f9fc',
-    },
-
-    [MQ[2]]: {
-      rowGap: '3px',
-      width: '60px',
-      maxWidth: '60px',
-      minWidth: '60px',
-      '&:hover': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-
-  navMenuIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'auto',
-    height: '28px',
-    [MQ[2]]: {
-      height: '23px',
-    },
-  },
-
-  navMenuLabel: {
-    fontSize: '0.813rem',
-    whiteSpace: 'nowrap',
-    [MQ[2]]: {
-      fontSize: '0.68rem',
-    },
-  },
-};
+  if (design === 'shape') {
+    return {
+      ...(viewThemes() as object),
+      boxShadow: '0 2px 26px rgba(0,0,0,0.08)',
+      borderRadius: '10000px',
+      backgroundColor: '#ffffff',
+    };
+  }
+}
