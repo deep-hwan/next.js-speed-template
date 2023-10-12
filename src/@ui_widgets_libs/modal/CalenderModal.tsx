@@ -4,9 +4,8 @@ import 'react-calendar/dist/Calendar.css';
 import styled, { Interpolation } from '@emotion/styled';
 import { Theme } from '@emotion/react';
 
-import { Layer, Wrap } from '../_index';
-import { colors } from '@/libs/theme/colors';
-import { MQ } from '@/libs/theme/mediaQuery';
+import { Column, Layer, Padding, Wrap } from '../_index';
+import { colors, MQ } from '@/libs/theme/_index';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   view: boolean;
@@ -58,17 +57,28 @@ export function CalenderModal({
     <>
       <Layer isActive={view} />
       <Wrap css={Themes('container', view)}>
-        <Wrap
+        <Column
           align="center"
           crossAlign="center"
           gap={12}
           css={{
             [MQ[3]]: {
-              height: dateFormat === 'yyyy-mm' ? '50%' : '63%',
+              height: dateFormat === 'yyyy-mm' ? '55%' : '65%',
             },
           }}
         >
-          <div ref={ref} css={[Themes('box')]}>
+          <Padding
+            safeArea
+            horizontal={0}
+            vertical={10}
+            minWidth={300}
+            maxWidth={380}
+            borderRadius={18}
+            backgroundColor="#ffffff"
+            scroll={{ type: 'auto', bar: true }}
+            ref={ref}
+            css={[Themes('box')]}
+          >
             <StyledWrap>
               <Calendar
                 locale="ko-KR" // Set to Korean
@@ -92,12 +102,12 @@ export function CalenderModal({
                 }
               />
             </StyledWrap>
-          </div>
+          </Padding>
 
           <IconTheme onClick={onCancel}>
             <CancelIcon />
           </IconTheme>
-        </Wrap>
+        </Column>
       </Wrap>
     </>
   );
@@ -310,76 +320,22 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
       justifyContent: 'center',
       transition: '0.25s ease-in-out',
 
-      '@supports(padding: max(0px))': {
-        paddingTop: 'max(30px, env(safe-area-inset-top))',
-        paddingBottom: 'max(60px, env(safe-area-inset-bottom))',
-        paddingInlineStart: 'max(30px, env(safe-area-inset-left))',
-        paddingInlineEnd: 'max(30px, env(safe-area-inset-right))',
-      },
-
       [MQ[3]]: {
         justifyContent: 'flex-end',
-        '@supports(padding: max(0px))': {
-          paddingTop: 'max(30px, env(safe-area-inset-top))',
-          paddingBottom: 'max(0px, env(safe-area-inset-bottom))',
-          paddingInlineStart: 'max(0px, env(safe-area-inset-left))',
-          paddingInlineEnd: 'max(0px, env(safe-area-inset-right))',
-        },
       },
     };
   }
 
   if (theme === 'box') {
     return {
-      width: '100%',
-      minWidth: '300px',
-      maxWidth: '380px',
-      borderRadius: '18px',
-      backgroundColor: '#ffffff',
       boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
-      position: 'relative',
-      transition: '0.5s ease-in-out',
-
-      '@supports(padding: max(0px))': {
-        paddingTop: 'max(10px, env(safe-area-inset-top))',
-        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
-        paddingInlineStart: 'max(0px, env(safe-area-inset-left))',
-        paddingInlineEnd: 'max(0px, env(safe-area-inset-right))',
-      },
 
       [MQ[3]]: {
         maxWidth: '100%',
-        borderRadius: '18px 18px 0 0',
+        borderRadius: '22px 22px 0 0',
         height: '100%',
         overflow: 'auto',
         order: '2',
-        '@supports (-webkit-touch-callout: none)': {
-          height: '-webkit-fill-available',
-        },
-        '&::-webkit-scrollbar': {
-          width: '4px',
-          height: '6px',
-        },
-        '&::-webkit-scrollbar-track': {
-          backgroundColor: 'transparent',
-        },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: '#e9e9e9',
-          borderRadius: '100px',
-        },
-        '&::-webkit-scrollbar-thumb:hover': {
-          background: '#e2e2e2',
-        },
-        '&::-webkit-scrollbar-button:start:decrement': {
-          width: 0,
-          height: 0,
-          backgroundColor: 'transparent',
-        },
-        '&::-webkit-scrollbar-button:end:increment': {
-          width: 0,
-          height: 0,
-          backgroundColor: 'transparent',
-        },
       },
     };
   }

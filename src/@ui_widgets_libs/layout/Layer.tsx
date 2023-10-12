@@ -16,9 +16,13 @@ export const Layer = memo(
   forwardRef(function Layer({ isActive, ...props }: Props, ref?: ForwardedRef<HTMLDivElement>) {
     return (
       <Padding
+        ref={ref}
         safeArea
-        top={0}
+        top={10}
         bottom={0}
+        backgroundColor="rgba(0,0,0,0.35)"
+        align="center"
+        crossAlign="center"
         css={{
           zIndex: 9000,
           position: 'fixed',
@@ -28,9 +32,8 @@ export const Layer = memo(
           right: 0,
           display: isActive ? 'flex' : 'none',
         }}
-      >
-        <Padding all={0} height="100%" backgroundColor="rgba(0,0,0,0.35)" ref={ref} {...props} />
-      </Padding>
+        {...props}
+      ></Padding>
     );
   }),
 );
