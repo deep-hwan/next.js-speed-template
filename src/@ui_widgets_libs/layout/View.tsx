@@ -7,13 +7,14 @@ import {
   ScrollTheme,
   StyleTheme,
   ViewportTheme,
-} from '@/libs/theme/global';
+} from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
+  zIndex?: number;
   direction?: 'horizontal' | 'vertical';
   align?: 'start' | 'center' | 'stretch' | 'end';
   crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
@@ -22,10 +23,10 @@ interface Props extends HTMLAttributes<HTMLElement> {
   crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
-  minWidth?: number;
-  maxWidth?: number;
-  minHeight?: number;
-  maxHeight?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  minHeight?: number | string;
+  maxHeight?: number | string;
   backgroundColor?: string;
   borderRadius?: number | string;
   boxShadow?: {
@@ -60,6 +61,14 @@ interface Props extends HTMLAttributes<HTMLElement> {
   scroll?: {
     type?: 'visible' | 'auto' | 'scroll' | 'hidden';
     bar?: boolean;
+  };
+
+  position?: {
+    type?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
+    top?: number | string;
+    bottom?: number | string;
+    right?: number | string;
+    left?: number | string;
   };
 }
 
@@ -116,6 +125,8 @@ export const Container = forwardRef(function Container(
 export const Wrap = forwardRef(function Wrap(
   {
     children,
+    zIndex,
+    position,
     direction = 'vertical',
     align,
     crossAlign,
@@ -143,7 +154,16 @@ export const Wrap = forwardRef(function Wrap(
     <div
       ref={ref}
       css={[
-        ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
+        ViewportTheme({
+          width,
+          height,
+          minWidth,
+          maxWidth,
+          minHeight,
+          maxHeight,
+          position,
+          zIndex,
+        }),
         FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),

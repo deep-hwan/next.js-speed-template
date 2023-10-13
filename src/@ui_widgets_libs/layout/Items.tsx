@@ -7,7 +7,7 @@ import {
   ScrollTheme,
   StyleTheme,
   ViewportTheme,
-} from '@/libs/theme/global';
+} from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -22,10 +22,10 @@ interface ItemsProps extends HTMLAttributes<HTMLUListElement> {
   crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
-  minWidth?: number;
-  maxWidth?: number;
-  minHeight?: number;
-  maxHeight?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  minHeight?: number | string;
+  maxHeight?: number | string;
   backgroundColor?: string;
   borderRadius?: number | string;
   padding?: {
@@ -62,10 +62,10 @@ interface ItemProps extends HTMLAttributes<HTMLLIElement> {
   crossGap?: number;
   width?: 'auto' | '100%';
   height?: 'auto' | '100%';
-  minWidth?: number;
-  maxWidth?: number;
-  minHeight?: number;
-  maxHeight?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  minHeight?: number | string;
+  maxHeight?: number | string;
   backgroundColor?: string;
   borderRadius?: number | string;
   boxShadow?: {

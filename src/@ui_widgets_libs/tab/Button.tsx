@@ -1,8 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
-import { MarignTheme, PaddingTheme, StyleTheme } from '@/libs/theme/global';
-import { colors } from '@/libs/theme/colors';
+import {
+  MarignTheme,
+  PaddingTheme,
+  FlexTheme,
+  ViewportTheme,
+  TypographyTheme,
+  TabTheme,
+} from '@/libs/themes/_theme';
+import { colors } from '@/libs/themes/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -10,9 +16,9 @@ import { colors } from '@/libs/theme/colors';
 interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   children: ReactNode;
   width?: 'auto' | '100%';
-  minWidth?: number;
-  maxWidth?: number;
-  txtSize?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  txtSize?: number | string;
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   colors?: { button?: string; txt?: string };
   borderRadius?: number | string;
@@ -69,31 +75,27 @@ export const Button = forwardRef(function Button(
   }: Props,
   ref?: ForwardedRef<HTMLButtonElement>,
 ) {
-  const themeProps = {
-    width,
-    maxWidth,
-    minWidth,
-    txtSize,
-    colors,
-    borderRadius,
-    border,
-    boxShadow,
-  };
-
   return (
     <button
       ref={ref}
       css={[
-        buttonStyle as Interpolation<Theme>,
-        TYPOGRAPH_WEIGHT[weight],
-        getThemeStyles(themeProps),
+        ViewportTheme({ width, maxWidth, minWidth, minHeight: 56 }),
+        FlexTheme({ align: 'center', crossAlign: 'center' }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        StyleTheme({
+        TypographyTheme({
+          size: txtSize,
+          color: colors.txt,
+          weight,
+          lineHeight: '26px',
+        }),
+        TabTheme({
           backgroundColor: colors?.button,
           border,
           borderRadius,
           boxShadow,
+          opacityHover: 0.9,
+          opacityDisabled: 0.25,
         }),
       ]}
       {...props}
@@ -102,49 +104,3 @@ export const Button = forwardRef(function Button(
     </button>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const buttonStyle = {
-  width: '100%',
-  minHeight: '56px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  outline: 'none',
-  whiteSpace: 'nowrap',
-  cursor: 'pointer',
-  transition: '0.3s ease-in-out',
-  lineHeight: '26px',
-
-  '&:hover': { opacity: '0.9' },
-
-  '&:disabled': {
-    opacity: '0.25',
-    cursor: 'default',
-  },
-};
-
-const TYPOGRAPH_WEIGHT = {
-  lighter: { fontWeight: '300' },
-  normal: { fontWeight: '400' },
-  medium: { fontWeight: '500' },
-  bold: { fontWeight: '600' },
-} as const;
-
-function getThemeStyles({
-  width,
-  maxWidth,
-  minWidth,
-  txtSize,
-  colors,
-}: ThemeStyleProps): Interpolation<Theme> {
-  return {
-    width: width,
-    minWidth: minWidth && `${minWidth}px`,
-    maxWidth: maxWidth && `${maxWidth}px`,
-    fontSize: txtSize ? `${txtSize / 16}rem` : '1em',
-    color: colors?.txt,
-  };
-}

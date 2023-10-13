@@ -8,11 +8,9 @@ import React, {
   forwardRef,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-
 import Link from 'next/link';
-
 import { Column, Row, TxtSpan, Wrap } from '../_index';
-import { MQ } from '@/libs/theme/_index';
+import { MQ } from '@/libs/themes/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -40,7 +38,7 @@ export const BottomNavigationBar = forwardRef(function BottomNavigationBar(
 
   if (childrenArray.length < 7) {
     return (
-      <Wrap ref={ref} css={[WrapTheme(design)]}>
+      <Wrap ref={ref} height="100%" css={[WrapTheme(design)]}>
         <Row align="center" crossAlign="center" css={[RowTheme(design)]}>
           <nav css={[NavTheme(design, maxWidth)]}>{childrenArray}</nav>
         </Row>
@@ -99,7 +97,6 @@ export const NavigationTab = forwardRef(function NavigationTab(
 function WrapTheme(design: 'default' | 'shape'): Interpolation<Theme> {
   if (design === 'default') {
     return {
-      height: '100%',
       paddingBottom: 'calc(env(safe-area-inset-bottom) + 75px)',
       [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 66.67px)' },
     };
@@ -107,7 +104,6 @@ function WrapTheme(design: 'default' | 'shape'): Interpolation<Theme> {
 
   if (design === 'shape') {
     return {
-      height: '100%',
       paddingBottom: 'calc(env(safe-area-inset-bottom) + 114.33px)',
       [MQ[2]]: { paddingBottom: 'calc(env(safe-area-inset-bottom) + 86px)' },
     };

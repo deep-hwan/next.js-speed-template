@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useCallback, useEffect, useRef } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
-import { IconTab, Layer, Padding, Wrap } from '../_index';
+import { IconTab, Layer, Padding } from '../_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

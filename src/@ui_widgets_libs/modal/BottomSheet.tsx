@@ -3,7 +3,7 @@ import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useS
 import { Interpolation, Theme } from '@emotion/react';
 
 import { Column, Layer, Padding, Wrap } from '../_index';
-import { MQ } from '@/libs/theme/mediaQuery';
+import { MQ } from '@/libs/themes/mediaQuery';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -92,13 +92,35 @@ export function BottomSheet({
   return (
     <>
       <Layer isActive={view} />
-      <Wrap css={[ContainerTheme(view)]}>
-        <Wrap css={[BoxTheme('wrap')]}>
+      <Wrap
+        zIndex={9999}
+        width="100%"
+        height="100%"
+        position={{
+          type: 'fixed',
+          top: view ? 0 : '120%',
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        <Padding
+          safeArea
+          top={70}
+          height="100%"
+          align="center"
+          crossAlign="center"
+          css={{
+            [MQ[1]]: {
+              paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
+            },
+          }}
+        >
           <Column
             ref={ref}
             maxWidth={560}
             height="100%"
-            css={[BoxTheme('wrap-child', view, theme as 'light' | 'dark')]}
+            css={[BoxTheme(view, theme as 'light' | 'dark')]}
             {...props}
           >
             <Padding
@@ -120,7 +142,7 @@ export function BottomSheet({
               {children}
             </Column>
           </Column>
-        </Wrap>
+        </Padding>
       </Wrap>
     </>
   );
@@ -129,58 +151,26 @@ export function BottomSheet({
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-function ContainerTheme(isActive: boolean): Interpolation<Theme> {
+
+function BoxTheme(isActive?: boolean, theme?: 'light' | 'dark'): Interpolation<Theme> {
   return {
-    top: isActive ? '0' : '120%',
-    zIndex: '9999',
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    right: '0',
-    width: '100%',
-    height: '100%',
+    backgroundColor: theme === 'dark' ? '#222222' : '#ffffff',
+    opacity: isActive ? '1' : '0',
+    borderRadius: '22px 22px 0 0',
+    boxShadow: '0 3px 30px rgba(0,0,0,0.1)',
     transition: '0.25s ease-in-out',
+
+    paddingTop: 'env(safe-area-inset-top)',
+    paddingBottom: 'env(safe-area-inset-bottom)',
+
+    '&:webkit-scrollbar': {
+      display: 'none',
+    },
+
+    [MQ[1]]: {
+      maxWidth: '100%',
+    },
   };
-}
-
-function BoxTheme(
-  name: 'wrap' | 'wrap-child',
-  isActive?: boolean,
-  theme?: 'light' | 'dark',
-): Interpolation<Theme> {
-  if (name === 'wrap') {
-    return {
-      height: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: 'calc(env(safe-area-inset-top) + 70px)',
-
-      [MQ[1]]: {
-        paddingTop: 'calc(env(safe-area-inset-top) + 10px)',
-      },
-    };
-  }
-
-  if (name === 'wrap-child') {
-    return {
-      backgroundColor: theme === 'dark' ? '#222222' : '#ffffff',
-      opacity: isActive ? '1' : '0',
-      borderRadius: '22px 22px 0 0',
-      boxShadow: '0 3px 30px rgba(0,0,0,0.1)',
-      transition: '0.25s ease-in-out',
-
-      paddingTop: 'env(safe-area-inset-top)',
-      paddingBottom: 'env(safe-area-inset-bottom)',
-
-      '&:webkit-scrollbar': {
-        display: 'none',
-      },
-
-      [MQ[1]]: {
-        maxWidth: '100%',
-      },
-    };
-  }
 }
 
 function TabTheme(theme?: 'light' | 'dark'): Interpolation<Theme> {

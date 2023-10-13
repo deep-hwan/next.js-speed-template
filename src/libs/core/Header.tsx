@@ -6,8 +6,8 @@ import { Interpolation, Theme } from '@emotion/react';
 import { Drawer } from './Drawer';
 
 //libs
-import { MQ } from '@/libs/theme/mediaQuery';
-import { borderRadius, fontSize, colors } from '@/libs/theme/_index';
+import { MQ } from '@/libs/themes/mediaQuery';
+import { borderRadius, fontSize, colors } from '@/libs/themes/_index';
 import { AppBar, IconTab, Items, Item, Wrap, Row } from '@/@ui_widgets_libs/_index';
 
 //assets
@@ -30,10 +30,17 @@ export default function Header() {
             <LogoIcon alt="서비스명" width="100%" height="100%" />
           </Link>
 
-          <Items direction="horizontal" gap={30} css={theme.menuItems as Interpolation<Theme>}>
+          <Items
+            direction="horizontal"
+            width="auto"
+            gap={30}
+            align="center"
+            crossAlign="center"
+            css={{ [MQ[1]]: { display: 'none' } }}
+          >
             {menus.map((item, i) => {
               return (
-                <Item key={i} css={theme.menuItem}>
+                <Item key={i} width="auto" align="center" crossAlign="center">
                   <Link href={item.path} css={theme.linkItem as Interpolation<Theme>}>
                     {item.name}
                   </Link>
@@ -74,22 +81,6 @@ const theme = {
     [MQ[1]]: {
       width: '84px',
     },
-  },
-
-  menuItems: {
-    width: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    [MQ[1]]: {
-      display: 'none',
-    },
-  },
-
-  menuItem: {
-    width: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   linkItem: {

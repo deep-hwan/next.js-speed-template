@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-import { FlexTheme, PaddingTheme, ViewportTheme } from '@/libs/theme/global';
+import { FlexTheme, PaddingTheme, ViewportTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -13,8 +13,8 @@ interface Props extends HTMLAttributes<HTMLElement> {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: number;
   crossGap?: number;
-  maxWidth?: number;
-  minWidth?: number;
+  maxWidth?: number | string;
+  minWidth?: number | string;
   backgroundColor?: string;
   padding?: {
     all?: number;

@@ -2,7 +2,7 @@ import { colors } from './colors';
 import { fontSize, padding, borderRadius } from './size';
 import { screenSize, MQ, screenPadding } from './mediaQuery';
 import { skeletonURL } from './screen';
-import { GlobalInputStyles } from './global';
+import { GlobalInputStyles } from './_theme';
 
 export {
   colors,

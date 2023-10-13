@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { HTMLAttributes, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -5,7 +6,7 @@ import styled, { Interpolation } from '@emotion/styled';
 import { Theme } from '@emotion/react';
 
 import { Column, Layer, Padding, Wrap } from '../_index';
-import { colors, MQ } from '@/libs/theme/_index';
+import { colors, MQ } from '@/libs/themes/_index';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   view: boolean;
@@ -56,7 +57,18 @@ export function CalenderModal({
   return (
     <>
       <Layer isActive={view} />
-      <Wrap css={Themes('container', view)}>
+      <Wrap
+        height="100%"
+        align="center"
+        crossAlign="center"
+        zIndex={9999}
+        position={{ type: 'fixed', top: view ? 0 : '120%', bottom: 0, right: 0, left: 0 }}
+        css={{
+          [MQ[3]]: {
+            justifyContent: 'flex-end',
+          },
+        }}
+      >
         <Column
           align="center"
           crossAlign="center"
@@ -104,9 +116,7 @@ export function CalenderModal({
             </StyledWrap>
           </Padding>
 
-          <IconTheme onClick={onCancel}>
-            <CancelIcon />
-          </IconTheme>
+          <IconTheme onClick={onCancel} />
         </Column>
       </Wrap>
     </>
@@ -305,27 +315,6 @@ const StyledWrap = styled.div`
 // -------------- Theme Styles --------------
 // -------------------------------------------
 function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
-  if (theme === 'container') {
-    return {
-      top: isActive ? '0' : '120%',
-      width: '100%',
-      height: '100%',
-      position: 'fixed',
-      zIndex: '9999',
-      left: '0',
-      right: '0',
-      bottom: '0',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      transition: '0.25s ease-in-out',
-
-      [MQ[3]]: {
-        justifyContent: 'flex-end',
-      },
-    };
-  }
-
   if (theme === 'box') {
     return {
       boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
@@ -341,7 +330,7 @@ function Themes(theme: string, isActive?: boolean): Interpolation<Theme> {
   }
 }
 
-function IconTheme({ children, onClick }: { children: ReactNode; onClick: () => void }) {
+function IconTheme({ onClick }: { onClick: () => void }) {
   return (
     <button
       type="button"
@@ -368,30 +357,21 @@ function IconTheme({ children, onClick }: { children: ReactNode; onClick: () => 
         },
       }}
     >
-      {children}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16.333"
+        height="16.293"
+        viewBox="0 0 16.333 16.293"
+      >
+        <path
+          id="cancel-icon"
+          d="M15.711,14.2h0L9.482,7.984l.078-.078,6.1-6.1a1.085,1.085,0,0,0,0-1.51,1.094,1.094,0,0,0-1.513.007L7.979,6.483,1.814.305A1.091,1.091,0,0,0,.3.316a1.073,1.073,0,0,0,.017,1.5L6.486,7.982.309,14.166a1.072,1.072,0,0,0,0,1.505,1.1,1.1,0,0,0,1.511-.013L7.988,9.5l6.173,6.163a1.065,1.065,0,0,0,.753.336.91.91,0,0,0,.756-.29,1.072,1.072,0,0,0,.042-1.507"
+          transform="translate(0.164 0.164)"
+          fill="#c2c2c2"
+          stroke="#c2c2c2"
+          stroke-width="0.2"
+        />
+      </svg>
     </button>
-  );
-}
-
-// ----------------------------------
-// -------------- Icon --------------
-// ----------------------------------
-function CancelIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16.333"
-      height="16.293"
-      viewBox="0 0 16.333 16.293"
-    >
-      <path
-        id="cancel-icon"
-        d="M15.711,14.2h0L9.482,7.984l.078-.078,6.1-6.1a1.085,1.085,0,0,0,0-1.51,1.094,1.094,0,0,0-1.513.007L7.979,6.483,1.814.305A1.091,1.091,0,0,0,.3.316a1.073,1.073,0,0,0,.017,1.5L6.486,7.982.309,14.166a1.072,1.072,0,0,0,0,1.505,1.1,1.1,0,0,0,1.511-.013L7.988,9.5l6.173,6.163a1.065,1.065,0,0,0,.753.336.91.91,0,0,0,.756-.29,1.072,1.072,0,0,0,.042-1.507"
-        transform="translate(0.164 0.164)"
-        fill="#c2c2c2"
-        stroke="#c2c2c2"
-        stroke-width="0.2"
-      />
-    </svg>
   );
 }

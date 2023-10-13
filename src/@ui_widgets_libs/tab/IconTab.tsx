@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { Children, ForwardedRef, HTMLAttributes, ReactElement, forwardRef } from 'react';
-import { Interpolation, Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
+import { FlexTheme, PaddingTheme, TabTheme, ViewportTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -33,13 +34,12 @@ export const IconTab = forwardRef(function IconTab(
       type="button"
       onClick={onClick}
       ref={ref}
-      css={
-        {
-          width: `${size}px`,
-          height: `${size}px`,
-          ...styles.button,
-        } as Interpolation<Theme>
-      }
+      css={[
+        ViewportTheme({ minWidth: size, maxWidth: size, minHeight: size, maxHeight: size }),
+        FlexTheme({ align: 'center', crossAlign: 'center' }),
+        TabTheme({ borderRadius: 8 }),
+        PaddingTheme({ padding: { all: 6 } }),
+      ]}
     >
       <div
         onClick={onClick}
@@ -70,35 +70,3 @@ export const IconTab = forwardRef(function IconTab(
     </button>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  button: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '6px',
-    borderRadius: '8px',
-    whiteSpace: 'nowrap',
-    transition: '0.3s ease-in-out',
-    cursor: 'pointer',
-    outline: 'none',
-    border: 'none',
-
-    '&:hover': {
-      backgroundColor: 'rgba(0,0,0,0.03)',
-    },
-  },
-
-  iconBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    transition: '0.3s ease-in-out',
-    whiteSpace: 'nowrap',
-    cursor: 'pointer',
-  },
-};

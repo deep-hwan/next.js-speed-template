@@ -19,8 +19,8 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { Column, Padding, Row, TxtSpan, TxtTab, Wrap } from '../_index';
-import { GlobalInputStyles, ScrollTheme } from '@/libs/theme/global';
+import { Column, Padding, Row, Txt, TxtSpan, TxtTab, Wrap } from '../_index';
+import { GlobalInputStyles, ScrollTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -93,7 +93,11 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
       {label && (
         <label htmlFor={id} css={[labelTheme(error)]}>
           {label}
-          {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
+          {labelEdge && (
+            <span css={{ fontSize: '0.65rem', color: '#ed5c5c', marginLeft: '4px' }}>
+              {labelEdge}
+            </span>
+          )}
         </label>
       )}
 
@@ -102,9 +106,17 @@ export function Input({ children, label, labelEdge, maxWidth, ...props }: InputP
         ...child.props,
       })}
 
-      {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
+      {error && (
+        <Txt color="#ed5c5c" size={12} margin={{ top: 6 }}>
+          {errorMsg}
+        </Txt>
+      )}
 
-      {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
+      {tolTip && !error && (
+        <Txt color="#999999" size={13} margin={{ top: 6 }}>
+          {tolTip}
+        </Txt>
+      )}
     </Column>
   );
 }
@@ -475,31 +487,6 @@ function InputTheme(): Interpolation<Theme> {
     };
   }
 }
-
-// -------------- Styles --------------
-const styles = {
-  labelEdge: {
-    fontSize: '0.7rem',
-    color: '#ed5c5c',
-    marginLeft: '3px',
-  },
-
-  errMsg: {
-    color: '#ed5c5c',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '6px',
-  },
-
-  tolTip: {
-    color: '#999999',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '8px',
-  },
-};
 
 // ----------------------------------------
 // -------------- SearchIcon --------------

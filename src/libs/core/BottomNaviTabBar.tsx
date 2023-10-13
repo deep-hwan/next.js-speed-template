@@ -2,7 +2,7 @@ import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 
 import { BottomNavigationBar, NavigationTab } from '@/@ui_widgets_libs/_index';
-import { colors } from '@/libs/theme/colors';
+import { colors } from '@/libs/themes/colors';
 
 import { CopyIcon, HomeIcon, MessageIcon, ProfileIcon, SettingIcon } from '@/libs/assets/icons';
 

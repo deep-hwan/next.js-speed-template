@@ -12,8 +12,8 @@ import React, {
   memo,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { Column } from '../_index';
-import { GlobalInputStyles } from '@/libs/theme/global';
+import { Column, Txt } from '../_index';
+import { GlobalInputStyles } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -58,7 +58,11 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
       {label && (
         <label htmlFor={id} css={[labelTheme(error)]}>
           {label}
-          {labelEdge && <span css={styles.labelEdge}>{labelEdge}</span>}
+          {labelEdge && (
+            <span css={{ fontSize: '0.65rem', color: '#ed5c5c', marginLeft: '4px' }}>
+              {labelEdge}
+            </span>
+          )}
         </label>
       )}
 
@@ -67,9 +71,17 @@ export function Select({ children, label, labelEdge, maxWidth, ...props }: Selec
         ...child.props,
       })}
 
-      {error && <p css={styles.errMsg as Interpolation<Theme>}>{errorMsg}</p>}
+      {error && (
+        <Txt color="#ed5c5c" size={12} margin={{ top: 6 }}>
+          {errorMsg}
+        </Txt>
+      )}
 
-      {tolTip && !error && <p css={styles.tolTip as Interpolation<Theme>}>{tolTip}</p>}
+      {tolTip && !error && (
+        <Txt color="#999999" size={13} margin={{ top: 6 }}>
+          {tolTip}
+        </Txt>
+      )}
     </Column>
   );
 }
@@ -197,30 +209,3 @@ function SelectTheme(value: boolean | string | number): Interpolation<Theme> {
     };
   }
 }
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const styles = {
-  labelEdge: {
-    fontSize: '0.7rem',
-    color: '#ed5c5c',
-    marginLeft: '3px',
-  },
-
-  errMsg: {
-    color: '#ed5c5c',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '6px',
-  },
-
-  tolTip: {
-    color: '#999999',
-    fontSize: '0.75rem',
-    whiteSpace: 'pre-line',
-    lineHeight: '1.4',
-    marginTop: '8px',
-  },
-};

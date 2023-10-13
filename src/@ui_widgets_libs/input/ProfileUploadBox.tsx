@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useRef, ChangeEvent } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
-import { ProfileImage } from '../_index';
+import { ProfileImage, Wrap } from '../_index';
+import { FlexTheme, StyleTheme, ViewportTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -46,17 +46,12 @@ export function ProfileUploadBox({
   };
 
   return (
-    <div
-      css={{
-        display: 'flex',
-        position: 'relative',
-        maxWidth: `${size}px`,
-        minWidth: `${size}px`,
-        maxHeight: `${size}px`,
-        minHeight: `${size}px`,
-        cursor: 'pointer',
-        transition: '0.3s ease-in-out',
-      }}
+    <Wrap
+      maxWidth={size}
+      minWidth={size}
+      maxHeight={size}
+      minHeight={size}
+      css={{ cursor: 'pointer' }}
     >
       {image ? (
         <>
@@ -69,29 +64,39 @@ export function ProfileUploadBox({
           <button
             type="button"
             onClick={uploadCancel}
-            css={theme.cancelTab as Interpolation<Theme>}
+            css={[
+              StyleTheme({ backgroundColor: '#ffffff', borderRadius: 1000 }),
+              FlexTheme({ crossAlign: 'center', align: 'center' }),
+              ViewportTheme({
+                zIndex: 10,
+                maxWidth: 28,
+                minWidth: 28,
+                maxHeight: 28,
+                minHeight: 28,
+                position: {
+                  type: 'absolute',
+                  bottom: 0,
+                  right: 0,
+                },
+              }),
+            ]}
           >
             <CancelIcon />
           </button>
         </>
       ) : (
-        <div
-          css={{
-            maxWidth: `${size}px`,
-            minWidth: `${size}px`,
-            maxHeight: `${size}px`,
-            minHeight: `${size}px`,
-            backgroundColor: '#f8f8f8',
-            borderRadius: '10000px',
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: '0.3s ease-in-out',
-          }}
+        <Wrap
+          maxWidth={size}
+          minWidth={size}
+          maxHeight={size}
+          minHeight={size}
+          backgroundColor="#f8f8f8"
+          borderRadius={100000}
+          crossAlign="center"
+          align="center"
         >
           <CameraIcon size={size} />
-        </div>
+        </Wrap>
       )}
 
       <input
@@ -99,9 +104,16 @@ export function ProfileUploadBox({
         type="file"
         accept="image/png, image/jpeg"
         onChange={handleChange}
-        css={theme.input as Interpolation<Theme>}
+        css={[
+          { opacity: '0', cursor: 'pointer' },
+          ViewportTheme({
+            width: '100%',
+            height: '100%',
+            position: { type: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+          }),
+        ]}
       />
-    </div>
+    </Wrap>
   );
 }
 
@@ -138,39 +150,4 @@ const CancelIcon = () => {
       />
     </svg>
   );
-};
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const theme = {
-  input: {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    width: '100%',
-    height: '100%',
-    opacity: '0',
-    cursor: 'pointer',
-  },
-
-  cancelTab: {
-    maxWidth: '28px',
-    minWidth: '28px',
-    maxHeight: '28px',
-    minHeight: '28px',
-    zIndex: '10',
-    position: 'absolute',
-    bottom: '0',
-    right: '0',
-    backgroundColor: '#ffffff',
-    border: '1px solid #e2e2e2',
-    borderRadius: '100000px',
-    padding: '5px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 };

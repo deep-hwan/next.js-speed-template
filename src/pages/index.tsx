@@ -1,10 +1,9 @@
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
-import { Interpolation, Theme } from '@emotion/react';
 
 //libs
 import { Column, Section, Txt, Wrap } from '@/@ui_widgets_libs/_index';
-import { MQ, colors } from '@/libs/theme/_index';
+import { MQ, colors, fontSize } from '@/libs/themes/_index';
 
 //components
 import SEO from '@/seo.config';
@@ -18,10 +17,15 @@ export default function Index() {
   return (
     <>
       <SEO />
+
       <Section maxWidth={560}>
-        <Column css={theme.container as Interpolation<Theme>}>
+        <Column
+          gap={40}
+          padding={{ top: 60, bottom: 50 }}
+          css={{ [MQ[3]]: { padding: '30px 20px 50px', rowGap: '30px' } }}
+        >
           <Wrap gap={16}>
-            <Txt as="h1" size={26}>
+            <Txt as="h1" size={fontSize.s24}>
               {router.query.results
                 ? `NEXT.JS 템플릿만의 \n위젯을 경험해봐요`
                 : `NEXT.JS 템플릿에 \n오신 것을 환영합니다`}
@@ -40,16 +44,3 @@ export default function Index() {
     </>
   );
 }
-
-// styled
-const theme = {
-  container: {
-    padding: '60px 0 50px',
-    rowGap: '40px',
-
-    [MQ[3]]: {
-      padding: '30px 20px 50px',
-      rowGap: '30px',
-    },
-  },
-};

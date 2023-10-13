@@ -1,7 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { MarignTheme, PaddingTheme, StyleTheme } from '@/libs/theme/global';
+import {
+  MarignTheme,
+  PaddingTheme,
+  TabTheme,
+  TypographyTheme,
+  ViewportTheme,
+} from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -11,9 +17,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'border' | 'box';
   type?: 'button' | 'submit';
   width?: 'auto' | '100%';
-  minWidth?: number;
-  maxWidth?: number;
-  txtSize?: number;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  txtSize?: number | string;
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   colors?: { button?: string; txt?: string };
   borderRadius?: number | string;
@@ -78,41 +84,17 @@ export const Tab = forwardRef(function Tab(
   }: Props,
   ref?: ForwardedRef<HTMLButtonElement>,
 ) {
-  const themeProps = {
-    width,
-    maxWidth,
-    minWidth,
-    txtSize,
-    colors,
-    borderRadius,
-    border,
-    boxShadow,
-    padding,
-    margin,
-  };
-
   return (
     <button
       type={type}
       ref={ref}
       css={[
-        {
-          '&:hover': {
-            opacity: variant === 'box' ? '0.85' : undefined,
-            backgroundColor: variant === 'border' ? '#fafafa' : undefined,
-          },
-          '&:disabled': {
-            opacity: variant === 'box' ? '0.55' : undefined,
-            backgroundColor: variant === 'border' ? '#fafafa' : undefined,
-            color: variant === 'border' ? '#aaaaaa' : undefined,
-            cursor: 'default',
-          },
-        },
-        TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
-        getThemeStyles(themeProps),
+        getThemeStyles({ variant }),
+        TypographyTheme({ size: txtSize, color: colors.txt, weight, whiteSpace: 'nowrap' }),
+        ViewportTheme({ width, maxWidth, minWidth }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        StyleTheme({
+        TabTheme({
           backgroundColor: colors?.button,
           border,
           borderRadius,
@@ -129,31 +111,17 @@ export const Tab = forwardRef(function Tab(
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-
-const TYPOGRAPH_WEIGHT = {
-  lighter: { fontWeight: '300' },
-  normal: { fontWeight: '400' },
-  medium: { fontWeight: '500' },
-  bold: { fontWeight: '600' },
-} as const;
-
-function getThemeStyles({
-  width,
-  maxWidth,
-  minWidth,
-  txtSize,
-  colors,
-}: ThemeStyleProps): Interpolation<Theme> {
+function getThemeStyles({ variant }: ThemeStyleProps): Interpolation<Theme> {
   return {
-    width: width,
-    minWidth: minWidth && `${minWidth}px`,
-    maxWidth: maxWidth && `${maxWidth}px`,
-    fontSize: txtSize ? `${txtSize / 16}rem` : '1em',
-    color: colors?.txt,
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    transition: '0.3s ease-in-out',
-    outline: 'none',
-    border: 'none',
+    '&:hover': {
+      opacity: variant === 'box' ? '0.85' : undefined,
+      backgroundColor: variant === 'border' ? '#fafafa' : undefined,
+    },
+    '&:disabled': {
+      opacity: variant === 'box' ? '0.55' : undefined,
+      backgroundColor: variant === 'border' ? '#fafafa' : undefined,
+      color: variant === 'border' ? '#aaaaaa' : undefined,
+      cursor: 'default',
+    },
   };
 }

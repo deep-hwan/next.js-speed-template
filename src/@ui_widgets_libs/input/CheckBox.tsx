@@ -10,7 +10,15 @@ import React, {
   forwardRef,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { colors } from '@/libs/theme/colors';
+import { colors } from '@/libs/themes/colors';
+import { Row } from '../_index';
+import {
+  FlexTheme,
+  PaddingTheme,
+  StyleTheme,
+  TypographyTheme,
+  ViewportTheme,
+} from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -33,18 +41,22 @@ export function CheckInput({ label, children, ...props }: InputProps) {
   const id = child.props.id ?? 'check';
 
   return (
-    <div css={styles.checkInput as Interpolation<Theme>}>
+    <Row gap={2} width="auto" css={{ cursor: 'pointer', userSelect: 'none' }}>
       {cloneElement(child, {
         id,
         ...child.props,
       })}
 
-      <div css={styles.labelWrap}>
-        <label htmlFor={id} css={styles.label} {...props}>
+      <Row width="auto" align="center" crossAlign="center" padding={{ bottom: 2 }}>
+        <label
+          htmlFor={id}
+          css={[TypographyTheme({ size: 15, color: '#555555' }), { cursor: 'pointer' }]}
+          {...props}
+        >
           {label}
         </label>
-      </div>
-    </div>
+      </Row>
+    </Row>
   );
 }
 
@@ -56,8 +68,20 @@ CheckInput.CheckBox = forwardRef(function CheckBox(
   ref?: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <label css={styles.checkBox as Interpolation<Theme>} htmlFor={id}>
-      <input type={type} css={styles.input as Interpolation<Theme>} ref={ref} id={id} {...props} />
+    <label
+      css={[
+        FlexTheme({ crossAlign: 'center' }),
+        ViewportTheme({ maxWidth: 28, maxHeight: 28 }),
+        PaddingTheme({ padding: { all: 6 } }),
+        StyleTheme({
+          borderRadius: 100,
+          backgroundColorHover: colors.ground200,
+          cursor: 'pointer',
+        }),
+      ]}
+      htmlFor={id}
+    >
+      <input type={type} css={Themes()} ref={ref} id={id} {...props} />
     </label>
   );
 });
@@ -65,39 +89,8 @@ CheckInput.CheckBox = forwardRef(function CheckBox(
 // ------------------------------------
 // -------------- Styles --------------
 // ------------------------------------
-const styles = {
-  checkInput: {
-    display: 'flex',
-    columnGap: '2px',
-    cursor: 'pointer',
-    userSelect: 'none',
-  },
-
-  labelWrap: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingBottom: '2px',
-    justifyContent: 'center',
-  },
-
-  label: { fontSize: '0.938rem', color: '#555555', cursor: 'pointer' },
-
-  checkBox: {
-    display: 'flex',
-    maxWidth: '28px',
-    maxHeight: '28px',
-    justifyContent: 'center',
-    padding: '6px',
-    borderRadius: '100px',
-    transition: '0.1s ease-in-out',
-    cursor: 'pointer',
-
-    '&:hover': {
-      backgroundColor: colors.ground200,
-    },
-  },
-
-  input: {
+function Themes(): Interpolation<Theme> {
+  return {
     width: '16px',
     minWidth: '16px',
     height: '16px',
@@ -129,5 +122,5 @@ const styles = {
       border: '1px solid #cccccc',
       borderRadius: '5px',
     },
-  },
-};
+  };
+}

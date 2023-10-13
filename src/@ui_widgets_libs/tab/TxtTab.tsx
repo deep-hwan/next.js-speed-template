@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
-import { colors } from '@/libs/theme/colors';
-import { MarignTheme, PaddingTheme } from '@/libs/theme/global';
+import { MarignTheme, PaddingTheme, TabTheme, TypographyTheme } from '@/libs/themes/_theme';
+import { colors } from '@/libs/themes/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -11,7 +10,7 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   type?: 'button' | 'submit';
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
-  size?: number;
+  size?: number | string;
   color?: string;
   padding?: {
     all?: number;
@@ -45,14 +44,16 @@ export const TxtTab = forwardRef(function TxtTab(
       type={type}
       ref={ref}
       css={[
-        TYPOGRAPH_WEIGHT[weight ? weight : 'normal'],
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
-        {
-          ...tabStyles,
-          fontSize: size ? `${size / 16}rem` : '0.875rem',
+        TypographyTheme({
+          size: size ? size : 14,
           color: color ? color : colors.keyColor,
-        } as Interpolation<Theme>,
+          weight,
+          whiteSpace: 'nowrap',
+        }),
+        TabTheme({ opacityDisabled: 0.4 }),
+        { '&:hover': { fontWeight: '500' } },
       ]}
       {...props}
     >
@@ -60,29 +61,3 @@ export const TxtTab = forwardRef(function TxtTab(
     </button>
   );
 });
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-const tabStyles = {
-  position: 'relative',
-  whiteSpace: 'nowrap',
-  transition: '0.3s ease-in-out',
-  outline: 'none',
-  border: 'none',
-
-  '&:hover': {
-    fontWeight: '500',
-  },
-  '&:disabled': {
-    opacity: 0.4,
-    cursor: 'default',
-  },
-};
-
-const TYPOGRAPH_WEIGHT = {
-  lighter: { fontWeight: '300' },
-  normal: { fontWeight: '400' },
-  medium: { fontWeight: '500' },
-  bold: { fontWeight: '600' },
-} as const;

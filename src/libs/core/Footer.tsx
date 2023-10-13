@@ -6,7 +6,7 @@ import { Interpolation, Theme } from '@emotion/react';
 import menus from '../json/menu.json';
 
 //libs
-import { MQ, fontSize, colors } from '@/libs/theme/_index';
+import { MQ, fontSize, colors } from '@/libs/themes/_index';
 import { Column, Item, Items, Spacing, Txt, Wrap } from '@/@ui_widgets_libs/_index';
 
 //

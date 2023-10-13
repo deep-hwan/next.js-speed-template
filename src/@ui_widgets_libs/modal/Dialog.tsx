@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
-import { HTMLAttributes } from 'react';
-import { Interpolation, Theme } from '@emotion/react';
+import React, { ReactNode, useCallback, useEffect, useRef, HTMLAttributes } from 'react';
 import { Column, IconTab, Layer, Padding, Wrap } from '../_index';
+import { ViewportTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -56,14 +55,17 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
     <>
       <Layer isActive={view} />
       <Padding
+        safeArea
         height="100%"
-        safeArea={true}
         horizontal={25}
         top={30}
         bottom={60}
         align="center"
         crossAlign="center"
-        css={[Themes('bg', view)]}
+        css={ViewportTheme({
+          zIndex: 9999,
+          position: { type: 'fixed', top: view ? 0 : ' 120%', bottom: 0, left: 0, right: 0 },
+        })}
       >
         <Column
           maxWidth={380}
@@ -73,16 +75,15 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
           backgroundColor="#ffffff"
           boxShadow={{ x: 0, y: 2, blur: 20, color: 'rgba(0,0,0,0.1' }}
           ref={ref}
-          css={{ transition: '0.5s ease-in-out' }}
           {...props}
         >
           {children}
 
-          <IconTheme>
+          <Wrap width="auto" position={{ type: 'absolute', top: 4, right: 4 }}>
             <IconTab onClick={onCancel}>
               <CancelIcon />
             </IconTab>
-          </IconTheme>
+          </Wrap>
         </Column>
       </Padding>
     </>
@@ -103,24 +104,4 @@ function CancelIcon() {
       />
     </svg>
   );
-}
-
-// ------------------------------------
-// -------------- Styles --------------
-// ------------------------------------
-function Themes(name: string, isActive?: boolean): Interpolation<Theme> {
-  if (name === 'bg') {
-    return {
-      zIndex: '9999',
-      position: 'fixed',
-      top: isActive ? '0' : '120%',
-      left: '0',
-      right: '0',
-      bottom: '0',
-    };
-  }
-}
-
-function IconTheme({ children }: { children: ReactNode }) {
-  return <div css={{ position: 'absolute', top: '4px', right: '4px' }}>{children}</div>;
 }

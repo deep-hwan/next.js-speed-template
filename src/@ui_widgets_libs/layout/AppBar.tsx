@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useEffect, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
-import { MQ } from '@/libs/theme/mediaQuery';
+import { MQ } from '@/libs/themes/mediaQuery';
 import { Padding } from './Padding';
 
 // --------------------------------------------

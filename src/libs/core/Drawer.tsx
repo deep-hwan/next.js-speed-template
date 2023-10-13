@@ -7,12 +7,13 @@ import menus from '../json/menu.json';
 
 //libs
 import { AppDrawer, Item, Items, Txt, Wrap } from '@/@ui_widgets_libs/_index';
-import { colors } from '@/libs/theme/colors';
-import { borderRadius } from '@/libs/theme/size';
+import { colors } from '@/libs/themes/colors';
+import { borderRadius } from '@/libs/themes/size';
 
 //assets
 import { PathIcon } from '@/libs/assets/icons';
-import { MQ } from '@/libs/theme/mediaQuery';
+import { MQ } from '@/libs/themes/mediaQuery';
+import { PaddingTheme } from '../themes/_theme';
 
 interface DrawerType {
   isDrawer: boolean;
@@ -22,9 +23,9 @@ interface DrawerType {
 //
 export const Drawer = memo(function Drawer({ isDrawer, handleCloseDrawer }: DrawerType) {
   return (
-    <Wrap css={theme.appContainer}>
+    <Wrap css={{ display: 'none', [MQ[1]]: { display: 'flex' } }}>
       <AppDrawer view={isDrawer} onCancel={handleCloseDrawer}>
-        <Items css={theme.menus}>
+        <Items css={PaddingTheme({ padding: { top: 10, bottom: 50 } })}>
           {menus.map((item, i) => {
             return (
               <Item key={i} css={theme.menu} onClick={() => handleCloseDrawer()}>
@@ -43,18 +44,6 @@ export const Drawer = memo(function Drawer({ isDrawer, handleCloseDrawer }: Draw
 
 // styled
 const theme = {
-  appContainer: {
-    display: 'none',
-    [MQ[1]]: {
-      display: 'flex',
-    },
-  },
-
-  menus: {
-    paddingTop: '10px',
-    paddingBottom: 'calc(env(safe-area-inset-bottom) + 50px)',
-  },
-
   menu: {
     padding: '2px 14px',
     paddingRight: 'calc(env(safe-area-inset-right) + 14px)',
@@ -64,8 +53,6 @@ const theme = {
     width: '100%',
     padding: '16px 10px',
     paddingLeft: '10px',
-    // paddingRight: "calc(env(safe-area-inset-right) + 10px)",
-    // paddingLeft: "calc(env(safe-area-inset-left) + 10px)",
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

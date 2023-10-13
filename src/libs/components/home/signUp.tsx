@@ -10,18 +10,16 @@ import {
   Button,
   CalenderModal,
   CheckInput,
-  Column,
   Dialog,
   Form,
   Input,
   LoadingLayer,
   Padding,
-  Select,
   Spacing,
   Txt,
   TxtSpan,
 } from '@/@ui_widgets_libs/_index';
-import { colors, borderRadius, fontSize } from '@/libs/theme/_index';
+import { colors, borderRadius, fontSize } from '@/libs/themes/_index';
 
 //
 interface isValuesProps {
@@ -254,11 +252,7 @@ export default function SignUp() {
           </Txt>
         </Padding>
 
-        <Button
-          type="submit"
-          css={{ width: '100%' }}
-          disabled={(name && email && context) === '' || !check1 || !check2}
-        >
+        <Button type="submit" disabled={(name && email && context) === '' || !check1 || !check2}>
           제출
         </Button>
       </Form>
@@ -360,12 +354,6 @@ export default function SignUp() {
 
 //
 const theme = {
-  checkBox: {
-    marginTop: '10px',
-    backgroundColor: colors.ground100,
-    borderRadius: borderRadius.s500,
-  },
-  //
   infoTab: {
     fontSize: fontSize.s12,
     color: colors.grey500,
