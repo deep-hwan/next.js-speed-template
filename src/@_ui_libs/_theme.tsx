@@ -1,21 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { Interpolation, Theme } from '@emotion/react';
-import { colors } from './colors';
+import { colors } from '../libs/themes/colors';
 
 // ---------------------------
 // -------- Viewport ---------
 // ---------------------------
 export function ViewportTheme({
+  zIndex,
+  backgroundColor,
   width,
-  height,
+  height = 'auto',
   minWidth,
   maxWidth,
   minHeight,
   maxHeight,
   position = { type: 'relative' },
-  zIndex,
 }: {
   zIndex?: number;
+  backgroundColor?: string;
   width?: 'auto' | '100%';
   minWidth?: number | string;
   maxWidth?: number | string;
@@ -43,6 +45,7 @@ export function ViewportTheme({
     right: typeof position.right === 'number' ? `${position.right}px` : position.right,
     left: typeof position.right === 'number' ? `${position.left}px` : position.left,
     zIndex: zIndex,
+    backgroundColor,
     transition: '0.3s ease-in-out',
   };
 }

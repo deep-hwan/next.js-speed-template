@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-import { FlexTheme, PaddingTheme, ViewportTheme } from '@/libs/themes/_theme';
+import { FlexTheme, ViewportTheme } from '../_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -51,12 +51,13 @@ export const Section = forwardRef(function Section(
     <section
       ref={ref}
       css={[
-        PaddingTheme({ safeArea: true, padding }),
         ViewportTheme({ width: '100%', height: '100%', minWidth, maxWidth }),
         FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
         {
           flex: '1 auto',
           backgroundColor: backgroundColor,
+          paddingRight: 'env(safe-area-inset-right)',
+          paddingLeft: 'env(safe-area-inset-left)',
         },
       ]}
       {...props}

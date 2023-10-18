@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 
-import { Section, Txt, Spacing, Tab } from '@/@ui_widgets_libs/_index';
+import { Section, Txt, Spacing, Tab } from '@/@_ui_libs/_index';
 import { colors, borderRadius, MQ, fontSize } from '@/libs/themes/_index';
 
 import SEO from '@/seo.config';

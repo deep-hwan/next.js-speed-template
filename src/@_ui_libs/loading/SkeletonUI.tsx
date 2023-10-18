@@ -1,5 +1,5 @@
 import React, { ForwardedRef, HTMLAttributes, forwardRef, memo } from 'react';
-import { ViewportTheme } from '@/libs/themes/_theme';
+import { ViewportTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

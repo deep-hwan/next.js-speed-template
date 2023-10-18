@@ -1,17 +1,5 @@
 import { colors } from './colors';
 import { fontSize, padding, borderRadius } from './size';
-import { screenSize, MQ, screenPadding } from './mediaQuery';
-import { skeletonURL } from './screen';
-import { GlobalInputStyles } from './_theme';
+import { MediaSize, MQ, skeletonURL } from './media';
 
-export {
-  colors,
-  fontSize,
-  padding,
-  borderRadius,
-  screenSize,
-  MQ,
-  skeletonURL,
-  GlobalInputStyles,
-  screenPadding,
-};
+export { colors, fontSize, padding, borderRadius, MediaSize, MQ, skeletonURL };

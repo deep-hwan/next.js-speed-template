@@ -1,5 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
+import {
+  FlexTheme,
+  PaddingTheme,
+  ScrollTheme,
+  StyleTheme,
+  TabTheme,
+  TypographyTheme,
+  ViewportTheme,
+} from '../_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -25,25 +34,17 @@ export const Accordion = forwardRef(function Accordion(
   return (
     <div
       ref={ref}
-      css={{
-        width: '100%',
-        padding: '14px',
-        cursor: 'pointer',
-        borderRadius: '14px',
-        transition: '0.3s ease-in-out',
-        display: 'flex',
-        flexDirection: direction === 'vertical' ? 'column' : 'row',
-        rowGap: direction == 'vertical' ? `${gap}px` : `6px`,
-        columnGap: direction == 'horizontal' ? `${gap}px` : `6px`,
-
-        ':hover': {
-          backgroundColor: '#f8f9fc',
-        },
-
-        '& p:hover': {
-          fontWeight: '500',
-        },
-      }}
+      css={[
+        { ':hover': { backgroundColor: '#f8f9fc' }, '& p:hover': { fontWeight: '500' } },
+        ViewportTheme({ width: '100%' }),
+        TabTheme({ cursor: 'pointer', borderRadius: 14 }),
+        PaddingTheme({ padding: { all: 14 } }),
+        FlexTheme({
+          direction: direction === 'vertical' ? 'vertical' : 'horizontal',
+          gap: 6,
+          crossGap: 6,
+        }),
+      ]}
       {...props}
     >
       {children}
@@ -57,18 +58,15 @@ export const Accordion = forwardRef(function Accordion(
 export function AccordionPanel({ view, children, ...props }: PanelProps) {
   return (
     <div
-      css={{
-        width: '100%',
-        height: view ? 'auto' : '0px',
-        maxHeight: view ? '9999px' : '0px',
-        padding: view ? '20px' : '0 20px',
-        backgroundColor: '#f8f9fc',
-        borderRadius: '14px',
-        transition: '0.2s ease-in-out',
-        fontSize: '0.938rem',
-        overflow: 'hidden',
-        whiteSpace: 'pre-line',
-      }}
+      css={[
+        ViewportTheme({ width: '100%', maxHeight: view ? '9999px' : '0px' }),
+        TypographyTheme({ whiteSpace: 'pre-line', size: 15 }),
+        ScrollTheme({ scroll: { type: 'hidden' } }),
+        StyleTheme({ backgroundColor: 'f8f9fc', borderRadius: 14 }),
+        PaddingTheme({
+          padding: { all: view ? 20 : undefined, horizontal: view ? undefined : 20 },
+        }),
+      ]}
       {...props}
     >
       {children}

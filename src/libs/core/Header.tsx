@@ -6,9 +6,8 @@ import { Interpolation, Theme } from '@emotion/react';
 import { Drawer } from './Drawer';
 
 //libs
-import { MQ } from '@/libs/themes/mediaQuery';
-import { borderRadius, fontSize, colors } from '@/libs/themes/_index';
-import { AppBar, IconTab, Items, Item, Wrap, Row } from '@/@ui_widgets_libs/_index';
+import { AppBar, IconTab, Items, Item, Wrap, Row } from '@/@_ui_libs/_index';
+import { borderRadius, fontSize, colors, MQ } from '@/libs/themes/_index';
 
 //assets
 import { LogoIcon, ToastIcon } from '@/libs/assets/icons';

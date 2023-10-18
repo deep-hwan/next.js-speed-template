@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, forwardRef, memo, useEffect, useState } from 'react';
-import { FlexTheme, TabTheme, ViewportTheme } from '@/libs/themes/_theme';
+import { FlexTheme, TabTheme, ViewportTheme } from '@/@_ui_libs/_theme';
 import { MQ } from '@/libs/themes/_index';
 
 // ------------------------------------------

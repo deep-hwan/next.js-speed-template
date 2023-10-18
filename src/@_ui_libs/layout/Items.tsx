@@ -7,7 +7,7 @@ import {
   ScrollTheme,
   StyleTheme,
   ViewportTheme,
-} from '@/libs/themes/_theme';
+} from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

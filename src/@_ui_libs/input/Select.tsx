@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import { Column, Txt } from '../_index';
-import { GlobalInputStyles } from '@/libs/themes/_theme';
+import { GlobalInputStyles } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

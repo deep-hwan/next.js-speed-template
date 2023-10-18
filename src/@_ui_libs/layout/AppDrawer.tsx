@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, ReactNode, forwardRef, useCallback, useEffect, useRef } from 'react';
-import { IconTab, Layer, Padding } from '../_index';
+import { IconTab, Layer, Padding, Wrap } from '../_index';
+import { FlexTheme, PaddingTheme, ScrollTheme, ViewportTheme } from '../_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -48,31 +49,32 @@ export const AppDrawer = forwardRef(function AppDrawer(
     <>
       <Layer isActive={view} />
 
-      <Padding
-        safeArea
-        maxWidth={390}
-        top={0}
-        bottom={0}
-        backgroundColor="#fff"
-        scroll={{ type: 'auto', bar: false }}
+      <Wrap
         ref={drawerRef}
-        css={{
-          zIndex: '9999',
-          position: 'fixed',
-          top: '0',
-          bottom: '0',
-          right: view ? '0' : '-100%',
-        }}
+        css={[
+          PaddingTheme({ safeArea: true, padding: { vertical: 0 } }),
+          ScrollTheme({ scroll: { type: 'auto', bar: false } }),
+          ViewportTheme({
+            zIndex: 9999,
+            width: '100%',
+            maxWidth: 390,
+            position: { type: 'fixed', top: 0, bottom: 0, right: view ? '0' : '-100%' },
+            backgroundColor: '#ffffff',
+          }),
+        ]}
       >
         <Padding
           safeArea
-          direction="horizontal"
-          crossAlign="end"
-          top={8}
-          left={0}
-          right={10}
           ref={ref}
-          css={{ zIndex: '11', position: 'sticky', top: '0', left: '0' }}
+          css={[
+            PaddingTheme({ safeArea: true, padding: { top: 8, left: 0, right: 10 } }),
+            FlexTheme({ direction: 'horizontal', align: 'end', crossAlign: 'end' }),
+            ViewportTheme({
+              zIndex: 11,
+              width: '100%',
+              position: { type: 'sticky', top: 0, left: 0 },
+            }),
+          ]}
           {...props}
         >
           <IconTab onClick={onCancel}>
@@ -96,7 +98,7 @@ export const AppDrawer = forwardRef(function AppDrawer(
         >
           {children}
         </Padding>
-      </Padding>
+      </Wrap>
     </>
   );
 });

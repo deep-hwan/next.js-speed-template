@@ -18,7 +18,7 @@ import {
   Spacing,
   Txt,
   TxtSpan,
-} from '@/@ui_widgets_libs/_index';
+} from '@/@_ui_libs/_index';
 import { colors, borderRadius, fontSize } from '@/libs/themes/_index';
 
 //

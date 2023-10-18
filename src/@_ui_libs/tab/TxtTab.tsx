@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
-import { MarignTheme, PaddingTheme, TabTheme, TypographyTheme } from '@/libs/themes/_theme';
+import { MarignTheme, PaddingTheme, TabTheme, TypographyTheme } from '@/@_ui_libs/_theme';
 import { colors } from '@/libs/themes/_index';
 
 // --------------------------------------------

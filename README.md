@@ -58,7 +58,7 @@
 
 ### UI_Weidgets (위젯)
 
-##### src > @ui_widgets_libs
+##### src > @ui_libs
 
 즉시 사용할 수 있는 디자인 UI 위젯입니다.
 
@@ -66,7 +66,7 @@
 
 **모든 위젯의 스타일은 공통적인 Theme**을 통해 관리하고 있습니다.
 
-( 경로 : libs > themes > \_theme.tsx )
+( 경로 : src > @ui_libs > \_theme.tsx )
 
 **Layout Widgets**
 
@@ -131,13 +131,15 @@
 
 ## Site-map
 
-1. src > pages > api > sitemap.ts 에서 staticPages 라우트 추가 / dynamicRoutes 동적 라우트의 서버 api URL 추가
+1. public > seo.config.tsx : 검색엔진에 사이트 키워드를 작성 (권장 / 필수)
 
-2. next.config.js 에서 siteUrl > 도메인 주소로 변경
+2. src > pages > api > sitemap.ts 에서 staticPages 라우트 추가 / dynamicRoutes 동적 라우트의 서버 api URL 추가
 
-3. next-sitemap.config.js에서 siteUrl : 도메인 주소로 변경 / additionalSitemaps : 도메인 주소/sitemap.xml로 변경
+3. next.config.js 에서 siteUrl > 도메인 주소로 변경
 
-4. npm run build
+4. next-sitemap.config.js에서 siteUrl : 도메인 주소로 변경 / additionalSitemaps : 도메인 주소/sitemap.xml로 변경
+
+5. npm run build
 
 ---
 

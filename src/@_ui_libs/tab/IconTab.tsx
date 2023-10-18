@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { Children, ForwardedRef, HTMLAttributes, ReactElement, forwardRef } from 'react';
 import { css } from '@emotion/react';
-import { FlexTheme, PaddingTheme, TabTheme, ViewportTheme } from '@/libs/themes/_theme';
+import { FlexTheme, PaddingTheme, TabTheme, ViewportTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
-import { FlexTheme, MarignTheme, PaddingTheme, TypographyTheme } from '@/libs/themes/_theme';
+import { FlexTheme, MarignTheme, PaddingTheme, TypographyTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

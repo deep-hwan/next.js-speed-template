@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import React, { HTMLAttributes, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
 import { Column, Layer, Padding, Wrap } from '../_index';
-import { MQ } from '@/libs/themes/mediaQuery';
+import { MQ } from '@/libs/themes/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useRef, ChangeEvent } from 'react';
 import { ProfileImage, Wrap } from '../_index';
-import { FlexTheme, StyleTheme, ViewportTheme } from '@/libs/themes/_theme';
+import { FlexTheme, StyleTheme, ViewportTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

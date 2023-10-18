@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, ReactNode, forwardRef } from 'react';
+
 import {
   FlexTheme,
   MarignTheme,
@@ -7,7 +8,7 @@ import {
   ScrollTheme,
   StyleTheme,
   ViewportTheme,
-} from '@/libs/themes/_theme';
+} from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -15,7 +16,6 @@ import {
 interface Props extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   direction?: 'horizontal' | 'vertical';
-  safeArea?: boolean;
   align?: 'start' | 'center' | 'stretch' | 'end';
   crossAlign?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
@@ -27,13 +27,6 @@ interface Props extends HTMLAttributes<HTMLElement> {
   maxWidth?: number | string;
   minHeight?: number | string;
   maxHeight?: number | string;
-  all?: number;
-  horizontal?: number;
-  vertical?: number;
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
   backgroundColor?: string;
   borderRadius?: number | string;
   boxShadow?: {
@@ -44,8 +37,16 @@ interface Props extends HTMLAttributes<HTMLElement> {
   };
   border?: {
     solid: number;
-    position?: 'left' | 'right' | 'top' | 'bottom';
     color?: string;
+  };
+  padding?: {
+    all?: number;
+    horizontal?: number;
+    vertical?: number;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
   };
   margin?: {
     all?: number;
@@ -62,10 +63,12 @@ interface Props extends HTMLAttributes<HTMLElement> {
   };
 }
 
-export const Padding = forwardRef(function Container(
+// ----------------------------------
+// -------------- Form --------------
+// ----------------------------------
+export const Form = forwardRef(function Form(
   {
     children,
-    safeArea,
     direction = 'vertical',
     align,
     crossAlign,
@@ -78,29 +81,22 @@ export const Padding = forwardRef(function Container(
     maxWidth,
     minHeight,
     maxHeight,
-    all,
-    horizontal,
-    vertical,
-    top,
-    bottom,
-    left,
-    right,
     border,
     backgroundColor,
     borderRadius,
     boxShadow,
+    padding,
     margin,
     scroll,
     ...props
   }: Props,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref?: ForwardedRef<HTMLFormElement>,
 ) {
-  const padding = { all, horizontal, vertical, top, bottom, left, right };
   return (
-    <div
+    <form
       ref={ref}
       css={[
-        PaddingTheme({ safeArea, padding }),
+        PaddingTheme({ padding }),
         MarignTheme({ margin }),
         ViewportTheme({ width, height, minWidth, maxWidth, minHeight, maxHeight }),
         FlexTheme({ direction, align, crossAlign, wrap, gap, crossGap }),
@@ -110,6 +106,6 @@ export const Padding = forwardRef(function Container(
       {...props}
     >
       {children}
-    </div>
+    </form>
   );
 });

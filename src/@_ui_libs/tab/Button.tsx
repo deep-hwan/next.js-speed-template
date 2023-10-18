@@ -7,7 +7,7 @@ import {
   ViewportTheme,
   TypographyTheme,
   TabTheme,
-} from '@/libs/themes/_theme';
+} from '@/@_ui_libs/_theme';
 import { colors } from '@/libs/themes/_index';
 
 // --------------------------------------------

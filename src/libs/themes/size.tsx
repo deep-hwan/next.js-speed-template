@@ -65,5 +65,5 @@ export const fontSize = {
   s50: '315rem',
   s52: '3.25rem',
   s56: '3.5rem',
-  s60: '3.75rem',
+  s60: '3.45rem',
 } as const;

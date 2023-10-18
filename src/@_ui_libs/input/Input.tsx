@@ -20,7 +20,7 @@ import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { Column, Padding, Row, Txt, TxtSpan, TxtTab, Wrap } from '../_index';
-import { GlobalInputStyles, ScrollTheme } from '@/libs/themes/_theme';
+import { GlobalInputStyles, ScrollTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------

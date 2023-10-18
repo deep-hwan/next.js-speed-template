@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactNode, useCallback, useEffect, useRef, HTMLAttributes } from 'react';
 import { Column, IconTab, Layer, Padding, Wrap } from '../_index';
-import { ViewportTheme } from '@/libs/themes/_theme';
+import { ViewportTheme } from '@/@_ui_libs/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
