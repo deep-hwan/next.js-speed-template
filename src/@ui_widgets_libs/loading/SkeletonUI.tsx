@@ -1,13 +1,17 @@
-/** @jsxImportSource @emotion/react */
 import React, { ForwardedRef, HTMLAttributes, forwardRef, memo } from 'react';
+import { ViewportTheme } from '@/libs/themes/_theme';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
 // --------------------------------------------
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  width?: number;
-  height?: number;
-  borderRadius?: number;
+  width?: '100%' | 'auto';
+  maxWidth?: number | string;
+  minWidth?: number | string;
+  height?: '100%' | 'auto';
+  maxHeight?: number | string;
+  minHeight?: number | string;
+  borderRadius?: number | string;
 }
 
 // --------------------------------------
@@ -15,8 +19,17 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 // --------------------------------------
 export const Skeleton = memo(
   forwardRef(function Skeleton(
-    { width, height, borderRadius, ...props }: Props,
-    ref?: ForwardedRef<HTMLDivElement>,
+    {
+      width = '100%',
+      maxWidth,
+      minWidth,
+      height,
+      minHeight,
+      maxHeight,
+      borderRadius = 1000,
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLDivElement>,
   ) {
     const loadAnimation = `
       @keyframes load {
@@ -31,18 +44,17 @@ export const Skeleton = memo(
         <style>{loadAnimation}</style>
         <div
           ref={ref}
-          css={{
-            width: width ? `${width}px` : '100%',
-            minWidth: width ? `${width}px` : '100%',
-            height: height ? `${height}px` : '10px',
-            minHeight: height ? `${height}px` : '10px',
-            background:
-              'linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%)',
-            borderRadius: borderRadius ? `${borderRadius}px` : '1000px',
-            backgroundSize: '200% 100%',
-            backgroundPosition: '100% 0',
-            animation: 'load 1s infinite', // Added animation property
-          }}
+          css={[
+            ViewportTheme({ width, maxWidth, minWidth, height, minHeight, maxHeight }),
+            {
+              borderRadius: borderRadius,
+              background:
+                'linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%)',
+              backgroundSize: '200% 100%',
+              backgroundPosition: '100% 0',
+              animation: 'load 1s infinite', // Added animation property
+            },
+          ]}
           {...props}
         />
       </>

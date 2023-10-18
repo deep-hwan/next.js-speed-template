@@ -2,6 +2,7 @@
 import React, { ButtonHTMLAttributes, ForwardedRef, ReactNode, forwardRef } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 import {
+  FlexTheme,
   MarignTheme,
   PaddingTheme,
   TabTheme,
@@ -19,6 +20,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: 'auto' | '100%';
   minWidth?: number | string;
   maxWidth?: number | string;
+  gap?: number;
   txtSize?: number | string;
   weight?: 'lighter' | 'normal' | 'medium' | 'bold';
   colors?: { button?: string; txt?: string };
@@ -68,6 +70,7 @@ export const Tab = forwardRef(function Tab(
     minWidth,
     txtSize = 14,
     weight,
+    gap = 8,
     colors = {
       button: variant === 'box' ? '#f5f7fc' : '#ffffff',
       txt: variant === 'box' ? '#797979' : '#666666',
@@ -92,6 +95,7 @@ export const Tab = forwardRef(function Tab(
         getThemeStyles({ variant }),
         TypographyTheme({ size: txtSize, color: colors.txt, weight, whiteSpace: 'nowrap' }),
         ViewportTheme({ width, maxWidth, minWidth }),
+        FlexTheme({ direction: 'horizontal', align: 'center', crossAlign: 'center', gap }),
         PaddingTheme({ padding }),
         MarignTheme({ margin }),
         TabTheme({
