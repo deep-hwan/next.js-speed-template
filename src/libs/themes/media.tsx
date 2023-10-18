@@ -8,7 +8,7 @@ export const MQ = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 // -------- Screen Size --------
 // -----------------------------
 export const MediaSize = {
-  s100: '1160px',
+  s100: '1280px',
   s200: '1080px',
   s300: '768px',
   s400: '600px',

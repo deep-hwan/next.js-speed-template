@@ -58,8 +58,6 @@ export const AppBar = forwardRef(function AppBar(
             },
           }),
           FlexTheme({ direction: 'horizontal', align: 'center', crossAlign: 'center' }),
-          PaddingTheme({ padding: { vertical: 8 } }),
-
           {
             paddingTop: 'env(safe-area-inset-top)',
             paddingRight: 'env(safe-area-inset-right)',
