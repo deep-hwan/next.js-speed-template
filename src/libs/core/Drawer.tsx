@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { memo } from 'react';
 import Link from 'next/link';
 

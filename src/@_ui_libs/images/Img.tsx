@@ -9,11 +9,11 @@ interface Props {
   height?: number;
   size?: {
     width?: 'auto' | '100%' | string;
-    minWidth?: number;
-    maxWidth?: number;
+    minWidth?: number | string;
+    maxWidth?: number | string;
     height?: 'auto' | '100%';
-    minHeight?: number;
-    maxHeight?: number;
+    minHeight?: number | string;
+    maxHeight?: number | string;
   };
   objectFit?: 'cover' | 'contain' | 'fill';
   borderRadius?: number | string;
@@ -42,10 +42,10 @@ export function Img({
         css={{
           width: size?.width ? size?.width : '100%',
           height: size?.height ? size?.height : 'auto',
-          minWidth: `${size?.minWidth}px`,
-          maxWidth: `${size?.maxWidth}px`,
-          minHeight: `${size?.minHeight}px`,
-          maxHeight: `${size?.maxHeight}px`,
+          minWidth: typeof size?.minWidth === 'number' ? `${size?.minWidth}px` : size?.minWidth,
+          maxWidth: typeof size?.maxWidth === 'number' ? `${size?.maxWidth}px` : size?.maxWidth,
+          minHeight: typeof size?.minHeight === 'number' ? `${size?.minHeight}px` : size?.minHeight,
+          maxHeight: typeof size?.maxHeight === 'number' ? `${size?.maxHeight}px` : size?.maxHeight,
           objectFit: objectFit,
           borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
         }}

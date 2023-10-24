@@ -21,8 +21,8 @@ export default function Index() {
       <Section maxWidth={560}>
         <Column
           gap={40}
-          padding={{ top: 60, bottom: 50 }}
-          css={{ [MQ[3]]: { padding: '30px 20px 50px', rowGap: '30px' } }}
+          padding={{ top: 60, bottom: 40, horizontal: 20 }}
+          css={{ [MQ[3]]: { padding: '20px 20px 30px', rowGap: '30px' } }}
         >
           <Wrap gap={16}>
             <Txt as="h1" size={fontSize.s24}>

@@ -2,6 +2,7 @@
 import React, { Children, ForwardedRef, HTMLAttributes, ReactElement, forwardRef } from 'react';
 import { css } from '@emotion/react';
 import { FlexTheme, PaddingTheme, TabTheme, ViewportTheme } from '@/@_ui_libs/_theme';
+import { MQ } from '@/libs/themes/_index';
 
 // --------------------------------------------
 // -------------- Type Interface --------------
@@ -39,6 +40,7 @@ export const IconTab = forwardRef(function IconTab(
         FlexTheme({ align: 'center', crossAlign: 'center' }),
         TabTheme({ borderRadius: 8 }),
         PaddingTheme({ padding: { all: 6 } }),
+        { '&:hover': { backgroundColor: '#f8f9fc' }, [MQ[3]]: { backgroundColor: 'transparent' } },
       ]}
     >
       <div

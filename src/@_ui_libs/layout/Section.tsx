@@ -58,6 +58,7 @@ export const Section = forwardRef(function Section(
           backgroundColor: backgroundColor,
           paddingRight: 'env(safe-area-inset-right)',
           paddingLeft: 'env(safe-area-inset-left)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
         },
       ]}
       {...props}

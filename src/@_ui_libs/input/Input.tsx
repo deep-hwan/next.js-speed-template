@@ -37,7 +37,7 @@ interface FieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
   autoComplete?: 'on' | 'off';
   error?: boolean | string;
   errorMsg?: boolean | string;
-  tolTip?: string;
+  tolTip?: boolean | string;
   edge?: ReactNode;
 }
 
