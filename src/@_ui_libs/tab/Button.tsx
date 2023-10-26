@@ -87,7 +87,7 @@ export const Button = forwardRef(function Button(
           backgroundColor="#fff"
           css={[
             PaddingTheme({ safeArea: true, padding: { bottom: 20, horizontal: 20 } }),
-            { [MQ[2]]: { paddingBottom: 10 } },
+            { [MQ[2]]: { paddingBottom: `max(10px, env(safe-area-inset-bottom))` } },
           ]}
         >
           <button
