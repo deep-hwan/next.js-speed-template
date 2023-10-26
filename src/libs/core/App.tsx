@@ -14,13 +14,14 @@ export default function AppLayout({ children }: LayoutProps): JSX.Element {
   const router: NextRouter = useRouter();
 
   const errPath = router.pathname === '/404';
+  const noneView = router.pathname === '/form-fields';
 
   return (
     <div id="layout">
       {!errPath && <Header />}
       <main>{children}</main>
 
-      {!errPath && <BottomNaviTabBar />}
+      {!(errPath || noneView) && <BottomNaviTabBar />}
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function CheckBoxs({
     >
       {/* ----- 이용약관 ----- */}
       <Wrap>
-        <CheckInput label="이용약관">
+        <CheckInput label="이용약관 (필수)">
           <CheckInput.CheckBox
             id="이용약관"
             checked={isValues.check1}
@@ -70,7 +70,7 @@ export default function CheckBoxs({
 
       {/* ----- 개인정보 처리방침 ----- */}
       <Wrap>
-        <CheckInput label="개인정보 처리방침">
+        <CheckInput label="개인정보 처리방침 (필수)">
           <CheckInput.CheckBox
             id="개인정보처리방침"
             checked={isValues.check2}

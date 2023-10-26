@@ -47,6 +47,10 @@ export default function Fields() {
     check3: false,
   });
 
+  // 이메일 정규식
+  const emailRegex =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
   //
   /// 입력 핸들러
   const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -111,7 +115,7 @@ export default function Fields() {
 
         <Form gap={24} onSubmit={handleOnSubmit}>
           {/* ----- 이름 텍스트 타입 인풋 : TextField ----- */}
-          <Input label="이름">
+          <Input label="이름" labelEdge="(필수)">
             <Input.TextField
               shape={isType}
               placeholder="이름을 입력하세요"
@@ -123,7 +127,7 @@ export default function Fields() {
           </Input>
 
           {/* ----- 연락처 타입 인풋 : PhoneNumberField ----- */}
-          <Input label="연락처">
+          <Input label="연락처" labelEdge="(필수)">
             <Input.PhoneNumberField
               shape={isType}
               placeholder="연락처를 입력하세요"
@@ -133,7 +137,7 @@ export default function Fields() {
           </Input>
 
           {/* ----- 이메일 텍스트 타입 인풋 : PhoneNumberField ----- */}
-          <Input label="이메일">
+          <Input label="이메일" labelEdge="(필수)">
             <Input.TextField
               shape={isType}
               placeholder="이메일을 입력하세요"
@@ -141,6 +145,8 @@ export default function Fields() {
               name="email"
               value={isValues.email}
               onChange={handleOnChange}
+              error={!!isValues.email && !emailRegex.test(isValues.email)}
+              errorMsg="이메일 형식으로 입력하세요"
             />
           </Input>
 
@@ -167,7 +173,7 @@ export default function Fields() {
           </Input>
 
           {/* ----- 에디터 타입 인풋 : Textarea ----- */}
-          <Input label="내용">
+          <Input label="내용" labelEdge="(필수)">
             <Input.Textarea
               shape={isType}
               placeholder="내용을 입력하세요"
@@ -183,11 +189,14 @@ export default function Fields() {
           <CheckBoxs isValues={isValues} handleCheckOnChange={handleCheckOnChange} />
 
           <Button
+            maxWidth={520}
+            bottomFixed
             type="submit"
             disabled={
               !(
                 isValues.name &&
                 isValues.email &&
+                isValues.tel &&
                 isValues.context &&
                 isValues.check1 &&
                 isValues.check2

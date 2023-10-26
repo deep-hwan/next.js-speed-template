@@ -22,8 +22,8 @@ export default function FormFields() {
         <Container
           maxWidth={560}
           gap={26}
-          padding={{ vertical: 40, horizontal: 20 }}
-          css={{ [MQ[3]]: { paddingTop: 10, paddingBottom: 40 } }}
+          padding={{ top: 40, bottom: 20, horizontal: 20 }}
+          css={{ [MQ[3]]: { paddingTop: 16, paddingBottom: 0 } }}
         >
           <Wrap gap={12}>
             <Txt as="h1" size={fontSize.s24}>

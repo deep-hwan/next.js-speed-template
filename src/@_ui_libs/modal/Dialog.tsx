@@ -64,7 +64,7 @@ export function Dialog({ children, view, onCancel, ...props }: Props) {
         crossAlign="center"
         css={ViewportTheme({
           zIndex: 9999,
-          position: { type: 'fixed', top: view ? 0 : ' 120%', bottom: 0, left: 0, right: 0 },
+          position: { type: 'fixed', top: view ? 0 : ' 150%', bottom: 0, left: 0, right: 0 },
         })}
       >
         <Column
