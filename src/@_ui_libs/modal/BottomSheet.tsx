@@ -138,7 +138,12 @@ export function BottomSheet({
               />
             </Padding>
 
-            <Column ref={viewRef} height="100%" scroll={{ type: 'auto', bar: true }}>
+            <Column
+              ref={viewRef}
+              height="100%"
+              scroll={{ type: 'auto', bar: true }}
+              css={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+            >
               {children}
             </Column>
           </Column>
@@ -159,9 +164,7 @@ function BoxTheme(isActive?: boolean, theme?: 'light' | 'dark'): Interpolation<T
     borderRadius: '22px 22px 0 0',
     boxShadow: '0 3px 30px rgba(0,0,0,0.1)',
     transition: '0.25s ease-in-out',
-
     paddingTop: 'env(safe-area-inset-top)',
-    paddingBottom: 'env(safe-area-inset-bottom)',
 
     '&:webkit-scrollbar': {
       display: 'none',

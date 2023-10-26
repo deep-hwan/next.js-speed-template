@@ -1,45 +1,54 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 
 //libs
-import { Column, Section, Txt, Wrap } from '@/@_ui_libs/_index';
-import { MQ, colors, fontSize } from '@/libs/themes/_index';
+import { Container, Input, Section, Spacing } from '@/@_ui_libs/_index';
+import { MQ } from '@/libs/themes/_index';
 
 //components
 import SEO from '@/seo.config';
-import SignUp from '@/libs/components/home/signUp';
-import Results from '@/libs/components/home/results';
+import Comp1 from '@/libs/components/home/Comp1';
+import Comp2 from '@/libs/components/home/Comp2';
+import Comp3 from '@/libs/components/home/Comp3';
+import Comp4 from '@/libs/components/home/Comp4';
+import Comp5 from '@/libs/components/home/Comp5';
 
 //
 export default function Index() {
   const router: NextRouter = useRouter();
+  const [isSearch, setIsSearch] = useState('');
 
   return (
     <>
       <SEO />
 
-      <Section maxWidth={560}>
-        <Column
-          gap={40}
-          padding={{ top: 60, bottom: 40, horizontal: 20 }}
-          css={{ [MQ[3]]: { padding: '20px 20px 30px', rowGap: '30px' } }}
+      <Section>
+        <Container
+          maxWidth={560}
+          padding={{ top: 40, bottom: 60, horizontal: 20 }}
+          css={{ [MQ[3]]: { paddingTop: 10, paddingBottom: 40 } }}
         >
-          <Wrap gap={16}>
-            <Txt as="h1" size={fontSize.s24}>
-              {router.query.results
-                ? `NEXT.JS 템플릿만의 \n위젯을 경험해봐요`
-                : `NEXT.JS 템플릿에 \n오신 것을 환영합니다`}
-            </Txt>
+          <Input.SearchField
+            shape="box"
+            searchTab
+            value={isSearch}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setIsSearch(e.target.value)}
+            onClick={() =>
+              router.push({ query: { search: isSearch } }, undefined, { scroll: false })
+            }
+          />
 
-            <Txt color={colors.grey800}>
-              {router.query.results
-                ? `빠르게 트랜디한 UI를 만들어보세요\n당신의 개발 효율이 압도적으로 오를 거에요`
-                : `위젯을 조합하여 빠르게 UI를 만들어보세요\nCSS없이 오직 커스텀 위젯만으로도 UI를 만들 수 있어요😄`}
-            </Txt>
-          </Wrap>
-
-          {router.query.results ? <Results /> : <SignUp />}
-        </Column>
+          <Spacing size={16} />
+          <Comp1 />
+          <Spacing size={12} />
+          <Comp2 />
+          <Spacing size={54} />
+          <Comp3 />
+          <Spacing size={44} />
+          <Comp4 />
+          <Spacing size={44} />
+          <Comp5 />
+        </Container>
       </Section>
     </>
   );

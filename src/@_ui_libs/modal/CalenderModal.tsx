@@ -12,8 +12,8 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   view: boolean;
   onCancel: () => void;
   dateFormat?: 'yyyy-mm-dd' | 'yyyy-mm';
-  value: Date | string;
-  onChange: any;
+  value?: Date | string;
+  onChange?: any;
 }
 
 export function CalenderModal({

@@ -25,12 +25,12 @@ export default function BottomNaviTabBar() {
         label="메시지"
         href="/view"
         css={{
-          color: router.pathname === '/view' ? colors.keyColor : colors.grey300,
+          color: router.pathname === '/2' ? colors.keyColor : colors.grey300,
         }}
       >
         <MessageIcon
           width="100%"
-          fill={router.pathname === '/view' ? colors.keyColor : colors.grey300}
+          fill={router.pathname === '/2' ? colors.keyColor : colors.grey300}
         />
       </NavigationTab>
 

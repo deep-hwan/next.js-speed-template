@@ -7,7 +7,7 @@ import { WidgetsImg } from '@/libs/assets/images';
 //libs
 import { Button, Img } from '@/@_ui_libs/_index';
 
-export default function Results() {
+export default function Result() {
   const router: NextRouter = useRouter();
 
   return (

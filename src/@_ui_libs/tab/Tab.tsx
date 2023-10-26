@@ -81,7 +81,7 @@ export const Tab = forwardRef(function Tab(
       color: variant === 'border' ? '#e2e2e2' : 'transparent',
     },
     boxShadow,
-    padding = { horizontal: 12, vertical: 10 },
+    padding = { all: 12 },
     margin,
     ...props
   }: Props,

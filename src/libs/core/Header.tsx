@@ -11,7 +11,7 @@ import { AppBar, IconTab, Items, Item, Wrap, Row } from '@/@_ui_libs/_index';
 import { borderRadius, fontSize, colors, MQ } from '@/libs/themes/_index';
 
 //assets
-import { LogoIcon, ToastIcon } from '@/libs/assets/icons';
+import { ToastIcon } from '@/libs/assets/icons';
 
 //menu
 import menus from '../json/menu.json';
@@ -26,7 +26,7 @@ export default function Header() {
     <>
       <AppBar width={1200}>
         <Row align="center" height="100%" crossAlign="space-between" padding={{ horizontal: 20 }}>
-          <Link href="/" css={theme.logo as Interpolation<Theme>}>
+          <Link href="/">
             <Logo />
           </Link>
 
@@ -71,18 +71,6 @@ export default function Header() {
 
 // styled
 const theme = {
-  logo: {
-    width: '34px',
-    height: 'auto',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    [MQ[1]]: {
-      width: '28px',
-    },
-  },
-
   linkItem: {
     fontSize: fontSize.s15,
     padding: '0.8em',
@@ -96,11 +84,17 @@ const theme = {
 const Logo = () => {
   return (
     <svg
-      width="100%"
-      height="100%"
       viewBox="0 0 371 370"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      css={{
+        width: '34px',
+        height: 'auto',
+
+        [MQ[1]]: {
+          width: '28px',
+        },
+      }}
     >
       <path
         d="M120 0H50C22.3858 0 0 22.3858 0 50V80C0 107.614 22.3858 130 50 130H120C147.614 130 170 107.614 170 80V50C170 22.3858 147.614 0 120 0Z"
@@ -116,7 +110,7 @@ const Logo = () => {
       />
       <path
         d="M316 190H246C215.624 190 191 214.624 191 245V315C191 345.376 215.624 370 246 370H316C346.376 370 371 345.376 371 315V245C371 214.624 346.376 190 316 190Z"
-        fill="#4788f4"
+        fill="#4788F4"
       />
     </svg>
   );
