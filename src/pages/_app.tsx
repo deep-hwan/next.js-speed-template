@@ -1,21 +1,19 @@
-import type { AppProps } from 'next/app';
-import { useState } from 'react';
-import SEOConfig from '../../next-seo.config';
-
-//hooks
+import App from '@/app/_layout/components/App';
+import { useOpenWebBrowser } from '@/libs/hooks';
+import { useScrollRestoration } from '@/libs/hooks/useScrollRestoration';
+import JengaProvider from '@/libs/provider/JengaProvider';
+import GlobalStyles from '@/libs/themes/globalStyles';
 import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
-import { DefaultSeo } from 'next-seo';
-import { RecoilRoot } from 'recoil';
-
-//libs
-import App from '@/app/_layout/components/App';
-import { GlobalThemes } from '@/app/_layout/components/GlobalThemes';
-import { useScrollRestoration } from '@/libs/hooks/useScrollRestoration';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useState } from 'react';
+import { RecoilRoot } from 'recoil';
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   useScrollRestoration(router);
+  useOpenWebBrowser();
+
   const [client] = useState(() => new QueryClient());
 
   return (
@@ -27,17 +25,17 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
         />
       </Head>
 
-      <DefaultSeo {...SEOConfig} />
+      <GlobalStyles />
 
       <QueryClientProvider client={client}>
         <HydrationBoundary state={pageProps.dehydratedState}>
           <SessionProvider session={pageProps.session} basePath='/api/auth'>
             <RecoilRoot>
-              <GlobalThemes>
+              <JengaProvider>
                 <App>
                   <Component {...pageProps} />
                 </App>
-              </GlobalThemes>
+              </JengaProvider>
             </RecoilRoot>
           </SessionProvider>
         </HydrationBoundary>

@@ -2,10 +2,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { ReactNode } from 'react';
 
 // Components
-import BottomNaviTabBar from './BottomNaviTabBar';
-import Drawer from './Drawer';
-import Footer from './Footer';
-import Header from './Header';
+import { Appbar } from '@/_widgets/navigator/Appbar';
 
 //
 export default function App({ children }: { children: ReactNode }): JSX.Element {
@@ -16,15 +13,9 @@ export default function App({ children }: { children: ReactNode }): JSX.Element 
 
   return (
     <Layout>
-      {!errPath && <Header />}
+      {!errPath && <Appbar />}
 
       <Main>{children}</Main>
-
-      {!errPath && <Footer />}
-
-      {!(errPath || noneView) && <BottomNaviTabBar />}
-
-      <Drawer />
     </Layout>
   );
 }

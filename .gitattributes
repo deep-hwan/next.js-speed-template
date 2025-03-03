@@ -1,2 +1,0 @@
-.yarn/unplugged/** filter=lfs diff=lfs merge=lfs -text
-File_Root filter=lfs diff=lfs merge=lfs -text

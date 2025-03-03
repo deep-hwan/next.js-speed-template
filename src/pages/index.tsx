@@ -1,38 +1,52 @@
-import { useOpenWebBrowser } from '@/libs/hooks';
+import { View } from '@/app/_layout/components/View';
+import { 간편로그인 } from '@/app/home/간편로그인';
+import { 구매완료 } from '@/app/home/구매완료';
+import { 달력 } from '@/app/home/달력';
+import { 로딩 } from '@/app/home/로딩';
+import { 모달 } from '@/app/home/모달';
+import { 슬라이딩메뉴 } from '@/app/home/슬라이딩메뉴';
+import { 인풋 } from '@/app/home/인풋';
+import { 장바구니 } from '@/app/home/장바구니';
+import { 채팅목록 } from '@/app/home/채팅목록';
+import { 채팅방 } from '@/app/home/채팅방';
 
-//libs
-import { Spacing, V } from '@/_ui';
-import { screenSize } from '@/libs/themes';
+import SEOHead from '@/libs/site/SeoHead';
+import { Flex } from 'dble-layout';
 
-//components
-import Comp1 from '@/app/home/Comp1';
-import Comp2 from '@/app/home/Comp2';
-import Comp3 from '@/app/home/Comp3';
-import Comp4 from '@/app/home/Comp4';
-import Comp5 from '@/app/home/Comp5';
-import SEO from '@/head/next-seo';
-
-//
 export default function Index() {
-  useOpenWebBrowser();
-
   return (
     <>
-      <SEO />
+      <SEOHead
+        title='Dble | 위젯, 컴포넌트'
+        description='Dble | 디블에이전시에서 트랜디한 UIUX 디자인 및 컴포넌트 위젯을 무료로 다운로드하고 사용할 수 있어요'
+      />
 
-      <V.Section>
-        <V.Column flex={1} maxWidth={screenSize[3]} padding={{ top: 20, bottom: 100, horizontal: 20 }}>
-          <Comp1 />
-          <Spacing size={12} />
-          <Comp2 />
-          <Spacing size={54} />
-          <Comp3 />
-          <Spacing size={44} />
-          <Comp4 />
-          <Spacing size={44} />
-          <Comp5 />
-        </V.Column>
-      </V.Section>
+      <View maxWidth={1200}>
+        <Flex align='center' maxW={1200} _mq={{ w1200: { maxW: 800 } }}>
+          <Flex direc='row' gap={20} align='start' _mq={{ w768: { direc: 'column', gap: 14 } }}>
+            <Flex gap={14} maxW={380} _mq={{ w768: { maxW: '100%' } }}>
+              <슬라이딩메뉴 />
+              <채팅목록 />
+              <채팅방 />
+            </Flex>
+
+            <Flex direc='row' gap={20} _mq={{ w1200: { direc: 'column', gap: 14 } }}>
+              <Flex gap={14}>
+                <달력 />
+                <로딩 />
+                <간편로그인 />
+                <인풋 />
+              </Flex>
+
+              <Flex gap={14}>
+                <장바구니 />
+                <구매완료 />
+                <모달 />
+              </Flex>
+            </Flex>
+          </Flex>
+        </Flex>
+      </View>
     </>
   );
 }

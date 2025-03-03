@@ -6,9 +6,10 @@
     "arrowParens": "avoid",
     "organizeImportsSkipDestructiveCodeActions": true,
     "semi": true,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "es5"
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "endOfLine": "auto"
 }
 
 

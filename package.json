@@ -1,15 +1,15 @@
 {
   "name": "create-next-speed-template",
   "version": "2.5.0",
-  "bin": "./bin/create-next-speed-template.js",
+  "bin": {
+    "create-next-speed-template": "bin/create-next-speed-template.js"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && yarn postbuild",
+    "build": "next build && next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "eslint .",
     "analyze": "cross-env ANALYZE=true next build",
-    "postbuild": "next-sitemap --config next-sitemap.config.js && node scripts/generate-sitemap.js",
-    "generate-sitemap": "node scripts/generate-sitemap.js",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
@@ -21,21 +21,22 @@
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "@types/react-query": "^1.2.9",
-    "@yarnpkg/pnpify": "^4.1.2",
     "axios": "^1.7.7",
     "build": "^0.1.4",
     "date-fns": "^4.1.0",
+    "dble-layout": "^0.1.6",
     "emotion": "^11.0.0",
     "eslint-config-next": "14.2.13",
+    "framer-motion": "^12.4.7",
     "next": "^15.0.3",
     "next-auth": "^4.24.8",
-    "next-seo": "^6.6.0",
     "next-sitemap": "^4.2.3",
     "npm": "^10.8.3",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
     "react-dom": "18.3.1",
     "recoil": "^0.7.7",
+    "simplebar-react": "^3.3.0",
     "typescript": "^5.6.2",
     "webpack-bundle-analyzer": "^4.10.2"
   },
@@ -48,7 +49,6 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "cross-env": "^7.0.3",
-    "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-emotion": "^11.0.0",
@@ -57,12 +57,12 @@
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "next-pwa": "^5.6.0",
-    "prettier": "3.3.3"
+    "prettier": "^3.3.3"
   },
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deep-hwan/next.js-speed-template"
+    "url": "git+https://github.com/deep-hwan/next.js-speed-template.git"
   },
   "author": "deep-hwan <deep@deepcomu.com>",
   "license": "MIT",
@@ -77,9 +77,12 @@
     "sitemap",
     "seo"
   ],
-  "packageManager": "yarn@4.5.1",
+  "packageManager": "npm@10.8.3",
   "engines": {
-    "node": ">=16",
-    "yarn": ">=2"
+    "node": ">=16"
+  },
+  "description": "This is a template set up to create Next.js App with fast speed and high performance<br/> The current template is provided in a **page routing** structure.<br/>",
+  "bugs": {
+    "url": "https://github.com/deep-hwan/next.js-speed-template/issues"
   }
 }

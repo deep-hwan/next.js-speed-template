@@ -2,9 +2,11 @@
 User-agent: *
 Allow: /
 Disallow: /404
+Disallow: /observer/jj
+Disallow: /observer/ok
 
 # Host
-Host: https://next-typescript-tamplate.vercel.app
+Host: https://dbleagency.com
 
 # Sitemaps
-Sitemap: https://next-typescript-tamplate.vercel.app/sitemap.xml
+Sitemap: https://dbleagency.com/sitemap.xml

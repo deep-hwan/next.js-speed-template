@@ -1,9 +1,26 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+// 예제
+const siteUrl = 'https://dbleagency.com';
+
+const menuItems = [
+  { name: '홈', url: '/' },
+  { name: '문의하기', url: '/contactus' },
+  { name: '포트폴리오', url: '/portfolios' },
+  { name: '디자인', url: '/designs' },
+  { name: '위젯', url: '/widgets' },
+  { name: 'FAQ', url: '/faq' },
+];
+
+const additionalPaths = menuItems.map(item => ({
+  loc: item.url,
+  changefreq: 'daily',
+  priority: item.url === '/' ? 1.0 : 0.8,
+}));
 
 const sitemapConfig = {
   siteUrl: siteUrl,
+  name: '디블에이전시',
   exclude: ['/404'],
   generateRobotsTxt: true,
   sitemapSize: 7000,
@@ -16,25 +33,14 @@ const sitemapConfig = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/404'],
+        disallow: ['/404', '/observer/jj', '/observer/ok'],
       },
     ],
     // additionalSitemaps: [`${siteUrl}/sitemap-0.xml`],
   },
 
   // 특정 경로 설정 -  우선순위 처리
-  additionalPaths: async config => [
-    {
-      loc: '/',
-      changefreq: 'daily',
-      priority: 1.0,
-    },
-    {
-      loc: '/form-fields',
-      changefreq: 'daily',
-      priority: 0.8,
-    },
-  ],
+  additionalPaths: async config => additionalPaths,
 };
 
 module.exports = sitemapConfig;

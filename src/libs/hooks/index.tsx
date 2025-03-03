@@ -43,5 +43,6 @@ export {
   useTanstackQuery,
   useTransition,
   useUid,
-  useViewport,
+  useViewport
 };
+

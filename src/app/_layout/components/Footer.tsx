@@ -1,81 +1,79 @@
-//libs
-import { Spacing, Txt, V } from '@/_ui';
-import { MQ, colors, fontSize } from '@/libs/themes';
+import { useSafeArea } from '@/libs/hooks';
+import { menus } from '@/libs/site/menus';
+import { colors, fontSize } from '@/libs/themes';
+import { Flex, Padding, Spacing, Text } from 'dble-layout';
 import Link from 'next/link';
-//
-interface MenuItem {
-  name: string;
-  path: string;
-}
 
 //
 export default function Footer() {
-  const menusLust: MenuItem[] = [
-    { name: '메뉴1', path: '/404' },
-    { name: '메뉴2', path: '/404' },
-    { name: '메뉴3', path: '/404' },
-    { name: '메뉴4', path: '/404' },
-  ];
+  const { bottom: pb, right: pr, left: pl } = useSafeArea({ bottom: 80, right: 30, left: 30 });
 
   return (
     <footer
       css={{
         width: '100%',
         display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.chiffon[100],
-        paddingTop: 'max(40px, env(safe-area-inset-top))',
-        paddingBottom: 'max(50px, env(safe-area-inset-bottom))',
-        paddingInlineStart: 'max(20px, env(safe-area-inset-left))',
-        paddingInlineEnd: 'max(20px, env(safe-area-inset-right))',
+        paddingTop: 60,
+        paddingBottom: pb,
+        paddingInlineStart: pl,
+        paddingInlineEnd: pr,
+        borderTop: '1px solid #eee',
       }}
     >
-      <V.Column maxWidth={1080}>
-        <V.Items direction='row' gap={30} crossGap={16} css={{ [MQ[3]]: { flexDirection: 'column' } }}>
-          {menusLust?.map((item: MenuItem, i: number) => (
-            <V.Item padding={{ vertical: 5 }} key={i}>
-              <Link
-                href={item.path}
-                css={{
-                  fontSize: fontSize.s14,
-                  color: colors.grey[500],
-                }}
-              >
+      <Flex maxW={800} itemScope itemType='https://schema.org/Organization'>
+        <Flex as='ul' direc='row' gap='16px 30px' _mq={{ w768: { direc: 'column' } }}>
+          {menus?.map((item, i: number) => (
+            <Padding as='li' w='auto' vertical={5} key={i}>
+              <Link href={item.url} css={{ userSelect: 'none', fontSize: fontSize.s14, color: colors.grey[500] }}>
                 {item.name}
               </Link>
-            </V.Item>
+            </Padding>
           ))}
-        </V.Items>
+        </Flex>
 
         <Spacing size={32} />
 
-        <address
-          id='address'
-          itemScope
-          itemType='https://schema.org/Organization'
-          css={{ fontStyle: 'normal', fontSize: 13, color: '#888' }}
-        >
-          <Txt itemProp='name' as='strong' size={14} weight='medium' color={colors.grey[500]}>
-            nextTemplate
-          </Txt>
-          <Spacing size={14} />
-          <V.Row gap={8}>
-            <a href='mailto:deep@deepcomu.com' css={{ color: '#888' }}>
-              email : deep@deepcomu.com
-            </a>
-            <span>|</span>
-            <a href='tel:07040077561' css={{ color: '#888' }}>
-            tel : 070-1234-5678
-            </a>
-          </V.Row>
-          <Spacing size={4} />
+        <Flex itemScope itemType='https://schema.org/Organization'>
+          <div css={{ fontStyle: 'normal', fontSize: 13, color: '#888' }}>
+            <Text as='h2' itemProp='name' size={16} color={'#97989a'}>
+              DBLE
+            </Text>
 
-          <span itemProp='address' itemScope itemType='https://schema.org/PostalAddress'>
-            address : <span itemProp='addressRegion'>서울특별시</span> <span itemProp='addressLocality'>동작구</span>{' '}
-            <span itemProp='streetAddress'>시흥대로 12로 123동 456호</span>
-          </span>
-        </address>
-      </V.Column>
+            <Spacing size={14} />
+
+            <Text size={12} color='#888' itemProp='name'>
+              <span itemProp='name'>이게디자인 (정재환)</span> | 692-05-02175
+            </Text>
+
+            <Spacing size={4} />
+
+            <address
+              id='address'
+              itemProp='address'
+              itemScope
+              itemType='https://schema.org/PostalAddress'
+              css={{ display: 'flex', flexdirec: 'row', gap: '8px' }}
+            >
+              <Link href='mailto:deep@deepcomu.com' css={{ color: '#888' }}>
+                이메일 : deep@deepcomu.com
+              </Link>
+              {/* <span>|</span>
+              <Link href='tel:07040077561' css={{ color: '#888' }}>
+                tel : 070-1234-5678
+              </Link> */}
+            </address>
+
+            <Spacing size={4} />
+
+            <span>
+              주소 : <span itemProp='addressLocality'>서울특별시</span> <span itemProp='addressRegion'>강남구</span>{' '}
+              <span itemProp='streetAddress'>도곡로84길 6, 디블에이전시</span>
+            </span>
+          </div>
+        </Flex>
+      </Flex>
     </footer>
   );
 }
