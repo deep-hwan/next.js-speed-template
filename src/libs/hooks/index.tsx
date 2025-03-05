@@ -9,7 +9,6 @@ import { useMediaQuery } from './useMediaQuery';
 import { useMoment } from './useMoment';
 import { useObserver } from './useObserver';
 import { useOpenWebBrowser } from './useOpenWebBrowser';
-import { usePlatformOS } from './usePlatformOS';
 import { useRouteOnload } from './useRouteOnload';
 import { useRouteResetQuery } from './useRouteResetQuery';
 import { useSafeArea } from './useSafeArea';
@@ -33,7 +32,6 @@ export {
   useMoment,
   useObserver,
   useOpenWebBrowser,
-  usePlatformOS,
   useRouteOnload,
   useRouteResetQuery,
   useSafeArea,
