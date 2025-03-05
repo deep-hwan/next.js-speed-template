@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dbleagency.com
+
+# Sitemaps
+Sitemap: https://dbleagency.com/sitemap.xml
