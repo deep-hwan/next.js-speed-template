@@ -62,9 +62,19 @@ export const 장바구니 = () => {
         <Spacing size={20} />
 
         <Flex direc='row' gap={8}>
-          <TouchableOpacity w={50} h={50} onClick={() => {}}>
+          <TouchableOpacity
+            w={48}
+            minW={48}
+            h={48}
+            onClick={() => {
+              addToast({
+                title: '장바구니에 추가했어요!',
+                description: 'DBLE은 모달 팝업 디자인에도 자신있어요!',
+              });
+            }}
+          >
             <Background h='100%' fill='#f6f6fa' border={{ radius: 14, stroke: 1, color: '#eee' }}>
-              <Flex minW={48} h='100%' align='center' justify='center'>
+              <Flex h='100%' align='center' justify='center'>
                 <svg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <g clip-path='url(#clip0_1473_2)'>
                     <path

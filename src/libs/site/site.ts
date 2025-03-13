@@ -78,8 +78,8 @@ export const mySite = {
     name: '정재환',
     jobTitle: '대표이사',
     email: 'deep@deepcomu.com',
-    tel: '+82-01-2224-4688',
-    image: ``, // 대표 프로필 이미지 url
+    tel: '+82-01-8773-7561', // 실제 연락처로 수정 필요
+    image: ``, // 대표 프로필 이미지
     sameAs: [
       'https://pinterest.com/dble_ui/_created',
       'https://www.behance.net/dble2',
