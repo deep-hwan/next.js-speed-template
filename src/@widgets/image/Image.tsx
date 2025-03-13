@@ -45,6 +45,22 @@ const ImageInstance = forwardRef(function ImageInstance(
   const [showZoomImage, setShowZoomImage] = useState(false);
   const [imageAspectRatio, setImageAspectRatio] = useState<number | undefined>(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    if (source && !imageDimensions) {
+      const img = new window.Image();
+      img.src = source;
+
+      img.onload = () => {
+        setImageDimensions({
+          width: img.naturalWidth,
+          height: img.naturalHeight,
+        });
+        setImageAspectRatio(img.naturalWidth / img.naturalHeight);
+      };
+    }
+  }, [source, imageDimensions]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -62,22 +78,27 @@ const ImageInstance = forwardRef(function ImageInstance(
     }
   };
 
-  const imageWrapperStyle = (props: SizeThemeType) => ({
+  const imageWrapperStyle = (styleProps: SizeThemeType) => ({
     position: 'relative',
-    width: props.size?.width ?? '100%',
-    minWidth: props.size?.minWidth,
-    maxWidth: props.size?.maxWidth,
-    minHeight: props.size?.minHeight,
-    maxHeight: props.size?.maxHeight,
-    borderRadius: props.borderRadius,
-    aspectRatio: props.ratio ? `${props.ratio.x}/${props.ratio.y}` : imageAspectRatio,
+    width: styleProps.size?.width ?? '100%',
+    minWidth: styleProps.size?.minWidth,
+    maxWidth: styleProps.size?.maxWidth,
+    minHeight: styleProps.size?.minHeight,
+    maxHeight: styleProps.size?.maxHeight,
+    height: styleProps.size?.height,
+    borderRadius: styleProps.borderRadius,
+    aspectRatio: styleProps.ratio
+      ? `${styleProps.ratio.x}/${styleProps.ratio.y}`
+      : imageAspectRatio
+        ? `${imageAspectRatio}/1`
+        : undefined,
     transition: '0.3s ease-in-out',
-    boxShadow: props.shadow
-      ? `${props.shadow.x}px ${props.shadow.y}px ${props.shadow.blur}px ${props.shadow.color}`
+    boxShadow: styleProps.shadow
+      ? `${styleProps.shadow.x}px ${styleProps.shadow.y}px ${styleProps.shadow.blur}px ${styleProps.shadow.color}`
       : undefined,
     userSelect: 'none',
     overflow: 'hidden',
-    scale: props.scale,
+    scale: styleProps.scale,
   });
 
   const clickModalOutside = useCallback(
