@@ -24,6 +24,9 @@ export default function SEOHead({
   const thisUrl = `${mySite.url}${asPath}`;
   const siteName = mySite.name;
 
+  // 최신 날짜로 색인
+  const currentDate = new Date().toISOString();
+
   // 1) 조직
   const organizationJsonLd = {
     '@context': 'https://schema.org',
@@ -123,6 +126,15 @@ export default function SEOHead({
     })),
   };
 
+  // 5) NewsArticle
+  const newsArticleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: title,
+    datePublished: currentDate,
+    dateModified: currentDate,
+  };
+
   return (
     <Head>
       {/* 기본 메타 태그 */}
@@ -213,6 +225,14 @@ export default function SEOHead({
         type='application/ld+json'
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(personJsonLd),
+        }}
+      />
+
+      {/* JSON-LD (NewsArticle) */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(newsArticleJsonLd),
         }}
       />
     </Head>
