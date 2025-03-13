@@ -63,10 +63,27 @@ export default function GlobalStyles() {
           display: flex;
           align-items: center;
           text-decoration: none;
+          font-style: normal;
           color: #4e4e51;
           cursor: pointer;
           white-space: nowrap;
           transition: 0.3s ease-in-out;
+
+          &:hover {
+            opacity: 0.88;
+          }
+
+          &:active {
+            opacity: 0.88;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          &:disabled {
+            opacity: 1;
+          }
         }
 
         ul,
@@ -87,6 +104,22 @@ export default function GlobalStyles() {
           width: auto;
           color: #4e4e51;
           transition: all 0.3s ease-in-out;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          &:active {
+            opacity: 0.8;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          &:disabled {
+            opacity: 1;
+          }
         }
 
         svg,

@@ -22,9 +22,9 @@ export default function SEOHead({
 }: SeoHeadProps) {
   const { asPath } = useRouter();
   const thisUrl = `${mySite.url}${asPath}`;
-  const siteName = '디블에이전시';
+  const siteName = mySite.name;
 
-  // 1) Organization
+  // 1) 조직
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -33,8 +33,8 @@ export default function SEOHead({
     logo: mySite.logoUrl,
     description: description,
     sameAs: mySite.sameAs,
-    foundingDate: mySite.foundingDate,
-    founder: mySite.founder,
+    foundingDate: mySite.companyInfo.foundingDate,
+    founder: mySite.founderInfo.name,
     areaServed: 'KR',
     address: {
       '@type': 'PostalAddress',
@@ -47,13 +47,46 @@ export default function SEOHead({
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: mySite.contactPoint.telephone,
+        telephone: mySite.contactPoint.tel,
         contactType: mySite.contactPoint.contactType,
         contactOption: mySite.contactPoint.contactOption,
         areaServed: mySite.contactPoint.areaServed,
         availableLanguage: mySite.contactPoint.availableLanguage,
       },
     ],
+  };
+
+  // 4) Person (창립자/대표)
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: mySite.founderInfo.name,
+    jobTitle: mySite.founderInfo.jobTitle,
+    email: mySite.founderInfo.email,
+    telephone: mySite.founderInfo.tel,
+    image: mySite.founderInfo.image,
+    description: mySite.founderInfo.description,
+    sameAs: mySite.founderInfo.sameAs,
+    worksFor: {
+      '@type': 'Organization',
+      name: siteName,
+      legalName: mySite.companyInfo.legalName,
+      taxID: mySite.companyInfo.taxID,
+    },
+    url: url ?? thisUrl,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: mySite.address.streetAddress,
+      addressLocality: mySite.address.addressLocality,
+      addressRegion: mySite.address.addressRegion,
+      postalCode: mySite.address.postalCode,
+      addressCountry: mySite.address.addressCountry,
+    },
+    alumniOf: mySite.founderInfo.alumniOf.map(edu => ({
+      '@type': 'EducationalOrganization',
+      name: edu.name,
+      department: edu.department,
+    })),
   };
 
   // 2) WebSite + SearchAction (Sitelinks Search Box)
@@ -172,6 +205,14 @@ export default function SEOHead({
         type='application/ld+json'
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(navigationJsonLd),
+        }}
+      />
+
+      {/* JSON-LD (Person) */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd),
         }}
       />
     </Head>

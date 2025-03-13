@@ -21,7 +21,7 @@ export const IconTab = ({ icon, iconSize = 20, onClick }: IconTabProps) => {
         img,
         picture {
           z-index: 1;
-          width: ${iconSize}px;
+          min-width: ${iconSize}px;
         }
       `}
       _hover={{ opacity: 0.8 }}

@@ -21,6 +21,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  devIndicators: false,
   // output: 'export',
   // images: { unoptimized: true },
 

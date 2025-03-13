@@ -53,6 +53,7 @@ export const mySite = {
     'https://www.instagram.com/dble_ui',
     'https://github.com/deep-hwan',
   ],
+
   // 추가 필드: 주소(PostalAddress)
   address: {
     streetAddress: '서울특별시 강남구 도곡로84길 6', // 실제 주소에 맞게 수정
@@ -61,15 +62,51 @@ export const mySite = {
     postalCode: '06282',
     addressCountry: 'KR',
   },
+
   // 추가 필드: 연락처(ContactPoint)
   contactPoint: {
-    telephone: '+82-01-2224-4688', // 실제 연락처로 수정
+    email: 'deep@deepcomu.com',
+    tel: '+82-01-2224-4688',
     contactType: 'customer service',
     contactOption: 'TollFree', // 필요시 변경 (예: 'HearingImpairedSupported' 등)
     areaServed: 'KR',
     availableLanguage: ['Korean', 'English'],
   },
-  // 필요하면 사업자 정보나 설립 연도, 대표자 등 추가
-  foundingDate: '2021-03-01',
-  founder: '정재환',
+
+  // Person (창립자/대표)정보 추가
+  founderInfo: {
+    name: '정재환',
+    jobTitle: '대표이사',
+    email: 'deep@deepcomu.com',
+    tel: '+82-01-2224-4688',
+    image: ``, // 대표 프로필 이미지 url
+    sameAs: [
+      'https://pinterest.com/dble_ui/_created',
+      'https://www.behance.net/dble2',
+      'https://dribbble.com/dbleui',
+      'https://www.instagram.com/dble_ui',
+      'https://github.com/deep-hwan',
+    ],
+    alumniOf: [
+      {
+        name: '', // 학교
+        department: '', // 학과
+        degree: '', // 학위
+      },
+    ],
+    description:
+      '디블에이전시의 창립자이자 대표이사로, 웹디자인 및 개발 분야에서 풍부한 경험을 가지고 있습니다. 트렌디한 디자인과 사용자 경험을 중시하는 웹 솔루션을 제공합니다.',
+  },
+
+  // 회사 정보 추가
+  companyInfo: {
+    legalName: '이게디자인',
+    foundingDate: '2021-03-01', // 설립일
+    taxID: '692-05-02175', // 실제 사업자등록번호로 수정 필요
+    numberOfEmployees: '10-50',
+    priceRange: '₩₩₩', // $ ~ $$$$$ 형식으로 가격대 표시
+    openingHours: 'Mo-Fr 09:00-18:00',
+    paymentAccepted: ['현금', '신용카드', '계좌이체'],
+    currenciesAccepted: 'KRW',
+  },
 };

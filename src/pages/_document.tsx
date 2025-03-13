@@ -1,5 +1,4 @@
 import { mySite } from '@/libs/site/site';
-import SplashScreens from '@/libs/site/splashscreens';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import Script from 'next/script';
 
@@ -23,14 +22,11 @@ const MyDocument = ({ breadcrumbList, locale = 'ko' }: MyDocumentProps) => {
         <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
 
         <link rel='shortcut icon' href='/favicon.ico' />
+        <link rel='alternate' type='application/rss+xml' title={mySite.name + ' RSS Feed'} href='/api/rss' />
 
         {/* >> pwa */}
         {/* <link rel='manifest' href='/manifest.json' /> */}
-
-        <link rel='alternate' type='application/rss+xml' title={mySite.name + ' RSS Feed'} href='/api/rss' />
-
-        {/* Global Scripts */}
-        <SplashScreens />
+        {/* <SplashScreens /> */}
 
         {breadcrumbList && (
           <Script

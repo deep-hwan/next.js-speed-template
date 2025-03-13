@@ -1,5 +1,6 @@
 import { useSafeArea } from '@/libs/hooks';
 import { menus } from '@/libs/site/menus';
+import { mySite } from '@/libs/site/site';
 import { colors, fontSize } from '@/libs/themes';
 import { Flex, Padding, Spacing, Text } from 'dble-layout';
 import Link from 'next/link';
@@ -44,7 +45,10 @@ export default function Footer() {
             <Spacing size={14} />
 
             <Text size={12} color='#888' itemProp='name'>
-              <span itemProp='name'>이게디자인 (정재환)</span> | 692-05-02175
+              <span itemProp='name'>
+                {mySite.companyInfo.legalName} ({mySite.founderInfo.name})
+              </span>{' '}
+              | {mySite.companyInfo.taxID}
             </Text>
 
             <Spacing size={4} />
@@ -57,7 +61,7 @@ export default function Footer() {
               css={{ display: 'flex', flexdirec: 'row', gap: '8px' }}
             >
               <Link href='mailto:deep@deepcomu.com' css={{ color: '#888' }}>
-                이메일 : deep@deepcomu.com
+                이메일 : {mySite.founderInfo.email}
               </Link>
               {/* <span>|</span>
               <Link href='tel:07040077561' css={{ color: '#888' }}>

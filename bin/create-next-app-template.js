@@ -30,10 +30,18 @@ try {
   // Remove Git history from the cloned template
   execSync('rm -rf .git', { stdio: 'inherit' });
 
+  // Remove bin folder from the new project
+  console.log('Removing unnecessary files...');
+  execSync('rm -rf bin', { stdio: 'inherit' });
+
   // Modify package.json to set version to 1.0.0
   const packageJsonPath = path.join(projectPath, 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
   packageJson.version = '1.0.0'; // Set the version to 1.0.0
+
+  // Remove bin configuration from package.json
+  delete packageJson.bin;
+
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
   // Install dependencies using Yarn or npm
