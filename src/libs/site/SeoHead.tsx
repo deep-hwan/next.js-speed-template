@@ -59,7 +59,7 @@ export default function SEOHead({
     ],
   };
 
-  // 4) Person (창립자/대표)
+  // 2) Person (창립자/대표)
   const personJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -92,13 +92,13 @@ export default function SEOHead({
     })),
   };
 
-  // 2) WebSite + SearchAction (Sitelinks Search Box)
+  // 3) WebSite + SearchAction (Sitelinks Search Box)
   const webSiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    url: url ?? thisUrl,
     name: siteName,
-    alternateName: ['Dble', 'Dble Agency', title],
+    url: mySite.url,
+    alternateName: [title, mySite.name, 'Dble', 'Dble Agency'],
     description: description,
     inLanguage: 'ko',
     keywords: keywords.join(', '),
@@ -114,7 +114,7 @@ export default function SEOHead({
     })),
   };
 
-  // 3) SiteNavigationElement (주요 메뉴)
+  // 4) SiteNavigationElement (주요 메뉴)
   const navigationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -139,6 +139,10 @@ export default function SEOHead({
     <Head>
       {/* 기본 메타 태그 */}
       <title>{title}</title>
+      <link itemProp='url' href={mySite.url} />
+      <meta itemProp='name' content={mySite.name} />
+      <meta itemProp='alternateName' content={mySite.title} />
+
       <meta name='application-name' content={siteName} />
       <meta name='description' content={description} />
       <meta name='keywords' content={keywords.join(', ')} />
@@ -146,8 +150,8 @@ export default function SEOHead({
       <meta name='creator' content={author} />
       <meta name='publisher' content={author} />
       <meta name='author' content={author} />
-      <link rel='author' href={url ?? thisUrl} />
       <meta name='color-scheme' content='light' />
+      <link rel='author' href={url ?? thisUrl} />
 
       {/* Canonical URL */}
       <link rel='canonical' href={url ?? thisUrl} />

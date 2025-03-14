@@ -71,10 +71,7 @@ export default function Footer() {
 
             <Spacing size={4} />
 
-            <span>
-              주소 : <span itemProp='addressLocality'>서울특별시</span> <span itemProp='addressRegion'>강남구</span>{' '}
-              <span itemProp='streetAddress'>도곡로84길 6, 디블에이전시</span>
-            </span>
+            <span>주소 : 서울특별시 강남구도곡로84길 6, 디블에이전시</span>
           </div>
         </Flex>
       </Flex>
