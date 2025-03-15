@@ -1,6 +1,6 @@
 {
   "name": "create-next-app-template",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "bin": {
     "create-next-app-template": "bin/create-next-app-template.js"
   },
@@ -24,7 +24,7 @@
     "axios": "^1.7.7",
     "build": "^0.1.4",
     "date-fns": "^4.1.0",
-    "dble-layout": "^0.1.6",
+    "dble-layout": "^0.2.1",
     "emotion": "^11.0.0",
     "eslint-config-next": "14.2.13",
     "framer-motion": "^12.4.7",

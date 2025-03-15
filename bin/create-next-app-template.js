@@ -30,9 +30,10 @@ try {
   // Remove Git history from the cloned template
   execSync('rm -rf .git', { stdio: 'inherit' });
 
-  // Remove bin folder from the new project
+  // Remove bin folder and document folders from the new project
   console.log('Removing unnecessary files...');
   execSync('rm -rf bin', { stdio: 'inherit' });
+  execSync('rm -rf docs document documents documentation', { stdio: 'inherit' });
 
   // Modify package.json to set version to 1.0.0
   const packageJsonPath = path.join(projectPath, 'package.json');
@@ -42,15 +43,27 @@ try {
   // Remove bin configuration from package.json
   delete packageJson.bin;
 
+  // Remove Yarn PnP related configs if present
+  delete packageJson.packageManager;
+
+  // Ensure npm compatibility
+  if (packageJson.engines && packageJson.engines.yarn) {
+    delete packageJson.engines.yarn;
+  }
+
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
-  // Install dependencies using Yarn or npm
+  // Initialize npm instead of yarn
+  console.log('Initializing npm environment...');
+  execSync('npm pkg set packageManager="npm@10.8.3"', { stdio: 'inherit' });
+
+  // Install dependencies using npm
   console.log('Installing dependencies...');
-  execSync('yarn install', { stdio: 'inherit' });
+  execSync('npm install', { stdio: 'inherit' });
 
   console.log('Setup complete! Now you can start your project by running:');
   console.log(`cd ${projectName}`);
-  console.log('yarn run dev');
+  console.log('npm run dev');
 } catch (error) {
   console.error('An error occurred during setup:', error);
 }

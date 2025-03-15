@@ -1,3 +1,5 @@
+import { menus } from './menus';
+
 // 나의 사이트 정보
 const siteUrl = 'https://dbleagency.com';
 export const mySite = {
@@ -5,11 +7,11 @@ export const mySite = {
   title: '디블에이전시 - 트랜디한 웹디자인과 개발',
   url: siteUrl,
   description:
-    '웹디자인 및 개발은 Dble에서! 우리는 일회성 작업이 아닌 지속적인 관계를 추구하고 있으며 디자인의 중요성을 누구보다 높게 평가하고 있는 웹디자인 및 개발 에이전시 팀이에요!',
+    '디블에이전시에서 웹디자인 및 개발까지! 우리는 일회성 작업이 아닌 지속적인 관계를 추구하고 있으며 디자인의 중요성을 누구보다 높게 평가하고 있는 웹디자인 및 개발 에이전시 팀이에요!',
   keywords: [
+    '디블에이전시',
     'dbleui',
     'dbleagency',
-    '디블에이전시',
     '웹에이전시',
     '디자인에이전시',
     '웹디자인',
@@ -78,7 +80,7 @@ export const mySite = {
     name: '정재환',
     jobTitle: '대표이사',
     email: 'deep@deepcomu.com',
-    tel: '+82-01-2224-4688',// 실제 연락처로 수정 필요
+    tel: '+82-01-8773-7561', // 실제 연락처로 수정 필요
     image: ``, // 대표 프로필 이미지
     sameAs: [
       'https://pinterest.com/dble_ui/_created',
@@ -109,4 +111,103 @@ export const mySite = {
     paymentAccepted: ['현금', '신용카드', '계좌이체'],
     currenciesAccepted: 'KRW',
   },
+};
+
+// 조직 정보
+export const siteOrganization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: mySite.name,
+  url: mySite.url,
+  logo: mySite.logoUrl,
+  description: mySite.description,
+  sameAs: mySite.sameAs,
+  foundingDate: mySite.companyInfo.foundingDate,
+  founder: mySite.founderInfo.name,
+  areaServed: 'KR',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: mySite.address.streetAddress,
+    addressLocality: mySite.address.addressLocality,
+    addressRegion: mySite.address.addressRegion,
+    postalCode: mySite.address.postalCode,
+    addressCountry: mySite.address.addressCountry,
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: mySite.contactPoint.tel,
+      contactType: mySite.contactPoint.contactType,
+      contactOption: mySite.contactPoint.contactOption,
+      areaServed: mySite.contactPoint.areaServed,
+      availableLanguage: mySite.contactPoint.availableLanguage,
+    },
+  ],
+};
+
+// 사이트 정보
+export const siteWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: mySite.name,
+  url: mySite.url,
+  alternateName: [mySite.title, mySite.name, 'Dble', 'Dble Agency'],
+  description: mySite.description,
+  inLanguage: 'ko',
+  keywords: mySite.keywords.join(', '),
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${mySite.url}/search?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+  mainEntity: menus.map(menu => ({
+    '@type': 'SiteNavigationElement',
+    name: menu.name,
+    url: `${mySite.url}${menu.url}`,
+  })),
+};
+
+// 창립자 정보
+export const sitePerson = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: mySite.founderInfo.name,
+  jobTitle: mySite.founderInfo.jobTitle,
+  email: mySite.founderInfo.email,
+  telephone: mySite.founderInfo.tel,
+  image: mySite.founderInfo.image,
+  description: mySite.founderInfo.description,
+  sameAs: mySite.founderInfo.sameAs,
+  worksFor: {
+    '@type': 'Organization',
+    name: mySite.name,
+    legalName: mySite.companyInfo.legalName,
+    taxID: mySite.companyInfo.taxID,
+  },
+  url: mySite.url,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: mySite.address.streetAddress,
+    addressLocality: mySite.address.addressLocality,
+    addressRegion: mySite.address.addressRegion,
+    postalCode: mySite.address.postalCode,
+    addressCountry: mySite.address.addressCountry,
+  },
+  alumniOf: mySite.founderInfo.alumniOf.map(my => ({
+    '@type': 'EducationalOrganization',
+    name: my.name,
+    department: my.department,
+  })),
+};
+
+// 사이트 네비게이션
+export const siteNavigation = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: menus.map((menu, index) => ({
+    '@type': 'SiteNavigationElement',
+    position: index + 1,
+    name: menu.name,
+    url: `${mySite.url}${menu.url}`,
+  })),
 };

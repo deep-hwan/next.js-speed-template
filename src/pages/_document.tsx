@@ -1,4 +1,6 @@
-import { mySite } from '@/libs/site/site';
+import { mySite, siteNavigation, siteOrganization, sitePerson, siteWebSite } from '@/libs/site/site';
+import SplashScreens from '@/libs/site/splashscreens';
+
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import Script from 'next/script';
 
@@ -13,21 +15,35 @@ interface MyDocumentProps extends DocumentInitialProps {
   locale: string;
 }
 
-const MyDocument = ({ breadcrumbList, locale = 'ko' }: MyDocumentProps) => {
+const MyDocument = ({ breadcrumbList, locale }: MyDocumentProps) => {
+  console.log(breadcrumbList);
+
   return (
-    <Html lang={locale}>
+    <Html lang={'ko'}>
       <Head>
         <meta charSet='utf-8' />
         <meta name='robots' content='index, follow' />
-        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
 
+        {/* 사이트 정보 */}
+        <meta name='application-name' content={mySite.name} />
+        <meta property='og:site_name' content={mySite.name} />
+        <meta property='og:type' content='website' />
+        <meta property='og:locale' content='ko_KR' />
+        <link itemProp='url' href={mySite.url} />
+        <meta itemProp='name' content={mySite.name} />
+        <meta itemProp='alternateName' content={mySite.title} />
+
+        {/* <link rel='manifest' href='/manifest.json' /> */}
         <link rel='shortcut icon' href='/favicon.ico' />
         <link rel='alternate' type='application/rss+xml' title={mySite.name + ' RSS Feed'} href='/api/rss' />
 
-        {/* >> pwa */}
-        {/* <link rel='manifest' href='/manifest.json' /> */}
-        {/* <SplashScreens /> */}
+        <Script
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? ''}`}
+        />
 
+        {/* 메뉴 목록 */}
+        <SplashScreens />
         {breadcrumbList && (
           <Script
             type='application/ld+json'
@@ -45,8 +61,49 @@ const MyDocument = ({ breadcrumbList, locale = 'ko' }: MyDocumentProps) => {
             }}
           />
         )}
+
+        {/* 조직 정보 */}
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteOrganization),
+          }}
+        />
+
+        {/* 사이트 정보 */}
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteWebSite),
+          }}
+        />
+
+        {/* 창립자 정보 */}
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(sitePerson),
+          }}
+        />
+
+        {/* 창립자 정보 */}
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteNavigation),
+          }}
+        />
       </Head>
       <body>
+        <noscript>
+          <iframe
+            src='https://www.googletagmanager.com/ns.html?id=GTM-5CQBT9QD'
+            height='0'
+            width='0'
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+
         <Main />
         <NextScript />
       </body>
@@ -60,7 +117,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext): Promise<MyDocumentPro
   // Define breadcrumb list
   const breadcrumbs: { [key: string]: Breadcrumb[] } = {
     '/': [],
-    '/contactus': [{ position: 1, name: '문의하기', url: mySite.url + '/contactus' }],
+    '/menu': [{ position: 1, name: '메뉴', url: mySite.url + '/menu' }],
   };
 
   const breadcrumbList = breadcrumbs[ctx.pathname] || null;
