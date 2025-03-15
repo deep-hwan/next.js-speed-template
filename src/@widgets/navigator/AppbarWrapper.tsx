@@ -58,7 +58,7 @@ const size_style: CSSObject = {
   width: '100%',
   height: 80,
   minHeight: 80,
-  maxHeight: 8,
+  maxHeight: 80,
   transition: 'all 0.2s ease-in-out',
   [MQ[2]]: {
     height: 60,
