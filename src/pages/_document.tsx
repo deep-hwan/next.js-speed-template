@@ -1,5 +1,4 @@
 import { mySite, siteNavigation, siteOrganization, sitePerson, siteWebSite } from '@/libs/site/site';
-import SplashScreens from '@/libs/site/splashscreens';
 
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import Script from 'next/script';
@@ -42,8 +41,19 @@ const MyDocument = ({ breadcrumbList, locale }: MyDocumentProps) => {
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? ''}`}
         />
 
+        {/* PWA 셋팅 */}
+        {/* <SplashScreens />
+        <link rel='manifest' href='/manifest.json' /> */}
+        <meta name='theme-color' content='#ffffff' />
+        <meta name='mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-status-bar-style' content='default' />
+        <meta name='apple-mobile-web-app-title' content={mySite.name} />
+        <meta name='format-detection' content='telephone=no' />
+        <meta name='msapplication-TileColor' content='#ffffff' />
+        <meta name='msapplication-tap-highlight' content='no' />
+
         {/* 메뉴 목록 */}
-        <SplashScreens />
         {breadcrumbList && (
           <Script
             type='application/ld+json'
