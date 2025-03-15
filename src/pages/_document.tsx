@@ -32,7 +32,6 @@ const MyDocument = ({ breadcrumbList, locale }: MyDocumentProps) => {
         <meta itemProp='name' content={mySite.name} />
         <meta itemProp='alternateName' content={mySite.title} />
 
-        {/* <link rel='manifest' href='/manifest.json' /> */}
         <link rel='shortcut icon' href='/favicon.ico' />
         <link rel='alternate' type='application/rss+xml' title={mySite.name + ' RSS Feed'} href='/api/rss' />
 
